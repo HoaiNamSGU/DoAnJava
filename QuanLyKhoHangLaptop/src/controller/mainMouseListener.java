@@ -73,10 +73,10 @@ public class mainMouseListener implements MouseListener {
             	 if(result == JOptionPane.YES_OPTION){
             		 LaptopDAO.getintance().delete(lt);
             		 view.model.removeRow(selectedRow);
-            		 count++;
+            		 
             		 JOptionPane.showMessageDialog(view, "Sản phẩm đã được xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                  }
-            	 System.out.println(count);
+            	
     		}
     		else
     		{

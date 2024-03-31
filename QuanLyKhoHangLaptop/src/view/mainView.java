@@ -1,33 +1,31 @@
 package view;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.Color;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-
 import controller.mainMouseListener;
 import dao.LaptopDAO;
 import model.Laptop;
 import controller.mainActionlistener;
-
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import dao.LaptopDAO;
+
 
 
 public class mainView extends JFrame {
@@ -187,9 +185,24 @@ public class mainView extends JFrame {
 		));
 		*/
 		
-		//setModel();
-		//table = new JTable(model);
-		setTable();
+		ArrayList<Laptop> listLaptop = LaptopDAO.getintance().selectAll();
+		
+		data = new Object [listLaptop.size()][8];
+		for(int i=0;i<listLaptop.size();i++)
+		{	
+			Laptop t = listLaptop.get(i);
+			data[i][0] = t.getMaLaptop();
+			data[i][1] = t.getTenLaptop();
+			data[i][2] = t.getSoLuong();
+			data[i][3] = t.getGia();
+			data[i][4] = t.getCPU();
+			data[i][5] = t.getRam();
+			data[i][6] = t.getRom();
+			data[i][7] = t.getHeDieuHanh();
+		}
+		model = new DefaultTableModel(data,column);
+		table = new JTable(model);
+		
 		
 		table.getColumnModel().getColumn(0).setPreferredWidth(52);
 		table.getColumnModel().getColumn(1).setPreferredWidth(160);
@@ -325,33 +338,4 @@ public class mainView extends JFrame {
 		this.setResizable(false);
 	}
 	
-	
-	
-	
-	public void setModel()
-	{
-		ArrayList<Laptop> listLaptop = LaptopDAO.getintance().selectAll();
-		
-		data = new Object [listLaptop.size()][8];
-		for(int i=0;i<listLaptop.size();i++)
-		{	
-			Laptop t = listLaptop.get(i);
-			data[i][0] = t.getMaLaptop();
-			data[i][1] = t.getTenLaptop();
-			data[i][2] = t.getSoLuong();
-			data[i][3] = t.getGia();
-			data[i][4] = t.getCPU();
-			data[i][5] = t.getRam();
-			data[i][6] = t.getRom();
-			data[i][7] = t.getHeDieuHanh();
-		}
-		model = new DefaultTableModel(data,column);
-	}
-	
-	
-	public void setTable()
-	{
-		setModel();
-		table = new JTable(data,column);
-	}
 }
