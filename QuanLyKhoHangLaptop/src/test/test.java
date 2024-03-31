@@ -6,11 +6,13 @@ import view.mainView;
 
 public class test {
 	public static void main(String[] args) {
-		try {
+		/*try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			new mainView();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
+		
+		new mainView();
 	}
 }
