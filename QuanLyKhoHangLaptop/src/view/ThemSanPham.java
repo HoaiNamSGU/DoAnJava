@@ -4,10 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.ThemSanPhamActionlistener;
+//import controller.ThemSanPhamActionlistener;
+import dao.LaptopDAO;
+import model.Laptop;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -32,8 +37,7 @@ public class ThemSanPham extends JFrame {
 	public JTextField jtextField_gia;
 	public JButton jbutton_xacnhan;
 	public JButton jbutton_huybo;
-
-
+	
 	public ThemSanPham() {
 		this.setTitle("Thêm sản phẩm");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -204,10 +208,12 @@ public class ThemSanPham extends JFrame {
 		jbutton_huybo.setBounds(448, 437, 165, 41);
 		contentPane.add(jbutton_huybo);
 		
-		ActionListener ac = new ThemSanPhamActionlistener(this);
+		/*ActionListener ac = new ThemSanPhamActionlistener(this);
 		
 		jbutton_xacnhan.addActionListener(ac);
-		jbutton_huybo.addActionListener(ac);
+		jbutton_huybo.addActionListener(ac);*/
+		
+		
 		this.setVisible(true);
 	}
 	

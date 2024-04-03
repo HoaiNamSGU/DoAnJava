@@ -307,8 +307,6 @@ public class mainView extends JFrame {
 		jbutton_refesh.setBackground(new Color(255, 255, 255));
 		jbutton_refesh.setBounds(427, 31, 42, 33);
 		panel_border_timKiem.add(jbutton_refesh);
-
-		
 		
 		
 		mainActionlistener ac  =  new mainActionlistener(this);

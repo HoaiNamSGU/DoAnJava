@@ -108,7 +108,7 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 		}
 		return kq;
 	}
-
+	
 	@Override
 	public ArrayList<Laptop> selectAll() {
 		ArrayList<Laptop> kq = new ArrayList<Laptop>();
@@ -183,29 +183,16 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 	
 	
 	
-	//public static void main(String[] args) {
-		/*Laptop laptop = new Laptop();
-		laptop.setMaLaptop("a");
-		laptop.setTenLaptop("Pham Le Hoai Thuong");
-		laptop.setGia(1234141434);
-		//LaptopDAO.getintance().insert(laptop);
-		laptop.setCPU("asfasfa");
-		laptop.setGPU("asdfasfas");
-		//LaptopDAO.getintance().update(laptop);
-		LaptopDAO.getintance().delete(laptop);*/
-		
-		/*ArrayList<Laptop> ds = LaptopDAO.getintance().selectAll();
-		for (Laptop laptop : ds) {
-			System.out.println(laptop.toString());
-		}*/
-		
-		/*Laptop tmp = new Laptop();
-		tmp.setMaLaptop("MSGB15");
-		Laptop lt = LaptopDAO.getintance().selectById(tmp);
-		System.out.println(lt.toString());*/
-		
-		
-	//}
+	public static void main(String[] args) {
+		Laptop l = new Laptop();
+		l.setMaLaptop("ccccc");
+		l.setGia(11);
+		Laptop l1 =new Laptop();
+		l1.setMaLaptop("ddddd");
+		l.setGia(1111);
+		LaptopDAO.getintance().delete(l);
+		LaptopDAO.getintance().delete(l1);
+	}
 }
 
 
