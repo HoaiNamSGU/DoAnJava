@@ -17,7 +17,7 @@ public class mainActionlistener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		String src = e.getActionCommand();
 		if(e.getSource() == view.jbutton_refesh)
 		{
 			view.textField.setText("");

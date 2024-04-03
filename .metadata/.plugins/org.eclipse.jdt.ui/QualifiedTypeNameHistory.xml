@@ -8,7 +8,6 @@
     <fullyQualifiedTypeName name="javax.swing.event.ChangeListener"/>
     <fullyQualifiedTypeName name="javax.swing.event.ChangeEvent"/>
     <fullyQualifiedTypeName name="javax.swing.ButtonModel"/>
-    <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
     <fullyQualifiedTypeName name="test.TableExample"/>
     <fullyQualifiedTypeName name="javax.swing.JTable"/>
     <fullyQualifiedTypeName name="javax.swing.table.JTableHeader"/>
@@ -27,14 +26,12 @@
     <fullyQualifiedTypeName name="controller.JLabelControler"/>
     <fullyQualifiedTypeName name="javax.swing.plaf.metal.MetalLookAndFeel"/>
     <fullyQualifiedTypeName name="javax.swing.UIManager"/>
-    <fullyQualifiedTypeName name="view.SuaSanPham"/>
     <fullyQualifiedTypeName name="dao.DAOInterface"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="database.JDBCUtil"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="view.ThemSanPham"/>
     <fullyQualifiedTypeName name="controller.ThemSanPhamActionlistener"/>
@@ -46,7 +43,10 @@
     <fullyQualifiedTypeName name="model.Laptop"/>
     <fullyQualifiedTypeName name="dao.LaptopDAO"/>
     <fullyQualifiedTypeName name="javax.swing.JLabel"/>
-    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="view.SuaSanPham"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

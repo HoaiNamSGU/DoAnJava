@@ -259,8 +259,7 @@ public class mainView extends JFrame {
 		jlabel_xemCT.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xemCT);
 
-		ImageIcon icon_nhapExcel = new ImageIcon(
-				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhapExcel.png");
+		ImageIcon icon_nhapExcel = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhapExcel.png");
 		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", icon_nhapExcel, JLabel.CENTER);
 		jlabel_nhapExcel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_nhapExcel.setBounds(265, 21, 68, 50);
@@ -284,7 +283,7 @@ public class mainView extends JFrame {
 		panel_border_timKiem.setBounds(766, 10, 620, 81);
 		getContentPane().add(panel_border_timKiem);
 
-		String[] combo = { "Tất cả", "Windowns", "MacOS" };
+		String[] combo = { "Tất cả", "Windows", "MacOS" };
 		JComboBox comboBox_search = new JComboBox(combo);
 		comboBox_search.setBackground(new Color(255, 255, 255));
 		comboBox_search.setFont(new Font("Arial", Font.PLAIN, 14));

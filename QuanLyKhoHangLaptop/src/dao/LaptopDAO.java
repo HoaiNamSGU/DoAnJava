@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+
 import database.JDBCUtil;
 import model.Laptop;
 
@@ -181,17 +183,30 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 	}
 	
 	
-	
+	public ArrayList<String> getColumn_0()
+	{
+		ArrayList<String> column = new ArrayList<String>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "select MaLaptop from laptop";
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				column.add(rs.getString("MaLaptop"));
+			}
+			JDBCUtil.closeConnection(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return column; 
+	}
 	
 	public static void main(String[] args) {
-		Laptop l = new Laptop();
-		l.setMaLaptop("ccccc");
-		l.setGia(11);
-		Laptop l1 =new Laptop();
-		l1.setMaLaptop("ddddd");
-		l.setGia(1111);
-		LaptopDAO.getintance().delete(l);
-		LaptopDAO.getintance().delete(l1);
+		ArrayList<String> arr = LaptopDAO.getintance().getColumn_0();
+		for (String string : arr) {
+			System.out.println(string);
+		}
 	}
 }
 
