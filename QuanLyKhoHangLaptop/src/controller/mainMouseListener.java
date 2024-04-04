@@ -9,14 +9,15 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import dao.LaptopDAO;
-import view.mainView;
+import model.Laptop;
 import view.PhieuXuat;
 import view.SuaSanPham;
 import view.ThemSanPham;
-import model.Laptop;
-
+import view.mainView;
+import test.test;
 
 public class mainMouseListener implements MouseListener {
 	
@@ -55,6 +56,14 @@ public class mainMouseListener implements MouseListener {
             PhieuXuat.ChangeInformationToPhieuXuat();
             PhieuXuat.setVisible(true);
         }
+        if (clickedLabel.getText().equals("Cửa hàng")) {
+			JTable newTable = test.mv.CuaHang();
+			test.mv.updateTable(newTable);
+		}
+		if (clickedLabel.getText().equals("Sản phẩm")) {
+			JTable newTable = test.mv.SanPham();
+			test.mv.updateTable(newTable);
+		}
         else if(labelText.equals("Thêm"))
         {
         	ThemSanPham add = new ThemSanPham();

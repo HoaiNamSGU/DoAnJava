@@ -56,13 +56,13 @@ public class login extends JFrame {
 		jtextFiled_username_1.setBounds(21, 183, 119, 24);
 		jpanel_login.add(jtextFiled_username_1);
 
-		ImageIcon icon = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\login_mini.png");
+		ImageIcon icon = new ImageIcon("D:\\java_setup\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\login_mini.png");
 		jpanel_img.setLayout(null);
 		JLabel jLabel_img = new JLabel(icon);
 		jLabel_img.setBounds(84, 230, 128, 128);
 		jpanel_img.add(jLabel_img);
 
-		ImageIcon icon_user = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\user.png");
+		ImageIcon icon_user = new ImageIcon("D:\\java_setup\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\user.png");
 		JLabel jLabel_user = new JLabel(icon_user);
 		jLabel_user.setBounds(84, 102, 128, 128);
 		jpanel_img.add(jLabel_user);

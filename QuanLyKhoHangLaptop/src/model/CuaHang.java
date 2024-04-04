@@ -2,58 +2,58 @@ package model;
 
 public class CuaHang {
 	
-	private String MaCuaHang;
-	private String TenCuaHang;
+	private String MaCH;
+	private String TenCH;
 	private String DiaChi;
-	private String Email;
+	private String SDT;
 	
 	public CuaHang() {
 		
 	}
 
-	public CuaHang(String maCuaHang, String tenCuaHang, String diaChi, String email) {
-		MaCuaHang = maCuaHang;
-		TenCuaHang = tenCuaHang;
-		DiaChi = diaChi;
-		Email = email;
+	public CuaHang(String MaCH, String TenCH, String DiaChi, String SDT) {
+		this.MaCH = MaCH;
+		this.TenCH = TenCH;
+		this.DiaChi = DiaChi;
+		this.SDT = SDT;
 	}
 
-	public String getMaCuaHang() {
-		return MaCuaHang;
+	public String getMaCH() {
+		return this.MaCH;
 	}
 
-	public void setMaCuaHang(String maCuaHang) {
-		MaCuaHang = maCuaHang;
+	public void setMaCH(String MaCH) {
+		this.MaCH = MaCH;
 	}
 
-	public String getTenCuaHang() {
-		return TenCuaHang;
+	public String getTenCH() {
+		return this.TenCH;
 	}
 
-	public void setTenCuaHang(String tenCuaHang) {
-		TenCuaHang = tenCuaHang;
+	public void setTenCH(String TenCH) {
+		this.TenCH = TenCH;
 	}
 
 	public String getDiaChi() {
-		return DiaChi;
+		return this.DiaChi;
 	}
 
-	public void setDiaChi(String diaChi) {
-		DiaChi = diaChi;
+	public void setDiaChi(String DiaChi) {
+		this.DiaChi = DiaChi;
 	}
 
-	public String getEmail() {
-		return Email;
+	public String getSDT() {
+		return this.SDT;
 	}
 
-	public void setEmail(String email) {
-		Email = email;
+	public void setSDT(String SDT) {
+		this.SDT = SDT;
 	}
 
 	@Override
 	public String toString() {
-		return "CuaHang [MaCuaHang=" + MaCuaHang + ", TenCuaHang=" + TenCuaHang + ", DiaChi=" + DiaChi + ", Email="
-				+ Email + "]";
+		return "CuaHang [MaCH=" + this.MaCH + ", TenCH=" + this.TenCH + ", DiaChi=" + this.DiaChi + ", SDT="
+				+ this.SDT + "]";
 	}
 		
 	

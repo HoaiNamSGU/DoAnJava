@@ -5,14 +5,13 @@ import javax.swing.UIManager;
 import view.mainView;
 
 public class test {
+	public static mainView mv;
 	public static void main(String[] args) {
-		/*try {
+		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			new mainView();
+			mv=new mainView();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
-		
-		new mainView();
+		}
 	}
 }
