@@ -164,7 +164,7 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 				String man = rs.getString("ManHinh");
 				String hang = rs.getString("Hang");
 				int namsx = rs.getInt("NamSanXuat");
-				int soluong = rs.getInt("NamSanXuat");
+				int soluong = rs.getInt("SoLuong");
 				double gia = rs.getDouble("Gia");
 				kq = new Laptop(ma, ten, cpu, gpu, ram, rom, hdh, man, hang, namsx, soluong, gia);
 			}
@@ -201,11 +201,54 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 		return column; 
 	}
 	
-	public static void main(String[] args) {
-		ArrayList<String> arr = LaptopDAO.getintance().getColumn_0();
-		for (String string : arr) {
-			System.out.println(string);
+	
+	public int updateALL(Laptop t, String maOld) {
+		int ketqua = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "UPDATE laptop "+
+						"SET "+
+						"MaLaptop=? "+
+						",TenLaptop=? "+
+						",CPU=? "+
+						",GPU=? "+
+						",Ram=? "+
+						",Rom=? "+
+						",HeDieuHanh=? "+
+						",ManHinh=? "+
+						",Hang=? "+
+						",NamSanXuat=? "+
+						",SoLuong=? "+
+						",Gia=? "+ 
+						"WHERE MaLaptop = ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, t.getMaLaptop());
+			pst.setString(2, t.getTenLaptop());
+			pst.setString(3, t.getCPU());
+			pst.setString(4, t.getGPU());
+			pst.setString(5, t.getRam());
+			pst.setString(6, t.getRom());
+			pst.setString(7, t.getHeDieuHanh());
+			pst.setString(8, t.getManHinh());
+			pst.setString(9, t.getHang());
+			pst.setInt(10, t.getNamSanXuat());
+			pst.setInt(11, t.getSoLuong());
+			pst.setDouble(12, t.getGia());
+			pst.setString(13,maOld);
+			
+			ketqua = pst.executeUpdate();
+			
+			JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return ketqua;
+	}
+	
+	public static void main(String[] args) {
+		Laptop lt = new Laptop();
+		lt.setMaLaptop("b");
+		LaptopDAO.getintance().update(lt);
 	}
 }
 

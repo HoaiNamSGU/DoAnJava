@@ -2,15 +2,23 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import dao.LaptopDAO;
+import model.Laptop;
 
 
 public class ThemSanPham extends JFrame {
@@ -223,6 +231,7 @@ public class ThemSanPham extends JFrame {
 		
 		
 		this.setVisible(true);
+		this.setResizable(false);
 	}
 	
 	public String getText(JTextField textfield)
@@ -230,4 +239,11 @@ public class ThemSanPham extends JFrame {
 		return textfield.getText();
 	}
 	
+	
+	
+	
 }
+
+
+
+

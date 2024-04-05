@@ -13,11 +13,12 @@ import javax.swing.JTable;
 
 import dao.LaptopDAO;
 import model.Laptop;
-import view.PhieuXuat;
-import view.SuaSanPham;
-import view.ThemSanPham;
-import view.mainView;
 import test.test;
+import	view.*;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 
 public class mainMouseListener implements MouseListener {
 	
@@ -67,14 +68,14 @@ public class mainMouseListener implements MouseListener {
         else if(labelText.equals("Thêm"))
         {
         	ThemSanPham add = new ThemSanPham();
+        	add.addWindowListener(new WindowAdapter() {
+    		    @Override
+    		    public void windowClosing(WindowEvent e) {
+    		        clickedLabel.setForeground(Color.BLACK);
+    		        clickedLabel.setBackground(null);
+    		    }
+    		});
         	Laptop lt = new Laptop();
-        	String defaultSelected_Ram = (String) add.comboBox_Ram.getSelectedItem();
-        	String defaultSelected_Rom = (String) add.comboBox_Rom.getSelectedItem();
-        	String defaultSelected_Nam = (String) add.comboBox_Nam.getSelectedItem();
-        	lt.setRam(defaultSelected_Ram);
-        	lt.setRom(defaultSelected_Rom);
-        	lt.setNamSanXuat(Integer.parseInt(defaultSelected_Nam));
-        	
         	
         	add.comboBox_Ram.addActionListener(new ActionListener() {
 				
@@ -121,6 +122,7 @@ public class mainMouseListener implements MouseListener {
 							lt.setSoLuong(soluong);
 						} catch (NumberFormatException e1) {
 							JOptionPane.showMessageDialog(add ,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
+							lt.setSoLuong(0);
 							e1.printStackTrace();
 						}
 						
@@ -138,10 +140,15 @@ public class mainMouseListener implements MouseListener {
 						try {
 							int soluong = Integer.parseInt(add.getText(add.jtextField_soluong));
 							soluong--;
+							if(soluong<0)
+							{
+								soluong = 0;
+							}
 							add.jtextField_soluong.setText(soluong+"");
 							lt.setSoLuong(soluong);
 						} catch (NumberFormatException e1) {
 							JOptionPane.showMessageDialog(add,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
+							lt.setSoLuong(0);
 							e1.printStackTrace();
 						}
 					}
@@ -150,7 +157,12 @@ public class mainMouseListener implements MouseListener {
 			
 			
 			
-			
+			String defaultSelected_Ram = (String) add.comboBox_Ram.getSelectedItem();
+        	String defaultSelected_Rom = (String) add.comboBox_Rom.getSelectedItem();
+        	String defaultSelected_Nam = (String) add.comboBox_Nam.getSelectedItem();
+        	lt.setRam(defaultSelected_Ram);
+        	lt.setRom(defaultSelected_Rom);
+        	lt.setNamSanXuat(Integer.parseInt(defaultSelected_Nam));
 			
         	add.jbutton_xacnhan.addActionListener(new ActionListener() {
 				
@@ -237,22 +249,26 @@ public class mainMouseListener implements MouseListener {
 						lt.setSoLuong(Integer.parseInt(add.getText(add.jtextField_soluong)));
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(add,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
+						lt.setSoLuong(0);
 						e1.printStackTrace();
 					}
 		        	try {
 						lt.setGia(Double.parseDouble(add.getText(add.jtextField_gia)));
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(add,"Giá không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
+						lt.setGia(0);
 						e1.printStackTrace();
 					}
 					
 		        	String src = e.getActionCommand();
 					if(src.equals("Xác nhận"))
 					{
+						
 			        	int result = JOptionPane.showConfirmDialog(add, "Bạn có chắc muốn thêm sản phẩm ?","Xác nhận",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 			        	if(result == JOptionPane.YES_OPTION)
 			        	{
 							LaptopDAO.getintance().insert(lt);
+							test.mv.updateTableData();
 							JOptionPane.showMessageDialog(add, "Sản phẩm đã được thêm thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 							
 			        	}
@@ -293,6 +309,7 @@ public class mainMouseListener implements MouseListener {
             	 if(result == JOptionPane.YES_OPTION){
             		 LaptopDAO.getintance().delete(lt);
             		 view.model.removeRow(selectedRow);
+            		 test.mv.updateTableData();
             		 clickedLabel.setForeground(Color.BLACK);
             	     clickedLabel.setBackground(null);
             		 JOptionPane.showMessageDialog(view, "Sản phẩm đã được xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -316,8 +333,202 @@ public class mainMouseListener implements MouseListener {
         }
         else if(labelText.equals("Sửa"))
         {
-        	new SuaSanPham();
+        		
+        	Laptop[] lt = new Laptop[1];
+        	    
+        	int selectedRow = view.table.getSelectedRow();
+        	if (selectedRow != -1) {
+        		SuaSanPham sua = new SuaSanPham();
+            	sua.addWindowListener(new WindowAdapter() {
+            	@Override
+            	public void windowClosing(WindowEvent e) {
+            		clickedLabel.setForeground(Color.BLACK);
+            		clickedLabel.setBackground(null);
+            		}
+            	});
+        	    Object malaptop = view.table.getValueAt(selectedRow, 0);
+        	    lt[0] = new Laptop();
+        	    lt[0].setMaLaptop(malaptop + "");
+        	    lt[0] = LaptopDAO.getintance().selectById(lt[0]);
+        	    sua.setJtextField(lt[0]);
+        	       
+        	    
+        	    sua.comboBox_Ram.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					String selected_Ram = (String) sua.comboBox_Ram.getSelectedItem();
+    					lt[0].setRam(selected_Ram);
+    					
+    				}
+    			});
+            	
+            	
+    			sua.comboBox_Rom.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					String selected_Rom = (String) sua.comboBox_Rom.getSelectedItem();
+    					lt[0].setRom(selected_Rom);
+    				}
+    			});
+    			
+    			
+    			sua.comboBox_Nam.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					String selected_nam = (String) sua.comboBox_Nam.getSelectedItem();
+    					lt[0].setNamSanXuat(Integer.parseInt(selected_nam));
+    				}
+    			});
+            	
+    			
+        	    sua.button_right.addActionListener(new ActionListener() {
+        	        @Override
+        	        public void actionPerformed(ActionEvent e) {
+        	            if (e.getSource() == sua.button_right) {
+        	                int soluong;
+        	                try {
+        	                    soluong = Integer.parseInt(sua.getText(sua.jtextField_soluong));
+        	                    soluong++;
+        	                    sua.jtextField_soluong.setText(soluong + "");
+        	                    lt[0].setSoLuong(soluong);
+        	                } catch (NumberFormatException e1) {
+        	                    JOptionPane.showMessageDialog(sua, "Số lượng không hợp lệ !", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        	                    lt[0].setSoLuong(0);
+        	                    e1.printStackTrace();
+        	                }
+        	            }
+        	        }
+        	    });
+			
+			
+        	    sua.button_left.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(e.getSource()==sua.button_left)
+					{
+						try {
+							int soluong = Integer.parseInt(sua.getText(sua.jtextField_soluong));
+							soluong--;
+							if(soluong<0)
+							{
+								soluong = 0;
+							}
+							sua.jtextField_soluong.setText(soluong+"");
+							lt[0].setSoLuong(soluong);
+						} catch (NumberFormatException e1) {
+							JOptionPane.showMessageDialog(sua,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
+							lt[0].setSoLuong(0);
+							e1.printStackTrace();
+						}
+					}
+				}
+        	    });
+        
+        	    
+        	    
+        	    sua.jbutton_xacnhan.addActionListener(new ActionListener() {
+    				String ma = lt[0].getMaLaptop();
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					
+    		        	lt[0].setTenLaptop(sua.getText(sua.jtextField_tensanpham));
+    		        	lt[0].setCPU(sua.getText(sua.jtextField_CPU));
+    		        	lt[0].setGPU(sua.getText(sua.jtextField_GPU));
+    		        	lt[0].setHeDieuHanh(sua.getText(sua.jtextField_hedieuhanh));
+    		        	lt[0].setManHinh(sua.getText(sua.jtextField_manhinh));
+    		        	lt[0].setHang(sua.getText(sua.jtextField_Hang));
+    		        	ArrayList<String> arrMaLaptop = new ArrayList<String>();
+    		        	
+    					lt[0].setMaLaptop(sua.getText(sua.jtextField_masanpham));
+    		        	try {
+    						lt[0].setSoLuong(Integer.parseInt(sua.getText(sua.jtextField_soluong)));
+    					} catch (NumberFormatException e1) {
+    						JOptionPane.showMessageDialog(sua,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
+    						lt[0].setSoLuong(0);
+    						e1.printStackTrace();
+    					}
+    		        	try {
+    						lt[0].setGia(Double.parseDouble(sua.getText(sua.jtextField_gia)));
+    					} catch (NumberFormatException e1) {
+    						JOptionPane.showMessageDialog(sua,"Giá không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
+    						lt[0].setGia(0);
+    						e1.printStackTrace();
+    					}
+    					
+    		        	
+    		        	String src = e.getActionCommand();
+    					if(src.equals("Xác nhận"))
+    					{
+    						
+    			        	int result = JOptionPane.showConfirmDialog(sua, "Bạn có chắc muốn sửa sản phẩm ?","Xác nhận",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+    			        	if(result == JOptionPane.YES_OPTION)
+    			        	{
+    							LaptopDAO.getintance().updateALL(lt[0],ma);
+    							test.mv.updateTableData();
+    							JOptionPane.showMessageDialog(sua, "Sản phẩm đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    							
+    			        	}
+    					}
+    				}
+    			});
+            	
+            	
+            	sua.jbutton_huybo.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					// TODO Auto-generated method stub
+    					String src = e.getActionCommand();
+    					if(src.equals("Hủy bỏ"))
+    					{
+    						sua.dispose();
+    						clickedLabel.setForeground(Color.BLACK);
+    	            	    clickedLabel.setBackground(null);
+    					}
+    				}
+    			});
+        	}
+        	else
+        	{
+        		JOptionPane.showMessageDialog(view,"Bạn chưa chọn sản phảm để sửa !","Lỗi",JOptionPane.ERROR_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}    
         }
+        else if(labelText.equals("Xem chi tiết"))
+        {
+        	int selectedRow = view.table.getSelectedRow();
+        	if(selectedRow != -1)
+        	{
+        		Object malaptop = view.table.getValueAt(selectedRow,0);
+        		XemChiTiet xemct = new XemChiTiet();
+        		Laptop lt = new Laptop();
+        		lt.setMaLaptop(malaptop+"");
+        		lt = LaptopDAO.getintance().selectById(lt);
+        		xemct.setJLabel(lt);
+        		xemct.addWindowListener(new WindowAdapter() {
+        		    @Override
+        		    public void windowClosing(WindowEvent e) {
+        		        clickedLabel.setForeground(Color.BLACK);
+        		        clickedLabel.setBackground(null);
+        		    }
+        		});
+        	}
+        	else
+        	{
+        		JOptionPane.showMessageDialog(view,"Bạn chưa chọn sản phảm để xem !","Lỗi",JOptionPane.ERROR_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}
+        }
+		
+		
+		
+		
         // Cập nhật lastClickedLabel
         lastClickedLabel = clickedLabel;
         
