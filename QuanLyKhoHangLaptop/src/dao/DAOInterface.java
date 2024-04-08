@@ -10,9 +10,13 @@ public interface DAOInterface <T>{
 	
 	public int delete(T t);
 	
+	public int delete(String t);
+	
 	public ArrayList<T> selectAll();
 	
 	public T selectById(T t);
+	
+	public T selectById(String T);
 	
 	public ArrayList<T> selectByCondition(String condition);
 }

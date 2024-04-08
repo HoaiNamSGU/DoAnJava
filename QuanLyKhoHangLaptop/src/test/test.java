@@ -1,7 +1,6 @@
 package test;
 
-import javax.swing.UIManager;
-
+import view.ThemCuaHang;
 import view.mainView;
 
 public class test {

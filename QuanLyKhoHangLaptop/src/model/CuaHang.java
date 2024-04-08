@@ -49,7 +49,12 @@ public class CuaHang {
 	public void setSDT(String SDT) {
 		this.SDT = SDT;
 	}
-
+	public void Update(String MaCH, String TenCH, String DiaChi, String SDT) {
+		this.MaCH = MaCH;
+		this.TenCH = TenCH;
+		this.DiaChi = DiaChi;
+		this.SDT = SDT;
+	}
 	@Override
 	public String toString() {
 		return "CuaHang [MaCH=" + this.MaCH + ", TenCH=" + this.TenCH + ", DiaChi=" + this.DiaChi + ", SDT="

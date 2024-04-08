@@ -117,7 +117,6 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 			Connection con = JDBCUtil.getConnection();
 			String sql = "select * from laptop";
 			PreparedStatement pst = con.prepareStatement(sql);
-			
 			ResultSet rs = pst.executeQuery();
 			while(rs.next())
 			{
@@ -249,6 +248,18 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 		Laptop lt = new Laptop();
 		lt.setMaLaptop("b");
 		LaptopDAO.getintance().update(lt);
+	}
+
+	@Override
+	public Laptop selectById(String T) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int delete(String t) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 
