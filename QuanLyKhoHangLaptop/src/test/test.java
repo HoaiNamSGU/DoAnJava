@@ -1,6 +1,6 @@
 package test;
 
-import view.ThemCuaHang;
+
 import view.mainView;
 
 public class test {

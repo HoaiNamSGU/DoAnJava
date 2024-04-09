@@ -58,12 +58,13 @@ public class mainMouseListener implements MouseListener {
             PhieuXuat.setVisible(true);
         }
         if (clickedLabel.getText().equals("Cửa hàng")) {
-			JTable newTable = test.mv.CuaHang();
-			test.mv.updateTable(newTable);
+			JTable newTable = view.CuaHang();
+			view.updateTable(newTable);
 		}
 		if (clickedLabel.getText().equals("Sản phẩm")) {
-			JTable newTable = test.mv.SanPham();
-			test.mv.updateTable(newTable);
+			JTable newTable = view.SanPham();
+			view.updateTable(newTable);
+			view.comboBox_search.setSelectedIndex(0);
 		}
         else if(labelText.equals("Thêm"))
         {
@@ -268,7 +269,8 @@ public class mainMouseListener implements MouseListener {
 			        	if(result == JOptionPane.YES_OPTION)
 			        	{
 							LaptopDAO.getintance().insert(lt);
-							test.mv.updateTableData();
+							ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
+							view.updateTableData(Laptop);
 							JOptionPane.showMessageDialog(add, "Sản phẩm đã được thêm thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 							
 			        	}
@@ -309,7 +311,8 @@ public class mainMouseListener implements MouseListener {
             	 if(result == JOptionPane.YES_OPTION){
             		 LaptopDAO.getintance().delete(lt);
             		 view.model.removeRow(selectedRow);
-            		 test.mv.updateTableData();
+            		 ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
+            		 view.updateTableData(Laptop);
             		 clickedLabel.setForeground(Color.BLACK);
             	     clickedLabel.setBackground(null);
             		 JOptionPane.showMessageDialog(view, "Sản phẩm đã được xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -468,7 +471,8 @@ public class mainMouseListener implements MouseListener {
     			        	if(result == JOptionPane.YES_OPTION)
     			        	{
     							LaptopDAO.getintance().updateALL(lt[0],ma);
-    							test.mv.updateTableData();
+    							 ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
+    							view.updateTableData(Laptop);
     							JOptionPane.showMessageDialog(sua, "Sản phẩm đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     							
     			        	}

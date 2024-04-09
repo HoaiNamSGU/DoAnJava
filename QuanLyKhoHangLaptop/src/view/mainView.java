@@ -45,7 +45,9 @@ public class mainView extends JFrame {
 	public Object data[][];
 	public JTable table;
 	public DefaultTableModel model;
-	private JScrollPane scrollPane;
+	public JScrollPane scrollPane;
+	public JComboBox comboBox_search;
+	public JButton jbutton_Sreach;
 
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,7 +78,7 @@ public class mainView extends JFrame {
 		jlabel_sanpham.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_sanpham.setForeground(new Color(0, 0, 0));
 		jlabel_sanpham.setBounds(26, 158, 148, 37);
-		ImageIcon icon_sanpham = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\product.png");
+		ImageIcon icon_sanpham = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\product.png");
 		jlabel_sanpham.setIcon(icon_sanpham);
 		panel_menu.add(jlabel_sanpham);
 
@@ -85,7 +87,7 @@ public class mainView extends JFrame {
 		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_nhacungcap.setBounds(26, 205, 161, 37);
 		ImageIcon icon_nhaCungCap = new ImageIcon(
-				"D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\supplier.png");
+				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\supplier.png");
 		jlabel_nhacungcap.setIcon(icon_nhaCungCap);
 		panel_menu.add(jlabel_nhacungcap);
 
@@ -93,7 +95,7 @@ public class mainView extends JFrame {
 		jlabel_nhaphang.setForeground(new Color(0, 0, 0));
 		jlabel_nhaphang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_nhaphang.setBounds(26, 252, 148, 37);
-		ImageIcon icon_nhaphang = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhaphang.png");
+		ImageIcon icon_nhaphang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhaphang.png");
 		jlabel_nhaphang.setIcon(icon_nhaphang);
 		panel_menu.add(jlabel_nhaphang);
 
@@ -102,7 +104,7 @@ public class mainView extends JFrame {
 		jlabel_phieunhap.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_phieunhap.setBounds(26, 299, 148, 37);
 		ImageIcon icon_phieunhap = new ImageIcon(
-				"D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\phieunhap.png");
+				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\phieunhap.png");
 		jlabel_phieunhap.setIcon(icon_phieunhap);
 		panel_menu.add(jlabel_phieunhap);
 
@@ -110,7 +112,7 @@ public class mainView extends JFrame {
 		jlabel_xuathang.setForeground(new Color(0, 0, 0));
 		jlabel_xuathang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_xuathang.setBounds(26, 346, 148, 37);
-		ImageIcon icon_xuathang = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuathang.png");
+		ImageIcon icon_xuathang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuathang.png");
 		jlabel_xuathang.setIcon(icon_xuathang);
 		panel_menu.add(jlabel_xuathang);
 
@@ -119,7 +121,7 @@ public class mainView extends JFrame {
 		jlabel_phieuxuat.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_phieuxuat.setBounds(26, 393, 148, 37);
 		ImageIcon icon_phieuxuat = new ImageIcon(
-				"D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\phieuxuat.png");
+				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\phieuxuat.png");
 		jlabel_phieuxuat.setIcon(icon_phieuxuat);
 		panel_menu.add(jlabel_phieuxuat);
 
@@ -127,7 +129,7 @@ public class mainView extends JFrame {
 		jlabel_cuahang.setForeground(new Color(0, 0, 0));
 		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_cuahang.setBounds(26, 440, 148, 37);
-		ImageIcon icon_cuahang = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\store.png");
+		ImageIcon icon_cuahang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\store.png");
 		jlabel_cuahang.setIcon(icon_cuahang);
 		panel_menu.add(jlabel_cuahang);
 
@@ -135,7 +137,7 @@ public class mainView extends JFrame {
 		jlabel_taikhoan.setForeground(new Color(0, 0, 0));
 		jlabel_taikhoan.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_taikhoan.setBounds(26, 487, 148, 37);
-		ImageIcon icon_taikhoan = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\taikhoan.png");
+		ImageIcon icon_taikhoan = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\taikhoan.png");
 		jlabel_taikhoan.setIcon(icon_taikhoan);
 		panel_menu.add(jlabel_taikhoan);
 
@@ -143,7 +145,7 @@ public class mainView extends JFrame {
 		jlabel_thongke.setForeground(new Color(0, 0, 0));
 		jlabel_thongke.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_thongke.setBounds(26, 534, 148, 37);
-		ImageIcon icon_thongke = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\thongke.png");
+		ImageIcon icon_thongke = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\thongke.png");
 		jlabel_thongke.setIcon(icon_thongke);
 		panel_menu.add(jlabel_thongke);
 
@@ -152,7 +154,7 @@ public class mainView extends JFrame {
 		jlabel_doiThongtin.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_doiThongtin.setBounds(26, 641, 148, 37);
 		ImageIcon icon_doithongtin = new ImageIcon(
-				"D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\thongtin.png");
+				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\thongtin.png");
 		jlabel_doiThongtin.setIcon(icon_doithongtin);
 		panel_menu.add(jlabel_doiThongtin);
 
@@ -160,7 +162,7 @@ public class mainView extends JFrame {
 		jlabel_dangxuat.setForeground(new Color(0, 0, 0));
 		jlabel_dangxuat.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_dangxuat.setBounds(26, 688, 148, 37);
-		ImageIcon icon_dangxuat = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dangxuat.png");
+		ImageIcon icon_dangxuat = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dangxuat.png");
 		jlabel_dangxuat.setIcon(icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
 
@@ -180,6 +182,7 @@ public class mainView extends JFrame {
 		 * "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành" } ));
 		 */
 		table=SanPham();
+		
 		JTableHeader header = table.getTableHeader();
 		header.setFont(new Font("Arial", Font.BOLD, 14));
 		table.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -193,7 +196,7 @@ public class mainView extends JFrame {
 		getContentPane().add(panel_border_chucNang);
 		panel_border_chucNang.setLayout(null);
 
-		ImageIcon icon_add = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
+		ImageIcon icon_add = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
 		JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
 		jlabel_them.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_them.setBounds(10, 21, 44, 56);
@@ -201,7 +204,7 @@ public class mainView extends JFrame {
 		jlabel_them.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_them);
 
-		ImageIcon icon_pencil = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
+		ImageIcon icon_pencil = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
 		JLabel jlabel_sua = new JLabel("Sửa", icon_pencil, JLabel.CENTER);
 		jlabel_sua.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_sua.setBounds(109, 21, 59, 56);
@@ -209,7 +212,7 @@ public class mainView extends JFrame {
 		jlabel_sua.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_sua);
 
-		ImageIcon icon_remove = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
+		ImageIcon icon_remove = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
 		JLabel jlabel_xoa = new JLabel("Xóa", icon_remove, JLabel.CENTER);
 		jlabel_xoa.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_xoa.setBounds(67, 21, 45, 50);
@@ -217,7 +220,7 @@ public class mainView extends JFrame {
 		jlabel_xoa.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xoa);
 
-		ImageIcon icon_eye = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\eye.png");
+		ImageIcon icon_eye = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\eye.png");
 		JLabel jlabel_xemCT = new JLabel("Xem chi tiết", icon_eye, JLabel.CENTER);
 		jlabel_xemCT.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_xemCT.setBounds(165, 21, 68, 50);
@@ -226,7 +229,7 @@ public class mainView extends JFrame {
 		panel_border_chucNang.add(jlabel_xemCT);
 
 		ImageIcon icon_nhapExcel = new ImageIcon(
-				"D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhapExcel.png");
+				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhapExcel.png");
 		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", icon_nhapExcel, JLabel.CENTER);
 		jlabel_nhapExcel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_nhapExcel.setBounds(265, 21, 68, 50);
@@ -234,7 +237,7 @@ public class mainView extends JFrame {
 		jlabel_nhapExcel.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_nhapExcel);
 
-		ImageIcon icon_Excel = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
+		ImageIcon icon_Excel = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JLabel jlabel_Excel = new JLabel("Xuất Excel", icon_Excel, JLabel.CENTER);
 		jlabel_Excel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_Excel.setBounds(343, 21, 68, 50);
@@ -249,32 +252,38 @@ public class mainView extends JFrame {
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
 		panel_border_timKiem.setBounds(766, 10, 620, 81);
 		getContentPane().add(panel_border_timKiem);
-
+		
+		mainActionlistener ac = new mainActionlistener(this);
 		String[] combo = { "Tất cả", "Windows", "MacOS" };
-		JComboBox comboBox_search = new JComboBox(combo);
+		comboBox_search = new JComboBox(combo);
+		comboBox_search.addActionListener(ac);
 		comboBox_search.setBackground(new Color(255, 255, 255));
 		comboBox_search.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_search.setBounds(10, 36, 95, 21);
 		panel_border_timKiem.add(comboBox_search);
-
+		
 		textField = new JTextField();
 		textField.setBounds(131, 31, 286, 33);
 		panel_border_timKiem.add(textField);
 		textField.setColumns(10);
 
-		JButton jbutton_Sreach = new JButton("Tìm kiếm");
-
+		jbutton_Sreach = new JButton("Tìm kiếm");
+		jbutton_Sreach.addActionListener(ac);
 		jbutton_Sreach.setBackground(new Color(255, 255, 255));
 		jbutton_Sreach.setBounds(502, 31, 95, 33);
 		panel_border_timKiem.add(jbutton_Sreach);
 
-		ImageIcon icon_refresh = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\arrow.png");
+		ImageIcon icon_refresh = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\arrow.png");
 		jbutton_refesh = new JButton(icon_refresh);
 		jbutton_refesh.setBackground(new Color(255, 255, 255));
 		jbutton_refesh.setBounds(427, 31, 42, 33);
 		panel_border_timKiem.add(jbutton_refesh);
+		
+		JPanel panel_center = new JPanel();
+		panel_center.setBounds(197, 0, 1189, 763);
+		getContentPane().add(panel_center);
 
-		mainActionlistener ac = new mainActionlistener(this);
+		
 		jbutton_refesh.addActionListener(ac);
 
 		mainMouseListener mouse = new mainMouseListener(this);
@@ -320,15 +329,7 @@ public class mainView extends JFrame {
 		model = new DefaultTableModel(data, column);
 		table = new JTable(model);
 
-		table.getColumnModel().getColumn(0).setPreferredWidth(52);
-		table.getColumnModel().getColumn(1).setPreferredWidth(160);
-		table.getColumnModel().getColumn(1).setMinWidth(21);
-		table.getColumnModel().getColumn(2).setPreferredWidth(61);
-		table.getColumnModel().getColumn(3).setPreferredWidth(80);
-		table.getColumnModel().getColumn(4).setPreferredWidth(93);
-		table.getColumnModel().getColumn(5).setPreferredWidth(35);
-		table.getColumnModel().getColumn(6).setPreferredWidth(50);
-		table.getColumnModel().getColumn(7).setPreferredWidth(73);
+		setKhoangCachTable();
 		return table;
 	}
 
@@ -367,11 +368,8 @@ public class mainView extends JFrame {
 		this.repaint();
 	}
 	
-	public void updateTableData() {
-	    // Lấy dữ liệu mới từ cơ sở dữ liệu
-	    // Ví dụ: nếu bạn muốn cập nhật bảng sản phẩm
-	    ArrayList<Laptop> listLaptop = LaptopDAO.getintance().selectAll();
-	    
+	public void updateTableData( ArrayList<Laptop> listLaptop) {
+	  
 	    // Tạo lại mảng dữ liệu và cập nhật bảng
 	    Object newData[][] = new Object[listLaptop.size()][8];
 	    for (int i = 0; i < listLaptop.size(); i++) {
@@ -390,11 +388,40 @@ public class mainView extends JFrame {
 	    String column[] = { "Id", "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành" };
 	    // Cập nhật mô hình của bảng
 	    model.setDataVector(newData, column);
-	    
+	    setKhoangCachTable();
 	    // Cập nhật lại giao diện
 	    this.revalidate();
 	    this.repaint();
 	}
 	
+	public void setKhoangCachTable()
+	{
+		table.getColumnModel().getColumn(0).setPreferredWidth(52);
+		table.getColumnModel().getColumn(1).setPreferredWidth(200);
+		table.getColumnModel().getColumn(1).setMinWidth(15);
+		table.getColumnModel().getColumn(2).setPreferredWidth(30);
+		table.getColumnModel().getColumn(3).setPreferredWidth(40);
+		table.getColumnModel().getColumn(4).setPreferredWidth(93);
+		table.getColumnModel().getColumn(5).setPreferredWidth(35);
+		table.getColumnModel().getColumn(6).setPreferredWidth(50);
+		table.getColumnModel().getColumn(7).setPreferredWidth(100);
+	}
 	
+	public ArrayList<Laptop> select_search_laptop(String s)
+	{
+		s=s.toUpperCase();
+		ArrayList<Laptop> list = LaptopDAO.getintance().selectAll();
+		ArrayList<Laptop> arr = new ArrayList<Laptop>();
+		for (Laptop laptop : list) {
+			String tmp = laptop.getMaLaptop()+" "+laptop.getTenLaptop()+" "+laptop.getCPU()+" "+laptop.getGPU()+" "+laptop.getRam()+" "
+			    +laptop.getRom()+" "+laptop.getManHinh()+" "+laptop.getHeDieuHanh()+" "+laptop.getHang()+" "+laptop.getNamSanXuat()
+			    +" "+laptop.getSoLuong()+" "+laptop.getGia();
+			tmp=tmp.toUpperCase();
+			if(tmp.indexOf(s)!=-1)
+			{
+				arr.add(laptop);
+			}
+		}
+		return arr;
+	}
 }

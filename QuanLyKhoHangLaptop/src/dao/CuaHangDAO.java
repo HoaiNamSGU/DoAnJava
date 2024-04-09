@@ -110,4 +110,6 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 		return 0;
 	}
 
+
+	
 }

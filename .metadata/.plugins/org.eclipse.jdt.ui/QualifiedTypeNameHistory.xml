@@ -37,15 +37,12 @@
     <fullyQualifiedTypeName name="javax.swing.JFrame"/>
     <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
     <fullyQualifiedTypeName name="controller.mainMouseListener"/>
-    <fullyQualifiedTypeName name="controller.mainActionlistener"/>
-    <fullyQualifiedTypeName name="dao.LaptopDAO"/>
     <fullyQualifiedTypeName name="javax.swing.JLabel"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="view.SuaSanPham"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="javax.swing.text.Document"/>
     <fullyQualifiedTypeName name="com.itextpdf.text.Document"/>
     <fullyQualifiedTypeName name="com.itextpdf.text.pdf.PdfWriter"/>
@@ -53,6 +50,10 @@
     <fullyQualifiedTypeName name="view.ThemSanPham"/>
     <fullyQualifiedTypeName name="view.XemChiTiet"/>
     <fullyQualifiedTypeName name="java.text.Format"/>
-    <fullyQualifiedTypeName name="model.Laptop"/>
     <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
+    <fullyQualifiedTypeName name="controller.mainActionlistener"/>
+    <fullyQualifiedTypeName name="model.Laptop"/>
+    <fullyQualifiedTypeName name="test.test"/>
+    <fullyQualifiedTypeName name="dao.LaptopDAO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

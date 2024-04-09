@@ -244,12 +244,8 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 		return ketqua;
 	}
 	
-	public static void main(String[] args) {
-		Laptop lt = new Laptop();
-		lt.setMaLaptop("b");
-		LaptopDAO.getintance().update(lt);
-	}
-
+	
+	
 	@Override
 	public Laptop selectById(String T) {
 		// TODO Auto-generated method stub
@@ -261,6 +257,50 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
+	
+	public ArrayList<Laptop> Select_search(String NameColumn,String conditon) {
+		ArrayList<Laptop> kq = new ArrayList<Laptop>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "select * from laptop where "+NameColumn+" like ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1,"%"+conditon+"%");
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				String ma = rs.getString("MaLaptop");
+				String ten = rs.getString("TenLaptop");
+				String cpu = rs.getString("CPU");
+				String gpu = rs.getString("GPU");
+				String ram = rs.getString("Ram");
+				String rom = rs.getString("Rom");
+				String hdh = rs.getString("HeDieuHanh");
+				String man = rs.getString("ManHinh");
+				String hang = rs.getString("Hang");
+				int namsx = rs.getInt("NamSanXuat");
+				int soluong = rs.getInt("SoLuong");
+				double gia = rs.getDouble("Gia");
+				Laptop lt = new Laptop(ma, ten, cpu, gpu, ram, rom, hdh, man, hang, namsx, soluong, gia);
+				kq.add(lt);
+			}
+			JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return kq;
+	}
+	
+	
+	public static void main(String[] args) {
+		ArrayList<Laptop> arr = LaptopDAO.getintance().Select_search("MaLaptop","aS");
+		for (Laptop laptop : arr) {
+			System.out.println(laptop.toString());
+		}
+	}
+
+	
 }
 
 
