@@ -1,3 +1,4 @@
+
 package dao;
 
 import java.sql.Connection;
@@ -302,6 +303,7 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 
 	
 }
+
 
 
 
