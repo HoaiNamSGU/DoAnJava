@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import dao.LaptopDAO;
 import model.Laptop;
+import test.test;
 import view.mainView;
 
 public class mainActionlistener implements ActionListener{
@@ -29,7 +30,7 @@ public class mainActionlistener implements ActionListener{
 			if(view.comboBox_search.getSelectedItem().equals("Windows"))
 			{
 				ArrayList<Laptop> laptop = LaptopDAO.getintance().Select_search("HeDieuHanh","Windows");
-				view.updateTableData(laptop); 
+				view.updateTableData(laptop);
 			}
 			else if(view.comboBox_search.getSelectedItem().equals("MacOS"))
 			{
@@ -44,12 +45,24 @@ public class mainActionlistener implements ActionListener{
 		}
 		else if(e.getSource() == view.jbutton_Sreach)
 		{
-			String tmp = view.textField.getText();
-			ArrayList<Laptop> lt = view.select_search_laptop(tmp);
-			for (Laptop laptop : lt) {
-				System.out.println(laptop.toString());
+			if(view.comboBox_search.getSelectedItem().equals("Windows"))
+			{
+				ArrayList<Laptop> arr = LaptopDAO.getintance().Select_search("HeDieuHanh", "Windows");
+				ArrayList<Laptop> lt = view.select_search_laptop(arr, view.textField.getText());
+				view.updateTableData(lt);
 			}
-			view.updateTableData(lt);
+			else if(view.comboBox_search.getSelectedItem().equals("MacOS"))
+			{
+				ArrayList<Laptop> arr = LaptopDAO.getintance().Select_search("HeDieuHanh", "MacOS");
+				ArrayList<Laptop> lt = view.select_search_laptop(arr, view.textField.getText());
+				view.updateTableData(lt);
+			}
+			else if(view.comboBox_search.getSelectedItem().equals("Tất cả"))
+			{
+				ArrayList<Laptop> arr = LaptopDAO.getintance().selectAll();
+				ArrayList<Laptop> lt = view.select_search_laptop(arr, view.textField.getText());
+				view.updateTableData(lt);
+			}
 		}
 	}
 

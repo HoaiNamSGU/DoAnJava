@@ -166,9 +166,11 @@ public class mainView extends JFrame {
 		jlabel_dangxuat.setIcon(icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
 
+		
+		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(207, 161, 1189, 602);
-		getContentPane().add(scrollPane);
+		scrollPane.setBounds(10, 161, 1169, 602);
+		
 
 		/*
 		 * Laptop tmp = new Laptop(); tmp.setMaLaptop("MSGB15"); Laptop lt =
@@ -181,6 +183,7 @@ public class mainView extends JFrame {
 		 * lt.getRam(),lt.getRom(),lt.getHeDieuHanh()} }, new String[] { "Id",
 		 * "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành" } ));
 		 */
+		
 		table=SanPham();
 		
 		JTableHeader header = table.getTableHeader();
@@ -192,8 +195,8 @@ public class mainView extends JFrame {
 		panel_border_chucNang.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Chức năng",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
-		panel_border_chucNang.setBounds(207, 10, 421, 81);
-		getContentPane().add(panel_border_chucNang);
+		panel_border_chucNang.setBounds(10, 10, 421, 81);
+		
 		panel_border_chucNang.setLayout(null);
 
 		ImageIcon icon_add = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
@@ -250,11 +253,11 @@ public class mainView extends JFrame {
 		panel_border_timKiem.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tìm kiếm",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
-		panel_border_timKiem.setBounds(766, 10, 620, 81);
-		getContentPane().add(panel_border_timKiem);
+		panel_border_timKiem.setBounds(569, 10, 610, 81);
+		
 		
 		mainActionlistener ac = new mainActionlistener(this);
-		String[] combo = { "Tất cả", "Windows", "MacOS" };
+		String[] combo = { "Tất cả", "Windows", "MacOS","Nâng cao" };
 		comboBox_search = new JComboBox(combo);
 		comboBox_search.addActionListener(ac);
 		comboBox_search.setBackground(new Color(255, 255, 255));
@@ -282,10 +285,13 @@ public class mainView extends JFrame {
 		JPanel panel_center = new JPanel();
 		panel_center.setBounds(197, 0, 1189, 763);
 		getContentPane().add(panel_center);
-
-		
+		panel_center.setLayout(null);
+		panel_center.add(scrollPane);
+		panel_center.add(panel_border_timKiem);
+		panel_center.add(panel_border_chucNang);
+		getContentPane().add(panel_center);
 		jbutton_refesh.addActionListener(ac);
-
+		
 		mainMouseListener mouse = new mainMouseListener(this);
 		jlabel_sanpham.addMouseListener(mouse);
 		jlabel_nhacungcap.addMouseListener(mouse);
@@ -407,10 +413,9 @@ public class mainView extends JFrame {
 		table.getColumnModel().getColumn(7).setPreferredWidth(100);
 	}
 	
-	public ArrayList<Laptop> select_search_laptop(String s)
+	public ArrayList<Laptop> select_search_laptop(ArrayList<Laptop> list,String s)
 	{
 		s=s.toUpperCase();
-		ArrayList<Laptop> list = LaptopDAO.getintance().selectAll();
 		ArrayList<Laptop> arr = new ArrayList<Laptop>();
 		for (Laptop laptop : list) {
 			String tmp = laptop.getMaLaptop()+" "+laptop.getTenLaptop()+" "+laptop.getCPU()+" "+laptop.getGPU()+" "+laptop.getRam()+" "
