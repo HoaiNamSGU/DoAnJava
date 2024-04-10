@@ -258,7 +258,40 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 		return 0;
 	}
 
-	
+		public int update1dulieu(String mm,long sl) {
+		// TODO Auto-generated method stub
+				int ketqua=0;
+				try {
+					// TODO Auto-generated method stub
+//				BƯỚC 1: TẠO KẾT NỐI ĐẾN CSDL
+					Connection con=JDBCUtil.getConnection();
+					
+//				BƯỚC 2: TẠO RA ĐỐI TƯỢNG STATEMENT
+					Statement st=con.createStatement();
+					String sql1 = "SELECT soluong FROM laptop WHERE id='" + mm + "'";
+					String sql = "UPDATE laptop " +
+				             " SET SoLuong = soluong + " + sl +
+				             " WHERE MaLaptop = '" + mm + "'";
+
+				
+//				BƯỚC 3: THỰC THI CÂU LỆNH SQL
+				ketqua=st.executeUpdate(sql);
+				// BƯỚC 4 XỬ LÝ KẾT QUẢ
+				System.out.println("BẠN ĐÃ THỰC THI : "+sql);
+				System.out.println("Số dòng thay đổi: "+ketqua);
+				if(ketqua>0) System.out.println("Thêm dữ liệu thành công");
+				else System.out.println("Thêm dữ liệu thất bại");
+				
+				
+//				BƯỚC 5: NGẮT KẾT NỐI
+				JDBCUtil.closeConnection(con);
+						
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return ketqua;
+	}
 	
 	public ArrayList<Laptop> Select_search(String NameColumn,String conditon) {
 		ArrayList<Laptop> kq = new ArrayList<Laptop>();
