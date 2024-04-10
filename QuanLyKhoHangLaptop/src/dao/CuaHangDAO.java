@@ -6,11 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
-
 import database.JDBCUtil;
 import model.CuaHang;
-import model.Laptop;
 
 public class CuaHangDAO implements DAOInterface<CuaHang> {
 
@@ -109,7 +106,4 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
-	
 }

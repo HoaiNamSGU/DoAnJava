@@ -1,3 +1,4 @@
+
 package dao;
 
 import java.util.ArrayList;
@@ -21,3 +22,4 @@ public interface DAOInterface <T>{
 	
 	public ArrayList<T> selectByCondition(String condition);
 }
+
