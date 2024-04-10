@@ -1,10 +1,10 @@
+
 package view;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,6 +26,7 @@ import dao.CuaHangDAO;
 import dao.LaptopDAO;
 import model.CuaHang;
 import model.Laptop;
+import view.CuaHang_View;
 
 public class mainView extends JFrame {
 
@@ -48,6 +49,7 @@ public class mainView extends JFrame {
 	public JScrollPane scrollPane;
 	public JComboBox comboBox_search;
 	public JButton jbutton_Sreach;
+	public CuaHang_View CuaHang= new CuaHang_View();
 
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,11 +168,16 @@ public class mainView extends JFrame {
 		jlabel_dangxuat.setIcon(icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
 
+
 		
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 161, 1169, 602);
 		
+		
+		/*scrollPane = new JScrollPane();
+		scrollPane.setBounds(207, 161, 1189, 602);
+		getContentPane().add(scrollPane);*/
 
 		/*
 		 * Laptop tmp = new Laptop(); tmp.setMaLaptop("MSGB15"); Laptop lt =
@@ -184,6 +191,8 @@ public class mainView extends JFrame {
 		 * "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành" } ));
 		 */
 		
+		//table=SanPham();
+
 		table=SanPham();
 		
 		JTableHeader header = table.getTableHeader();
@@ -310,8 +319,10 @@ public class mainView extends JFrame {
 		jlabel_nhapExcel.addMouseListener(mouse);
 		jlabel_xoa.addMouseListener(mouse);
 		jlabel_xemCT.addMouseListener(mouse);
+		//this.add(CuaHang);
 		this.setVisible(true);
 		this.setResizable(false);
+		
 	}
 
 	public JTable SanPham() {
@@ -430,3 +441,4 @@ public class mainView extends JFrame {
 		return arr;
 	}
 }
+

@@ -1,4 +1,4 @@
-package duan;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;

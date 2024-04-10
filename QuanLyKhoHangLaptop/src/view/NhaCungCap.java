@@ -240,7 +240,7 @@ public class NhaCungCap extends JFrame{
 		getContentPane().add(jp_chucnang);
 		jp_chucnang.setLayout(null);
 		
-		//them
+		them
 		Image icon_add = new ImageIcon(this.getClass().getResource("/plus.png")).getImage();
 		JLabel jl_chuthem = new JLabel("Thêm");	
 		jl_chuthem.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -252,7 +252,7 @@ public class NhaCungCap extends JFrame{
 		jl_nutadd.setIcon(new ImageIcon(icon_add));
 		jp_chucnang.add(jl_nutadd);
 		
-		//xoa
+		xoa
 		Image icon_xoa = new ImageIcon(this.getClass().getResource("/remove.png")).getImage();
 		JLabel jl_chuxoa = new JLabel("Xóa");
 		jl_chuxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -265,7 +265,7 @@ public class NhaCungCap extends JFrame{
 		jp_chucnang.add(jl_nutxoa);
 		
 		
-		// sua
+		 sua
 		Image icon_sua = new ImageIcon(this.getClass().getResource("/pencil.png")).getImage();
 		 jl_nutsua = new JLabel("");
 		jl_nutsua.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -282,7 +282,7 @@ public class NhaCungCap extends JFrame{
 		separator.setBounds(200, 6, 1, 87);
 		jp_chucnang.add(separator);
 		
-		// xuat excel
+		 xuat excel
 		Image icon_xuatexcel = new ImageIcon(this.getClass().getResource("/xuatExcel.png")).getImage();
 		JLabel jl_nutxuatexcel = new JLabel("");
 		jl_nutxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -295,7 +295,7 @@ public class NhaCungCap extends JFrame{
 		jp_chucnang.add(jl_chuxuatexcel);
 		
 		
-		//nhap excel
+		nhap excel
 		Image icon_nhapexcel = new ImageIcon(this.getClass().getResource("/Excel-icon.png")).getImage();
 		JLabel jl_nutnhapexcel = new JLabel("");
 		jl_nutnhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -307,7 +307,7 @@ public class NhaCungCap extends JFrame{
 		jl_nutnhapexcel.setIcon(new ImageIcon(icon_nhapexcel));
 		jp_chucnang.add(jl_chunhapexcel);
 		
-		// khungtimkiem
+		 khungtimkiem
 		JPanel jp_timkiem = new JPanel();
 		jp_timkiem.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "T\u00ECm ki\u1EBFm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		jp_timkiem.setBounds(681, 10, 695, 97);
@@ -315,13 +315,13 @@ public class NhaCungCap extends JFrame{
 		jp_timkiem.setLayout(null);
 		
 		 cbb_timkiem = new JComboBox();
-//		 cbb_timkiem.addActionListener(new ActionListener() {
-//		 	public void actionPerformed(ActionEvent e) {
-//		 		if(cbb_timkiem.getSelectedItem()=="Số điện thoại") {
-//		 			
-//		 		}
-//		 	}
-//		 });
+		 cbb_timkiem.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		if(cbb_timkiem.getSelectedItem()=="Số điện thoại") {
+		 			
+		 		}
+		 	}
+		 });
 		 
 		cbb_timkiem.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		cbb_timkiem.setBounds(10, 28, 131, 38);
@@ -343,7 +343,7 @@ public class NhaCungCap extends JFrame{
 		txtx_timkiem.setColumns(10);
 		
 		ImageIcon icon_lammoi =  new ImageIcon(this.getClass().getResource("/loadicon.png"));
-//		JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
+		JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
 		 btn_lammoi = new JButton("Làm mới", icon_lammoi);
 		 btn_lammoi.addMouseListener(new MouseAdapter() {
 		 	@Override
@@ -356,7 +356,7 @@ public class NhaCungCap extends JFrame{
 		Controllernhacungcap.ActionListener(btn_lammoi, this);
 		
 		
-// table
+ table
 		JPanel panel_thansp = new JPanel();
 		panel_thansp.setBackground(new Color(255, 255, 255));
 		panel_thansp.setBounds(207, 161, 1189, 602);
@@ -369,7 +369,7 @@ public class NhaCungCap extends JFrame{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 1189, 602);
-//		getContentPane().add(scrollPane);
+		getContentPane().add(scrollPane);
 		layeredPane.add(scrollPane, JLayeredPane.DEFAULT_LAYER);;
 		
 		
@@ -459,7 +459,7 @@ public class NhaCungCap extends JFrame{
 	public void thanhtimkiem() {
 		dsnhacungcap=nhacungcapDao.getInstance().selectAll();
 		String text=txtx_timkiem.getText();
-//        ArrayList<Nhacungcap> result = new ArrayList<>();
+        ArrayList<Nhacungcap> result = new ArrayList<>();
         model.setRowCount(0);
         String timitem=cbb_timkiem.getSelectedItem()+"";
         if(timitem.equals("Tất cả")) {

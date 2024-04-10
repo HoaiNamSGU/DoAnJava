@@ -53,7 +53,8 @@
     <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
     <fullyQualifiedTypeName name="controller.mainActionlistener"/>
     <fullyQualifiedTypeName name="model.Laptop"/>
-    <fullyQualifiedTypeName name="test.test"/>
     <fullyQualifiedTypeName name="dao.LaptopDAO"/>
+    <fullyQualifiedTypeName name="test.test"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
 </qualifiedTypeNameHistroy>

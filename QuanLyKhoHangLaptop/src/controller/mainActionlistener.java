@@ -7,16 +7,23 @@ import java.util.ArrayList;
 import dao.LaptopDAO;
 import model.Laptop;
 import test.test;
+import view.CuaHang_View;
 import view.mainView;
 
 public class mainActionlistener implements ActionListener{
 
 	mainView view ;
+	CuaHang_View CuaHang_View;
 	public mainActionlistener(mainView view) {
 		this.view = view ;
 	}
 
 	
+	public mainActionlistener(CuaHang_View CuaHang_View) {
+		this.CuaHang_View=CuaHang_View;
+	}
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String src = e.getActionCommand();

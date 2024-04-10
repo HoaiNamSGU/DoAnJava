@@ -1,69 +1,72 @@
-package duan;
-public class Nhacungcap {
-//	"Mã NCC","Tên nhà cung cấp","Số điện thoại", "Địa chỉ"
-	private String manhacungcap,tennhacungcap,diachi,email;
-	private int sdt;
-	public Nhacungcap(String manhacungcap, String tennhacungcap, String diachi, int sdt, String email) {
-		super();
-		this.manhacungcap = manhacungcap;
-		this.tennhacungcap = tennhacungcap;
-		this.diachi = diachi;
-		this.sdt = sdt;
-		this.email = email;
-	}
+package model;
+
+public class NhaCungCap {
+
+	private String MaNhaCungCap;
+	private String TenNhaCungCap;
+	private String DiaChi;
+	private String SDT;
+	private String Email;
 	
-	public Nhacungcap() {
-		this.manhacungcap="";
-		this.tennhacungcap="";
-		this.diachi="";
-		this.sdt=0;
-		this.email="";
+	
+	public NhaCungCap() {
+		
+	};
+
+	public NhaCungCap(String maNhaCungCap, String tenNhaCungCap, String diaChi, String sDT, String email) {
+		MaNhaCungCap = maNhaCungCap;
+		TenNhaCungCap = tenNhaCungCap;
+		DiaChi = diaChi;
+		SDT = sDT;
+		Email = email;
 	}
 
-	public String getManhacungcap() {
-		return manhacungcap;
+	public String getMaNhaCungCap() {
+		return MaNhaCungCap;
 	}
 
-	public void setManhacungcap(String manhacungcap) {
-		this.manhacungcap = manhacungcap;
+	public void setMaNhaCungCap(String maNhaCungCap) {
+		MaNhaCungCap = maNhaCungCap;
 	}
 
-	public String getTennhacungcap() {
-		return tennhacungcap;
+	public String getTenNhaCungCap() {
+		return TenNhaCungCap;
 	}
 
-	public void setTennhacungcap(String tennhacungcap) {
-		this.tennhacungcap = tennhacungcap;
+	public void setTenNhaCungCap(String tenNhaCungCap) {
+		TenNhaCungCap = tenNhaCungCap;
 	}
 
-	public String getDiachi() {
-		return diachi;
+	public String getDiaChi() {
+		return DiaChi;
 	}
 
-	public void setDiachi(String diachi) {
-		this.diachi = diachi;
+	public void setDiaChi(String diaChi) {
+		DiaChi = diaChi;
 	}
 
-	public int getSdt() {
-		return sdt;
+	public String getSDT() {
+		return SDT;
 	}
 
-	public void setSdt(int sdt) {
-		this.sdt = sdt;
+	public void setSDT(String sDT) {
+		SDT = sDT;
 	}
 
 	public String getEmail() {
-		return email;
+		return Email;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		Email = email;
 	}
 
 	@Override
 	public String toString() {
-		return manhacungcap+", "+tennhacungcap+", "+diachi+", "+sdt+", "+email;
+		return "NhaCungCap [MaNhaCungCap=" + MaNhaCungCap + ", TenNhaCungCap=" + TenNhaCungCap + ", DiaChi=" + DiaChi
+				+ ", SDT=" + SDT + ", Email=" + Email + "]";
 	}
 	
 	
+
 }
