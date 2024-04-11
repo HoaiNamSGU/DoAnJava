@@ -11,8 +11,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import model.Nhacungcap;
+import model.NhaCungCap;
 import model.Laptop;
+import model.NhaCungCap;
 import controller.Controllernhaphang;
 import dao.LaptopDAO;
 import dao.nhacungcapDao;
@@ -32,7 +33,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 
 public class NhapHang extends JFrame{
-	ArrayList<Nhacungcap> dsnhacungcap=nhacungcapDao.getInstance().selectAll();
+	ArrayList<NhaCungCap> dsnhacungcap=nhacungcapDao.getInstance().selectAll();
 	private JPanel contentPane;
 	ArrayList<Laptop> sanpham=LaptopDAO.getintance().selectAll();
 	public JTextField jtext_tim;
@@ -49,6 +50,7 @@ public class NhapHang extends JFrame{
 	private JLabel jl_tongtien;
 	private long tongtien=0,sohang=0;
 	public JButton btn_nhaphang;
+	public JButton btn_suasoluong;
 	/**
 	 * Launch the application.
 	 */
@@ -256,7 +258,7 @@ public class NhapHang extends JFrame{
 		JComboBox cmb_ncc = new JComboBox();
 		cmb_ncc.setBounds(760, 68, 399, 41);
 		for(int i=0;i<dsnhacungcap.size();i++) {
-			cmb_ncc.addItem(dsnhacungcap.get(i).getTennhacungcap());
+			cmb_ncc.addItem(dsnhacungcap.get(i).getTenNhaCungCap());
 		}
 		panel_nhaphang.add(cmb_ncc);
 		
@@ -323,7 +325,7 @@ public class NhapHang extends JFrame{
 		panel_nhaphang.add(btn_nhapexcel);
 		
 		ImageIcon icon_suasoluong =  new ImageIcon(this.getClass().getResource("/write.png"));
-		JButton btn_suasoluong = new JButton("Sửa số lượng", icon_suasoluong);
+		 btn_suasoluong = new JButton("Sửa số lượng", icon_suasoluong);
 		btn_suasoluong.setBounds(820, 597, 195, 49);
 		btn_suasoluong.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_nhaphang.add(btn_suasoluong);
@@ -346,18 +348,6 @@ public class NhapHang extends JFrame{
 		
 		btn_nhaphang = new JButton("Nhập hàng");
 		btn_nhaphang.setBounds(1075, 675, 135, 45);
-//		btn_nhaphang.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				for(int i=0;i<sohang;i++) {
-//					 String mm=model1.getValueAt(i, 0)+"";
-//					 String tm=model1.getValueAt(i, 1)+"";
-//					 String soluong=txt_soluong.getText();
-//					 String dongia=model1.getValueAt(i, 3)+"";
-//					 SanphamDao.getInstance().update1dulieu(mm, Long.parseLong(soluong));
-//				}
-//				JOptionPane.showMessageDialog(null, "Nhập hàng thành công","Thông báo",JOptionPane.CLOSED_OPTION);
-//			}
-//		});
 		btn_nhaphang.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_nhaphang.add(btn_nhaphang);
 		
@@ -367,18 +357,18 @@ public class NhapHang extends JFrame{
 
 		 Controllernhaphang.ActionListener(btn_them,this);
 		 Controllernhaphang.ActionListener(btn_xoasp, this);
-//		 Controllernhaphang.ActionListener(btn_nhaphang, this);
 		 Controllernhaphang.addKeyListener(jtext_tim, this);
 		 Controllernhaphang.ActionListener(btn_lammoi, this);
 		 Controllernhaphang.ActionListener(btn_nhaphang, this);
-//		 Controllernhaphang.ActionListener(btn_suasoluong, null)
+		 Controllernhaphang.ActionListener(btn_suasoluong, this);
+
 	}
 	
 	public void themhang() {
 			if(txt_soluong.getText().equals(0)) JOptionPane.showMessageDialog(null, "Bạn chưa nhập số lượng cần thêm");
 			else {
 				sohang++;
-				int sl=Integer.parseInt(txt_soluong.getText());
+//				long sl=Integer.parseInt(txt_soluong.getText());
 		  	 int i=table.getSelectedRow();
 		  	 String mm=model.getValueAt(i, 0)+"";
 			 String tm=model.getValueAt(i, 1)+"";
@@ -388,10 +378,10 @@ public class NhapHang extends JFrame{
 			    		mm, tm,soluong,dongia
 			    });
 			 table1.setModel(model1);
-			 tongtien+=Long.parseLong(dongia)*Long.parseLong(soluong);
+			 tongtien+=Double.parseDouble(dongia)*Double.parseDouble(soluong);
 				jl_tongtien.setText(tongtien+"");
 				JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công");
-				
+				txt_soluong.setText("");
 			}
 			
 	}
@@ -401,14 +391,16 @@ public class NhapHang extends JFrame{
 		int t=table1.getSelectedRow();
    	 int luachon=JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xóa nó không ?");
    	if(luachon==JOptionPane.YES_OPTION) {
-   		tongtien-=Long.parseLong(model1.getValueAt(t, 2)+"")*Long.parseLong(model1.getValueAt(t, 3)+"");
+   		tongtien-=Double.parseDouble(model1.getValueAt(t, 2)+"")*Double.parseDouble(model1.getValueAt(t, 3)+"");
 		jl_tongtien.setText(tongtien+"");
 		model1.removeRow(t);
  }
+   	
 	}
 	
 	public void thanhtimkiem() {
 		model.setRowCount(0);
+		sanpham=LaptopDAO.getintance().selectAll();
 		if(jtext_tim.getText().length()<=0) {
 			for (Laptop sp : sanpham) {
 			    model.addRow(new Object[] {
@@ -430,6 +422,7 @@ public class NhapHang extends JFrame{
 	
 	public void lammoithanh() {
 		model.setRowCount(0);
+		sanpham=LaptopDAO.getintance().selectAll();
 		for (Laptop sp : sanpham) {
 		    model.addRow(new Object[] {
 		    		sp.getMaLaptop(), sp.getTenLaptop(),sp.getSoLuong(),sp.getGia()
@@ -438,25 +431,34 @@ public class NhapHang extends JFrame{
 	}
 	
 	public void NhapHang() {
+		System.out.println(sohang);
 		for(int i=0;i<sohang;i++) {
 			 String mm=model1.getValueAt(i, 0)+"";
 			 String tm=model1.getValueAt(i, 1)+"";
-			 String soluong=txt_soluong.getText();
+			 String soluong=model1.getValueAt(i, 2)+"";
 			 String dongia=model1.getValueAt(i, 3)+"";
 			 LaptopDAO.getintance().update1dulieu(mm, Long.parseLong(soluong));
-//			 System.out.println(model.getColumnCount()+" "+model.getRowCount());
+			 System.out.println(Long.parseLong(soluong));
+			 System.out.println(model.getRowCount()+" "+model.getColumnCount());
 			 for(int j=0;j<model.getRowCount();j++) {
-				 for(int z=0;z<model.getColumnCount();z++) {
-					 System.out.println(model1.getValueAt(i, 0));
-					 if(mm.contains(model.getValueAt(j, z)+"")) {
-						 int soltong= Integer.parseInt(model.getValueAt(j,2)+"")+ Integer.parseInt(soluong);
+//				 for(int z=0;z<model.getColumnCount();z++) {
+					 if(mm.contains(model.getValueAt(j, 1)+"")) {
+						 long soltong= Long.parseLong(model.getValueAt(j,2)+"")+ Long.parseLong(soluong);
+						 System.out.println(soltong);
 						 model.setValueAt(soltong, j, 2);
-						 System.out.println("hi");
 					 }
-				 }
+//				 }
 			 }
 			 
 		}
+		sohang=0;
+		jl_tongtien.setText("");
+		   model1.setRowCount(0);
 		JOptionPane.showMessageDialog(null, "Nhập hàng thành công","Thông báo",JOptionPane.CLOSED_OPTION);
+	}
+	
+	public void suasl() {
+	  	 int i=table1.getSelectedRow();
+	  	 JOptionPane.showConfirmDialog(null,"Bạn muốn sửa bao nhiêu cái","Thông báo",JOptionPane.INFORMATION_MESSAGE);
 	}
 }
