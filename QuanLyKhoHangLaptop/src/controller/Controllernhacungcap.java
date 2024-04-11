@@ -1,5 +1,4 @@
-package duan;
-
+package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -14,18 +13,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import dao.nhacungcapDao;
-import model.Nhacungcap;
-import view.NhaCungCap;
-
+import model.NhaCungCap;
+import view.Nhacungcap;
 public class Controllernhacungcap {
-	static ArrayList<Nhacungcap> dsnhacungcap=nhacungcapDao.getInstance().selectAll();
+	static ArrayList<NhaCungCap> dsnhacungcap=nhacungcapDao.getInstance().selectAll();
 	private static NhaCungCap ncc;
 	public Controllernhacungcap(NhaCungCap nccc) {
 		this.ncc=nccc;
 	}
 	
 
-	public static void addMouseListener(JLabel label,NhaCungCap ncc) {
+	public static void addMouseListener(JLabel label,Nhacungcap ncc) {
 		label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -42,7 +40,7 @@ public class Controllernhacungcap {
 		});
 	}
 	
-	public static void addKeyListener(JTextField jt,NhaCungCap ncc) {
+	public static void addKeyListener(JTextField jt,Nhacungcap ncc) {
 		jt.addKeyListener(new KeyAdapter() {
 		@Override
 		public void keyReleased(KeyEvent e) {
@@ -53,7 +51,7 @@ public class Controllernhacungcap {
 	});
 	}
 	
-	public static void ActionListener(JButton jt,NhaCungCap ncc) {
+	public static void ActionListener(JButton jt,Nhacungcap ncc) {
 		jt.addMouseListener(new MouseAdapter() {
 		 	@Override
 		 	public void mouseClicked(MouseEvent e) {
