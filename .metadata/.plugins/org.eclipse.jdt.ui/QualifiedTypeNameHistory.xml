@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="model.LaptopModel"/>
-    <fullyQualifiedTypeName name="java.awt.GridLayout"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
     <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
     <fullyQualifiedTypeName name="javax.swing.event.ChangeListener"/>
     <fullyQualifiedTypeName name="javax.swing.event.ChangeEvent"/>
     <fullyQualifiedTypeName name="javax.swing.ButtonModel"/>
     <fullyQualifiedTypeName name="test.TableExample"/>
-    <fullyQualifiedTypeName name="javax.swing.JTable"/>
     <fullyQualifiedTypeName name="javax.swing.table.JTableHeader"/>
     <fullyQualifiedTypeName name="javax.swing.JPopupMenu"/>
     <fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
@@ -22,7 +18,6 @@
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
     <fullyQualifiedTypeName name="view.PhieuXuat"/>
-    <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
     <fullyQualifiedTypeName name="controller.JLabelControler"/>
     <fullyQualifiedTypeName name="javax.swing.plaf.metal.MetalLookAndFeel"/>
     <fullyQualifiedTypeName name="javax.swing.UIManager"/>
@@ -40,7 +35,6 @@
     <fullyQualifiedTypeName name="javax.swing.JLabel"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
-    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="view.SuaSanPham"/>
     <fullyQualifiedTypeName name="javax.swing.text.Document"/>
@@ -55,6 +49,15 @@
     <fullyQualifiedTypeName name="model.Laptop"/>
     <fullyQualifiedTypeName name="dao.LaptopDAO"/>
     <fullyQualifiedTypeName name="test.test"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="view.CuaHang_View"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
+    <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+    <fullyQualifiedTypeName name="javax.swing.JTable"/>
+    <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
+    <fullyQualifiedTypeName name="controller.LaptopMouseListener"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="view.LaptopView"/>
+    <fullyQualifiedTypeName name="controller.LaptopActionListener"/>
 </qualifiedTypeNameHistroy>

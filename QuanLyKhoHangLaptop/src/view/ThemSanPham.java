@@ -211,12 +211,12 @@ public class ThemSanPham extends JFrame {
 		contentPane.add(comboBox_Nam);
 		
 		button_left = new JButton("");
-		button_left.setIcon(new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\minus.png"));
+		button_left.setIcon(new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\minus.png"));
 		button_left.setBounds(639, 374, 36, 30);
 		contentPane.add(button_left);
 		
 		button_right = new JButton();
-		ImageIcon icon_right = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dau_cong.png");
+		ImageIcon icon_right = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dau_cong.png");
 		button_right.setIcon(icon_right);
 		button_right.setBounds(733, 374, 36, 30);
 		contentPane.add(button_right);
@@ -231,9 +231,6 @@ public class ThemSanPham extends JFrame {
 	{
 		return textfield.getText();
 	}
-	
-	
-	
 	
 }
 

@@ -160,4 +160,6 @@ public class CuaHang_View extends JPanel {
 		
 		this.setVisible(true);
 	}
+	
 }
+

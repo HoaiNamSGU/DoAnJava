@@ -86,7 +86,7 @@ public class SuaSanPham extends JFrame {
 		
 		jtextField_masanpham = new JTextField();
 		jtextField_masanpham.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_masanpham.setBounds(37, 99, 178, 30);
+		jtextField_masanpham.setBounds(37, 99, 207, 30);
 		contentPane.add(jtextField_masanpham);
 		jtextField_masanpham.setColumns(10);
 		
@@ -98,29 +98,29 @@ public class SuaSanPham extends JFrame {
 		jtextField_tensanpham = new JTextField();
 		jtextField_tensanpham.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_tensanpham.setColumns(10);
-		jtextField_tensanpham.setBounds(37, 184, 178, 30);
+		jtextField_tensanpham.setBounds(37, 184, 207, 30);
 		contentPane.add(jtextField_tensanpham);
 		
 		JLabel jlabel_CPU = new JLabel("CPU");
 		jlabel_CPU.setFont(new Font("Arial", Font.PLAIN, 16));
-		jlabel_CPU.setBounds(331, 74, 106, 24);
+		jlabel_CPU.setBounds(306, 74, 106, 24);
 		contentPane.add(jlabel_CPU);
 		
 		jtextField_CPU = new JTextField();
 		jtextField_CPU.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_CPU.setColumns(10);
-		jtextField_CPU.setBounds(331, 99, 178, 30);
+		jtextField_CPU.setBounds(306, 99, 275, 30);
 		contentPane.add(jtextField_CPU);
 		
 		JLabel jlabel_GPU = new JLabel("GPU");
 		jlabel_GPU.setFont(new Font("Arial", Font.PLAIN, 16));
-		jlabel_GPU.setBounds(331, 159, 106, 24);
+		jlabel_GPU.setBounds(306, 159, 106, 24);
 		contentPane.add(jlabel_GPU);
 		
 		jtextField_GPU = new JTextField();
 		jtextField_GPU.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_GPU.setColumns(10);
-		jtextField_GPU.setBounds(331, 184, 178, 30);
+		jtextField_GPU.setBounds(306, 184, 275, 30);
 		contentPane.add(jtextField_GPU);
 		
 		JLabel jlabel_Ram = new JLabel("Ram");
@@ -131,19 +131,19 @@ public class SuaSanPham extends JFrame {
 		jtextField_manhinh = new JTextField();
 		jtextField_manhinh.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_manhinh.setColumns(10);
-		jtextField_manhinh.setBounds(37, 374, 178, 30);
+		jtextField_manhinh.setBounds(37, 374, 207, 30);
 		contentPane.add(jtextField_manhinh);
 		
 		jtextField_Hang = new JTextField();
 		jtextField_Hang.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_Hang.setColumns(10);
-		jtextField_Hang.setBounds(331, 275, 178, 30);
+		jtextField_Hang.setBounds(306, 275, 275, 30);
 		contentPane.add(jtextField_Hang);
 		
 		jtextField_hedieuhanh = new JTextField();
 		jtextField_hedieuhanh.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_hedieuhanh.setColumns(10);
-		jtextField_hedieuhanh.setBounds(37, 275, 178, 30);
+		jtextField_hedieuhanh.setBounds(37, 275, 207, 30);
 		contentPane.add(jtextField_hedieuhanh);
 		
 		jtextField_soluong = new JTextField();
@@ -157,7 +157,7 @@ public class SuaSanPham extends JFrame {
 		jtextField_gia.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_gia.setText("0");
 		jtextField_gia.setColumns(10);
-		jtextField_gia.setBounds(331, 374, 178, 30);
+		jtextField_gia.setBounds(306, 374, 275, 30);
 		contentPane.add(jtextField_gia);
 		
 		JLabel jlabel_Rom = new JLabel("Rom");
@@ -172,7 +172,7 @@ public class SuaSanPham extends JFrame {
 		
 		JLabel jlabel_hang = new JLabel("Hãng");
 		jlabel_hang.setFont(new Font("Arial", Font.PLAIN, 16));
-		jlabel_hang.setBounds(331, 247, 106, 24);
+		jlabel_hang.setBounds(306, 241, 106, 24);
 		contentPane.add(jlabel_hang);
 		
 		JLabel jlabel_hedieuhanh = new JLabel("Hệ điều hành");
@@ -192,7 +192,7 @@ public class SuaSanPham extends JFrame {
 		
 		JLabel jlabel_gia = new JLabel("Giá");
 		jlabel_gia.setFont(new Font("Arial", Font.PLAIN, 16));
-		jlabel_gia.setBounds(331, 345, 106, 24);
+		jlabel_gia.setBounds(306, 340, 106, 24);
 		contentPane.add(jlabel_gia);
 		
 		jbutton_xacnhan = new JButton("Xác nhận");
@@ -231,12 +231,12 @@ public class SuaSanPham extends JFrame {
 		contentPane.add(comboBox_Nam);
 		
 		button_left = new JButton("");
-		button_left.setIcon(new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\minus.png"));
+		button_left.setIcon(new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\minus.png"));
 		button_left.setBounds(639, 374, 36, 30);
 		contentPane.add(button_left);
 		
 		button_right = new JButton();
-		ImageIcon icon_right = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dau_cong.png");
+		ImageIcon icon_right = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dau_cong.png");
 		button_right.setIcon(icon_right);
 		button_right.setBounds(733, 374, 36, 30);
 		contentPane.add(button_right);

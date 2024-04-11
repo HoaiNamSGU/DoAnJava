@@ -218,18 +218,19 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 	}
 	
 	
-	public ArrayList<String> getColumn_0()
+	public ArrayList<String> getColumn(String ColumnName)
 	{
 		ArrayList<String> column = new ArrayList<String>();
 		try {
 			Connection con = JDBCUtil.getConnection();
-			String sql = "select MaLaptop from laptop";
+			String sql = "select distinct "+ColumnName+" from laptop";
 			PreparedStatement pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while(rs.next())
 			{
-				column.add(rs.getString("MaLaptop"));
+				column.add(rs.getString(ColumnName));
 			}
+			
 			JDBCUtil.closeConnection(con);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -331,9 +332,9 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 	
 	
 	public static void main(String[] args) {
-		ArrayList<Laptop> arr = LaptopDAO.getintance().Select_search("MaLaptop","aS");
-		for (Laptop laptop : arr) {
-			System.out.println(laptop.toString());
+		ArrayList<String> s = LaptopDAO.getintance().getColumn("Hang");
+		for (String string : s) {
+			System.out.println(string);
 		}
 	}
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import dao.LaptopDAO;
@@ -46,7 +47,6 @@ public class mainMouseListener implements MouseListener {
         
         // Xử lý các thao tác với JLabel dựa trên nội dung của nó
         String labelText = clickedLabel.getText();
-        int count = 0;
         if (labelText.equals("Phiếu nhập")) {
             PhieuXuat = new PhieuXuat();
             PhieuXuat.ChangeInformationToPhieuNhap();
@@ -60,13 +60,13 @@ public class mainMouseListener implements MouseListener {
         if (clickedLabel.getText().equals("Cửa hàng")) {
 			JTable newTable = view.CuaHang();
 			view.updateTable(newTable);
+			
 		}
 		if (clickedLabel.getText().equals("Sản phẩm")) {
-			JTable newTable = view.SanPham();
-			view.updateTable(newTable);
-			view.comboBox_search.setSelectedIndex(0);
+			view.setVisible(true);
+			view.laptopview.setVisible(true);
 		}
-        else if(labelText.equals("Thêm"))
+        /*else if(labelText.equals("Thêm"))
         {
         	ThemSanPham add = new ThemSanPham();
         	add.addWindowListener(new WindowAdapter() {
@@ -179,7 +179,7 @@ public class mainMouseListener implements MouseListener {
 		        	ArrayList<String> arrMaLaptop = new ArrayList<String>();
 		        	while(true)
 		        	{
-		        		arrMaLaptop = LaptopDAO.getintance().getColumn_0();
+		        		arrMaLaptop = LaptopDAO.getintance().getColumn("MaLaptop");
 		        		for (String string : arrMaLaptop) {
 							if(add.jtextField_masanpham.getText().equals(string))
 							{
@@ -528,7 +528,7 @@ public class mainMouseListener implements MouseListener {
         		clickedLabel.setForeground(Color.BLACK);
        	     	clickedLabel.setBackground(null);
         	}
-        }
+        }*/
 		
 		
 		

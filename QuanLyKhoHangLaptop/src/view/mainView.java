@@ -27,6 +27,8 @@ import dao.LaptopDAO;
 import model.CuaHang;
 import model.Laptop;
 import view.CuaHang_View;
+import java.awt.event.ActionListener;
+import view.LaptopView;
 
 public class mainView extends JFrame {
 
@@ -47,10 +49,17 @@ public class mainView extends JFrame {
 	public JTable table;
 	public DefaultTableModel model;
 	public JScrollPane scrollPane;
-	public JComboBox comboBox_search;
+	public JComboBox<String> comboBox_search;
 	public JButton jbutton_Sreach;
+	public JPanel panel_center;
+	public JComboBox<String> comboBox_Gia;
+	public JComboBox<String> comboBox_Rom;
+	public JComboBox<String> comboBox_Ram;
+	public JComboBox<String> comboBox_CPU;
+	public JComboBox<String> comboBox_Hang;
+	
 	public CuaHang_View CuaHang= new CuaHang_View();
-
+	public LaptopView laptopview = new LaptopView();
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1400, 800);
@@ -169,36 +178,18 @@ public class mainView extends JFrame {
 		panel_menu.add(jlabel_dangxuat);
 
 
-		
+		/*
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 161, 1169, 602);
 		
-		
-		/*scrollPane = new JScrollPane();
-		scrollPane.setBounds(207, 161, 1189, 602);
-		getContentPane().add(scrollPane);*/
-
-		/*
-		 * Laptop tmp = new Laptop(); tmp.setMaLaptop("MSGB15"); Laptop lt =
-		 * LaptopDAO.getintance().selectById(tmp);
-		 * 
-		 * String column[] = { "Id", "Tên laptop", "Số lượng", "Giá", "CPU", "Ram",
-		 * "Bộ nhớ", "Hệ điều hành" }; Object data[][] = {}; JTable table = new
-		 * JTable(data, column); table.setModel(new DefaultTableModel( new Object[][] {
-		 * {lt.getMaLaptop(),lt.getTenLaptop(),lt.getSoLuong(),lt.getGia(),lt.getCPU(),
-		 * lt.getRam(),lt.getRom(),lt.getHeDieuHanh()} }, new String[] { "Id",
-		 * "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành" } ));
-		 */
-		
-		//table=SanPham();
-
 		table=SanPham();
+		scrollPane.setViewportView(table);
 		
 		JTableHeader header = table.getTableHeader();
 		header.setFont(new Font("Arial", Font.BOLD, 14));
 		table.setFont(new Font("Arial", Font.PLAIN, 14));
-		scrollPane.setViewportView(table);
+		
 
 		JPanel panel_border_chucNang = new JPanel();
 		panel_border_chucNang.setBorder(new TitledBorder(
@@ -262,12 +253,12 @@ public class mainView extends JFrame {
 		panel_border_timKiem.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tìm kiếm",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
-		panel_border_timKiem.setBounds(569, 10, 610, 81);
+		panel_border_timKiem.setBounds(489, 10, 690, 120);
 		
 		
 		mainActionlistener ac = new mainActionlistener(this);
-		String[] combo = { "Tất cả", "Windows", "MacOS","Nâng cao" };
-		comboBox_search = new JComboBox(combo);
+		String[] combo = { "Tất cả", "Windows", "MacOS"};
+		comboBox_search = new JComboBox<String>(combo);
 		comboBox_search.addActionListener(ac);
 		comboBox_search.setBackground(new Color(255, 255, 255));
 		comboBox_search.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -275,32 +266,75 @@ public class mainView extends JFrame {
 		panel_border_timKiem.add(comboBox_search);
 		
 		textField = new JTextField();
-		textField.setBounds(131, 31, 286, 33);
+		textField.setBounds(131, 31, 343, 33);
 		panel_border_timKiem.add(textField);
 		textField.setColumns(10);
 
 		jbutton_Sreach = new JButton("Tìm kiếm");
 		jbutton_Sreach.addActionListener(ac);
 		jbutton_Sreach.setBackground(new Color(255, 255, 255));
-		jbutton_Sreach.setBounds(502, 31, 95, 33);
+		jbutton_Sreach.setBounds(573, 31, 107, 33);
 		panel_border_timKiem.add(jbutton_Sreach);
 
 		ImageIcon icon_refresh = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\arrow.png");
 		jbutton_refesh = new JButton(icon_refresh);
 		jbutton_refesh.setBackground(new Color(255, 255, 255));
-		jbutton_refesh.setBounds(427, 31, 42, 33);
+		jbutton_refesh.setBounds(484, 31, 75, 33);
 		panel_border_timKiem.add(jbutton_refesh);
 		
-		JPanel panel_center = new JPanel();
+		panel_center = new JPanel();
 		panel_center.setBounds(197, 0, 1189, 763);
 		getContentPane().add(panel_center);
 		panel_center.setLayout(null);
 		panel_center.add(scrollPane);
 		panel_center.add(panel_border_timKiem);
+		
+		comboBox_Hang = new JComboBox<String>();
+		comboBox_Hang = addItem("Hang");
+		comboBox_Hang.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboBox_Hang.setBackground(Color.WHITE);
+		comboBox_Hang.setBounds(10, 77, 95, 21);
+		panel_border_timKiem.add(comboBox_Hang);
+		
+		comboBox_CPU = new JComboBox<String>();
+		comboBox_CPU = addItem("CPU");
+		comboBox_CPU.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboBox_CPU.setBackground(Color.WHITE);
+		comboBox_CPU.setBounds(131, 77, 245, 21);
+		panel_border_timKiem.add(comboBox_CPU);
+		
+		String ram[] = {"8 GB","16 GB","32 GB","64 GB"};
+		comboBox_Ram = new JComboBox<String>(ram);
+		comboBox_Ram.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboBox_Ram.setBackground(Color.WHITE);
+		comboBox_Ram.setBounds(393, 77, 81, 21);
+		panel_border_timKiem.add(comboBox_Ram);
+		
+		
+		String rom[] = {"128GB","256 GB","512 GB","1 TB","2 TB","4 TB"};
+		comboBox_Rom = new JComboBox<String>(rom);
+		comboBox_Rom.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboBox_Rom.setBackground(Color.WHITE);
+		comboBox_Rom.setBounds(484, 77, 75, 21);
+		panel_border_timKiem.add(comboBox_Rom);
+		
+		
+		String s[] = {"Dưới 10 triệu","10-15 triệu","15-20 triệu","20-30 triệu","30-50 triệu","Hơn 50 triệu"};
+		comboBox_Gia = new JComboBox<String>(s);
+		comboBox_Gia.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboBox_Gia.setBackground(Color.WHITE);
+		comboBox_Gia.setBounds(573, 77, 105, 21);
+		panel_border_timKiem.add(comboBox_Gia);
+		
+		
+		
+		
+		
+		
 		panel_center.add(panel_border_chucNang);
 		getContentPane().add(panel_center);
 		jbutton_refesh.addActionListener(ac);
-		
+		*/
 		mainMouseListener mouse = new mainMouseListener(this);
 		jlabel_sanpham.addMouseListener(mouse);
 		jlabel_nhacungcap.addMouseListener(mouse);
@@ -313,16 +347,19 @@ public class mainView extends JFrame {
 		jlabel_thongke.addMouseListener(mouse);
 		jlabel_doiThongtin.addMouseListener(mouse);
 		jlabel_dangxuat.addMouseListener(mouse);
-		jlabel_them.addMouseListener(mouse);
+		
+		/*jlabel_them.addMouseListener(mouse);
 		jlabel_Excel.addMouseListener(mouse);
 		jlabel_sua.addMouseListener(mouse);
 		jlabel_nhapExcel.addMouseListener(mouse);
 		jlabel_xoa.addMouseListener(mouse);
-		jlabel_xemCT.addMouseListener(mouse);
+		jlabel_xemCT.addMouseListener(mouse);*/
+		
+		
 		//this.add(CuaHang);
+		this.add(laptopview);
 		this.setVisible(true);
 		this.setResizable(false);
-		
 	}
 
 	public JTable SanPham() {
@@ -345,7 +382,7 @@ public class mainView extends JFrame {
 		String column[] = { "Id", "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành" };
 		model = new DefaultTableModel(data, column);
 		table = new JTable(model);
-
+		
 		setKhoangCachTable();
 		return table;
 	}
@@ -411,6 +448,9 @@ public class mainView extends JFrame {
 	    this.repaint();
 	}
 	
+	
+	
+	
 	public void setKhoangCachTable()
 	{
 		table.getColumnModel().getColumn(0).setPreferredWidth(52);
@@ -439,6 +479,16 @@ public class mainView extends JFrame {
 			}
 		}
 		return arr;
+	}
+	
+	public JComboBox<String> addItem(String s)
+	{
+		ArrayList<String> arr = LaptopDAO.getintance().getColumn(s);
+		JComboBox<String> tmp = new JComboBox<String>();
+		for (String string : arr) {
+			tmp.addItem(string);
+		}
+		return tmp;
 	}
 }
 
