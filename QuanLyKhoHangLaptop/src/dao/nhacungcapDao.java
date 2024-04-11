@@ -8,16 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.JDBCUtil;
-import model.Nhacungcap;
-
-
-
-public class nhacungcapDao implements DAOInterface<Nhacungcap>{
+import model.NhaCungCap;
+public class nhacungcapDao implements DAOInterface<NhaCungCap>{
 	public static nhacungcapDao getInstance() {
 		return new nhacungcapDao();
 	}
 	@Override
-	public int insert(Nhacungcap t) {
+	public int insert(NhaCungCap t) {
 		int ketqua=0;
 		try {
 			// TODO Auto-generated method stub
@@ -28,10 +25,10 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 			String sql="INSERT INTO nhacungcap(MaNhaCungCap,TenNhaCungCap,DiaChi,SDT,Email)\r\n"
 					+ "VALUES (?,?,?,?,?)";
 			PreparedStatement pst=con.prepareStatement(sql);
-			pst.setString(1,t.getManhacungcap());
-			pst.setString(2,t.getTennhacungcap());
-			pst.setString(3,t.getDiachi());
-			pst.setInt(4,t.getSdt());
+			pst.setString(1,t.getMaNhaCungCap());
+			pst.setString(2,t.getTenNhaCungCap());
+			pst.setString(3,t.getDiaChi());
+			pst.setString(4,t.getSDT());
 			pst.setString(5, t.getEmail());
 //		BƯỚC 3: THỰC THI CÂU LỆNH SQL
 		ketqua=pst.executeUpdate();
@@ -53,7 +50,7 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 	}
 
 	@Override
-	public int update(Nhacungcap t) {
+	public int update(NhaCungCap t) {
 		// TODO Auto-generated method stub
 		int ketqua=0;
 		try {
@@ -65,14 +62,12 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 			Statement st=con.createStatement();
 			String sql="UPDATE nhacungcap"+
 					" SET " +
-					" MaNhaCungCap='"+ t.getManhacungcap()+"'"+
-					", TenNhaCungCap='"+ t.getTennhacungcap()+"'"+
-					", DiaChi='"+ t.getDiachi()+"'"+
-					", SDT='"+ t.getSdt()+"'"+
+					" MaNhaCungCap='"+ t.getMaNhaCungCap()+"'"+
+					", TenNhaCungCap='"+ t.getTenNhaCungCap()+"'"+
+					", DiaChi='"+ t.getDiaChi()+"'"+
+					", SDT='"+ t.getSDT()+"'"+
 					", Email='"+ t.getEmail()+"'"+
-					" WHERE MaNhaCungCap='"+ t.getManhacungcap()+"'";
-//			PreparedStatement stFind = con.prepareStatement("SELECT ten_nhan_vien FROM nhan_vien WHERE ma_nhan_vien = ?");
-//			String sql="INSERT INTO nhacungcap(manhacungcap,tennhacungcap,diachi,sdt,email)\r\n"
+					" WHERE MaNhaCungCap='"+ t.getMaNhaCungCap()+"'";
 
 //		BƯỚC 3: THỰC THI CÂU LỆNH SQL
 		ketqua=st.executeUpdate(sql);
@@ -93,8 +88,7 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 		return ketqua;
 	}
 
-	@Override
-	public int delete(Nhacungcap t) {
+	public int delete1(NhaCungCap t) {
 		// TODO Auto-generated method stub
 				int ketqua=0;
 				try {
@@ -105,7 +99,7 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 //				BƯỚC 2: TẠO RA ĐỐI TƯỢNG STATEMENT
 					Statement st=con.createStatement();
 					String sql="DELETE from nhacungcap"+
-							" WHERE MaNhaCungCap='"+t.getManhacungcap()+"'";
+							" WHERE MaNhaCungCap='"+t.getMaNhaCungCap()+"'";
 		
 //				BƯỚC 3: THỰC THI CÂU LỆNH SQL
 				ketqua=st.executeUpdate(sql);
@@ -127,8 +121,8 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 	}
 
 	@Override
-	public ArrayList<Nhacungcap> selectAll() {
-		ArrayList<Nhacungcap> ketqua=new ArrayList<Nhacungcap>();
+	public ArrayList<NhaCungCap> selectAll() {
+		ArrayList<NhaCungCap> ketqua=new ArrayList<NhaCungCap>();
 		try {
 //		BƯỚC 1: TẠO KẾT NỐI ĐẾN CSDL
 			Connection con=JDBCUtil.getConnection();
@@ -144,9 +138,9 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 			String mncc=rs.getString("MaNhaCungCap");
 			String tm=rs.getString("TenNhaCungCap");
 			String dc=rs.getString("DiaChi");
-			int sdt=rs.getInt("SDT");
+			String sdt=rs.getString("SDT");
 			String em=rs.getString("Email");
-			Nhacungcap sp=new Nhacungcap(mncc,tm,dc,sdt,em);
+			NhaCungCap sp=new NhaCungCap(mncc,tm,dc,sdt,em);
 			ketqua.add(sp);
 		}
 //		BƯỚC 5: NGẮT KẾT NỐI
@@ -158,14 +152,13 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 		return ketqua;
 	}
 
-	@Override
-	public Nhacungcap selectById(Nhacungcap t) {
+	public NhaCungCap selectById1(NhaCungCap t) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Nhacungcap> selectByCondition(String condition) {
+	public ArrayList<NhaCungCap> selectByCondition(String condition) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -175,7 +168,18 @@ public class nhacungcapDao implements DAOInterface<Nhacungcap>{
 		return 0;
 	}
 	@Override
-	public Nhacungcap selectById(String T) {
+	public NhaCungCap selectById(String T) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int delete(NhaCungCap t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public NhaCungCap selectById(NhaCungCap t) {
 		// TODO Auto-generated method stub
 		return null;
 	}
