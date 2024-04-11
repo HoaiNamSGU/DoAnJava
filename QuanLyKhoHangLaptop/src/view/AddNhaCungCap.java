@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Nhacungcap;
+import model.NhaCungCap;
 import dao.nhacungcapDao;
 
 import javax.swing.JLabel;
@@ -27,7 +27,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class AddNhaCungCap extends JFrame {
-	private static NhaCungCap ncc;
+	private static Nhacungcap ncc;
 	private static int t;
 	private JPanel contentPane;
 	private JTextField textField;
@@ -67,7 +67,7 @@ public class AddNhaCungCap extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddNhaCungCap(NhaCungCap tmp,int sa) {
+	public AddNhaCungCap(Nhacungcap tmp,int sa) {
 		this.ncc=tmp;
 		this.t=sa;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -229,14 +229,14 @@ public class AddNhaCungCap extends JFrame {
 							String tnc=tx2.getText();
 							String email=tx3.getText();
 							String dc=tx4.getText();
-							int sdt=Integer.parseInt(tx5.getText());
-							Nhacungcap sp=new Nhacungcap(mnc,tnc,dc,sdt,email);
+							String sdt=tx5.getText();
+							NhaCungCap sp=new NhaCungCap(mnc,tnc,dc,sdt,email);
 							System.out.println(sp.toString());
 							nhacungcapDao.getInstance().insert(sp);
 							JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công");
 //							setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 							int i=ncc.model.getRowCount();
-							ncc.model.addRow(new Object[] {sp.getManhacungcap(),sp.getTennhacungcap(),sp.getDiachi(),sp.getSdt(),sp.getEmail()});
+							ncc.model.addRow(new Object[] {sp.getMaNhaCungCap(),sp.getTenNhaCungCap(),sp.getDiaChi(),sp.getSDT(),sp.getEmail()});
 							ncc.table.setModel(ncc.model);
 							JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(btn_them);
 			                currentFrame.dispose();	
@@ -254,14 +254,14 @@ public class AddNhaCungCap extends JFrame {
 							String tnc=tx2.getText();
 							String email=tx3.getText();
 							String dc=tx4.getText();
-							int sdt=Integer.parseInt(tx5.getText());
+							String sdt=tx5.getText();
 							
 //				       	 	model.setValueAt(tx1.getText(), i, 0);
 				       	 	ncc.model.setValueAt(tx2.getText(), i, 1);
 				       	 	ncc.model.setValueAt(tx4.getText(), i, 2);
 				       	 	ncc.model.setValueAt(tx5.getText(), i, 3);
 				       	 	ncc.model.setValueAt(tx3.getText(), i, 4);
-							Nhacungcap nc2=new Nhacungcap(ncc.model.getValueAt(i, 0)+"",tnc,dc,sdt,email);
+							NhaCungCap nc2=new NhaCungCap(ncc.model.getValueAt(i, 0)+"",tnc,dc,sdt,email);
 							nhacungcapDao.getInstance().update(nc2);
 							JOptionPane.showMessageDialog(null, "Sửa sản phẩm thành công");
 							JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(btn_them);
