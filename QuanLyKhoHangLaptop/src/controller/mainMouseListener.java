@@ -57,6 +57,14 @@ public class mainMouseListener implements MouseListener {
             PhieuXuat.ChangeInformationToPhieuXuat();
             PhieuXuat.setVisible(true);
         }
+        else if(labelText.equals("Nhập hàng")) {
+    		view.panel_center.setVisible(false);
+    		NhapHang nh=new NhapHang();
+
+    		view.panel_center.removeAll(); // Xóa tất cả các thành phần con hiện có trong panel_center
+    		view.panel_center.add(nh.panel_nhaphang); // Thêm panel_nhaphang vào panel_center
+    		view.panel_center.setVisible(true); // Hiển thị panel_center
+    	}
         if (clickedLabel.getText().equals("Cửa hàng")) {
 			JTable newTable = view.CuaHang();
 			view.updateTable(newTable);

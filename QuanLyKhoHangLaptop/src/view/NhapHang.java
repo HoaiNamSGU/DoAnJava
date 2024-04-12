@@ -51,6 +51,7 @@ public class NhapHang extends JFrame{
 	private long tongtien=0,sohang=0;
 	public JButton btn_nhaphang;
 	public JButton btn_suasoluong;
+	public JPanel panel_nhaphang;
 	/**
 	 * Launch the application.
 	 */
@@ -93,7 +94,7 @@ public class NhapHang extends JFrame{
 		contentPane.add(panel_menu);
 		panel_menu.setLayout(null);
 		
-		JPanel panel_nhaphang = new JPanel();
+		panel_nhaphang = new JPanel();
 		panel_nhaphang.setBounds(197, 0, 1219, 764);
 		panel_nhaphang.setLayout(null);		
 		contentPane.add(panel_nhaphang);
@@ -224,7 +225,7 @@ public class NhapHang extends JFrame{
 		panel.add(jtext_tim);
 		jtext_tim.setColumns(10);
 		
-		ImageIcon icon_lammoi =  new ImageIcon(this.getClass().getResource("/loadicon.png"));
+		ImageIcon icon_lammoi =  new ImageIcon(this.getClass().getResource("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png"));
 		 btn_lammoi = new JButton("Làm mới", icon_lammoi);
 		 btn_lammoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		 btn_lammoi.setBounds(399, 20, 133, 41);
@@ -312,25 +313,25 @@ public class NhapHang extends JFrame{
 		panel_nhaphang.add(txt_soluong);
 		txt_soluong.setColumns(10);
 		
-		ImageIcon icon_them =  new ImageIcon(this.getClass().getResource("/add-icon.png"));
+		ImageIcon icon_them =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
 		 btn_them = new JButton("THÊM",icon_them);
 		 btn_them.setBounds(280, 681, 145, 43);
 		btn_them.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_nhaphang.add(btn_them);
 		
-		ImageIcon icon_nhapexcel =  new ImageIcon(this.getClass().getResource("/Excel-icon.png"));
+		ImageIcon icon_nhapexcel =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JButton btn_nhapexcel = new JButton("Nhập excel",icon_nhapexcel);
 		btn_nhapexcel.setBounds(650, 597, 167, 49);
 		btn_nhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_nhaphang.add(btn_nhapexcel);
 		
-		ImageIcon icon_suasoluong =  new ImageIcon(this.getClass().getResource("/write.png"));
+		ImageIcon icon_suasoluong =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
 		 btn_suasoluong = new JButton("Sửa số lượng", icon_suasoluong);
 		btn_suasoluong.setBounds(820, 597, 195, 49);
 		btn_suasoluong.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_nhaphang.add(btn_suasoluong);
 		
-		ImageIcon icon_xoasp =  new ImageIcon(this.getClass().getResource("/bin.png"));
+		ImageIcon icon_xoasp =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
 		 btn_xoasp = new JButton("Xóa sản phẩm", icon_xoasp);
 		 btn_xoasp.setBounds(1030, 597, 182, 49);
 		btn_xoasp.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -461,4 +462,8 @@ public class NhapHang extends JFrame{
 	  	 int i=table1.getSelectedRow();
 	  	 JOptionPane.showConfirmDialog(null,"Bạn muốn sửa bao nhiêu cái","Thông báo",JOptionPane.INFORMATION_MESSAGE);
 	}
+	
+	
 }
+
+

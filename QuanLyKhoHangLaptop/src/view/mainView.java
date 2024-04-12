@@ -58,7 +58,7 @@ public class mainView extends JFrame {
 	public JComboBox<String> comboBox_CPU;
 	public JComboBox<String> comboBox_Hang;
 	
-	public CuaHang_View CuaHang= new CuaHang_View();
+	public CuaHang_View CuaHang = new CuaHang_View();
 	public LaptopView laptopview = new LaptopView();
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -356,8 +356,13 @@ public class mainView extends JFrame {
 		jlabel_xemCT.addMouseListener(mouse);*/
 		
 		
-		//this.add(CuaHang);
-		this.add(laptopview);
+		panel_center = new JPanel();
+		panel_center.setBounds(197, 0, 1189, 763);
+		getContentPane().add(panel_center);
+		panel_center.setLayout(null);
+		laptopview.setLocation(0, 0);
+		panel_center.add(laptopview);
+		//panel_center.add(CuaHang);
 		this.setVisible(true);
 		this.setResizable(false);
 	}
