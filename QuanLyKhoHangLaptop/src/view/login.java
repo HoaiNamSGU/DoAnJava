@@ -11,12 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.JPasswordField;
 
 public class login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_username;
-	private JTextField textField_password;
+	private JPasswordField passwordField;
 
 	public static void main(String[] args) {
 		try {
@@ -56,13 +57,13 @@ public class login extends JFrame {
 		jtextFiled_username_1.setBounds(21, 183, 119, 24);
 		jpanel_login.add(jtextFiled_username_1);
 
-		ImageIcon icon = new ImageIcon("D:\\java_setup\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\login_mini.png");
+		ImageIcon icon = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\login_mini.png");
 		jpanel_img.setLayout(null);
 		JLabel jLabel_img = new JLabel(icon);
 		jLabel_img.setBounds(84, 230, 128, 128);
 		jpanel_img.add(jLabel_img);
 
-		ImageIcon icon_user = new ImageIcon("D:\\java_setup\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\user.png");
+		ImageIcon icon_user = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\user.png");
 		JLabel jLabel_user = new JLabel(icon_user);
 		jLabel_user.setBounds(84, 102, 128, 128);
 		jpanel_img.add(jLabel_user);
@@ -76,15 +77,6 @@ public class login extends JFrame {
 		jpanel_login.add(textField_username);
 		textField_username.setColumns(10);
 
-		textField_password = new JTextField();
-		textField_password.setBackground(new Color(255, 255, 255));
-		textField_password.setForeground(new Color(0, 0, 0));
-		textField_password.setFont(new Font("Arial", Font.PLAIN, 14));
-		textField_password.setColumns(10);
-		textField_password.setBounds(21, 217, 264, 33);
-		textField_password.setOpaque(true);
-		jpanel_login.add(textField_password);
-
 		JLabel jLabel = new JLabel("Quên mật khẩu ?");
 		jLabel.setForeground(new Color(0, 0, 0));
 		jLabel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -97,6 +89,10 @@ public class login extends JFrame {
 		btnLogin.setBounds(21, 287, 264, 41);
 		jpanel_login.add(btnLogin);
 		btnLogin.setBackground(new Color(0, 128, 192));
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(21, 217, 264, 36);
+		jpanel_login.add(passwordField);
 
 		this.setVisible(true);
 	}

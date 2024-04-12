@@ -66,14 +66,36 @@ public class mainMouseListener implements MouseListener {
     		view.panel_center.setVisible(true); // Hiển thị panel_center
     	}
         if (clickedLabel.getText().equals("Cửa hàng")) {
-			JTable newTable = view.CuaHang();
-			view.updateTable(newTable);
-			
+			/*JTable newTable = view.CuaHang();
+			view.updateTable(newTable);*/
+			view.panel_center.setVisible(false);
+			view.panel_center.removeAll();
+			view.panel_center.add(view.CuaHang);
+			view.panel_center.setVisible(true);
 		}
-		if (clickedLabel.getText().equals("Sản phẩm")) {
-			view.setVisible(true);
-			view.laptopview.setVisible(true);
+        else if (clickedLabel.getText().equals("Sản phẩm")) {
+			view.panel_center.setVisible(false);
+			view.panel_center.removeAll();
+			view.panel_center.add(view.laptopview);
+			view.panel_center.setVisible(true);
 		}
+        else if(labelText.equals("Nhà cung cấp")) {
+    		view.panel_center.setVisible(false);
+    		Nhacungcap nh=new Nhacungcap();
+
+    		view.panel_center.removeAll(); // Xóa tất cả các thành phần con hiện có trong panel_center
+    		view.panel_center.add(nh.panel_cungcap); // Thêm panel_nhaphang vào panel_center
+    		view.panel_center.setVisible(true); // Hiển thị panel_center
+    	}
+        else if(labelText.equals("Xuất hàng")) {
+    		view.panel_center.setVisible(false);
+    		XuatHang nh=new XuatHang();
+
+    		view.panel_center.removeAll(); // Xóa tất cả các thành phần con hiện có trong panel_center
+    		view.panel_center.add(nh.panel_nhaphang); // Thêm panel_nhaphang vào panel_center
+    		view.panel_center.setVisible(true); // Hiển thị panel_center
+    	}
+
         /*else if(labelText.equals("Thêm"))
         {
         	ThemSanPham add = new ThemSanPham();

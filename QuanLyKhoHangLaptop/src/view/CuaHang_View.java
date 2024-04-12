@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +17,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.mainActionlistener;
+import dao.CuaHangDAO;
+import model.CuaHang;
+
 import javax.swing.SwingConstants;
 
 public class CuaHang_View extends JPanel {
@@ -34,7 +38,7 @@ public class CuaHang_View extends JPanel {
 	 * Create the panel.
 	 */
 	public CuaHang_View() {
-		this.setBounds(190, 0, 1200, 770);
+		this.setBounds(0, 0, 1200, 770);
 		setLayout(null);
 		
 		scrollPane = new JScrollPane();
@@ -42,6 +46,7 @@ public class CuaHang_View extends JPanel {
 		this.add(scrollPane);
 		
 		table = new JTable();
+		table = CuaHang();
 		table.setFont(new Font("Arial", Font.PLAIN, 14));
 		String column[] = { "Mã CH", "Tên Cửa Hàng", "Địa Chỉ", "Điện Thoại"};
 		model = new DefaultTableModel(data, column);
@@ -60,7 +65,7 @@ public class CuaHang_View extends JPanel {
 		this.add(panel_border_chucNang);
 		panel_border_chucNang.setLayout(null);
 
-		ImageIcon icon_add = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
+		ImageIcon icon_add = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
 		JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
 		jlabel_them.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_them.setBounds(10, 21, 44, 56);
@@ -68,7 +73,7 @@ public class CuaHang_View extends JPanel {
 		jlabel_them.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_them);
 
-		ImageIcon icon_pencil = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
+		ImageIcon icon_pencil = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
 		JLabel jlabel_sua = new JLabel("Sửa", icon_pencil, JLabel.CENTER);
 		jlabel_sua.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_sua.setBounds(109, 21, 59, 56);
@@ -76,7 +81,7 @@ public class CuaHang_View extends JPanel {
 		jlabel_sua.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_sua);
 
-		ImageIcon icon_remove = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
+		ImageIcon icon_remove = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
 		JLabel jlabel_xoa = new JLabel("Xóa", icon_remove, JLabel.CENTER);
 		jlabel_xoa.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_xoa.setBounds(67, 21, 45, 56);
@@ -84,7 +89,7 @@ public class CuaHang_View extends JPanel {
 		jlabel_xoa.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xoa);
 
-		ImageIcon icon_eye = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\eye.png");
+		ImageIcon icon_eye = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\eye.png");
 		JLabel jlabel_xemCT = new JLabel("Xem chi tiết", icon_eye, JLabel.CENTER);
 		jlabel_xemCT.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_xemCT.setBounds(165, 21, 68, 56);
@@ -93,7 +98,7 @@ public class CuaHang_View extends JPanel {
 		panel_border_chucNang.add(jlabel_xemCT);
 
 		ImageIcon icon_nhapExcel = new ImageIcon(
-				"D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhapExcel.png");
+				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhapExcel.png");
 		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", icon_nhapExcel, JLabel.CENTER);
 		jlabel_nhapExcel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_nhapExcel.setBounds(265, 21, 68, 56);
@@ -101,7 +106,7 @@ public class CuaHang_View extends JPanel {
 		jlabel_nhapExcel.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_nhapExcel);
 
-		ImageIcon icon_Excel = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
+		ImageIcon icon_Excel = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JLabel jlabel_Excel = new JLabel("Xuất Excel", icon_Excel, JLabel.CENTER);
 		jlabel_Excel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_Excel.setBounds(343, 21, 68, 56);
@@ -151,7 +156,7 @@ public class CuaHang_View extends JPanel {
 		jbutton_Sreach.setBounds(325, 31, 95, 33);
 		panel_border_timKiem.add(jbutton_Sreach);
 
-		ImageIcon icon_refresh = new ImageIcon("D:\\java_setup\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\arrow.png");
+		ImageIcon icon_refresh = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\arrow.png");
 		jbutton_refesh = new JButton(icon_refresh);
 		jbutton_refesh.setBackground(new Color(255, 255, 255));
 		jbutton_refesh.setBounds(325, 75, 30, 21);
@@ -159,6 +164,28 @@ public class CuaHang_View extends JPanel {
 		
 		
 		this.setVisible(true);
+	}
+	
+	public JTable CuaHang() {
+		ArrayList<CuaHang> ListCuaHang=CuaHangDAO.getintance().selectAll();
+		data=new Object[ListCuaHang.size()][4];
+		for (int i=0;i<ListCuaHang.size();i++) {
+			CuaHang CH=ListCuaHang.get(i);
+			data[i][0]=CH.getMaCH();
+			data[i][1]=CH.getTenCH();
+			data[i][2]=CH.getDiaChi();
+			data[i][3]=CH.getSDT();
+			
+		}
+		String column[] = { "Mã CH", "Tên Cửa Hàng", "Địa Chỉ", "Điện Thoại"};
+		model = new DefaultTableModel(data, column);
+		table = new JTable(model);
+		table.getColumnModel().getColumn(0).setPreferredWidth(10);
+		table.getColumnModel().getColumn(1).setPreferredWidth(400);
+		table.getColumnModel().getColumn(1).setMinWidth(20);
+		table.getColumnModel().getColumn(2).setPreferredWidth(400);
+		table.getColumnModel().getColumn(3).setPreferredWidth(15);
+		return table;
 	}
 	
 }

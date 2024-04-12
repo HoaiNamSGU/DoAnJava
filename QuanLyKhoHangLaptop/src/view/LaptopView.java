@@ -169,7 +169,7 @@ public class LaptopView extends JPanel{
 		comboBox_CPU.setBounds(131, 77, 245, 21);
 		panel_border_timKiem.add(comboBox_CPU);
 				
-		String ram[] = {"8 GB","16 GB","32 GB","64 GB","128 GB"};
+		String ram[] = {"4 GB","8 GB","16 GB","32 GB","64 GB","128 GB"};
 		comboBox_Ram = new JComboBox<String>(ram);
 		comboBox_Ram.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_Ram.setBackground(Color.WHITE);

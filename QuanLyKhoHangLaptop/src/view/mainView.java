@@ -275,7 +275,7 @@ public class mainView extends JFrame {
 		jbutton_Sreach.setBackground(new Color(255, 255, 255));
 		jbutton_Sreach.setBounds(573, 31, 107, 33);
 		panel_border_timKiem.add(jbutton_Sreach);
-
+		
 		ImageIcon icon_refresh = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\arrow.png");
 		jbutton_refesh = new JButton(icon_refresh);
 		jbutton_refesh.setBackground(new Color(255, 255, 255));

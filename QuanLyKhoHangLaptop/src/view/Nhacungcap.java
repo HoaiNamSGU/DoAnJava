@@ -251,7 +251,7 @@ public class Nhacungcap extends JFrame{
 		jp_chucnang.setLayout(null);
 		
 		//them
-		ImageIcon icon_add = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
+		ImageIcon icon_add = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
 		JLabel jl_chuthem = new JLabel("Thêm");	
 		jl_chuthem.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    jl_chuthem.setBounds(15, 63, 45, 21);
@@ -263,7 +263,7 @@ public class Nhacungcap extends JFrame{
 		jp_chucnang.add(jl_nutadd);
 		
 		//xoa
-		ImageIcon icon_xoa =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
+		ImageIcon icon_xoa =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
 		JLabel jl_chuxoa = new JLabel("Xóa");
 		jl_chuxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuxoa.setBounds(86, 63, 33, 21);
@@ -276,7 +276,7 @@ public class Nhacungcap extends JFrame{
 		
 		
 		// sua
-		ImageIcon icon_sua =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
+		ImageIcon icon_sua =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
 		 jl_nutsua = new JLabel("");
 		jl_nutsua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutsua.setBounds(142, 13, 39, 55);
@@ -293,7 +293,7 @@ public class Nhacungcap extends JFrame{
 		jp_chucnang.add(separator);
 		
 		// xuat excel
-		ImageIcon icon_xuatexcel = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
+		ImageIcon icon_xuatexcel = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JLabel jl_nutxuatexcel = new JLabel("");
 		jl_nutxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutxuatexcel.setBounds(220, 13, 33, 55);
@@ -306,7 +306,7 @@ public class Nhacungcap extends JFrame{
 		
 		
 		//nhap excel
-		ImageIcon icon_nhapexcel = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
+		ImageIcon icon_nhapexcel = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JLabel jl_nutnhapexcel = new JLabel("");
 		jl_nutnhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutnhapexcel.setBounds(301, 13, 70, 55);
@@ -352,7 +352,7 @@ public class Nhacungcap extends JFrame{
 		jp_timkiem.add(txtx_timkiem);
 		txtx_timkiem.setColumns(10);
 		
-		ImageIcon icon_lammoi =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png");
+		ImageIcon icon_lammoi =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png");
 //		JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
 		 btn_lammoi = new JButton("Làm mới", icon_lammoi);
 		 btn_lammoi.addMouseListener(new MouseAdapter() {
