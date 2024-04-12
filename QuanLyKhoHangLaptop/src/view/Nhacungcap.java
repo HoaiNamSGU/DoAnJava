@@ -3,15 +3,14 @@ package view;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import model.NhaCungCap;
 import controller.Controllernhacungcap;
-import controller.FrameToImage;
 import dao.nhacungcapDao;
+import model.NhaCungCap;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -56,8 +55,6 @@ import java.awt.BorderLayout;
 import java.awt.Choice;
 import javax.swing.JTextPane;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
-//import javax.swing.border.TitledBorder;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
@@ -86,6 +83,8 @@ public class Nhacungcap extends JFrame{
 	public JButton btn_lammoi;
 	public JComboBox cbb_timkiem;
 	public JLabel jl_nutsua;
+	public JPanel panel_cungcap;
+	public JPanel panel_menu;
 	/**
 	 * Launch the application.
 	 */
@@ -106,18 +105,27 @@ public class Nhacungcap extends JFrame{
 	 * Create the frame.
 	 */
 	public Nhacungcap() {
-		getContentPane().setForeground(new Color(0, 0, 0));
+		getContentPane().setForeground(new Color(192, 192, 192));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1400,800);
 		this.setLocationRelativeTo(null);
 		this.setTitle("màn hình chính");
 		getContentPane().setLayout(null);
-				
-		JPanel panel_menu = new JPanel();
+		
+		
+		 panel_menu = new JPanel();
 		panel_menu.setBounds(0, 0, 197, 763);
 		panel_menu.setBackground(new Color(0, 128, 192));
 		getContentPane().add(panel_menu);
 		panel_menu.setLayout(null);
+		
+		 panel_cungcap = new JPanel();
+		panel_cungcap.setForeground(new Color(255, 255, 255));
+		panel_cungcap.setBounds(0, 0, 1189, 763);
+//		panel_cungcap.setBackground(new Color(192, 192, 192));
+		getContentPane().add(panel_cungcap);
+//		scrollPane.setBounds(0, 0, 1189, 602);
+
 		
 		JLabel lblNewLabel = new JLabel("Hi !");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -232,16 +240,18 @@ public class Nhacungcap extends JFrame{
 		ImageIcon icon_dangxuat = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dangxuat.png");
 		jlabel_dangxuat.setIcon(icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
+		panel_cungcap.setLayout(null);
 				
 	
 		
 		JPanel jp_chucnang = new JPanel();
+		jp_chucnang.setBounds(10, 10, 398, 97);
 		jp_chucnang.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ch\u1EE9c n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		jp_chucnang.setBounds(207, 10, 398, 97);
-		getContentPane().add(jp_chucnang);
+		panel_cungcap.add(jp_chucnang);
 		jp_chucnang.setLayout(null);
 		
-		Image icon_add = new ImageIcon(this.getClass().getResource("/plus.png")).getImage();
+		//them
+		ImageIcon icon_add = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
 		JLabel jl_chuthem = new JLabel("Thêm");	
 		jl_chuthem.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    jl_chuthem.setBounds(15, 63, 45, 21);
@@ -249,10 +259,11 @@ public class Nhacungcap extends JFrame{
 		jl_nutadd = new JLabel("");
 		jl_nutadd.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutadd.setBounds(15, 13, 33, 55);
-		jl_nutadd.setIcon(new ImageIcon(icon_add));
+		jl_nutadd.setIcon(icon_add);
 		jp_chucnang.add(jl_nutadd);
 		
-		Image icon_xoa = new ImageIcon(this.getClass().getResource("/remove.png")).getImage();
+		//xoa
+		ImageIcon icon_xoa =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
 		JLabel jl_chuxoa = new JLabel("Xóa");
 		jl_chuxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuxoa.setBounds(86, 63, 33, 21);
@@ -260,12 +271,12 @@ public class Nhacungcap extends JFrame{
 		 jl_nutxoa = new JLabel("");
 		jl_nutxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutxoa.setBounds(80, 13, 39, 55);
-		jl_nutxoa.setIcon(new ImageIcon(icon_xoa));
+		jl_nutxoa.setIcon(icon_xoa);
 		jp_chucnang.add(jl_nutxoa);
 		
 		
-		 
-		Image icon_sua = new ImageIcon(this.getClass().getResource("/pencil.png")).getImage();
+		// sua
+		ImageIcon icon_sua =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
 		 jl_nutsua = new JLabel("");
 		jl_nutsua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutsua.setBounds(142, 13, 39, 55);
@@ -273,7 +284,7 @@ public class Nhacungcap extends JFrame{
 		JLabel jl_chusua = new JLabel("Sửa");
 		jl_chusua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chusua.setBounds(142, 63, 28, 21);
-		jl_nutsua.setIcon(new ImageIcon(icon_sua));
+		jl_nutsua.setIcon(icon_sua);
 		jp_chucnang.add(jl_chusua);
 		
 		JSeparator separator = new JSeparator();
@@ -281,8 +292,8 @@ public class Nhacungcap extends JFrame{
 		separator.setBounds(200, 6, 1, 87);
 		jp_chucnang.add(separator);
 		
-		 
-		Image icon_xuatexcel = new ImageIcon(this.getClass().getResource("/xuatExcel.png")).getImage();
+		// xuat excel
+		ImageIcon icon_xuatexcel = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JLabel jl_nutxuatexcel = new JLabel("");
 		jl_nutxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutxuatexcel.setBounds(220, 13, 33, 55);
@@ -290,12 +301,12 @@ public class Nhacungcap extends JFrame{
 		JLabel jl_chuxuatexcel = new JLabel("Xuất Excel");
 		jl_chuxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuxuatexcel.setBounds(208, 63, 70, 21);
-		jl_nutxuatexcel.setIcon(new ImageIcon(icon_xuatexcel));
+		jl_nutxuatexcel.setIcon(icon_xuatexcel);
 		jp_chucnang.add(jl_chuxuatexcel);
 		
 		
-		
-		Image icon_nhapexcel = new ImageIcon(this.getClass().getResource("/Excel-icon.png")).getImage();
+		//nhap excel
+		ImageIcon icon_nhapexcel = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JLabel jl_nutnhapexcel = new JLabel("");
 		jl_nutnhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutnhapexcel.setBounds(301, 13, 70, 55);
@@ -303,24 +314,24 @@ public class Nhacungcap extends JFrame{
 		JLabel jl_chunhapexcel = new JLabel("Nhập Excel");
 		jl_chunhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chunhapexcel.setBounds(300, 63, 88, 21);
-		jl_nutnhapexcel.setIcon(new ImageIcon(icon_nhapexcel));
+		jl_nutnhapexcel.setIcon(icon_nhapexcel);
 		jp_chucnang.add(jl_chunhapexcel);
 		
-		 
+		// khungtimkiem
 		JPanel jp_timkiem = new JPanel();
-		jp_timkiem.setBorder((Border) new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "T\u00ECm ki\u1EBFm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		jp_timkiem.setBounds(681, 10, 695, 97);
-		getContentPane().add(jp_timkiem);
+		jp_timkiem.setBounds(450, 10, 695, 97);
+		jp_timkiem.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "T\u00ECm ki\u1EBFm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_cungcap.add(jp_timkiem);
 		jp_timkiem.setLayout(null);
 		
 		 cbb_timkiem = new JComboBox();
-		 cbb_timkiem.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 		if(cbb_timkiem.getSelectedItem()=="Số điện thoại") {
-		 			
-		 		}
-		 	}
-		 });
+//		 cbb_timkiem.addActionListener(new ActionListener() {
+//		 	public void actionPerformed(ActionEvent e) {
+//		 		if(cbb_timkiem.getSelectedItem()=="Số điện thoại") {
+//		 			
+//		 		}
+//		 	}
+//		 });
 		 
 		cbb_timkiem.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		cbb_timkiem.setBounds(10, 28, 131, 38);
@@ -341,9 +352,8 @@ public class Nhacungcap extends JFrame{
 		jp_timkiem.add(txtx_timkiem);
 		txtx_timkiem.setColumns(10);
 		
-		ImageIcon icon_lammoi =  new ImageIcon(this.getClass().getResource("/loadicon.png"));
-		JLabel jlabel_them = new JLabel("Thêm", JLabel.CENTER);
-		jlabel_them.setIcon(icon_lammoi);
+		ImageIcon icon_lammoi =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png");
+//		JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
 		 btn_lammoi = new JButton("Làm mới", icon_lammoi);
 		 btn_lammoi.addMouseListener(new MouseAdapter() {
 		 	@Override
@@ -356,10 +366,12 @@ public class Nhacungcap extends JFrame{
 		Controllernhacungcap.ActionListener(btn_lammoi, this);
 		
 		
+// table
 		JPanel panel_thansp = new JPanel();
+		panel_thansp.setForeground(new Color(255, 255, 255));
+		panel_thansp.setBounds(0, 161, 1189, 602);
 		panel_thansp.setBackground(new Color(255, 255, 255));
-		panel_thansp.setBounds(207, 161, 1189, 602);
-		getContentPane().add(panel_thansp);
+		panel_cungcap.add(panel_thansp);
 		panel_thansp.setLayout(null);
 		JLayeredPane layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, 1189, 602);
@@ -368,13 +380,14 @@ public class Nhacungcap extends JFrame{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 1189, 602);
-		getContentPane().add(scrollPane);
+//		getContentPane().add(scrollPane);
 		layeredPane.add(scrollPane, JLayeredPane.DEFAULT_LAYER);;
 		
 		
 		String column []= {"Mã NCC","Tên nhà cung cấp","Địa chỉ","Số điện thoại","Email"};
 		Object data [][]= {};
 		 table = new JTable(data,column);
+		 table.setForeground(new Color(0, 0, 0));
 		table.setDefaultEditor(Object.class, null);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {			
@@ -389,107 +402,85 @@ public class Nhacungcap extends JFrame{
 		table.getColumnModel().getColumn(3).setPreferredWidth(0);
 		table.getColumnModel().getColumn(4).setPreferredWidth(40);
 		 model = (DefaultTableModel) table.getModel();
-		for (NhaCungCap nc : dsnhacungcap) {
-		    model.addRow(new Object[] {
-		    		nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
-		            nc.getEmail()
-		    });
+		 for (NhaCungCap nc : dsnhacungcap) {
+			    model.addRow(new Object[] {
+			    		nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
+			            nc.getEmail()
+			    });
+			}
+			table.getTableHeader().setResizingAllowed(false);
+			table.getTableHeader().setReorderingAllowed(false);
+			JTableHeader header = table.getTableHeader();
+		    header.setFont(new Font("Arial", Font.BOLD, 14));
+			table.setFont(new Font("Arial", Font.PLAIN, 14));
+			scrollPane.setViewportView(table);
+			
+			
+			 Controllernhacungcap.addMouseListener(jl_nutadd,this);
+			 Controllernhacungcap.addMouseListener(jl_nutxoa,this);
+			 Controllernhacungcap.addMouseListener(jl_nutsua,this);
+			 Controllernhacungcap.addKeyListener(txtx_timkiem, this);
+			 
+//			this.setVisible(true);
+			this.setResizable(false);
 		}
-		table.getTableHeader().setResizingAllowed(false);
-		table.getTableHeader().setReorderingAllowed(false);
-		JTableHeader header = table.getTableHeader();
-	    header.setFont(new Font("Arial", Font.BOLD, 14));
-		table.setFont(new Font("Arial", Font.PLAIN, 14));
-		scrollPane.setViewportView(table);
 		
 		
-		 Controllernhacungcap.addMouseListener(jl_nutadd,this);
-		 Controllernhacungcap.addMouseListener(jl_nutxoa,this);
-		 Controllernhacungcap.addMouseListener(jl_nutsua,this);
-		 Controllernhacungcap.addKeyListener(txtx_timkiem, this);
-		 
-		this.setVisible(true);
-		this.setResizable(false);
-	}
-	
-	
 
-	
-	public void hienaddnhacungcap() {
-		AddNhaCungCap framee = new AddNhaCungCap(this,1);
-		framee.setVisible(true);
-	}
-	
-	public void hiensuanhacungcap() {
-		AddNhaCungCap frame = new AddNhaCungCap(this,2);
-		frame.setVisible(true);
-	}
-	public void nhannutxoa() {
-		 int i=table.getSelectedRow();
-		 if(i<0) JOptionPane.showConfirmDialog(null, "Bạn chưa chọn dòng cần xóa","THÔNG BÁO",JOptionPane.CLOSED_OPTION);	
-		 else {
-    	 int luachon=JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xóa nó không ?");
-    	 if(luachon==JOptionPane.YES_OPTION) {
-    			String mnc=model.getValueAt(i, 0)+"";
-    			String tnc=model.getValueAt(i, 1)+"";
-    			String dc=model.getValueAt(i, 2)+"";
-    			String sdt= model.getValueAt(i, 3)+"";
-    			String email=model.getValueAt(i, 4)+"";
-    			NhaCungCap nc1=new NhaCungCap(mnc,tnc,dc,sdt,email);
-    			nhacungcapDao.getInstance().delete1(nc1);
-    			model.removeRow(i);
-    	 }
-		 }
-	}
-	
-	public void nutlammoi() {
-		   model.setRowCount(0);
-					txtx_timkiem.setText("");
-					for (NhaCungCap nc : dsnhacungcap) {
-					    model.addRow(new Object[] {
-					    		nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getTenNhaCungCap(),nc.getTenNhaCungCap(),
-					            nc.getEmail()
-					    });
-					}
-		 cbb_timkiem.setSelectedIndex(0);
-		 
-	}
-	
-	public void thanhtimkiem() {
-		dsnhacungcap=nhacungcapDao.getInstance().selectAll();
-		String text=txtx_timkiem.getText();
-        ArrayList<Nhacungcap> result = new ArrayList<>();
-        model.setRowCount(0);
-        String timitem=cbb_timkiem.getSelectedItem()+"";
-        if(timitem.equals("Tất cả")) {
-    	for (NhaCungCap nc : dsnhacungcap) {
-    		 if (nc.getMaNhaCungCap().toLowerCase().contains(text.toLowerCase())
-    				 	|| nc.getEmail().toLowerCase().contains(text.toLowerCase())
-	                    || nc.getTenNhaCungCap().toLowerCase().contains(text.toLowerCase())
-	                    || (nc.getTenNhaCungCap()+"").toLowerCase().contains(text.toLowerCase())
-	                    || nc.getEmail().toLowerCase().contains(text.toLowerCase())) {
-    			 model.addRow(new Object[] {
-    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
-				            nc.getEmail()
-				    });
-	            }
-		    
+		
+		public void hienaddnhacungcap() {
+			AddNhaCungCap framee = new AddNhaCungCap(this,1);
+			framee.setVisible(true);
 		}
-        }
-        if(timitem.equals("Tên")) {
-        	for (NhaCungCap nc : dsnhacungcap) {
-        		 if (nc.getTenNhaCungCap().toLowerCase().contains(text.toLowerCase())) {
-        			 model.addRow(new Object[] {
-        					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
- 				            nc.getEmail()
-    				    });
-    	            }
-    		    
-    		}
-            }
-        else if(timitem.equals("Mã cung cấp")) {
-        	for (NhaCungCap nc : dsnhacungcap) {
-	    		 if (nc.getMaNhaCungCap().toLowerCase().contains(text.toLowerCase())) {
+		
+		public void hiensuanhacungcap() {
+			AddNhaCungCap frame = new AddNhaCungCap(this,2);
+			frame.setVisible(true);
+		}
+		public void nhannutxoa() {
+			 int i=table.getSelectedRow();
+			 if(i<0) JOptionPane.showConfirmDialog(null, "Bạn chưa chọn dòng cần xóa","THÔNG BÁO",JOptionPane.CLOSED_OPTION);	
+			 else {
+	    	 int luachon=JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xóa nó không ?");
+	    	 if(luachon==JOptionPane.YES_OPTION) {
+	    			String mnc=model.getValueAt(i, 0)+"";
+	    			String tnc=model.getValueAt(i, 1)+"";
+	    			String dc=model.getValueAt(i, 2)+"";
+	    			String sdt= model.getValueAt(i, 3)+"";
+	    			String email=model.getValueAt(i, 4)+"";
+	    			NhaCungCap nc1=new NhaCungCap(mnc,tnc,dc,sdt,email);
+	    			nhacungcapDao.getInstance().delete1(nc1);
+	    			model.removeRow(i);
+	    	 }
+			 }
+		}
+		
+		public void nutlammoi() {
+			   model.setRowCount(0);
+						txtx_timkiem.setText("");
+						for (NhaCungCap nc : dsnhacungcap) {
+						    model.addRow(new Object[] {
+						    		nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getTenNhaCungCap(),nc.getTenNhaCungCap(),
+						            nc.getEmail()
+						    });
+						}
+			 cbb_timkiem.setSelectedIndex(0);
+			 
+		}
+		
+		public void thanhtimkiem() {
+			dsnhacungcap=nhacungcapDao.getInstance().selectAll();
+			String text=txtx_timkiem.getText();
+	        ArrayList<Nhacungcap> result = new ArrayList<>();
+	        model.setRowCount(0);
+	        String timitem=cbb_timkiem.getSelectedItem()+"";
+	        if(timitem.equals("Tất cả")) {
+	    	for (NhaCungCap nc : dsnhacungcap) {
+	    		 if (nc.getMaNhaCungCap().toLowerCase().contains(text.toLowerCase())
+	    				 	|| nc.getEmail().toLowerCase().contains(text.toLowerCase())
+		                    || nc.getTenNhaCungCap().toLowerCase().contains(text.toLowerCase())
+		                    || (nc.getTenNhaCungCap()+"").toLowerCase().contains(text.toLowerCase())
+		                    || nc.getEmail().toLowerCase().contains(text.toLowerCase())) {
 	    			 model.addRow(new Object[] {
 	    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
 					            nc.getEmail()
@@ -497,42 +488,64 @@ public class Nhacungcap extends JFrame{
 		            }
 			    
 			}
-        }
-        
-        else if(timitem.equals("Địa chỉ")) {
-        	for (NhaCungCap nc : dsnhacungcap) {
-	    		 if (nc.getDiaChi().toLowerCase().contains(text.toLowerCase())) {
-	    			 model.addRow(new Object[] {
-	    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
-					            nc.getEmail()
-					    });
-		            }
-			    
-			}
-        }
-        
-        else if(timitem.equals("Số điện thoại")) {
-        	for (NhaCungCap nc : dsnhacungcap) {
-	    		 if ((nc.getSDT()+"").toLowerCase().contains(text.toLowerCase())) {
-	    			 model.addRow(new Object[] {
-	    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
-					            nc.getEmail()
-					    });
-		            }
-			    
-			}
-        }
-        
-        else if(timitem.equals("Email")) {
-        	for (NhaCungCap nc : dsnhacungcap) {
-	    		 if (nc.getEmail().toLowerCase().contains(text.toLowerCase())) {
-	    			 model.addRow(new Object[] {
-	    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
-					            nc.getEmail()
-					    });
-		            }
-			    
-			}
-        }
-	}
-	}
+	        }
+	        if(timitem.equals("Tên")) {
+	        	for (NhaCungCap nc : dsnhacungcap) {
+	        		 if (nc.getTenNhaCungCap().toLowerCase().contains(text.toLowerCase())) {
+	        			 model.addRow(new Object[] {
+	        					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
+	 				            nc.getEmail()
+	    				    });
+	    	            }
+	    		    
+	    		}
+	            }
+	        else if(timitem.equals("Mã cung cấp")) {
+	        	for (NhaCungCap nc : dsnhacungcap) {
+		    		 if (nc.getMaNhaCungCap().toLowerCase().contains(text.toLowerCase())) {
+		    			 model.addRow(new Object[] {
+		    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
+						            nc.getEmail()
+						    });
+			            }
+				    
+				}
+	        }
+	        
+	        else if(timitem.equals("Địa chỉ")) {
+	        	for (NhaCungCap nc : dsnhacungcap) {
+		    		 if (nc.getDiaChi().toLowerCase().contains(text.toLowerCase())) {
+		    			 model.addRow(new Object[] {
+		    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
+						            nc.getEmail()
+						    });
+			            }
+				    
+				}
+	        }
+	        
+	        else if(timitem.equals("Số điện thoại")) {
+	        	for (NhaCungCap nc : dsnhacungcap) {
+		    		 if ((nc.getSDT()+"").toLowerCase().contains(text.toLowerCase())) {
+		    			 model.addRow(new Object[] {
+		    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
+						            nc.getEmail()
+						    });
+			            }
+				    
+				}
+	        }
+	        
+	        else if(timitem.equals("Email")) {
+	        	for (NhaCungCap nc : dsnhacungcap) {
+		    		 if (nc.getEmail().toLowerCase().contains(text.toLowerCase())) {
+		    			 model.addRow(new Object[] {
+		    					 nc.getMaNhaCungCap(), nc.getTenNhaCungCap(),nc.getDiaChi(),nc.getSDT(),
+						            nc.getEmail()
+						    });
+			            }
+				    
+				}
+	        }
+		}
+		}
