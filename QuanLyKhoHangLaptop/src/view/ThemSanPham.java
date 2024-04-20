@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import img.Source;
+
 
 public class ThemSanPham extends JFrame {
 
@@ -34,6 +36,7 @@ public class ThemSanPham extends JFrame {
 	public JComboBox comboBox_Nam;
 	public JButton button_left;
 	public JButton button_right;
+	public String source = Source.Source;
 	
 	public ThemSanPham() {
 		this.setTitle("Thêm sản phẩm");
@@ -211,12 +214,12 @@ public class ThemSanPham extends JFrame {
 		contentPane.add(comboBox_Nam);
 		
 		button_left = new JButton("");
-		button_left.setIcon(new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\minus.png"));
+		button_left.setIcon(new ImageIcon(source+"minus.png"));
 		button_left.setBounds(639, 374, 36, 30);
 		contentPane.add(button_left);
 		
 		button_right = new JButton();
-		ImageIcon icon_right = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dau_cong.png");
+		ImageIcon icon_right = new ImageIcon(source+"dau_cong.png");
 		button_right.setIcon(icon_right);
 		button_right.setBounds(733, 374, 36, 30);
 		contentPane.add(button_right);

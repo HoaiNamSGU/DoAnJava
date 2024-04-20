@@ -11,12 +11,10 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 import dao.LaptopDAO;
 import model.Laptop;
 import view.LaptopView;
-import view.PhieuXuat;
 import view.SuaSanPham;
 import view.ThemSanPham;
 import view.XemChiTiet;
@@ -418,7 +416,7 @@ public class LaptopMouseListener implements MouseListener{
     		        	lt[0].setHeDieuHanh(sua.getText(sua.jtextField_hedieuhanh));
     		        	lt[0].setManHinh(sua.getText(sua.jtextField_manhinh));
     		        	lt[0].setHang(sua.getText(sua.jtextField_Hang));
-    		        	ArrayList<String> arrMaLaptop = new ArrayList<String>();
+    		        	//ArrayList<String> arrMaLaptop = new ArrayList<String>();
     		        	
     					lt[0].setMaLaptop(sua.getText(sua.jtextField_masanpham));
     		        	try {

@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import dao.LaptopDAO;
 import model.Laptop;
 import test.test;
-import view.CuaHang_View;
+import view.CuaHangView;
 import view.mainView;
 
 public class mainActionlistener implements ActionListener{
 
 	mainView view ;
-	CuaHang_View CuaHang_View;
+	CuaHangView CuaHangView;
 	public mainActionlistener(mainView view) {
 		this.view = view ;
 	}
 
 	
-	public mainActionlistener(CuaHang_View CuaHang_View) {
-		this.CuaHang_View=CuaHang_View;
+	public mainActionlistener(CuaHangView CuaHangView) {
+		this.CuaHangView=CuaHangView;
 	}
 
 
