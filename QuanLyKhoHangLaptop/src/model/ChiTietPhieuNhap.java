@@ -5,15 +5,39 @@ public class ChiTietPhieuNhap {
 	private String MaPhieuNhap;
 	private String MaLaptop;
 	private String SoLuong;
+	private Double ThanhTien;
+	private int isDelete;
+	
 	
 	public ChiTietPhieuNhap() {
 		
 	}
-
-	public ChiTietPhieuNhap(String maPhieuNhap, String maLaptop, String soLuong) {
+	public ChiTietPhieuNhap(String maPhieuNhap, String maLaptop, String soLuong, Double thanhTien, int isDelete) {
 		MaPhieuNhap = maPhieuNhap;
 		MaLaptop = maLaptop;
 		SoLuong = soLuong;
+		ThanhTien = thanhTien;
+		this.isDelete = isDelete;
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	
+
+	
+
+	public Double getThanhTien() {
+		return ThanhTien;
+	}
+
+	public void setThanhTien(Double thanhTien) {
+		ThanhTien = thanhTien;
 	}
 
 	public String getMaPhieuNhap() {
@@ -42,7 +66,8 @@ public class ChiTietPhieuNhap {
 
 	@Override
 	public String toString() {
-		return "ChiTietPhieuNhap [MaPhieuNhap=" + MaPhieuNhap + ", MaLaptop=" + MaLaptop + ", SoLuong=" + SoLuong + "]";
+		return "ChiTietPhieuNhap [MaPhieuNhap=" + MaPhieuNhap + ", MaLaptop=" + MaLaptop + ", SoLuong=" + SoLuong
+				+ ", ThanhTien=" + ThanhTien + ", isDelete=" + isDelete + "]";
 	}
 	
 	

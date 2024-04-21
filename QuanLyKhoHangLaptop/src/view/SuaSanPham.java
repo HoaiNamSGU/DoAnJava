@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,9 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import dao.LaptopDAO;
 import model.Laptop;
 
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SuaSanPham extends JFrame {
 
@@ -30,22 +34,20 @@ public class SuaSanPham extends JFrame {
 	public JTextField jtextField_manhinh;
 	public JTextField jtextField_Hang;
 	public JTextField jtextField_hedieuhanh;
-	public JTextField jtextField_soluong;
 	public JTextField jtextField_gia;
 	public JButton jbutton_xacnhan;
 	public JButton jbutton_huybo;
-	public JComboBox comboBox_Rom;
-	public JComboBox comboBox_Ram;
-	public JComboBox comboBox_Nam;
-	public JButton button_left;
-	public JButton button_right;
+	public JComboBox<String> comboBox_Rom;
+	public JComboBox<String> comboBox_Ram;
+	public JComboBox<String> comboBox_Nam;
+	public JComboBox<String> comboBox_MaNCC;
 
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SuaSanPham frame = new SuaSanPham();
+					new SuaSanPham();
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -146,13 +148,6 @@ public class SuaSanPham extends JFrame {
 		jtextField_hedieuhanh.setBounds(37, 275, 207, 30);
 		contentPane.add(jtextField_hedieuhanh);
 		
-		jtextField_soluong = new JTextField();
-		jtextField_soluong.setText("0");
-		jtextField_soluong.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_soluong.setColumns(10);
-		jtextField_soluong.setBounds(681, 374, 47, 30);
-		contentPane.add(jtextField_soluong);
-		
 		jtextField_gia = new JTextField();
 		jtextField_gia.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_gia.setText("0");
@@ -185,9 +180,9 @@ public class SuaSanPham extends JFrame {
 		jlabel_namsanxuat.setBounds(639, 247, 106, 24);
 		contentPane.add(jlabel_namsanxuat);
 		
-		JLabel jlabel_soluong = new JLabel("Số lượng");
+		JLabel jlabel_soluong = new JLabel("Mã nhà cung cấp");
 		jlabel_soluong.setFont(new Font("Arial", Font.PLAIN, 16));
-		jlabel_soluong.setBounds(639, 345, 106, 24);
+		jlabel_soluong.setBounds(639, 345, 130, 24);
 		contentPane.add(jlabel_soluong);
 		
 		JLabel jlabel_gia = new JLabel("Giá");
@@ -210,37 +205,32 @@ public class SuaSanPham extends JFrame {
 		contentPane.add(jbutton_huybo);
 		
 		String Ram[] = {"4 GB", "8 GB", "16 GB","32 GB","64 GB", "128 GB", "256 GB"};
-		comboBox_Ram = new JComboBox(Ram);
+		comboBox_Ram = new JComboBox<String>(Ram);
 		comboBox_Ram.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBox_Ram.setBounds(639, 98, 130, 30);
 		comboBox_Ram.setBackground(Color.WHITE);
 		contentPane.add(comboBox_Ram);
 		
 		String Rom [] = {"64 GB","128 GB","256 GB","512 GB","1 TB","2 TB", "4 TB"};
-		comboBox_Rom = new JComboBox(Rom);
+		comboBox_Rom = new JComboBox<String>(Rom);
 		comboBox_Rom.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBox_Rom.setBounds(639, 183, 130, 30);
 		comboBox_Rom.setBackground(Color.WHITE);
 		contentPane.add(comboBox_Rom);
 		
 		String Nam[] = {"2024","2023","2022","2021","2020","2019","2018"};
-		comboBox_Nam = new JComboBox(Nam);
+		comboBox_Nam = new JComboBox<String>(Nam);
 		comboBox_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBox_Nam.setBounds(639, 272, 130, 30);
 		comboBox_Nam.setBackground(Color.WHITE);
 		contentPane.add(comboBox_Nam);
 		
-		button_left = new JButton("");
-		button_left.setIcon(new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\minus.png"));
-		button_left.setBounds(639, 374, 36, 30);
-		contentPane.add(button_left);
-		
-		button_right = new JButton();
-		ImageIcon icon_right = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dau_cong.png");
-		button_right.setIcon(icon_right);
-		button_right.setBounds(733, 374, 36, 30);
-		contentPane.add(button_right);
-		
+		comboBox_MaNCC = new JComboBox<String>();
+		comboBox_MaNCC = addItem("MaNhaCungCap");
+		comboBox_MaNCC.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_MaNCC.setBackground(Color.WHITE);
+		comboBox_MaNCC.setBounds(639, 374, 130, 30);
+		contentPane.add(comboBox_MaNCC);
 		
 		
 		this.setVisible(true);
@@ -261,13 +251,23 @@ public class SuaSanPham extends JFrame {
 		jtextField_Hang.setText(lt.getHang());
 		jtextField_hedieuhanh.setText(lt.getHeDieuHanh());
 		jtextField_manhinh.setText(lt.getManHinh());
-		jtextField_soluong.setText(lt.getSoLuong()+"");
 		DecimalFormat df = new DecimalFormat("#");
 	    String formattedNumber = df.format(lt.getGia());
 		jtextField_gia.setText(formattedNumber);
 		comboBox_Ram.setSelectedItem(lt.getRam());
 		comboBox_Rom.setSelectedItem(lt.getRom());
 		comboBox_Nam.setSelectedItem(lt.getNamSanXuat()+"");
+		comboBox_MaNCC.setSelectedItem(lt.getMaNhaCungCap());
+	}
+	
+	public JComboBox<String> addItem(String s)
+	{
+		ArrayList<String> arr = LaptopDAO.getintance().getColumn(s);
+		JComboBox<String> tmp = new JComboBox<String>();
+		for (String string : arr) {
+			tmp.addItem(string);
+		}
+		return tmp;
 	}
 }
 

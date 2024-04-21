@@ -6,16 +6,17 @@ public class NguoiDung {
 	private String TaiKhoan;
 	private String MatKhau;
 	private int PhamViTruyCap;
-	
+	private int isDelete;
 	public NguoiDung() {
 		
 	};
 
-	public NguoiDung(String maNguoiDung, String taiKhoan, String matKhau, int phamViTruyCap) {
+	public NguoiDung(String maNguoiDung, String taiKhoan, String matKhau, int phamViTruyCap, int isDelete) {
 		MaNguoiDung = maNguoiDung;
 		TaiKhoan = taiKhoan;
 		MatKhau = matKhau;
 		PhamViTruyCap = phamViTruyCap;
+		this.isDelete = isDelete;
 	}
 
 	public String getMaNguoiDung() {
@@ -53,7 +54,15 @@ public class NguoiDung {
 	@Override
 	public String toString() {
 		return "NguoiDung [MaNguoiDung=" + MaNguoiDung + ", TaiKhoan=" + TaiKhoan + ", MatKhau=" + MatKhau
-				+ ", PhamViTruyCap=" + PhamViTruyCap + "]";
+				+ ", PhamViTruyCap=" + PhamViTruyCap + ", isDelete=" + isDelete + "]";
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 
 	

@@ -9,17 +9,19 @@ public class PhieuNhap {
 	private String MaNhanVien;
 	private double TongTien;
 	private Date NgayNhap;
+	private int isDelete;
 	
 	public PhieuNhap() {
 		
 	};
 
-	public PhieuNhap(String maPhieuNhap, String maNhaCungCap, String maNhanVien, double tongTien, Date ngayNhap) {
+	public PhieuNhap(String maPhieuNhap, String maNhaCungCap, String maNhanVien, double tongTien, Date ngayNhap, int isDelete) {
 		MaPhieuNhap = maPhieuNhap;
 		MaNhaCungCap = maNhaCungCap;
 		MaNhanVien = maNhanVien;
 		TongTien = tongTien;
 		NgayNhap = ngayNhap;
+		this.isDelete = isDelete;
 	}
 
 	public String getMaPhieuNhap() {
@@ -65,7 +67,15 @@ public class PhieuNhap {
 	@Override
 	public String toString() {
 		return "PhieuNhap [MaPhieuNhap=" + MaPhieuNhap + ", MaNhaCungCap=" + MaNhaCungCap + ", MaNhanVien=" + MaNhanVien
-				+ ", TongTien=" + TongTien + ", NgayNhap=" + NgayNhap + "]";
+				+ ", TongTien=" + TongTien + ", NgayNhap=" + NgayNhap + ", isDelete=" + isDelete + "]";
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	};
 	
 	

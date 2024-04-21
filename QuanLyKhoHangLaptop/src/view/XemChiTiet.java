@@ -30,6 +30,7 @@ public class XemChiTiet extends JFrame {
 	private JLabel jlabel_namsanxuat1;
 	private JLabel jlabel_soluong1;
 	private JLabel jlabel_gia1;
+	private JLabel jlabel_MaNCC;
 
 	/**
 	 * Launch the application.
@@ -52,7 +53,7 @@ public class XemChiTiet extends JFrame {
 	 */
 	public XemChiTiet() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 640, 605);
+		setBounds(100, 100, 640, 644);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Chi tiết sản phẩm");
 		contentPane = new JPanel();
@@ -199,6 +200,17 @@ public class XemChiTiet extends JFrame {
 		jlabel_gia1.setBounds(195, 518, 388, 30);
 		contentPane.add(jlabel_gia1);
 		
+		jlabel_MaNCC = new JLabel("");
+		jlabel_MaNCC.setFont(new Font("Arial", Font.PLAIN, 18));
+		jlabel_MaNCC.setBounds(195, 557, 388, 30);
+		contentPane.add(jlabel_MaNCC);
+		
+		JLabel jlabel_gia_1 = new JLabel("Mã nhà cung cấp: ");
+		jlabel_gia_1.setForeground(new Color(0, 128, 192));
+		jlabel_gia_1.setFont(new Font("Arial", Font.PLAIN, 18));
+		jlabel_gia_1.setBounds(26, 557, 147, 30);
+		contentPane.add(jlabel_gia_1);
+		
 		
 		
 		
@@ -224,5 +236,7 @@ public class XemChiTiet extends JFrame {
 	    String gia = df.format(lt.getGia());
 	    jlabel_gia1.setText(gia+" vnd");
 	    jlabel_hang1.setText(lt.getHang());
+	    jlabel_MaNCC.setText(lt.getMaNhaCungCap());
 	}
+	
 }

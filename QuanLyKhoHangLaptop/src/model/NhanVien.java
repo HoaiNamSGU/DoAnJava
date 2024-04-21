@@ -10,24 +10,24 @@ public class NhanVien {
 	private int GioiTinh;
 	private String DiaChi;
 	private String SDT;
-	private String Email;
 	private String MaNguoiDung;
+	private int isDelete;
 	
 	public NhanVien() {
 		
 	};
 
 	public NhanVien(String maNhanVien, String tenNhanVien, Date ngaySinh, int gioiTinh, String diaChi, String sDT,
-			String email, String maNguoiDung) {
-		super();
+			 String maNguoiDung, int isDelete) {
+		
 		MaNhanVien = maNhanVien;
 		TenNhanVien = tenNhanVien;
 		NgaySinh = ngaySinh;
 		GioiTinh = gioiTinh;
 		DiaChi = diaChi;
 		SDT = sDT;
-		Email = email;
 		MaNguoiDung = maNguoiDung;
+		this.isDelete =isDelete;
 	}
 
 	public String getMaNhanVien() {
@@ -78,13 +78,7 @@ public class NhanVien {
 		SDT = sDT;
 	}
 
-	public String getEmail() {
-		return Email;
-	}
-
-	public void setEmail(String email) {
-		Email = email;
-	}
+	
 
 	public String getMaNguoiDung() {
 		return MaNguoiDung;
@@ -97,8 +91,16 @@ public class NhanVien {
 	@Override
 	public String toString() {
 		return "NhanVien [MaNhanVien=" + MaNhanVien + ", TenNhanVien=" + TenNhanVien + ", NgaySinh=" + NgaySinh
-				+ ", GioiTinh=" + GioiTinh + ", DiaChi=" + DiaChi + ", SDT=" + SDT + ", Email=" + Email
-				+ ", MaNguoiDung=" + MaNguoiDung + "]";
+				+ ", GioiTinh=" + GioiTinh + ", DiaChi=" + DiaChi + ", SDT=" + SDT + ", MaNguoiDung=" + MaNguoiDung
+				+ ", isDelete=" + isDelete + "]";
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 	

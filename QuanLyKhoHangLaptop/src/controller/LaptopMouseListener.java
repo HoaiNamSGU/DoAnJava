@@ -11,21 +11,19 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 import dao.LaptopDAO;
 import model.Laptop;
-import view.LaptopView;
-import view.PhieuXuat;
+import view.Laptop_view;
 import view.SuaSanPham;
 import view.ThemSanPham;
 import view.XemChiTiet;
 
 public class LaptopMouseListener implements MouseListener{
 
-	private LaptopView laptopview ;
+	private Laptop_view laptopview ;
 	
-	public LaptopMouseListener(LaptopView laptopview) {
+	public LaptopMouseListener(Laptop_view laptopview) {
 		this.laptopview = laptopview;
 	}
 
@@ -83,50 +81,12 @@ public class LaptopMouseListener implements MouseListener{
 			});
 			
 			
-			add.button_right.addActionListener(new ActionListener() {
+			add.comboBox_MaNCC.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if(e.getSource()==add.button_right)
-					{
-						int soluong;
-						try {
-							soluong = Integer.parseInt(add.getText(add.jtextField_soluong));
-							soluong++;
-							add.jtextField_soluong.setText(soluong+"");
-							lt.setSoLuong(soluong);
-						} catch (NumberFormatException e1) {
-							JOptionPane.showMessageDialog(add ,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
-							lt.setSoLuong(0);
-							e1.printStackTrace();
-						}
-						
-					}
-				}
-			});
-			
-			
-			add.button_left.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if(e.getSource()==add.button_left)
-					{
-						try {
-							int soluong = Integer.parseInt(add.getText(add.jtextField_soluong));
-							soluong--;
-							if(soluong<0)
-							{
-								soluong = 0;
-							}
-							add.jtextField_soluong.setText(soluong+"");
-							lt.setSoLuong(soluong);
-						} catch (NumberFormatException e1) {
-							JOptionPane.showMessageDialog(add,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
-							lt.setSoLuong(0);
-							e1.printStackTrace();
-						}
-					}
+					String select_MaNCC = (String) add.comboBox_MaNCC.getSelectedItem();
+					lt.setMaNhaCungCap(select_MaNCC);
 				}
 			});
 			
@@ -135,9 +95,11 @@ public class LaptopMouseListener implements MouseListener{
 			String defaultSelected_Ram = (String) add.comboBox_Ram.getSelectedItem();
         	String defaultSelected_Rom = (String) add.comboBox_Rom.getSelectedItem();
         	String defaultSelected_Nam = (String) add.comboBox_Nam.getSelectedItem();
+        	String defaultSelected_MaNCC = (String) add.comboBox_MaNCC.getSelectedItem();
         	lt.setRam(defaultSelected_Ram);
         	lt.setRom(defaultSelected_Rom);
         	lt.setNamSanXuat(Integer.parseInt(defaultSelected_Nam));
+			lt.setMaNhaCungCap(defaultSelected_MaNCC);
 			
         	add.jbutton_xacnhan.addActionListener(new ActionListener() {
 				
@@ -210,6 +172,7 @@ public class LaptopMouseListener implements MouseListener{
 							       	if(count==0)
 							       	{
 							       		add.jtextField_masanpham.setText(input);
+							       		lt.setMaLaptop(add.getText(add.jtextField_masanpham));
 							       		break;
 							       	}
 							       	
@@ -221,13 +184,6 @@ public class LaptopMouseListener implements MouseListener{
 		        	}
 					lt.setMaLaptop(add.getText(add.jtextField_masanpham));
 		        	try {
-						lt.setSoLuong(Integer.parseInt(add.getText(add.jtextField_soluong)));
-					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(add,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
-						lt.setSoLuong(0);
-						e1.printStackTrace();
-					}
-		        	try {
 						lt.setGia(Double.parseDouble(add.getText(add.jtextField_gia)));
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(add,"Giá không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
@@ -235,6 +191,7 @@ public class LaptopMouseListener implements MouseListener{
 						e1.printStackTrace();
 					}
 					
+		        	
 		        	String src = e.getActionCommand();
 					if(src.equals("Xác nhận"))
 					{
@@ -283,7 +240,7 @@ public class LaptopMouseListener implements MouseListener{
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
             	 if(result == JOptionPane.YES_OPTION){
-            		 LaptopDAO.getintance().delete(lt);
+            		 LaptopDAO.getintance().delete(lt.getMaLaptop());
             		 laptopview.model.removeRow(selectedRow);
             		 ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
             		 laptopview.updateTableData(Laptop);
@@ -360,51 +317,16 @@ public class LaptopMouseListener implements MouseListener{
     				}
     			});
             	
-    			
-        	    sua.button_right.addActionListener(new ActionListener() {
-        	        @Override
-        	        public void actionPerformed(ActionEvent e) {
-        	            if (e.getSource() == sua.button_right) {
-        	                int soluong;
-        	                try {
-        	                    soluong = Integer.parseInt(sua.getText(sua.jtextField_soluong));
-        	                    soluong++;
-        	                    sua.jtextField_soluong.setText(soluong + "");
-        	                    lt[0].setSoLuong(soluong);
-        	                } catch (NumberFormatException e1) {
-        	                    JOptionPane.showMessageDialog(sua, "Số lượng không hợp lệ !", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        	                    lt[0].setSoLuong(0);
-        	                    e1.printStackTrace();
-        	                }
-        	            }
-        	        }
-        	    });
-			
-			
-        	    sua.button_left.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if(e.getSource()==sua.button_left)
-					{
-						try {
-							int soluong = Integer.parseInt(sua.getText(sua.jtextField_soluong));
-							soluong--;
-							if(soluong<0)
-							{
-								soluong = 0;
-							}
-							sua.jtextField_soluong.setText(soluong+"");
-							lt[0].setSoLuong(soluong);
-						} catch (NumberFormatException e1) {
-							JOptionPane.showMessageDialog(sua,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
-							lt[0].setSoLuong(0);
-							e1.printStackTrace();
-						}
+    			sua.comboBox_MaNCC.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String selected_MaNCC = (String) sua.comboBox_MaNCC.getSelectedItem();
+						lt[0].setMaNhaCungCap(selected_MaNCC);
 					}
-				}
-        	    });
-        
+				});
+        	  
+			
         	    
         	    
         	    sua.jbutton_xacnhan.addActionListener(new ActionListener() {
@@ -418,16 +340,7 @@ public class LaptopMouseListener implements MouseListener{
     		        	lt[0].setHeDieuHanh(sua.getText(sua.jtextField_hedieuhanh));
     		        	lt[0].setManHinh(sua.getText(sua.jtextField_manhinh));
     		        	lt[0].setHang(sua.getText(sua.jtextField_Hang));
-    		        	ArrayList<String> arrMaLaptop = new ArrayList<String>();
-    		        	
     					lt[0].setMaLaptop(sua.getText(sua.jtextField_masanpham));
-    		        	try {
-    						lt[0].setSoLuong(Integer.parseInt(sua.getText(sua.jtextField_soluong)));
-    					} catch (NumberFormatException e1) {
-    						JOptionPane.showMessageDialog(sua,"Số lượng không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
-    						lt[0].setSoLuong(0);
-    						e1.printStackTrace();
-    					}
     		        	try {
     						lt[0].setGia(Double.parseDouble(sua.getText(sua.jtextField_gia)));
     					} catch (NumberFormatException e1) {
@@ -445,7 +358,7 @@ public class LaptopMouseListener implements MouseListener{
     			        	if(result == JOptionPane.YES_OPTION)
     			        	{
     							LaptopDAO.getintance().updateALL(lt[0],ma);
-    							 ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
+    							ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
     							laptopview.updateTableData(Laptop);
     							JOptionPane.showMessageDialog(sua, "Sản phẩm đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     							
@@ -506,9 +419,6 @@ public class LaptopMouseListener implements MouseListener{
 		
 		
 		
-		
-       
-        
 	}
 
 	@Override

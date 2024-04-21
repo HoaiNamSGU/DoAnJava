@@ -140,7 +140,8 @@ public class nhacungcapDao implements DAOInterface<NhaCungCap>{
 			String dc=rs.getString("DiaChi");
 			String sdt=rs.getString("SDT");
 			String em=rs.getString("Email");
-			NhaCungCap sp=new NhaCungCap(mncc,tm,dc,sdt,em);
+			int isDelete = rs.getInt("isDelete");
+			NhaCungCap sp=new NhaCungCap(mncc,tm,dc,sdt,em,isDelete);
 			ketqua.add(sp);
 		}
 //		BƯỚC 5: NGẮT KẾT NỐI

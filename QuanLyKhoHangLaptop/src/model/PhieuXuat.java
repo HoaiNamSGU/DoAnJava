@@ -9,18 +9,19 @@ public class PhieuXuat {
 	private String MaNhanVien;
 	private Date NgayXuat;
 	private double TongTien;
-	
+	private int isDelete;
 	public PhieuXuat() {
 		
 	}
 
-	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien) {
+	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int isDelete) {
 		super();
 		MaPhieuXuat = maPhieuXuat;
 		MaCuaHang = maCuaHang;
 		MaNhanVien = maNhanVien;
 		NgayXuat = ngayXuat;
 		TongTien = tongTien;
+		this.isDelete = isDelete;
 	}
 
 	public String getMaPhieuXuat() {
@@ -66,7 +67,15 @@ public class PhieuXuat {
 	@Override
 	public String toString() {
 		return "PhieuXuat [MaPhieuXuat=" + MaPhieuXuat + ", MaCuaHang=" + MaCuaHang + ", MaNhanVien=" + MaNhanVien
-				+ ", NgayXuat=" + NgayXuat + ", TongTien=" + TongTien + "]";
+				+ ", NgayXuat=" + NgayXuat + ", TongTien=" + TongTien + ", isDelete=" + isDelete + "]";
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 	

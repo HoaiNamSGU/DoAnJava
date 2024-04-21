@@ -13,13 +13,14 @@ public class Laptop {
 	private int NamSanXuat;
 	private int SoLuong;
 	private double Gia;
-	
+	private String MaNhaCungCap;
+	private int isDelete;
 	public Laptop() {
 		
 	};
 	
 	public Laptop(String maLaptop, String tenLaptop, String cPU, String gPU, String ram, String rom, String heDieuHanh,
-			String manHinh, String hang, int namSanXuat, int soLuong, double gia) {
+			String manHinh, String hang, int namSanXuat, int soLuong, double gia, String maNhaCungCap, int isDelete) {
 		
 		MaLaptop = maLaptop;
 		TenLaptop = tenLaptop;
@@ -33,6 +34,16 @@ public class Laptop {
 		NamSanXuat = namSanXuat;
 		SoLuong = soLuong;
 		Gia = gia;
+		this.MaNhaCungCap = maNhaCungCap;
+		this.isDelete = isDelete;
+	}
+
+	public String getMaNhaCungCap() {
+		return MaNhaCungCap;
+	}
+
+	public void setMaNhaCungCap(String maNhaCungCap) {
+		MaNhaCungCap = maNhaCungCap;
 	}
 
 	public String getMaLaptop() {
@@ -135,7 +146,16 @@ public class Laptop {
 	public String toString() {
 		return "Laptop [MaLaptop=" + MaLaptop + ", TenLaptop=" + TenLaptop + ", CPU=" + CPU + ", GPU=" + GPU + ", Ram="
 				+ Ram + ", Rom=" + Rom + ", HeDieuHanh=" + HeDieuHanh + ", ManHinh=" + ManHinh + ", Hang=" + Hang
-				+ ", NamSanXuat=" + NamSanXuat + ", SoLuong=" + SoLuong + ", Gia=" + Gia + "]";
+				+ ", NamSanXuat=" + NamSanXuat + ", SoLuong=" + SoLuong + ", Gia=" + Gia + ", MaNhaCungCap="
+				+ MaNhaCungCap + ", isDelete=" + isDelete + "]";
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 	

@@ -7,12 +7,20 @@ public class NhaCungCap {
 	private String DiaChi;
 	private String SDT;
 	private String Email;
-	
+	private int isDelete;
 	
 	public NhaCungCap() {
 		
 	};
 
+	public NhaCungCap(String maNhaCungCap, String tenNhaCungCap, String diaChi, String sDT, String email, int isDelete) {
+		MaNhaCungCap = maNhaCungCap;
+		TenNhaCungCap = tenNhaCungCap;
+		DiaChi = diaChi;
+		SDT = sDT;
+		Email = email;
+		this.isDelete = isDelete;
+	}
 	public NhaCungCap(String maNhaCungCap, String tenNhaCungCap, String diaChi, String sDT, String email) {
 		MaNhaCungCap = maNhaCungCap;
 		TenNhaCungCap = tenNhaCungCap;
@@ -20,7 +28,6 @@ public class NhaCungCap {
 		SDT = sDT;
 		Email = email;
 	}
-
 	public String getMaNhaCungCap() {
 		return MaNhaCungCap;
 	}
@@ -64,7 +71,15 @@ public class NhaCungCap {
 	@Override
 	public String toString() {
 		return "NhaCungCap [MaNhaCungCap=" + MaNhaCungCap + ", TenNhaCungCap=" + TenNhaCungCap + ", DiaChi=" + DiaChi
-				+ ", SDT=" + SDT + ", Email=" + Email + "]";
+				+ ", SDT=" + SDT + ", Email=" + Email + ", isDelete=" + isDelete + "]";
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 	

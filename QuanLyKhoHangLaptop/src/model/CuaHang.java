@@ -7,16 +7,18 @@ public class CuaHang {
 	private String TenCH;
 	private String DiaChi;
 	private String SDT;
+	private int isDelete;
 	
 	public CuaHang() {
 		
 	}
 
-	public CuaHang(String MaCH, String TenCH, String DiaChi, String SDT) {
+	public CuaHang(String MaCH, String TenCH, String DiaChi, String SDT, int isDelete) {
 		this.MaCH = MaCH;
 		this.TenCH = TenCH;
 		this.DiaChi = DiaChi;
 		this.SDT = SDT;
+		this.isDelete = isDelete;
 	}
 
 	public String getMaCH() {
@@ -58,8 +60,16 @@ public class CuaHang {
 	}
 	@Override
 	public String toString() {
-		return "CuaHang [MaCH=" + this.MaCH + ", TenCH=" + this.TenCH + ", DiaChi=" + this.DiaChi + ", SDT="
-				+ this.SDT + "]";
+		return "CuaHang [MaCH=" + MaCH + ", TenCH=" + TenCH + ", DiaChi=" + DiaChi + ", SDT=" + SDT + ", isDelete="
+				+ isDelete + "]";
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 		
 	
