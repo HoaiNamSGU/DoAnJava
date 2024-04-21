@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -11,19 +9,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import img.Source;
-
-import javax.swing.JPasswordField;
 
 public class login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_username;
 	private JPasswordField passwordField;
-	public String source = Source.Source;
+	public Source source = new Source();
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -62,14 +59,12 @@ public class login extends JFrame {
 		jtextFiled_username_1.setBounds(21, 183, 119, 24);
 		jpanel_login.add(jtextFiled_username_1);
 
-		ImageIcon icon = new ImageIcon(source+"login_mini.png");
 		jpanel_img.setLayout(null);
-		JLabel jLabel_img = new JLabel(icon);
+		JLabel jLabel_img = new JLabel(source.icon_dangnhap);
 		jLabel_img.setBounds(84, 230, 128, 128);
 		jpanel_img.add(jLabel_img);
 
-		ImageIcon icon_user = new ImageIcon(source+"user.png");
-		JLabel jLabel_user = new JLabel(icon_user);
+		JLabel jLabel_user = new JLabel(source.icon_user);
 		jLabel_user.setBounds(84, 102, 128, 128);
 		jpanel_img.add(jLabel_user);
 

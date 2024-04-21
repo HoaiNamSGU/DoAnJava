@@ -2,8 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -23,9 +21,8 @@ import javax.swing.table.JTableHeader;
 import controller.LaptopActionListener;
 import controller.LaptopMouseListener;
 import dao.LaptopDAO;
+import img.Source;
 import model.Laptop;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 
 public class Laptop_view extends JPanel {
 
@@ -43,7 +40,7 @@ public class Laptop_view extends JPanel {
 	public JComboBox<String> comboBox_CPU;
 	public JComboBox<String> comboBox_Hang;
 	public JTextField textField;
-	
+	public Source source = new Source();
 	
 	public Laptop_view() {
 		this.setBounds(0, 0, 1189, 763);
@@ -74,49 +71,47 @@ public class Laptop_view extends JPanel {
 		this.add(panel_border_chucNang);
 		panel_border_chucNang.setLayout(null);
 
-		ImageIcon icon_add = new ImageIcon(getClass().getResource("/img/plus.png"));
-		JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
+		
+		JLabel jlabel_them = new JLabel("Thêm", source.icon_add, JLabel.CENTER);
 		jlabel_them.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_them.setBounds(10, 21, 44, 56);
 		jlabel_them.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_them.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_them);
 
-		ImageIcon icon_pencil = new ImageIcon(getClass().getResource("/img/pencil.png"));
-		JLabel jlabel_sua = new JLabel("Sửa", icon_pencil, JLabel.CENTER);
+		
+		JLabel jlabel_sua = new JLabel("Sửa", source.icon_pencil, JLabel.CENTER);
 		jlabel_sua.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_sua.setBounds(109, 21, 59, 56);
 		jlabel_sua.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_sua.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_sua);
 
-		ImageIcon icon_remove = new ImageIcon(getClass().getResource("/img/remove.png"));
-		JLabel jlabel_xoa = new JLabel("Xóa", icon_remove, JLabel.CENTER);
+		
+		JLabel jlabel_xoa = new JLabel("Xóa", source.icon_remove, JLabel.CENTER);
 		jlabel_xoa.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_xoa.setBounds(67, 21, 45, 56);
 		jlabel_xoa.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_xoa.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xoa);
 
-		ImageIcon icon_eye = new ImageIcon(getClass().getResource("/img/eye.png"));
-		JLabel jlabel_xemCT = new JLabel("Xem chi tiết", icon_eye, JLabel.CENTER);
+		
+		JLabel jlabel_xemCT = new JLabel("Xem chi tiết", source.icon_eye, JLabel.CENTER);
 		jlabel_xemCT.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_xemCT.setBounds(165, 21, 68, 56);
 		jlabel_xemCT.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_xemCT.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xemCT);
 
-		ImageIcon icon_nhapExcel = new ImageIcon(
-				getClass().getResource("/img/nhapExcel.png"));
-		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", icon_nhapExcel, JLabel.CENTER);
+		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", source.icon_Excel, JLabel.CENTER);
 		jlabel_nhapExcel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_nhapExcel.setBounds(265, 21, 68, 56);
 		jlabel_nhapExcel.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_nhapExcel.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_nhapExcel);
 
-		ImageIcon icon_Excel = new ImageIcon(getClass().getResource("/img/xuatExcel.png"));
-		JLabel jlabel_Excel = new JLabel("Xuất Excel", icon_Excel, JLabel.CENTER);
+		
+		JLabel jlabel_Excel = new JLabel("Xuất Excel", source.icon_Excel, JLabel.CENTER);
 		jlabel_Excel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_Excel.setBounds(343, 21, 68, 56);
 		jlabel_Excel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -154,8 +149,7 @@ public class Laptop_view extends JPanel {
 		jbutton_Sreach.setBounds(573, 31, 107, 33);
 		panel_border_timKiem.add(jbutton_Sreach);
 
-		ImageIcon icon_refresh = new ImageIcon(getClass().getResource("/img/arrow.png"));
-		jbutton_refesh = new JButton(icon_refresh);
+		jbutton_refesh = new JButton(source.icon_refresh);
 		jbutton_refesh.addActionListener(ac);
 		jbutton_refesh.setBackground(new Color(255, 255, 255));
 		jbutton_refesh.setBounds(484, 31, 75, 33);

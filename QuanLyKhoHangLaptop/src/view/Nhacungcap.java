@@ -51,11 +51,12 @@ public class Nhacungcap extends JFrame {
 	private JLabel txt_themmoisanpham;
 	public JButton btn_sua;
 	public JButton btn_lammoi;
-	public JComboBox cbb_timkiem;
+	public JComboBox<String> cbb_timkiem;
 	public JLabel jl_nutsua;
 	public JPanel panel_cungcap;
 	public JPanel panel_menu;
-	public String source = Source.Source;
+	
+	public Source source =  new Source();
 
 	/**
 	 * Launch the application.
@@ -207,7 +208,7 @@ public class Nhacungcap extends JFrame {
 		jp_chucnang.setLayout(null);
 
 		// them
-		ImageIcon icon_add = new ImageIcon(source + "plus.png");
+		
 		JLabel jl_chuthem = new JLabel("Thêm");
 		jl_chuthem.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuthem.setBounds(15, 63, 45, 21);
@@ -215,11 +216,11 @@ public class Nhacungcap extends JFrame {
 		jl_nutadd = new JLabel("");
 		jl_nutadd.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutadd.setBounds(15, 13, 33, 55);
-		jl_nutadd.setIcon(icon_add);
+		jl_nutadd.setIcon(source.icon_add);
 		jp_chucnang.add(jl_nutadd);
 
 		// xoa
-		ImageIcon icon_xoa = new ImageIcon(source + "remove.png");
+		
 		JLabel jl_chuxoa = new JLabel("Xóa");
 		jl_chuxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuxoa.setBounds(86, 63, 33, 21);
@@ -227,11 +228,11 @@ public class Nhacungcap extends JFrame {
 		jl_nutxoa = new JLabel("");
 		jl_nutxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutxoa.setBounds(80, 13, 39, 55);
-		jl_nutxoa.setIcon(icon_xoa);
+		jl_nutxoa.setIcon(source.icon_remove);
 		jp_chucnang.add(jl_nutxoa);
 
 		// sua
-		ImageIcon icon_sua = new ImageIcon(source + "pencil.png");
+		
 		jl_nutsua = new JLabel("");
 		jl_nutsua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutsua.setBounds(142, 13, 39, 55);
@@ -239,7 +240,7 @@ public class Nhacungcap extends JFrame {
 		JLabel jl_chusua = new JLabel("Sửa");
 		jl_chusua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chusua.setBounds(142, 63, 28, 21);
-		jl_nutsua.setIcon(icon_sua);
+		jl_nutsua.setIcon(source.icon_pencil);
 		jp_chucnang.add(jl_chusua);
 
 		JSeparator separator = new JSeparator();
@@ -248,7 +249,7 @@ public class Nhacungcap extends JFrame {
 		jp_chucnang.add(separator);
 
 		// xuat excel
-		ImageIcon icon_xuatexcel = new ImageIcon(source + "xuatExcel.png");
+		
 		JLabel jl_nutxuatexcel = new JLabel("");
 		jl_nutxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutxuatexcel.setBounds(220, 13, 33, 55);
@@ -256,11 +257,11 @@ public class Nhacungcap extends JFrame {
 		JLabel jl_chuxuatexcel = new JLabel("Xuất Excel");
 		jl_chuxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuxuatexcel.setBounds(208, 63, 70, 21);
-		jl_nutxuatexcel.setIcon(icon_xuatexcel);
+		jl_nutxuatexcel.setIcon(source.icon_Excel);
 		jp_chucnang.add(jl_chuxuatexcel);
 
 		// nhap excel
-		ImageIcon icon_nhapexcel = new ImageIcon(source + "xuatExcel.png");
+		
 		JLabel jl_nutnhapexcel = new JLabel("");
 		jl_nutnhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutnhapexcel.setBounds(301, 13, 70, 55);
@@ -268,7 +269,7 @@ public class Nhacungcap extends JFrame {
 		JLabel jl_chunhapexcel = new JLabel("Nhập Excel");
 		jl_chunhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chunhapexcel.setBounds(300, 63, 88, 21);
-		jl_nutnhapexcel.setIcon(icon_nhapexcel);
+		jl_nutnhapexcel.setIcon(source.icon_Excel);
 		jp_chucnang.add(jl_chunhapexcel);
 
 		// khungtimkiem

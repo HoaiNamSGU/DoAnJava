@@ -73,16 +73,10 @@ public class mainMouseListener implements MouseListener {
 			view.jlabel_sanpham.setForeground(Color.BLACK);
 		}
         else if (clickedLabel.getText().equals("Cửa hàng")) {
-			/*JTable newTable = view.CuaHang();
-			view.updateTable(newTable);*/
-
-			view.panel_center.setVisible(false);
+        	view.panel_center.setVisible(false);
 			view.panel_center.removeAll();
-			//view.panel_center.add(view.CuaHang);
+			view.panel_center.add(view.cuahangview);
 			view.panel_center.setVisible(true);
-			
-			view.jlabel_sanpham.setForeground(Color.BLACK);
-			view.jlabel_sanpham.setForeground(Color.BLACK);
 		}
        
         // Cập nhật lastClickedLabel

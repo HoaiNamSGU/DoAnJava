@@ -50,9 +50,10 @@ public class mainView extends JFrame {
 	public JComboBox<String> comboBox_Ram;
 	public JComboBox<String> comboBox_CPU;
 	public JComboBox<String> comboBox_Hang;
-	public String source = Source.Source;
+	
 	
 	public Laptop_view laptopview = new Laptop_view();
+	public CuaHangView cuahangview = new CuaHangView();
 
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
