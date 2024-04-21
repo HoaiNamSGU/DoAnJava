@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -10,8 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import view.Nhacungcap;
-import view.NhapHang;
 import view.XuatHang;
 
 public class Controllerxuathang {

@@ -1,14 +1,4 @@
-
 package test;
-
-
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import view.mainView;
 
 public class test {
@@ -18,5 +8,4 @@ public class test {
 		mv=new mainView();
 	}
 }
-
 

@@ -35,7 +35,7 @@ public class ThemSanPham extends JFrame {
 	public JComboBox<String> comboBox_Ram;
 	public JComboBox<String> comboBox_Nam;
 	public JComboBox<String> comboBox_MaNCC;
-	
+
 	public ThemSanPham() {
 		this.setTitle("Thêm sản phẩm");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -212,7 +212,7 @@ public class ThemSanPham extends JFrame {
 		comboBox_MaNCC.setBounds(639, 374, 130, 30);
 		contentPane.add(comboBox_MaNCC);
 		
-		
+
 		
 		
 		this.setVisible(true);

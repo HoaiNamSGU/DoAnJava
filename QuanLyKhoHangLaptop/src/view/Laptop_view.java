@@ -46,7 +46,7 @@ public class Laptop_view extends JPanel {
 	
 	
 	public Laptop_view() {
-		this.setBounds(197, 0, 1189, 763);
+		this.setBounds(0, 0, 1189, 763);
 		this.setLayout(null);
 		
 		LaptopActionListener ac = new LaptopActionListener(this);

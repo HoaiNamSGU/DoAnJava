@@ -21,6 +21,7 @@ import javax.swing.table.JTableHeader;
 import controller.mainMouseListener;
 import dao.CuaHangDAO;
 import dao.LaptopDAO;
+import img.Source;
 import model.CuaHang;
 import model.Laptop;
 
@@ -30,9 +31,7 @@ public class mainView extends JFrame {
 	public JLabel jlabel_sanpham;
 	public JLabel jlabel_nhacungcap;
 	public JLabel jlabel_nhaphang;
-	public JLabel jlabel_phieunhap;
 	public JLabel jlabel_xuathang;
-	public JLabel jlabel_phieuxuat;
 	public JLabel jlabel_cuahang;
 	public JLabel jlabel_taikhoan;
 	public JLabel jlabel_thongke;
@@ -51,9 +50,10 @@ public class mainView extends JFrame {
 	public JComboBox<String> comboBox_Ram;
 	public JComboBox<String> comboBox_CPU;
 	public JComboBox<String> comboBox_Hang;
+	public String source = Source.Source;
 	
-	public CuaHang_View CuaHang = new CuaHang_View();
 	public Laptop_view laptopview = new Laptop_view();
+
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1400, 800);
@@ -63,9 +63,7 @@ public class mainView extends JFrame {
 		ImageIcon icon_sanpham = new ImageIcon(getClass().getResource("/img/product.png"));
 		ImageIcon icon_nhaCungCap = new ImageIcon(getClass().getResource("/img/supplier.png"));
 		ImageIcon icon_nhaphang = new ImageIcon(getClass().getResource("/img/nhaphang.png"));
-		ImageIcon icon_phieunhap = new ImageIcon(getClass().getResource("/img/phieunhap.png"));
 		ImageIcon icon_xuathang = new ImageIcon(getClass().getResource("/img/xuathang.png"));
-		ImageIcon icon_phieuxuat = new ImageIcon(getClass().getResource("/img/phieuxuat.png"));
 		ImageIcon icon_cuahang = new ImageIcon(getClass().getResource("/img/store.png"));
 		ImageIcon icon_taikhoan = new ImageIcon(getClass().getResource("/img/taikhoan.png"));
 		ImageIcon icon_thongke = new ImageIcon(getClass().getResource("/img/thongke.png"));
@@ -95,7 +93,7 @@ public class mainView extends JFrame {
 		
 		
 		JPanel panel_menu = new JPanel();
-		panel_center.add(panel_menu);
+		getContentPane().add(panel_menu);
 		panel_menu.setBounds(0, 0, 197, 763);
 		//panel_menu.setSize(197,763);
 		panel_menu.setBackground(new Color(0, 128, 192));
@@ -117,6 +115,7 @@ public class mainView extends JFrame {
 		jlabel_sanpham.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_sanpham.setForeground(new Color(255, 255, 255));
 		jlabel_sanpham.setBounds(26, 158, 161, 37);
+
 		jlabel_sanpham.setIcon(icon_sanpham);
 		panel_menu.add(jlabel_sanpham);
 								
@@ -124,56 +123,44 @@ public class mainView extends JFrame {
 		jlabel_nhacungcap.setForeground(new Color(0, 0, 0));
 		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_nhacungcap.setBounds(26, 205, 161, 37);
+
 		jlabel_nhacungcap.setIcon(icon_nhaCungCap);
 		panel_menu.add(jlabel_nhacungcap);
 										
 		jlabel_nhaphang = new JLabel("Nhập hàng");
 		jlabel_nhaphang.setForeground(new Color(0, 0, 0));
 		jlabel_nhaphang.setFont(new Font("Arial", Font.PLAIN, 20));
+
 		jlabel_nhaphang.setBounds(26, 252, 161, 37);
 	    jlabel_nhaphang.setIcon(icon_nhaphang);
         panel_menu.add(jlabel_nhaphang);
-												
-		jlabel_phieunhap = new JLabel("Phiếu nhập");
-	    jlabel_phieunhap.setForeground(new Color(0, 0, 0));
-	    jlabel_phieunhap.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_phieunhap.setBounds(26, 299, 161, 37);
-														
-		jlabel_phieunhap.setIcon(icon_phieunhap);
-		panel_menu.add(jlabel_phieunhap);
 														
 		jlabel_xuathang = new JLabel("Xuất hàng");
 		jlabel_xuathang.setForeground(new Color(0, 0, 0));
 		jlabel_xuathang.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_xuathang.setBounds(26, 346, 161, 37);
+		jlabel_xuathang.setBounds(26, 299, 161, 37);
+
 		jlabel_xuathang.setIcon(icon_xuathang);
 		panel_menu.add(jlabel_xuathang);
-																
-	    jlabel_phieuxuat = new JLabel("Phiếu xuất");
-		jlabel_phieuxuat.setForeground(new Color(0, 0, 0));
-		jlabel_phieuxuat.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_phieuxuat.setBounds(26, 393, 161, 37);
-		jlabel_phieuxuat.setIcon(icon_phieuxuat);
-		panel_menu.add(jlabel_phieuxuat);
 																		
 		jlabel_cuahang = new JLabel("Cửa hàng");
 		jlabel_cuahang.setForeground(new Color(0, 0, 0));
 		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
-	    jlabel_cuahang.setBounds(26, 440, 161, 37);
 		jlabel_cuahang.setIcon(icon_cuahang);
+	    jlabel_cuahang.setBounds(26, 346, 161, 37);
 		panel_menu.add(jlabel_cuahang);
 																				
 		jlabel_taikhoan = new JLabel("Tài khoản");
 		jlabel_taikhoan.setForeground(new Color(0, 0, 0));
 		jlabel_taikhoan.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_taikhoan.setBounds(26, 487, 161, 37);
+		jlabel_taikhoan.setBounds(26, 440, 161, 37);
 		jlabel_taikhoan.setIcon(icon_taikhoan);
 		panel_menu.add(jlabel_taikhoan);
 																						
 		jlabel_thongke = new JLabel("Thống kê");
 		jlabel_thongke.setForeground(new Color(0, 0, 0));
 		jlabel_thongke.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_thongke.setBounds(26, 534, 161, 37);
+		jlabel_thongke.setBounds(26, 393, 161, 37);
 		jlabel_thongke.setIcon(icon_thongke);
 		panel_menu.add(jlabel_thongke);
 																								
@@ -191,12 +178,11 @@ public class mainView extends JFrame {
 		jlabel_dangxuat.setIcon(icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
 		
+
 		jlabel_sanpham.addMouseListener(mouse);
 		jlabel_nhacungcap.addMouseListener(mouse);
 		jlabel_nhaphang.addMouseListener(mouse);
-		jlabel_phieunhap.addMouseListener(mouse);
 		jlabel_xuathang.addMouseListener(mouse);
-		jlabel_phieuxuat.addMouseListener(mouse);
 		jlabel_cuahang.addMouseListener(mouse);
 		jlabel_taikhoan.addMouseListener(mouse);
 		jlabel_thongke.addMouseListener(mouse);

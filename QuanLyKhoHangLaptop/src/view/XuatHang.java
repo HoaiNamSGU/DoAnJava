@@ -18,6 +18,7 @@ import controller.Controllernhaphang;
 import controller.Controllerxuathang;
 import dao.LaptopDAO;
 import dao.nhacungcapDao;
+import img.Source;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -53,6 +54,7 @@ public class XuatHang extends JFrame{
 	public JButton btn_nhaphang;
 	public JButton btn_suasoluong;
 	public JPanel panel_nhaphang;
+	public String source = Source.Source;
 	/**
 	 * Launch the application.
 	 */
@@ -116,7 +118,7 @@ public class XuatHang extends JFrame{
 		jlabel_sanpham.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_sanpham.setForeground(new Color(255, 255, 255));
 		jlabel_sanpham.setBounds(26, 158, 148, 37);
-		ImageIcon icon_sanpham = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\product.png");
+		ImageIcon icon_sanpham = new ImageIcon(source+"product.png");
 		jlabel_sanpham.setIcon(icon_sanpham);
 		panel_menu.add(jlabel_sanpham);
 		
@@ -127,7 +129,7 @@ public class XuatHang extends JFrame{
 		jlabel_nhacungcap.setForeground(Color.WHITE);
 		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_nhacungcap.setBounds(26, 205, 161, 37);
-		ImageIcon icon_nhaCungCap = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\supplier.png");
+		ImageIcon icon_nhaCungCap = new ImageIcon(source+"supplier.png");
 		jlabel_nhacungcap.setIcon(icon_nhaCungCap);
 		panel_menu.add(jlabel_nhacungcap);
 		
@@ -136,7 +138,7 @@ public class XuatHang extends JFrame{
 		jlabel_nhaphang.setForeground(Color.WHITE);
 		jlabel_nhaphang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_nhaphang.setBounds(26, 252, 148, 37);
-		ImageIcon icon_nhaphang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhaphang.png");
+		ImageIcon icon_nhaphang = new ImageIcon(source+"nhaphang.png");
 		jlabel_nhaphang.setIcon(icon_nhaphang);
 		panel_menu.add(jlabel_nhaphang);
 		
@@ -145,7 +147,7 @@ public class XuatHang extends JFrame{
 		jlabel_phieunhap.setForeground(Color.WHITE);
 		jlabel_phieunhap.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_phieunhap.setBounds(26, 299, 148, 37);
-		ImageIcon icon_phieunhap = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\phieuxuat.png");
+		ImageIcon icon_phieunhap = new ImageIcon(source+"phieuxuat.png");
 		jlabel_phieunhap.setIcon(icon_phieunhap);
 		panel_menu.add(jlabel_phieunhap);
 
@@ -154,7 +156,7 @@ public class XuatHang extends JFrame{
 		jlabel_xuathang.setForeground(Color.WHITE);
 		jlabel_xuathang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_xuathang.setBounds(26, 346, 148, 37);
-		ImageIcon icon_xuathang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuathang.png");
+		ImageIcon icon_xuathang = new ImageIcon(source+"xuathang.png");
 		jlabel_xuathang.setIcon(icon_xuathang);
 		panel_menu.add(jlabel_xuathang);
 		
@@ -163,7 +165,7 @@ public class XuatHang extends JFrame{
 		jlabel_phieuxuat.setForeground(Color.WHITE);
 		jlabel_phieuxuat.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_phieuxuat.setBounds(26, 393, 148, 37);
-		ImageIcon icon_phieuxuat = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\phieuxuat.png");
+		ImageIcon icon_phieuxuat = new ImageIcon(source+"phieuxuat.png");
 		jlabel_phieuxuat.setIcon(icon_phieuxuat);
 		panel_menu.add(jlabel_phieuxuat);
 		
@@ -172,7 +174,7 @@ public class XuatHang extends JFrame{
 		jlabel_cuahang.setForeground(Color.WHITE);
 		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_cuahang.setBounds(26, 440, 148, 37);
-		ImageIcon icon_cuahang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\store.png");
+		ImageIcon icon_cuahang = new ImageIcon(source+"store.png");
 		jlabel_cuahang.setIcon(icon_cuahang);
 		panel_menu.add(jlabel_cuahang);
 		
@@ -181,7 +183,7 @@ public class XuatHang extends JFrame{
 		jlabel_taikhoan.setForeground(Color.WHITE);
 		jlabel_taikhoan.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_taikhoan.setBounds(26, 487, 148, 37);
-		ImageIcon icon_taikhoan = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\taikhoan.png");
+		ImageIcon icon_taikhoan = new ImageIcon(source+"taikhoan.png");
 		jlabel_taikhoan.setIcon(icon_taikhoan);
 		panel_menu.add(jlabel_taikhoan);
 		
@@ -191,7 +193,7 @@ public class XuatHang extends JFrame{
 		jlabel_thongke.setForeground(Color.WHITE);
 		jlabel_thongke.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_thongke.setBounds(26, 534, 148, 37);
-		ImageIcon icon_thongke = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\thongke.png");
+		ImageIcon icon_thongke = new ImageIcon(source+"thongke.png");
 		jlabel_thongke.setIcon(icon_thongke);
 		panel_menu.add(jlabel_thongke);
 		
@@ -200,7 +202,7 @@ public class XuatHang extends JFrame{
 		jlabel_đổiThongtin.setForeground(Color.WHITE);
 		jlabel_đổiThongtin.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_đổiThongtin.setBounds(26, 641, 148, 37);
-		ImageIcon icon_doithongtin = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\thongtin.png");
+		ImageIcon icon_doithongtin = new ImageIcon(source+"thongtin.png");
 		jlabel_đổiThongtin.setIcon(icon_doithongtin);
 		panel_menu.add(jlabel_đổiThongtin);
 		
@@ -210,7 +212,7 @@ public class XuatHang extends JFrame{
 		jlabel_dangxuat.setForeground(Color.WHITE);
 		jlabel_dangxuat.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_dangxuat.setBounds(26, 688, 148, 37);
-		ImageIcon icon_dangxuat = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dangxuat.png");
+		ImageIcon icon_dangxuat = new ImageIcon(source+"dangxuat.png");
 		jlabel_dangxuat.setIcon(icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
 		panel_nhaphang.setLayout(null);
@@ -226,7 +228,7 @@ public class XuatHang extends JFrame{
 		panel.add(jtext_tim);
 		jtext_tim.setColumns(10);
 		
-		ImageIcon icon_lammoi =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png");
+		ImageIcon icon_lammoi =  new ImageIcon(source+"loadicon.png");
 		 btn_lammoi = new JButton("Làm mới", icon_lammoi);
 		 btn_lammoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		 btn_lammoi.setBounds(399, 20, 133, 41);
@@ -302,25 +304,25 @@ public class XuatHang extends JFrame{
 		panel_nhaphang.add(txt_soluong);
 		txt_soluong.setColumns(10);
 		
-		ImageIcon icon_them =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
+		ImageIcon icon_them =  new ImageIcon(source+"plus.png");
 		 btn_them = new JButton("XUẤT",icon_them);
 		 btn_them.setBounds(280, 681, 145, 43);
 		btn_them.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_nhaphang.add(btn_them);
 		
-		ImageIcon icon_nhapexcel =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
+		ImageIcon icon_nhapexcel =  new ImageIcon(source+"xuatExcel.png");
 		JButton btn_nhapexcel = new JButton("Nhập excel",icon_nhapexcel);
 		btn_nhapexcel.setBounds(650, 597, 167, 49);
 		btn_nhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_nhaphang.add(btn_nhapexcel);
 		
-		ImageIcon icon_suasoluong =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
+		ImageIcon icon_suasoluong =  new ImageIcon(source+"pencil.png");
 		 btn_suasoluong = new JButton("Sửa số lượng", icon_suasoluong);
 		btn_suasoluong.setBounds(820, 597, 195, 49);
 		btn_suasoluong.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_nhaphang.add(btn_suasoluong);
 		
-		ImageIcon icon_xoasp =  new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
+		ImageIcon icon_xoasp =  new ImageIcon(source+"remove.png");
 		 btn_xoasp = new JButton("Xóa sản phẩm", icon_xoasp);
 		 btn_xoasp.setBounds(1030, 597, 182, 49);
 		btn_xoasp.setFont(new Font("Tahoma", Font.PLAIN, 15));

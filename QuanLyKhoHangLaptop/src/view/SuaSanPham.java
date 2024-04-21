@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import dao.LaptopDAO;
 import model.Laptop;
 
@@ -41,6 +40,7 @@ public class SuaSanPham extends JFrame {
 	public JComboBox<String> comboBox_Ram;
 	public JComboBox<String> comboBox_Nam;
 	public JComboBox<String> comboBox_MaNCC;
+
 
 	
 	public static void main(String[] args) {
@@ -231,6 +231,7 @@ public class SuaSanPham extends JFrame {
 		comboBox_MaNCC.setBackground(Color.WHITE);
 		comboBox_MaNCC.setBounds(639, 374, 130, 30);
 		contentPane.add(comboBox_MaNCC);
+
 		
 		
 		this.setVisible(true);
