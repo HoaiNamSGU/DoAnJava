@@ -16,34 +16,18 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 	}
 
 	@Override
-	public int insert(CuaHang t) {
-		int ketqua = 0;
-		try {
-			Connection con = JDBCUtil.getConnection();
-			String sql = "INSERT INTO laptop (MaCuaHang, TenCH, DiaChi, SDT) " + " VALUES (?,?,?,?)";
-			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, t.getMaCH());
-			pst.setString(2, t.getTenCH());
-			pst.setString(3, t.getDiaChi());
-			pst.setString(4, t.getSDT());
-			ketqua = pst.executeUpdate();
-			JDBCUtil.closeConnection(con);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return ketqua;
+	public int insert(CuaHang CH) {
+		return 0;
 	}
 
 	@Override
-	public int update(CuaHang t) {
+	public int update(CuaHang CH) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete(CuaHang t) {
-		// TODO Auto-generated method stub
+	public int delete(CuaHang CH) {
 		return 0;
 	}
 
@@ -69,9 +53,9 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 	public CuaHang selectById(String MaCuaHang) {
 		CuaHang CH = new CuaHang();
 		try {
-			Connection cnt = JDBCUtil.getConnection();
+			Connection con = JDBCUtil.getConnection();
 			String sql = "select * from cuahang where MaCuaHang = ?";
-			PreparedStatement pst = cnt.prepareStatement(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, MaCuaHang);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -81,7 +65,8 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 				String SDT = rs.getString("SDT");
 				CH.Update(MaCH, TenCH, DiaChi, SDT);
 			}
-			JDBCUtil.closeConnection(cnt);
+			con.close();
+			pst.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -106,4 +91,71 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public Boolean insertCuaHang(CuaHang CH) {
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "INSERT INTO cuahang (MaCuaHang, TenCH, DiaChi, SDT) " + " VALUES (?,?,?,?)";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, CH.getMaCH());
+			pst.setString(2, CH.getTenCH());
+			pst.setString(3, CH.getDiaChi());
+			pst.setString(4, CH.getSDT());
+			pst.executeUpdate();
+			con.close();
+			pst.close();
+			
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	// cập nhật
+	public Boolean updateCuaHang(String old_MaCH, CuaHang CH) {
+		try {
+			if (deleteCuaHang(old_MaCH))
+				insert(CH);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
+
+	// xóa thật :))
+	public Boolean deleteCuaHang(String MaCH) {
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "DELETE FROM cuahang WHERE MaCuaHang = ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, MaCH);
+			pst.executeUpdate();
+			con.close();
+			pst.close();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
+
+	// xóa ảo
+	public Boolean soft_deleteCuaHang(String MaCH) {
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "UPDATE cuahang SET isDeleted = 1 WHERE MaCuaHang = ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, MaCH);
+			pst.executeUpdate();
+			con.close();
+			pst.close();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

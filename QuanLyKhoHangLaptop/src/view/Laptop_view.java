@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

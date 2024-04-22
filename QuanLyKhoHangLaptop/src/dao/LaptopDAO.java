@@ -103,7 +103,7 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 
 //				BƯỚC 2: TẠO RA ĐỐI TƯỢNG STATEMENT
 					Statement st=con.createStatement();
-					String sql1 = "SELECT soluong FROM laptop WHERE id='" + mm + "'";
+					//String sql1 = "SELECT soluong FROM laptop WHERE id='" + mm + "'";
 					String sql = "UPDATE laptop " +
 				             " SET SoLuong = soluong + " + sl +
 				             " WHERE MaLaptop = '" + mm + "'";
@@ -311,7 +311,7 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return kq;
 	}
 
 	

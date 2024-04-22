@@ -21,7 +21,6 @@ import javax.swing.table.JTableHeader;
 import controller.mainMouseListener;
 import dao.CuaHangDAO;
 import dao.LaptopDAO;
-import img.Source;
 import model.CuaHang;
 import model.Laptop;
 
@@ -50,8 +49,7 @@ public class mainView extends JFrame {
 	public JComboBox<String> comboBox_Ram;
 	public JComboBox<String> comboBox_CPU;
 	public JComboBox<String> comboBox_Hang;
-	
-	
+
 	public Laptop_view laptopview = new Laptop_view();
 	public CuaHangView cuahangview = new CuaHangView();
 
@@ -71,17 +69,13 @@ public class mainView extends JFrame {
 		ImageIcon icon_doithongtin = new ImageIcon(getClass().getResource("/img/thongtin.png"));
 		ImageIcon icon_dangxuat = new ImageIcon(getClass().getResource("/img/dangxuat.png"));
 
-
-		
 		mainMouseListener mouse = new mainMouseListener(this);
-		
-		
-		
+
 		panel_center = new JPanel();
 		panel_center.setBounds(197, 0, 1189, 763);
 		getContentPane().add(panel_center);
 		panel_center.setLayout(null);
-		
+
 		laptopview.table.getColumnModel().getColumn(0).setPreferredWidth(52);
 		laptopview.table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		laptopview.table.getColumnModel().getColumn(2).setPreferredWidth(30);
@@ -91,27 +85,26 @@ public class mainView extends JFrame {
 		laptopview.table.getColumnModel().getColumn(6).setPreferredWidth(45);
 		laptopview.table.getColumnModel().getColumn(7).setPreferredWidth(73);
 		panel_center.add(laptopview);
-		
-		
+
 		JPanel panel_menu = new JPanel();
 		getContentPane().add(panel_menu);
 		panel_menu.setBounds(0, 0, 197, 763);
-		//panel_menu.setSize(197,763);
+		// panel_menu.setSize(197,763);
 		panel_menu.setBackground(new Color(0, 128, 192));
 		panel_menu.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Hi !");
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(63, 45, 36, 24);
 		panel_menu.add(lblNewLabel);
-				
+
 		JLabel lblNewLabel_1 = new JLabel("Admin");
 		lblNewLabel_1.setForeground(new Color(0, 0, 0));
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel_1.setBounds(52, 79, 68, 24);
 		panel_menu.add(lblNewLabel_1);
-						
+
 		jlabel_sanpham = new JLabel("Sản phẩm");
 		jlabel_sanpham.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_sanpham.setForeground(new Color(255, 255, 255));
@@ -119,7 +112,7 @@ public class mainView extends JFrame {
 
 		jlabel_sanpham.setIcon(icon_sanpham);
 		panel_menu.add(jlabel_sanpham);
-								
+
 		jlabel_nhacungcap = new JLabel("Nhà cung cấp");
 		jlabel_nhacungcap.setForeground(new Color(0, 0, 0));
 		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -127,15 +120,15 @@ public class mainView extends JFrame {
 
 		jlabel_nhacungcap.setIcon(icon_nhaCungCap);
 		panel_menu.add(jlabel_nhacungcap);
-										
+
 		jlabel_nhaphang = new JLabel("Nhập hàng");
 		jlabel_nhaphang.setForeground(new Color(0, 0, 0));
 		jlabel_nhaphang.setFont(new Font("Arial", Font.PLAIN, 20));
 
 		jlabel_nhaphang.setBounds(26, 252, 161, 37);
-	    jlabel_nhaphang.setIcon(icon_nhaphang);
-        panel_menu.add(jlabel_nhaphang);
-														
+		jlabel_nhaphang.setIcon(icon_nhaphang);
+		panel_menu.add(jlabel_nhaphang);
+
 		jlabel_xuathang = new JLabel("Xuất hàng");
 		jlabel_xuathang.setForeground(new Color(0, 0, 0));
 		jlabel_xuathang.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -143,42 +136,41 @@ public class mainView extends JFrame {
 
 		jlabel_xuathang.setIcon(icon_xuathang);
 		panel_menu.add(jlabel_xuathang);
-																		
+
 		jlabel_cuahang = new JLabel("Cửa hàng");
 		jlabel_cuahang.setForeground(new Color(0, 0, 0));
 		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_cuahang.setIcon(icon_cuahang);
-	    jlabel_cuahang.setBounds(26, 346, 161, 37);
+		jlabel_cuahang.setBounds(26, 346, 161, 37);
 		panel_menu.add(jlabel_cuahang);
-																				
+
 		jlabel_taikhoan = new JLabel("Tài khoản");
 		jlabel_taikhoan.setForeground(new Color(0, 0, 0));
 		jlabel_taikhoan.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_taikhoan.setBounds(26, 440, 161, 37);
 		jlabel_taikhoan.setIcon(icon_taikhoan);
 		panel_menu.add(jlabel_taikhoan);
-																						
+
 		jlabel_thongke = new JLabel("Thống kê");
 		jlabel_thongke.setForeground(new Color(0, 0, 0));
 		jlabel_thongke.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_thongke.setBounds(26, 393, 161, 37);
 		jlabel_thongke.setIcon(icon_thongke);
 		panel_menu.add(jlabel_thongke);
-																								
+
 		jlabel_doiThongtin = new JLabel("Đổi thông tin");
 		jlabel_doiThongtin.setForeground(new Color(0, 0, 0));
 		jlabel_doiThongtin.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_doiThongtin.setBounds(26, 641, 161, 37);
 		jlabel_doiThongtin.setIcon(icon_doithongtin);
-	    panel_menu.add(jlabel_doiThongtin);
-																										
-		jlabel_dangxuat = new JLabel("Đăng xuất"); 
+		panel_menu.add(jlabel_doiThongtin);
+
+		jlabel_dangxuat = new JLabel("Đăng xuất");
 		jlabel_dangxuat.setForeground(new Color(0, 0, 0));
 		jlabel_dangxuat.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_dangxuat.setBounds(26, 688, 161, 37);
 		jlabel_dangxuat.setIcon(icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
-		
 
 		jlabel_sanpham.addMouseListener(mouse);
 		jlabel_nhacungcap.addMouseListener(mouse);
@@ -189,7 +181,7 @@ public class mainView extends JFrame {
 		jlabel_thongke.addMouseListener(mouse);
 		jlabel_doiThongtin.addMouseListener(mouse);
 		jlabel_dangxuat.addMouseListener(mouse);
-		
+
 		this.setVisible(true);
 		this.setResizable(false);
 	}
@@ -204,7 +196,7 @@ public class mainView extends JFrame {
 			data[i][1] = t.getTenLaptop();
 			data[i][2] = t.getSoLuong();
 			DecimalFormat df = new DecimalFormat("#");
-		    String formattedNumber = df.format(t.getGia());
+			String formattedNumber = df.format(t.getGia());
 			data[i][3] = formattedNumber;
 			data[i][4] = t.getCPU();
 			data[i][5] = t.getRam();
@@ -212,26 +204,27 @@ public class mainView extends JFrame {
 			data[i][7] = t.getHeDieuHanh();
 			data[i][8] = t.getMaNhaCungCap();
 		}
-		String column[] = { "Id", "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành","Mã nhà cung cấp" };
+		String column[] = { "Id", "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành",
+				"Mã nhà cung cấp" };
 		model = new DefaultTableModel(data, column);
 		table = new JTable(model);
-		
+
 		setKhoangCachTable();
 		return table;
 	}
 
 	public JTable CuaHang() {
-		ArrayList<CuaHang> ListCuaHang=CuaHangDAO.getintance().selectAll();
-		data=new Object[ListCuaHang.size()][4];
-		for (int i=0;i<ListCuaHang.size();i++) {
-			CuaHang CH=ListCuaHang.get(i);
-			data[i][0]=CH.getMaCH();
-			data[i][1]=CH.getTenCH();
-			data[i][2]=CH.getDiaChi();
-			data[i][3]=CH.getSDT();
-			
+		ArrayList<CuaHang> ListCuaHang = CuaHangDAO.getintance().selectAll();
+		data = new Object[ListCuaHang.size()][4];
+		for (int i = 0; i < ListCuaHang.size(); i++) {
+			CuaHang CH = ListCuaHang.get(i);
+			data[i][0] = CH.getMaCH();
+			data[i][1] = CH.getTenCH();
+			data[i][2] = CH.getDiaChi();
+			data[i][3] = CH.getSDT();
+
 		}
-		String column[] = { "Mã CH", "Tên Cửa Hàng", "Địa Chỉ", "Điện Thoại"};
+		String column[] = { "Mã CH", "Tên Cửa Hàng", "Địa Chỉ", "Điện Thoại" };
 		model = new DefaultTableModel(data, column);
 		table = new JTable(model);
 		table.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -254,39 +247,36 @@ public class mainView extends JFrame {
 		this.revalidate();
 		this.repaint();
 	}
-	
-	public void updateTableData( ArrayList<Laptop> listLaptop) {
-	  
-	    // Tạo lại mảng dữ liệu và cập nhật bảng
-	    Object newData[][] = new Object[listLaptop.size()][9];
-	    for (int i = 0; i < listLaptop.size(); i++) {
-	        Laptop t = listLaptop.get(i);
-	        newData[i][0] = t.getMaLaptop();
-	        newData[i][1] = t.getTenLaptop();
-	        newData[i][2] = t.getSoLuong();
-	        DecimalFormat df = new DecimalFormat("#");
-	        String formattedNumber = df.format(t.getGia());
-	        newData[i][3] = formattedNumber;
-	        newData[i][4] = t.getCPU();
-	        newData[i][5] = t.getRam();
-	        newData[i][6] = t.getRom();
-	        newData[i][7] = t.getHeDieuHanh();
-	        newData[i][8] = t.getMaNhaCungCap();
-	    }
-	    String column[] = { "Id", "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành","Mã nhà cung cấp" };
-	    // Cập nhật mô hình của bảng
-	    model.setDataVector(newData, column);
-	    setKhoangCachTable();
-	    // Cập nhật lại giao diện
-	    this.revalidate();
-	    this.repaint();
+
+	public void updateTableData(ArrayList<Laptop> listLaptop) {
+
+		// Tạo lại mảng dữ liệu và cập nhật bảng
+		Object newData[][] = new Object[listLaptop.size()][9];
+		for (int i = 0; i < listLaptop.size(); i++) {
+			Laptop t = listLaptop.get(i);
+			newData[i][0] = t.getMaLaptop();
+			newData[i][1] = t.getTenLaptop();
+			newData[i][2] = t.getSoLuong();
+			DecimalFormat df = new DecimalFormat("#");
+			String formattedNumber = df.format(t.getGia());
+			newData[i][3] = formattedNumber;
+			newData[i][4] = t.getCPU();
+			newData[i][5] = t.getRam();
+			newData[i][6] = t.getRom();
+			newData[i][7] = t.getHeDieuHanh();
+			newData[i][8] = t.getMaNhaCungCap();
+		}
+		String column[] = { "Id", "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành",
+				"Mã nhà cung cấp" };
+		// Cập nhật mô hình của bảng
+		model.setDataVector(newData, column);
+		setKhoangCachTable();
+		// Cập nhật lại giao diện
+		this.revalidate();
+		this.repaint();
 	}
-	
-	
-	
-	
-	public void setKhoangCachTable()
-	{
+
+	public void setKhoangCachTable() {
 		table.getColumnModel().getColumn(0).setPreferredWidth(52);
 		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		table.getColumnModel().getColumn(1).setMinWidth(15);
@@ -297,26 +287,24 @@ public class mainView extends JFrame {
 		table.getColumnModel().getColumn(6).setPreferredWidth(50);
 		table.getColumnModel().getColumn(7).setPreferredWidth(100);
 	}
-	
-	public ArrayList<Laptop> select_search_laptop(ArrayList<Laptop> list,String s)
-	{
-		s=s.toUpperCase();
+
+	public ArrayList<Laptop> select_search_laptop(ArrayList<Laptop> list, String s) {
+		s = s.toUpperCase();
 		ArrayList<Laptop> arr = new ArrayList<Laptop>();
 		for (Laptop laptop : list) {
-			String tmp = laptop.getMaLaptop()+" "+laptop.getTenLaptop()+" "+laptop.getCPU()+" "+laptop.getGPU()+" "+laptop.getRam()+" "
-			    +laptop.getRom()+" "+laptop.getManHinh()+" "+laptop.getHeDieuHanh()+" "+laptop.getHang()+" "+laptop.getNamSanXuat()
-			    +" "+laptop.getSoLuong()+" "+laptop.getGia();
-			tmp=tmp.toUpperCase();
-			if(tmp.indexOf(s)!=-1)
-			{
+			String tmp = laptop.getMaLaptop() + " " + laptop.getTenLaptop() + " " + laptop.getCPU() + " "
+					+ laptop.getGPU() + " " + laptop.getRam() + " " + laptop.getRom() + " " + laptop.getManHinh() + " "
+					+ laptop.getHeDieuHanh() + " " + laptop.getHang() + " " + laptop.getNamSanXuat() + " "
+					+ laptop.getSoLuong() + " " + laptop.getGia();
+			tmp = tmp.toUpperCase();
+			if (tmp.indexOf(s) != -1) {
 				arr.add(laptop);
 			}
 		}
 		return arr;
 	}
-	
-	public JComboBox<String> addItem(String s)
-	{
+
+	public JComboBox<String> addItem(String s) {
 		ArrayList<String> arr = LaptopDAO.getintance().getColumn(s);
 		JComboBox<String> tmp = new JComboBox<String>();
 		for (String string : arr) {
@@ -325,4 +313,3 @@ public class mainView extends JFrame {
 		return tmp;
 	}
 }
-
