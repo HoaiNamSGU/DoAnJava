@@ -18,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.CuaHangActionListener;
 import controller.CuaHangMouseListener;
-import controller.mainActionlistener;
 import dao.CuaHangDAO;
 import img.Source;
 import model.CuaHang;
@@ -38,8 +37,8 @@ public class CuaHangView extends JPanel {
 	public JComboBox<Object> comboBox_search_QuanHuyen;
 	public JComboBox<Object> comboBox_search_ThanhPho;
 	public JPanel panel_border_timKiem;
-	private CuaHangActionListener CH_ac;
-	private mainActionlistener ac;
+	private CuaHangActionListener ac;
+
 	public Source source = new Source();
 
 	/**
@@ -49,14 +48,14 @@ public class CuaHangView extends JPanel {
 		this.setBounds(0, 0, 1200, 770);
 		setLayout(null);
 
-		CH_ac = new CuaHangActionListener(this);
+		ac = new CuaHangActionListener(this);
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 190, 1180, 569);
 		this.add(scrollPane);
 
 		table = new JTable();
-		table = CuaHang();
+		table = loadCuaHang();
 
 		scrollPane.setViewportView(table);
 		JPanel panel_border_chucNang = new JPanel();
@@ -117,8 +116,6 @@ public class CuaHangView extends JPanel {
 		panel_border_timKiem.setBounds(566, 10, 624, 116);
 		this.add(panel_border_timKiem);
 
-		ac = new mainActionlistener(this);
-
 		String[] ThanhPho = { "TP HCM" };
 		comboBox_search_ThanhPho = new JComboBox<Object>(ThanhPho);
 		comboBox_search_ThanhPho.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -126,8 +123,8 @@ public class CuaHangView extends JPanel {
 		comboBox_search_ThanhPho.setBounds(410, 75, 100, 21);
 		panel_border_timKiem.add(comboBox_search_ThanhPho);
 
-		String[] Quan_Huyen = { "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5", "Quận 6", "Quận 7", "Quận 8",
-				"Quận 9", "Quận 10", "Quận 11", "Quận 12", "Quận Thủ Đức", "Quận Gò Vấp", "Quận Bình Thạnh",
+		String[] Quan_Huyen = { "Tất cả", "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5", "Quận 6", "Quận 7",
+				"Quận 8", "Quận 9", "Quận 10", "Quận 11", "Quận 12", "Quận Thủ Đức", "Quận Gò Vấp", "Quận Bình Thạnh",
 				"Quận Tân Bình", "Quận Tân Phú", "Quận Phú Nhuận", "Quận Bình Tân", "Huyện Củ Chi", "Huyện Bình Chánh",
 				"Huyện Nhà Bè", "Huyện Cần Giờ" };
 
@@ -139,7 +136,6 @@ public class CuaHangView extends JPanel {
 
 		String[] Xa_Phuong = ChangeXaPhuong();
 		comboBox_search_XaPhuong = new JComboBox<Object>(Xa_Phuong);
-		comboBox_search_XaPhuong.addActionListener(ac);
 		comboBox_search_XaPhuong.setBackground(new Color(255, 255, 255));
 		comboBox_search_XaPhuong.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_search_XaPhuong.setBounds(10, 75, 230, 21);
@@ -165,46 +161,78 @@ public class CuaHangView extends JPanel {
 		// Xử lý các sự kiện chuột và phím
 		CuaHangMouseListener mouse = new CuaHangMouseListener(this);
 		jlabel_them.addMouseListener(mouse);
-		comboBox_search_QuanHuyen.addActionListener(CH_ac);
+		jlabel_xoa.addMouseListener(mouse);
+		jlabel_sua.addMouseListener(mouse);
+		jbutton_refesh.addActionListener(ac);
+		comboBox_search_QuanHuyen.addActionListener(ac);
+		comboBox_search_XaPhuong.addActionListener(ac);
+		textField_Search.addActionListener(ac);
 		this.setVisible(true);
 
 	}
 
-	public JTable CuaHang() {
-	    // Xóa bảng cũ nếu tồn tại
-	    if (table != null) {
-	        table.setModel(new DefaultTableModel()); // Xóa dữ liệu của bảng
-	        scrollPane.setViewportView(null); // Xóa scroll pane
-	    }
-	    
-	    // Tạo bảng mới
-	    ArrayList<CuaHang> ListCuaHang = CuaHangDAO.getintance().selectAll();
-	    data = new Object[ListCuaHang.size()][4];
-	    for (int i = 0, j = 0; i < ListCuaHang.size(); i++) {
-	        CuaHang CH = ListCuaHang.get(i);
-	        if (CH.getIsDelete() == 0) {
-	            data[j][0] = CH.getMaCH();
-	            data[j][1] = CH.getTenCH();
-	            data[j][2] = CH.getDiaChi();
-	            data[j][3] = CH.getSDT();
-	            j++;
-	        }
-	    }
-	    String column[] = { "Mã CH", "Tên Cửa Hàng", "Địa Chỉ", "Điện Thoại" };
-	    model = new DefaultTableModel(data, column);
-	    table = new JTable(model);
-	    table.setFont(new Font("Arial", Font.PLAIN, 14));
-	    table.getColumnModel().getColumn(0).setPreferredWidth(10);
-	    table.getColumnModel().getColumn(1).setPreferredWidth(400);
-	    table.getColumnModel().getColumn(1).setMinWidth(20);
-	    table.getColumnModel().getColumn(2).setPreferredWidth(400);
-	    table.getColumnModel().getColumn(3).setPreferredWidth(15);
-	    
-	    // Thêm bảng mới vào scroll pane và trả về bảng
-	    scrollPane.setViewportView(table);
-	    return table;
+	public JTable loadCuaHang() {
+		// Xóa bảng cũ nếu tồn tại
+		ArrayList<CuaHang> ListCuaHang = loadDataFromSql();
+		updateData(ListCuaHang);
+		return table;
 	}
 
+	public void updateData(ArrayList<CuaHang> CuaHang) {
+		// Kiểm tra table và scrollPane
+		if (table != null && scrollPane != null) {
+			table.setModel(new DefaultTableModel()); // Xóa dữ liệu của bảng
+			scrollPane.setViewportView(null); // Xóa scroll pane
+		}
+
+		// Tạo bảng mới
+		data = loadDataToObject(CuaHang);
+
+		String column[] = { "Mã CH", "Tên Cửa Hàng", "Địa Chỉ", "Điện Thoại" };
+		model = new DefaultTableModel(data, column);
+		table = new JTable(model);
+		table.setFont(new Font("Arial", Font.PLAIN, 14));
+		table.getColumnModel().getColumn(0).setPreferredWidth(10);
+		table.getColumnModel().getColumn(1).setPreferredWidth(400);
+		table.getColumnModel().getColumn(1).setMinWidth(20);
+		table.getColumnModel().getColumn(2).setPreferredWidth(400);
+		table.getColumnModel().getColumn(3).setPreferredWidth(15);
+
+		// Thêm bảng mới vào scroll pane và trả về bảng
+		scrollPane.setViewportView(table);
+	}
+
+	public ArrayList<CuaHang> loadDataFromSql() {
+		return CuaHangDAO.getintance().selectAll();
+	}
+
+	public Object[][] loadDataToObject(ArrayList<CuaHang> CuaHang) {
+
+		ArrayList<CuaHang> ListCuaHang = CuaHang;
+		data = new Object[ListCuaHang.size()][5];
+		int j = 0;
+		for (int i = 0; i < ListCuaHang.size(); i++) {
+			CuaHang CH = ListCuaHang.get(i);
+			if (CH.getIsDelete() == 0) {
+				data[j][0] = CH.getMaCH();
+				data[j][1] = CH.getTenCH();
+				data[j][2] = CH.getDiaChi();
+				data[j][3] = CH.getSDT();
+				data[j][4] = CH.getIsDelete();
+				j++;
+			}
+		}
+		// Cập nhật kích thước của mảng data
+		Object newData[][] = new Object[j][5];
+		for (int i = 0; i < j; i++) {
+			for (int k = 0; k < 4; k++) {
+				newData[i][k] = data[i][k];
+			}
+		}
+
+		data = newData;
+		return data;
+	}
 
 	public static String chuyenTenQuanHuyenThanhTenBien(String tenQuanHuyen) {
 		// Loại bỏ dấu và chuyển thành chữ viết thường
@@ -231,13 +259,22 @@ public class CuaHangView extends JPanel {
 		try {
 			XaPhuong XaPhuong = new XaPhuong();
 			String quan = (String) comboBox_search_QuanHuyen.getSelectedItem();
-			String[] Xa_Phuong = XaPhuong.getxaPhuongMap().get(chuyenTenQuanHuyenThanhTenBien(quan));
+			if (quan.equals("Tất cả")) {
+				return new String[] { "" };
+			}
+			String[] xa_Phuong = XaPhuong.getxaPhuongMap().get(chuyenTenQuanHuyenThanhTenBien(quan));
+			// Tạo mảng mới có kích thước lớn hơn một đơn vị so với xa_Phuong
+			String[] result = new String[xa_Phuong.length + 1];
+			// Thêm "Tất cả" vào đầu mảng result
+			result[0] = "Tất cả";
+			// Sao chép tất cả các phần tử từ xa_Phuong vào mảng result từ vị trí thứ 1
+			System.arraycopy(xa_Phuong, 0, result, 1, xa_Phuong.length);
 
-			return Xa_Phuong;
+			return result;
 		} catch (Exception e) {
 			System.out.println(e);
+			return null;
 		}
-		return null;
 	}
 
 	public void updateComBoBox_XaPhuong() {

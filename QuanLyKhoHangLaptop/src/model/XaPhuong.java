@@ -124,7 +124,7 @@ public class XaPhuong {
 		return xaPhuongMap;
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		XaPhuong xaPhuong = new XaPhuong();
 		// Lấy quận 1
 		String[] xaPhuong1 = xaPhuong.getxaPhuongMap().get("xaPhuongBinhTan");
@@ -133,6 +133,5 @@ public class XaPhuong {
 		for (String phuong : xaPhuong1) {
 			System.out.println(phuong);
 		}
-		// Tương tự, bạn có thể lấy thông tin của các quận khác tương tự như vậy
-	}
+	}*/
 }
