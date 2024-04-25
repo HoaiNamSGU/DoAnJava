@@ -260,7 +260,7 @@ public class CuaHangView extends JPanel {
 			XaPhuong XaPhuong = new XaPhuong();
 			String quan = (String) comboBox_search_QuanHuyen.getSelectedItem();
 			if (quan.equals("Tất cả")) {
-				return new String[] { "" };
+				return XaPhuong.allMap();
 			}
 			String[] xa_Phuong = XaPhuong.getxaPhuongMap().get(chuyenTenQuanHuyenThanhTenBien(quan));
 			// Tạo mảng mới có kích thước lớn hơn một đơn vị so với xa_Phuong

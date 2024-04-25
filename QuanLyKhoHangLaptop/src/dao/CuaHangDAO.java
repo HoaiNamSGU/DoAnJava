@@ -195,7 +195,7 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 	    try {
 	        String sql;
 	        PreparedStatement pst;
-	        if (NameColumn.equals("*")) {
+	        if (NameColumn.equals("Tất cả")) {
 	            sql = "SELECT * FROM cuahang WHERE MaCuaHang LIKE ? OR TenCH LIKE ? OR DiaChi LIKE ? OR SDT LIKE ?";
 	            pst = con.prepareStatement(sql);
 	            for (int i = 1; i <= 4; i++) {
@@ -227,6 +227,10 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 	// tìm kiếm dựa trên 2 điều kiện địa chỉ
 	public ArrayList<CuaHang> advancedSearch(String condition1, String condition2) {
 		ArrayList<CuaHang> kq = new ArrayList<CuaHang>();
+		if(condition1.equals("Tất cả"))
+			condition1="";
+		if(condition2.equals("Tất cả"))
+			condition2="";
 		try {
 			String sql = "SELECT * FROM cuahang WHERE DiaChi LIKE ? AND DiaChi LIKE ?";
 			PreparedStatement pst = con.prepareStatement(sql);
