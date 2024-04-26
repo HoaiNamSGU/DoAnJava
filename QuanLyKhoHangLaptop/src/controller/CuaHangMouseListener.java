@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import dao.CuaHangDAO;
 import model.CuaHang;
 import view.CuaHangView;
-import view.SuaCuaHang;
 import view.ThemCuaHang;
+import view.XemChiTietCuaHang;
 
 public class CuaHangMouseListener implements MouseListener {
 	private CuaHangView CuaHangView;
@@ -164,7 +164,8 @@ public class CuaHangMouseListener implements MouseListener {
 			int selectecRow = CuaHangView.table.getSelectedRow();
 			if (selectecRow != -1) {
 				final String old_MaCH = CuaHangView.table.getValueAt(selectecRow, 0).toString();
-				SuaCuaHang SuaCH = new SuaCuaHang();
+				ThemCuaHang SuaCH = new ThemCuaHang();
+				SuaCH.Label_ThemCH.setText("Sửa Cửa Hàng");
 
 				SuaCH.addWindowListener(new WindowAdapter() {
 					@Override
@@ -232,76 +233,117 @@ public class CuaHangMouseListener implements MouseListener {
 					}
 					SuaCH.textField_DiaChi.setText(Duong);
 				}
-					// sửa dữ liệu
-					SuaCH.Button_XacNhan.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							String maCH = SuaCH.textField_MaCH.getText();
-							String tenCH = SuaCH.textField_TenCH.getText();
-							String sdt = SuaCH.textField_SDT.getText();
-							String diaChi = SuaCH.textField_DiaChi.getText() + ", "
-									+ SuaCH.comboBox_XaPhuong.getSelectedItem() + ", "
-									+ SuaCH.comboBox_QuanHuyen.getSelectedItem() + ", "
-									+ SuaCH.comboBox_TPHO.getSelectedItem();
+				// sửa dữ liệu
+				SuaCH.Button_XacNhan.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String maCH = SuaCH.textField_MaCH.getText();
+						String tenCH = SuaCH.textField_TenCH.getText();
+						String sdt = SuaCH.textField_SDT.getText();
+						String diaChi = SuaCH.textField_DiaChi.getText() + ", "
+								+ SuaCH.comboBox_XaPhuong.getSelectedItem() + ", "
+								+ SuaCH.comboBox_QuanHuyen.getSelectedItem() + ", "
+								+ SuaCH.comboBox_TPHO.getSelectedItem();
 
-							// Kiểm tra xem các trường có được nhập đầy đủ không
-							if (maCH.isEmpty() || tenCH.isEmpty() || sdt.isEmpty() || diaChi.isEmpty()) {
-								JOptionPane.showMessageDialog(SuaCH, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
-										JOptionPane.ERROR_MESSAGE);
-								return;
-							}
+						// Kiểm tra xem các trường có được nhập đầy đủ không
+						if (maCH.isEmpty() || tenCH.isEmpty() || sdt.isEmpty() || diaChi.isEmpty()) {
+							JOptionPane.showMessageDialog(SuaCH, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
+									JOptionPane.ERROR_MESSAGE);
+							return;
+						}
 
-							// kiểm tra xem mã mới có trùng với mã cũ không
-							if (!old_MaCH.equals(maCH)) {
-								// Kiểm tra xem mã cửa hàng đã tồn tại chưa
-								if (CuaHangDAO.getintance().isMaCHExists(maCH)) {
-									CuaHang CH = CuaHangDAO.getintance().selectById(maCH);
-									//kiểm tra xem cửa hàng tồn tại đã bị xóa hay chưa
-									if (CH.getIsDelete() == 0) {
+						// kiểm tra xem mã mới có trùng với mã cũ không
+						if (!old_MaCH.equals(maCH)) {
+							// Kiểm tra xem mã cửa hàng đã tồn tại chưa
+							if (CuaHangDAO.getintance().isMaCHExists(maCH)) {
+								CuaHang CH = CuaHangDAO.getintance().selectById(maCH);
+								// kiểm tra xem cửa hàng tồn tại đã bị xóa hay chưa
+								if (CH.getIsDelete() == 0) {
+									JOptionPane.showMessageDialog(SuaCH, "Mã cửa hàng đã tồn tại", "Lỗi",
+											JOptionPane.ERROR_MESSAGE);
+									return;
+
+								} else {
+									// nếu cửa hàng đã bị xóa thì hỏi xem người dùng có muốn khôi phục lại hay không
+									int choice = JOptionPane.showConfirmDialog(SuaCH,
+											"Cửa hàng đã bị xóa, bạn có muốn khôi phục lại không?", "Xác nhận",
+											JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+									if (choice == JOptionPane.YES_OPTION) {
+										CuaHangDAO.getintance().restoreCuaHang(maCH);
+										CuaHangView.loadCuaHang();
+										SuaCH.dispose();
+									} else {
 										JOptionPane.showMessageDialog(SuaCH, "Mã cửa hàng đã tồn tại", "Lỗi",
 												JOptionPane.ERROR_MESSAGE);
 										return;
-										
-									} else {
-										// nếu cửa hàng đã bị xóa thì hỏi xem người dùng có muốn khôi phục lại hay không
-										int choice = JOptionPane.showConfirmDialog(SuaCH,
-												"Cửa hàng đã bị xóa, bạn có muốn khôi phục lại không?", "Xác nhận",
-												JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-										if (choice == JOptionPane.YES_OPTION) {
-											CuaHangDAO.getintance().restoreCuaHang(maCH);
-											CuaHangView.loadCuaHang();
-											SuaCH.dispose();
-										} else {
-											JOptionPane.showMessageDialog(SuaCH, "Mã cửa hàng đã tồn tại", "Lỗi",
-													JOptionPane.ERROR_MESSAGE);
-											return;
-										}
 									}
 								}
 							}
-							if (!sdt.startsWith("0") || !sdt.matches("\\d+") || sdt.length() < 10
-									|| sdt.length() > 11) {
-								JOptionPane.showMessageDialog(SuaCH, "Số điện thoại của cửa hàng không hợp lệ", "Lỗi",
+						}
+						if (!sdt.startsWith("0") || !sdt.matches("\\d+") || sdt.length() < 10 || sdt.length() > 11) {
+							JOptionPane.showMessageDialog(SuaCH, "Số điện thoại của cửa hàng không hợp lệ", "Lỗi",
+									JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+
+						// Tạo đối tượng cửa hàng mới
+						CuaHang CH = new CuaHang(maCH, tenCH, diaChi, sdt, 0);
+						// Thêm cửa hàng vào cơ sở dữ liệu
+						if (CH != null) {
+							if(CuaHangDAO.getintance().updateCuaHang(old_MaCH, CH)) {
+							CuaHangView.loadCuaHang();
+							JOptionPane.showMessageDialog(SuaCH, "Cửa hàng đã được sửa thành công", "Thông báo",
+									JOptionPane.INFORMATION_MESSAGE);
+							SuaCH.dispose();
+							}
+							else {
+								JOptionPane.showMessageDialog(SuaCH, "Không thể thay đổi mã cửa hàng", "Mã cửa hàng đã được lên đơn",
 										JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-
-							// Tạo đối tượng cửa hàng mới
-							CuaHang CH = new CuaHang(maCH, tenCH, diaChi, sdt, 0);
-							// Thêm cửa hàng vào cơ sở dữ liệu
-							if (CH != null) {
-								CuaHangDAO.getintance().updateCuaHang(old_MaCH, CH);
-								CuaHangView.loadCuaHang();
-								JOptionPane.showMessageDialog(SuaCH, "Cửa hàng đã được sửa thành công", "Thông báo",
-										JOptionPane.INFORMATION_MESSAGE);
-								SuaCH.dispose();
-							}
 						}
-					});
-				}
-			 else
+					}
+				});
+				SuaCH.Button_HuyBo.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (!SuaCH.textField_MaCH.getText().isEmpty() || !SuaCH.textField_TenCH.getText().isEmpty()
+								|| !SuaCH.textField_SDT.getText().isEmpty()
+								|| !SuaCH.textField_DiaChi.getText().isEmpty()) {
+							int choice = JOptionPane.showConfirmDialog(SuaCH, "Xác nhận hủy bỏ?", "Xác nhận",
+									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+							if (choice == JOptionPane.YES_OPTION)
+								SuaCH.dispose();
+							else
+								return;
+						}
+						SuaCH.dispose();
+					}
+				});
+				
+			} else
 				JOptionPane.showMessageDialog(CuaHangView, "Chưa chọn cửa hàng muốn sửa", "Lỗi",
 						JOptionPane.ERROR_MESSAGE);
+		}
+		if (LabelText.equals("Xem chi tiết")) {
+			int selectecRow = CuaHangView.table.getSelectedRow();
+			if (selectecRow != -1) {
+				String MaCH_Selected = CuaHangView.table.getValueAt(selectecRow, 0).toString();
+				if (CuaHangDAO.getintance().isMaCHExists(MaCH_Selected)) {
+					CuaHang CH = CuaHangDAO.getintance().selectById(MaCH_Selected);
+					XemChiTietCuaHang ChiTietCH = new XemChiTietCuaHang();
+					ChiTietCH.Label_ChiTietCH_MaCH_Content.setText(CH.getMaCH());
+					ChiTietCH.Label_ChiTietCH_TenCH_Content.setText(CH.getTenCH());
+					ChiTietCH.Label_ChiTietCH_DiaChi_Content.setText(CH.getDiaChi());
+					ChiTietCH.Label_ChiTietCH_SDT_Content.setText(CH.getSDT());
+					ChiTietCH.load();
+				}
+			} else {
+				JOptionPane.showMessageDialog(CuaHangView, "Chưa chọn cửa hàng muốn sửa", "Lỗi",
+						JOptionPane.ERROR_MESSAGE);
+			}
+
 		}
 
 	}

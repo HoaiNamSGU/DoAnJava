@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -163,6 +164,7 @@ public class CuaHangView extends JPanel {
 		jlabel_them.addMouseListener(mouse);
 		jlabel_xoa.addMouseListener(mouse);
 		jlabel_sua.addMouseListener(mouse);
+		jlabel_xemCT.addMouseListener(mouse);
 		jbutton_refesh.addActionListener(ac);
 		comboBox_search_QuanHuyen.addActionListener(ac);
 		comboBox_search_XaPhuong.addActionListener(ac);
@@ -278,15 +280,9 @@ public class CuaHangView extends JPanel {
 	}
 
 	public void updateComBoBox_XaPhuong() {
-		panel_border_timKiem.remove(comboBox_search_XaPhuong);
-		;
-
 		// Tạo lại comboBox_XaPhuong và cập nhật dữ liệu mới
-		comboBox_search_XaPhuong = new JComboBox<Object>(ChangeXaPhuong());
-		comboBox_search_XaPhuong.addActionListener(ac);
-		comboBox_search_XaPhuong.setBackground(new Color(255, 255, 255));
-		comboBox_search_XaPhuong.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_search_XaPhuong.setBounds(10, 75, 200, 21);
+		DefaultComboBoxModel<Object> model = new DefaultComboBoxModel<>(ChangeXaPhuong());
+		comboBox_search_XaPhuong.setModel(model);
 		// Thêm comboBox_XaPhuong vào panel_Title_DiaChi
 		panel_border_timKiem.add(comboBox_search_XaPhuong);
 
