@@ -13,8 +13,8 @@ import javax.swing.JOptionPane;
 
 import dao.CuaHangDAO;
 import model.CuaHang;
+import view.CRUDCuaHang;
 import view.CuaHangView;
-import view.ThemCuaHang;
 import view.XemChiTietCuaHang;
 
 public class CuaHangMouseListener implements MouseListener {
@@ -29,7 +29,7 @@ public class CuaHangMouseListener implements MouseListener {
 		JLabel clickedLabel = (JLabel) e.getSource();
 		String LabelText = clickedLabel.getText();
 		if (LabelText.equals("Thêm")) {
-			ThemCuaHang ThemCH = new ThemCuaHang();
+			CRUDCuaHang ThemCH = new CRUDCuaHang();
 			ThemCH.addWindowListener(new WindowAdapter() {
 				@Override
 				public void windowClosing(WindowEvent e) {
@@ -164,7 +164,7 @@ public class CuaHangMouseListener implements MouseListener {
 			int selectecRow = CuaHangView.table.getSelectedRow();
 			if (selectecRow != -1) {
 				final String old_MaCH = CuaHangView.table.getValueAt(selectecRow, 0).toString();
-				ThemCuaHang SuaCH = new ThemCuaHang();
+				CRUDCuaHang SuaCH = new CRUDCuaHang();
 				SuaCH.Label_ThemCH.setText("Sửa Cửa Hàng");
 
 				SuaCH.addWindowListener(new WindowAdapter() {
@@ -207,27 +207,27 @@ public class CuaHangMouseListener implements MouseListener {
 					SuaCH.textField_SDT.setText(CH.getSDT());
 					SuaCH.textField_DiaChi.setText(CH.getDiaChi());
 					String[] diachi = CH.getDiaChi().split(", ");
-					String ThanhPho = diachi[diachi.length - 1];
-					String Quan_Huyen = diachi[diachi.length - 2];
-					String Xa_Phuong = diachi[diachi.length - 3];
+					String ThanhPho =view.CuaHangView.chuyenThanhTenBien( diachi[diachi.length - 1]);
+					String Quan_Huyen = view.CuaHangView.chuyenThanhTenBien(diachi[diachi.length - 2]);
+					String Xa_Phuong = view.CuaHangView.chuyenThanhTenBien(diachi[diachi.length - 3]);
 					String Duong = diachi[diachi.length - 4];
 
 					for (String item : SuaCH.ThanhPho) {
-						if (ThanhPho.equals(item)) {
-							SuaCH.comboBox_TPHO.setSelectedItem(ThanhPho);
+						if (ThanhPho.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
+							SuaCH.comboBox_TPHO.setSelectedItem(item);
 							break;
 						}
 					}
 					for (String item : SuaCH.Quan_Huyen) {
-						if (Quan_Huyen.equals(item)) {
-							SuaCH.comboBox_QuanHuyen.setSelectedItem(Quan_Huyen);
+						if (Quan_Huyen.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
+							SuaCH.comboBox_QuanHuyen.setSelectedItem(item);
 							SuaCH.updateComBoBox_XaPhuong();
 							break;
 						}
 					}
 					for (String item : SuaCH.Xa_Phuong) {
-						if (Xa_Phuong.equals(item)) {
-							SuaCH.comboBox_XaPhuong.setSelectedItem(Xa_Phuong);
+						if (Xa_Phuong.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
+							SuaCH.comboBox_XaPhuong.setSelectedItem(item);
 							break;
 						}
 					}
@@ -288,7 +288,7 @@ public class CuaHangMouseListener implements MouseListener {
 
 						// Tạo đối tượng cửa hàng mới
 						CuaHang CH = new CuaHang(maCH, tenCH, diaChi, sdt, 0);
-						// Thêm cửa hàng vào cơ sở dữ liệu
+						// Chỉnh sử dữ liệu cửa hàng trong cơ sở dữ liệu
 						if (CH != null) {
 							if(CuaHangDAO.getintance().updateCuaHang(old_MaCH, CH)) {
 							CuaHangView.loadCuaHang();
@@ -345,17 +345,29 @@ public class CuaHangMouseListener implements MouseListener {
 			}
 
 		}
+		if(LabelText.equals("Nhập Excel")) {
+			if(CuaHangDAO.getintance().readExcel()) {
+				CuaHangView.loadCuaHang();
+				JOptionPane.showMessageDialog(CuaHangView, "Nhập dữ liệu từ file Excel thành công", "Lỗi",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			else 
+				JOptionPane.showMessageDialog(CuaHangView, "Không thể nhập dữ liệu từ file Excel", "Lỗi",
+						JOptionPane.ERROR_MESSAGE);
+		}
+		
+		if(LabelText.equals("Xuất Excel")) {
+			if(CuaHangDAO.getintance().writeExcel()) {
+				JOptionPane.showMessageDialog(CuaHangView, "Xuất dữ liệu ra file Excel thành công", "Lỗi",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			else 
+				JOptionPane.showMessageDialog(CuaHangView, "Không thể xuất dữ liệu ra file Excel", "Lỗi",
+						JOptionPane.ERROR_MESSAGE);
+		}
 
 	}
 
-	/*
-	 * public static void resetComponent(Component component) { if (component
-	 * instanceof JLabel) { JLabel label = (JLabel) component;
-	 * label.setForeground(Color.BLACK); label.setBackground(null); } else if
-	 * (component instanceof JButton) { JButton button = (JButton) component;
-	 * button.setForeground(Color.BLACK); button.setBackground(null); } // Có thể
-	 * thêm các trường hợp khác ở đây nếu cần }
-	 */
 
 	@Override
 	public void mousePressed(MouseEvent e) {

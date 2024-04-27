@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 public class Source {
 	// Source đường dẫn ảnh___nhớ thêm \\
 	public ImageIcon icon_sanpham = new ImageIcon(getClass().getResource("/img/product.png"));
+	
 	public ImageIcon icon_nhaCungCap = new ImageIcon(getClass().getResource("/img/supplier.png"));
 	public ImageIcon icon_nhaphang = new ImageIcon(getClass().getResource("/img/nhaphang.png"));
 	public ImageIcon icon_xuathang = new ImageIcon(getClass().getResource("/img/xuathang.png"));
