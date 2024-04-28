@@ -1,7 +1,9 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -23,7 +25,7 @@ import dao.LaptopDAO;
 import img.Source;
 import model.Laptop;
 
-public class Laptop_view extends JPanel {
+/*public class Laptop_view extends JPanel {
 
 	public static final long serialVersionUID = 1L;
 	public JButton jbutton_refesh;
@@ -138,9 +140,9 @@ public class Laptop_view extends JPanel {
 		panel_border_timKiem.add(comboBox_search);
 				
 		textField = new JTextField();
+		textField.setColumns(10);
 		textField.setBounds(131, 31, 343, 33);
 		panel_border_timKiem.add(textField);
-		textField.setColumns(10);
 
 		jbutton_Sreach = new JButton("Tìm kiếm");
 		jbutton_Sreach.addActionListener(ac);
@@ -159,7 +161,7 @@ public class Laptop_view extends JPanel {
 		comboBox_Hang = addItem("Hang");
 		comboBox_Hang.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_Hang.setBackground(Color.WHITE);
-		comboBox_Hang.setBounds(10, 100, 95, 21);
+		comboBox_Hang.setBounds(141, 74, 95, 21);
 		comboBox_Hang.addActionListener(ac);
 		panel_border_timKiem.add(comboBox_Hang);
 				
@@ -429,3 +431,4 @@ public class Laptop_view extends JPanel {
 		}
 	}
 }
+*/

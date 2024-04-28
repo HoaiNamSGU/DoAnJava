@@ -14,16 +14,16 @@ import javax.swing.JOptionPane;
 
 import dao.LaptopDAO;
 import model.Laptop;
-import view.Laptop_view;
+import view.laptopview;
 import view.SuaSanPham;
 import view.ThemSanPham;
 import view.XemChiTiet;
 
 public class LaptopMouseListener implements MouseListener{
 
-	private Laptop_view laptopview ;
+	private laptopview laptopview ;
 	
-	public LaptopMouseListener(Laptop_view laptopview) {
+	public LaptopMouseListener(laptopview laptopview) {
 		this.laptopview = laptopview;
 	}
 

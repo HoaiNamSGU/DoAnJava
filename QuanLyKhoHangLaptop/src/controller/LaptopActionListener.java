@@ -6,17 +6,17 @@ import java.util.ArrayList;
 
 import dao.LaptopDAO;
 import model.Laptop;
-import view.Laptop_view;
+import view.laptopview;
 
 public class LaptopActionListener implements ActionListener 
 {
 	
-	private Laptop_view laptopview ;
+	private laptopview laptopview ;
 	private ArrayList<Laptop> lt = new ArrayList<Laptop>();
 	
 	
-	public LaptopActionListener(Laptop_view laptop_view) {
-		this.laptopview = laptop_view;
+	public LaptopActionListener(laptopview laptopview) {
+		this.laptopview = laptopview;
 	}
 
 	

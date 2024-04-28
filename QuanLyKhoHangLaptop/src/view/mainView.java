@@ -3,9 +3,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -50,7 +52,7 @@ public class mainView extends JFrame {
 	public JComboBox<String> comboBox_CPU;
 	public JComboBox<String> comboBox_Hang;
 
-	public Laptop_view laptopview = new Laptop_view();
+	public laptopview laptopview = new laptopview();
 	public CuaHangView cuahangview = new CuaHangView();
 
 	public mainView() {
@@ -71,10 +73,9 @@ public class mainView extends JFrame {
 
 		mainMouseListener mouse = new mainMouseListener(this);
 
-		panel_center = new JPanel();
-		panel_center.setBounds(197, 0, 1189, 763);
-		getContentPane().add(panel_center);
-		panel_center.setLayout(null);
+		panel_center = new JPanel(new BorderLayout());
+		//panel_center.setBounds(197, 0, 1189, 763);
+		getContentPane().add(panel_center,BorderLayout.CENTER);
 
 		laptopview.table.getColumnModel().getColumn(0).setPreferredWidth(52);
 		laptopview.table.getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -86,29 +87,29 @@ public class mainView extends JFrame {
 		laptopview.table.getColumnModel().getColumn(7).setPreferredWidth(73);
 		panel_center.add(laptopview);
 
-		JPanel panel_menu = new JPanel();
-		getContentPane().add(panel_menu);
-		panel_menu.setBounds(0, 0, 197, 763);
-		// panel_menu.setSize(197,763);
+		JPanel panel_menu = new JPanel(new GridLayout(10,1));
+		panel_menu.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
+		getContentPane().add(panel_menu,BorderLayout.WEST);
+		//panel_menu.setBounds(0, 0, 197, 763);
+		//panel_menu.setSize(197,763);
 		panel_menu.setBackground(new Color(0, 128, 192));
-		panel_menu.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Hi !");
+		JLabel lblNewLabel = new JLabel("  Hi! Admin");
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblNewLabel.setBounds(63, 45, 36, 24);
+		//lblNewLabel.setBounds(63, 45, 36, 24);
 		panel_menu.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Admin");
+		/*JLabel lblNewLabel_1 = new JLabel("Admin");
 		lblNewLabel_1.setForeground(new Color(0, 0, 0));
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel_1.setBounds(52, 79, 68, 24);
-		panel_menu.add(lblNewLabel_1);
+		panel_menu.add(lblNewLabel_1);*/
 
 		jlabel_sanpham = new JLabel("Sản phẩm");
 		jlabel_sanpham.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_sanpham.setForeground(new Color(255, 255, 255));
-		jlabel_sanpham.setBounds(26, 158, 161, 37);
+		//jlabel_sanpham.setBounds(26, 158, 161, 37);
 
 		jlabel_sanpham.setIcon(icon_sanpham);
 		panel_menu.add(jlabel_sanpham);
@@ -116,7 +117,7 @@ public class mainView extends JFrame {
 		jlabel_nhacungcap = new JLabel("Nhà cung cấp");
 		jlabel_nhacungcap.setForeground(new Color(0, 0, 0));
 		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_nhacungcap.setBounds(26, 205, 161, 37);
+		//jlabel_nhacungcap.setBounds(26, 205, 161, 37);
 
 		jlabel_nhacungcap.setIcon(icon_nhaCungCap);
 		panel_menu.add(jlabel_nhacungcap);
@@ -125,14 +126,14 @@ public class mainView extends JFrame {
 		jlabel_nhaphang.setForeground(new Color(0, 0, 0));
 		jlabel_nhaphang.setFont(new Font("Arial", Font.PLAIN, 20));
 
-		jlabel_nhaphang.setBounds(26, 252, 161, 37);
+		//jlabel_nhaphang.setBounds(26, 252, 161, 37);
 		jlabel_nhaphang.setIcon(icon_nhaphang);
 		panel_menu.add(jlabel_nhaphang);
 
 		jlabel_xuathang = new JLabel("Xuất hàng");
 		jlabel_xuathang.setForeground(new Color(0, 0, 0));
 		jlabel_xuathang.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_xuathang.setBounds(26, 299, 161, 37);
+		//jlabel_xuathang.setBounds(26, 299, 161, 37);
 
 		jlabel_xuathang.setIcon(icon_xuathang);
 		panel_menu.add(jlabel_xuathang);
@@ -141,34 +142,34 @@ public class mainView extends JFrame {
 		jlabel_cuahang.setForeground(new Color(0, 0, 0));
 		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_cuahang.setIcon(icon_cuahang);
-		jlabel_cuahang.setBounds(26, 346, 161, 37);
+		//jlabel_cuahang.setBounds(26, 346, 161, 37);
 		panel_menu.add(jlabel_cuahang);
 
 		jlabel_taikhoan = new JLabel("Tài khoản");
 		jlabel_taikhoan.setForeground(new Color(0, 0, 0));
 		jlabel_taikhoan.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_taikhoan.setBounds(26, 440, 161, 37);
+		//jlabel_taikhoan.setBounds(26, 440, 161, 37);
 		jlabel_taikhoan.setIcon(icon_taikhoan);
 		panel_menu.add(jlabel_taikhoan);
 
 		jlabel_thongke = new JLabel("Thống kê");
 		jlabel_thongke.setForeground(new Color(0, 0, 0));
 		jlabel_thongke.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_thongke.setBounds(26, 393, 161, 37);
+		//jlabel_thongke.setBounds(26, 393, 161, 37);
 		jlabel_thongke.setIcon(icon_thongke);
 		panel_menu.add(jlabel_thongke);
 
 		jlabel_doiThongtin = new JLabel("Đổi thông tin");
 		jlabel_doiThongtin.setForeground(new Color(0, 0, 0));
 		jlabel_doiThongtin.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_doiThongtin.setBounds(26, 641, 161, 37);
+		//jlabel_doiThongtin.setBounds(26, 641, 161, 37);
 		jlabel_doiThongtin.setIcon(icon_doithongtin);
 		panel_menu.add(jlabel_doiThongtin);
 
 		jlabel_dangxuat = new JLabel("Đăng xuất");
 		jlabel_dangxuat.setForeground(new Color(0, 0, 0));
 		jlabel_dangxuat.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_dangxuat.setBounds(26, 688, 161, 37);
+		//jlabel_dangxuat.setBounds(26, 688, 161, 37);
 		jlabel_dangxuat.setIcon(icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
 
@@ -183,7 +184,7 @@ public class mainView extends JFrame {
 		jlabel_dangxuat.addMouseListener(mouse);
 
 		this.setVisible(true);
-		this.setResizable(false);
+		//this.setResizable(false);
 	}
 
 	public JTable SanPham() {
