@@ -3,6 +3,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import dao.LaptopDAO;
+import model.Laptop;
 
 
 public class ThemSanPham extends JFrame {
@@ -35,6 +37,7 @@ public class ThemSanPham extends JFrame {
 	public JComboBox<String> comboBox_Ram;
 	public JComboBox<String> comboBox_Nam;
 	public JComboBox<String> comboBox_MaNCC;
+	public JLabel lblNewLabel;
 
 	public ThemSanPham() {
 		this.setTitle("Thêm sản phẩm");
@@ -53,7 +56,7 @@ public class ThemSanPham extends JFrame {
 		contentPane.add(jpanel_title);
 		jpanel_title.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Thêm sản phẩm mới");
+		lblNewLabel = new JLabel("Thêm sản phẩm mới");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBackground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -67,7 +70,7 @@ public class ThemSanPham extends JFrame {
 		
 		jtextField_masanpham = new JTextField();
 		jtextField_masanpham.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_masanpham.setBounds(37, 99, 178, 30);
+		jtextField_masanpham.setBounds(37, 99, 204, 30);
 		contentPane.add(jtextField_masanpham);
 		jtextField_masanpham.setColumns(10);
 		
@@ -79,7 +82,7 @@ public class ThemSanPham extends JFrame {
 		jtextField_tensanpham = new JTextField();
 		jtextField_tensanpham.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_tensanpham.setColumns(10);
-		jtextField_tensanpham.setBounds(37, 184, 178, 30);
+		jtextField_tensanpham.setBounds(37, 184, 204, 30);
 		contentPane.add(jtextField_tensanpham);
 		
 		JLabel jlabel_CPU = new JLabel("CPU");
@@ -90,7 +93,7 @@ public class ThemSanPham extends JFrame {
 		jtextField_CPU = new JTextField();
 		jtextField_CPU.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_CPU.setColumns(10);
-		jtextField_CPU.setBounds(331, 99, 178, 30);
+		jtextField_CPU.setBounds(331, 99, 214, 30);
 		contentPane.add(jtextField_CPU);
 		
 		JLabel jlabel_GPU = new JLabel("GPU");
@@ -101,7 +104,7 @@ public class ThemSanPham extends JFrame {
 		jtextField_GPU = new JTextField();
 		jtextField_GPU.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_GPU.setColumns(10);
-		jtextField_GPU.setBounds(331, 184, 178, 30);
+		jtextField_GPU.setBounds(331, 184, 214, 30);
 		contentPane.add(jtextField_GPU);
 		
 		JLabel jlabel_Ram = new JLabel("Ram");
@@ -112,26 +115,26 @@ public class ThemSanPham extends JFrame {
 		jtextField_manhinh = new JTextField();
 		jtextField_manhinh.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_manhinh.setColumns(10);
-		jtextField_manhinh.setBounds(37, 374, 178, 30);
+		jtextField_manhinh.setBounds(37, 374, 204, 30);
 		contentPane.add(jtextField_manhinh);
 		
 		jtextField_Hang = new JTextField();
 		jtextField_Hang.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_Hang.setColumns(10);
-		jtextField_Hang.setBounds(331, 275, 178, 30);
+		jtextField_Hang.setBounds(331, 275, 214, 30);
 		contentPane.add(jtextField_Hang);
 		
 		jtextField_hedieuhanh = new JTextField();
 		jtextField_hedieuhanh.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_hedieuhanh.setColumns(10);
-		jtextField_hedieuhanh.setBounds(37, 275, 178, 30);
+		jtextField_hedieuhanh.setBounds(37, 275, 204, 30);
 		contentPane.add(jtextField_hedieuhanh);
 		
 		jtextField_gia = new JTextField();
 		jtextField_gia.setFont(new Font("Arial", Font.PLAIN, 16));
 		jtextField_gia.setText("0");
 		jtextField_gia.setColumns(10);
-		jtextField_gia.setBounds(331, 374, 178, 30);
+		jtextField_gia.setBounds(331, 374, 214, 30);
 		contentPane.add(jtextField_gia);
 		
 		JLabel jlabel_Rom = new JLabel("Rom");
@@ -232,6 +235,24 @@ public class ThemSanPham extends JFrame {
 			tmp.addItem(string);
 		}
 		return tmp;
+	}
+	
+	public void setJtextField(Laptop lt)
+	{
+		jtextField_tensanpham.setText(lt.getTenLaptop());
+		jtextField_masanpham.setText(lt.getMaLaptop());
+		jtextField_CPU.setText(lt.getCPU());
+		jtextField_GPU.setText(lt.getGPU());
+		jtextField_Hang.setText(lt.getHang());
+		jtextField_hedieuhanh.setText(lt.getHeDieuHanh());
+		jtextField_manhinh.setText(lt.getManHinh());
+		DecimalFormat df = new DecimalFormat("#");
+	    String formattedNumber = df.format(lt.getGia());
+		jtextField_gia.setText(formattedNumber);
+		comboBox_Ram.setSelectedItem(lt.getRam());
+		comboBox_Rom.setSelectedItem(lt.getRom());
+		comboBox_Nam.setSelectedItem(lt.getNamSanXuat()+"");
+		comboBox_MaNCC.setSelectedItem(lt.getMaNhaCungCap());
 	}
 }
 

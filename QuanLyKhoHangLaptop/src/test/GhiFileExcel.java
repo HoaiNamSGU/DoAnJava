@@ -27,7 +27,7 @@ public class GhiFileExcel {
 						XSSFSheet sheet = wordbook.createSheet("DanhSach");
 						XSSFRow row = null;
 						Cell cell = null;
-						row = sheet.createRow(3);
+						row = sheet.createRow(0);
 						cell = row.createCell(0,CellType.STRING);
 						cell.setCellValue("STT");
 						cell = row.createCell(1,CellType.STRING);
@@ -55,7 +55,7 @@ public class GhiFileExcel {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					File f = new File("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\FileExcel\\DanhSach.xlsx");
+					File f = new File("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\FileExcel\\DanhSachLaptop.xlsx");
 					
 					try {
 						FileOutputStream fos = new FileOutputStream(f);

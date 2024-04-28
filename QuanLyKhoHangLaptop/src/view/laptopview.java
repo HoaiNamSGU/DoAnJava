@@ -139,7 +139,7 @@ public class laptopview extends JPanel {
 				GridBagLayout gbl_panel_border_timKiem = new GridBagLayout();
 				gbl_panel_border_timKiem.columnWidths = new int[]{96, 96, 96, 96, 96, 0};
 				gbl_panel_border_timKiem.rowHeights = new int[]{40, 40, 0};
-				gbl_panel_border_timKiem.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				gbl_panel_border_timKiem.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 				gbl_panel_border_timKiem.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 				panel_border_timKiem.setLayout(gbl_panel_border_timKiem);
 				comboBox_search = new JComboBox<String>(combo);

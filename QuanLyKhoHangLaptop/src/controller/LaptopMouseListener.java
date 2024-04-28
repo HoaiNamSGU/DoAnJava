@@ -268,7 +268,7 @@ public class LaptopMouseListener implements MouseListener{
         else if(labelText.equals("Sửa"))
         {
         		
-        	Laptop[] lt = new Laptop[1];
+        	/*Laptop[] lt = new Laptop[1];
         	    
         	int selectedRow = laptopview.table.getSelectedRow();
         	if (selectedRow != -1) {
@@ -388,7 +388,133 @@ public class LaptopMouseListener implements MouseListener{
         		JOptionPane.showMessageDialog(laptopview,"Bạn chưa chọn sản phảm để sửa !","Lỗi",JOptionPane.ERROR_MESSAGE);
         		clickedLabel.setForeground(Color.BLACK);
        	     	clickedLabel.setBackground(null);
+        	}*/   
+        	
+        	
+        	Laptop[] lt = new Laptop[1];
+    	    
+        	int selectedRow = laptopview.table.getSelectedRow();
+        	if (selectedRow != -1) {
+        		ThemSanPham sua = new ThemSanPham();
+        		sua.setTitle("Sửa sản phẩm");
+        		sua.lblNewLabel.setText("Sửa sản phẩm");
+            	sua.addWindowListener(new WindowAdapter() {
+            	@Override
+            	public void windowClosing(WindowEvent e) {
+            		clickedLabel.setForeground(Color.BLACK);
+            		clickedLabel.setBackground(null);
+            		}
+            	});
+        	    Object malaptop = laptopview.table.getValueAt(selectedRow, 0);
+        	    lt[0] = new Laptop();
+        	    lt[0].setMaLaptop(malaptop + "");
+        	    lt[0] = LaptopDAO.getintance().selectById(lt[0]);
+        	    sua.setJtextField(lt[0]);
+        	       
+        	    
+        	    sua.comboBox_Ram.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					String selected_Ram = (String) sua.comboBox_Ram.getSelectedItem();
+    					lt[0].setRam(selected_Ram);
+    					
+    				}
+    			});
+            	
+            	
+    			sua.comboBox_Rom.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					String selected_Rom = (String) sua.comboBox_Rom.getSelectedItem();
+    					lt[0].setRom(selected_Rom);
+    				}
+    			});
+    			
+    			
+    			sua.comboBox_Nam.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					String selected_nam = (String) sua.comboBox_Nam.getSelectedItem();
+    					lt[0].setNamSanXuat(Integer.parseInt(selected_nam));
+    				}
+    			});
+            	
+    			sua.comboBox_MaNCC.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String selected_MaNCC = (String) sua.comboBox_MaNCC.getSelectedItem();
+						lt[0].setMaNhaCungCap(selected_MaNCC);
+					}
+				});
+        	  
+			
+        	    
+        	    
+        	    sua.jbutton_xacnhan.addActionListener(new ActionListener() {
+    				String ma = lt[0].getMaLaptop();
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					
+    		        	lt[0].setTenLaptop(sua.getText(sua.jtextField_tensanpham));
+    		        	lt[0].setCPU(sua.getText(sua.jtextField_CPU));
+    		        	lt[0].setGPU(sua.getText(sua.jtextField_GPU));
+    		        	lt[0].setHeDieuHanh(sua.getText(sua.jtextField_hedieuhanh));
+    		        	lt[0].setManHinh(sua.getText(sua.jtextField_manhinh));
+    		        	lt[0].setHang(sua.getText(sua.jtextField_Hang));
+    					lt[0].setMaLaptop(sua.getText(sua.jtextField_masanpham));
+    		        	try {
+    						lt[0].setGia(Double.parseDouble(sua.getText(sua.jtextField_gia)));
+    					} catch (NumberFormatException e1) {
+    						JOptionPane.showMessageDialog(sua,"Giá không hợp lệ !","Lỗi",JOptionPane.ERROR_MESSAGE);
+    						lt[0].setGia(0);
+    						e1.printStackTrace();
+    					}
+    					
+    		        	
+    		        	String src = e.getActionCommand();
+    					if(src.equals("Xác nhận"))
+    					{
+    						
+    			        	int result = JOptionPane.showConfirmDialog(sua, "Bạn có chắc muốn sửa sản phẩm ?","Xác nhận",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+    			        	if(result == JOptionPane.YES_OPTION)
+    			        	{
+    							LaptopDAO.getintance().updateALL(lt[0],ma);
+    							ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
+    							laptopview.updateTableData(Laptop);
+    							JOptionPane.showMessageDialog(sua, "Sản phẩm đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    							
+    			        	}
+    					}
+    				}
+    			});
+            	
+            	
+            	sua.jbutton_huybo.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					// TODO Auto-generated method stub
+    					String src = e.getActionCommand();
+    					if(src.equals("Hủy bỏ"))
+    					{
+    						sua.dispose();
+    						clickedLabel.setForeground(Color.BLACK);
+    	            	    clickedLabel.setBackground(null);
+    					}
+    				}
+    			});
+        	}
+        	else
+        	{
+        		JOptionPane.showMessageDialog(laptopview,"Bạn chưa chọn sản phảm để sửa !","Lỗi",JOptionPane.ERROR_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
         	}    
+        	
         }
         else if(labelText.equals("Xem chi tiết"))
         {
@@ -417,7 +543,42 @@ public class LaptopMouseListener implements MouseListener{
         	}
         }
 		
+        else if(labelText.equals("Xuất Excel"))
+        {
+        	boolean check = LaptopDAO.getintance().WriteExcel();
+        	if(check == true)
+        	{
+        		JOptionPane.showMessageDialog(laptopview,"Xuất file Excel thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}
+        	else
+        	{
+        		JOptionPane.showMessageDialog(laptopview,"Xuất file Excel thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}
+        	
+        }
 		
+        else if(labelText.equals("Nhập Excel"))
+        {
+        	ArrayList<Laptop> lt = LaptopDAO.getintance().ReadExcel();
+        	if(lt.isEmpty()==false)
+        	{
+        		laptopview.updateTableData(lt);
+        		JOptionPane.showMessageDialog(laptopview,"Nhập file Excel thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}
+        	else
+        	{
+        		JOptionPane.showMessageDialog(laptopview,"Nhập file Excel thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}
+        	
+        }
 		
 	}
 

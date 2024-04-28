@@ -23,7 +23,7 @@ public class LaptopActionListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		//String src = e.getActionCommand();
+		String src = e.getActionCommand();
 		
 		
 		if(e.getSource() == laptopview.jbutton_refesh)
