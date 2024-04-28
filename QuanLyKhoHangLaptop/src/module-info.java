@@ -10,4 +10,5 @@ module QuanLyKhoHangLaptop {
 	requires mysql.connector.java;
 	requires org.apache.poi.ooxml;
 	requires org.apache.poi.poi;
+	requires itextpdf;
 }

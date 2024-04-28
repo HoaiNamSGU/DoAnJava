@@ -102,12 +102,12 @@ public class CuaHangView extends JPanel {
 		jlabel_nhapExcel.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_nhapExcel);
 
-		JLabel jlabel_Excel = new JLabel("Xuất Excel", source.icon_Excel, JLabel.CENTER);
-		jlabel_Excel.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_Excel.setBounds(343, 21, 68, 56);
-		jlabel_Excel.setVerticalTextPosition(JLabel.BOTTOM);
-		jlabel_Excel.setHorizontalTextPosition(JLabel.CENTER);
-		panel_border_chucNang.add(jlabel_Excel);
+		JLabel jlabel_xuatExcel = new JLabel("Xuất Excel", source.icon_Excel, JLabel.CENTER);
+		jlabel_xuatExcel.setFont(new Font("Arial", Font.PLAIN, 12));
+		jlabel_xuatExcel.setBounds(343, 21, 68, 56);
+		jlabel_xuatExcel.setVerticalTextPosition(JLabel.BOTTOM);
+		jlabel_xuatExcel.setHorizontalTextPosition(JLabel.CENTER);
+		panel_border_chucNang.add(jlabel_xuatExcel);
 
 		panel_border_timKiem = new JPanel();
 		panel_border_timKiem.setLayout(null);
@@ -165,6 +165,8 @@ public class CuaHangView extends JPanel {
 		jlabel_xoa.addMouseListener(mouse);
 		jlabel_sua.addMouseListener(mouse);
 		jlabel_xemCT.addMouseListener(mouse);
+		jlabel_nhapExcel.addMouseListener(mouse);
+		jlabel_xuatExcel.addMouseListener(mouse);
 		jbutton_refesh.addActionListener(ac);
 		comboBox_search_QuanHuyen.addActionListener(ac);
 		comboBox_search_XaPhuong.addActionListener(ac);
@@ -236,13 +238,12 @@ public class CuaHangView extends JPanel {
 		return data;
 	}
 
-	public static String chuyenTenQuanHuyenThanhTenBien(String tenQuanHuyen) {
+	public static String chuyenThanhTenBien(String tenQuanHuyen) {
 		// Loại bỏ dấu và chuyển thành chữ viết thường
-		String tenKhongDau = removeDiacritics(tenQuanHuyen);
+		String tenKhongDau = ChuyenThanhFontThuong(tenQuanHuyen);
 
 		// Loại bỏ các từ "Quận" và "Huyện"
-		tenKhongDau = tenKhongDau.replaceAll("Quan", "quan");
-		tenKhongDau = tenKhongDau.replaceAll("Huyen", "huyen");
+		tenKhongDau = tenKhongDau.toLowerCase();
 
 		// Loại bỏ khoảng trắng và dấu cách
 		tenKhongDau = tenKhongDau.trim().replace(" ", "");
@@ -251,7 +252,7 @@ public class CuaHangView extends JPanel {
 	}
 
 	// Loại bỏ dấu và chuyển thành chữ viết thường
-	public static String removeDiacritics(String str) {
+	public static String ChuyenThanhFontThuong(String str) {
 		str = Normalizer.normalize(str, Normalizer.Form.NFD);
 		str = str.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 		return str;
@@ -264,7 +265,7 @@ public class CuaHangView extends JPanel {
 			if (quan.equals("Tất cả")) {
 				return XaPhuong.allMap();
 			}
-			String[] xa_Phuong = XaPhuong.getxaPhuongMap().get(chuyenTenQuanHuyenThanhTenBien(quan));
+			String[] xa_Phuong = XaPhuong.getxaPhuongMap().get(chuyenThanhTenBien(quan));
 			// Tạo mảng mới có kích thước lớn hơn một đơn vị so với xa_Phuong
 			String[] result = new String[xa_Phuong.length + 1];
 			// Thêm "Tất cả" vào đầu mảng result
