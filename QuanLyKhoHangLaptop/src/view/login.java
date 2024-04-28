@@ -12,13 +12,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import controller.LoginActionlistener;
 import img.Source;
 
 public class login extends JFrame {
-
+	LoginActionlistener ac = new LoginActionlistener(this);
 	private static final long serialVersionUID = 1L;
-	private JTextField textField_username;
-	private JPasswordField passwordField;
+	public JTextField textField_username;
+	public JPasswordField passwordField;
 	public Source source = new Source();
 	public static void main(String[] args) {
 		try {
@@ -30,16 +31,17 @@ public class login extends JFrame {
 	}
 
 	public login() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(650, 450);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Login");
 		getContentPane().setLayout(new GridLayout(1, 2));
-
+		
 		JPanel jpanel_img = new JPanel();
 		jpanel_img.setBackground(new Color(0, 128, 192));
 		getContentPane().add(jpanel_img);
-
+		
 		JPanel jpanel_login = new JPanel();
 		jpanel_login.setForeground(new Color(64, 128, 128));
 		jpanel_login.setBackground(new Color(255, 255, 255));
@@ -83,6 +85,7 @@ public class login extends JFrame {
 		jpanel_login.add(jLabel);
 
 		JButton btnLogin = new JButton("Đăng nhập");
+		btnLogin.addActionListener(ac);
 		btnLogin.setForeground(new Color(0, 0, 0));
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnLogin.setBounds(21, 287, 264, 41);
@@ -94,6 +97,7 @@ public class login extends JFrame {
 		jpanel_login.add(passwordField);
 
 		this.setVisible(true);
+		this.setResizable(false);
 	}
 	
 	

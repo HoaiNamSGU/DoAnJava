@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import dao.LaptopDAO;
 import model.Laptop;
 import view.laptopview;
-import view.SuaSanPham;
 import view.ThemSanPham;
 import view.XemChiTiet;
 
@@ -203,7 +202,7 @@ public class LaptopMouseListener implements MouseListener{
 							ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
 							laptopview.updateTableData(Laptop);
 							JOptionPane.showMessageDialog(add, "Sản phẩm đã được thêm thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-							
+							LaptopDAO.getintance().WriteUpDateExcel();
 			        	}
 					}
 				}
@@ -247,6 +246,7 @@ public class LaptopMouseListener implements MouseListener{
             		 clickedLabel.setForeground(Color.BLACK);
             	     clickedLabel.setBackground(null);
             		 JOptionPane.showMessageDialog(laptopview, "Sản phẩm đã được xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            		 LaptopDAO.getintance().WriteUpDateExcel();
                  }
             	 else
             	 {
@@ -486,7 +486,7 @@ public class LaptopMouseListener implements MouseListener{
     							ArrayList<Laptop> Laptop = LaptopDAO.getintance().selectAll();
     							laptopview.updateTableData(Laptop);
     							JOptionPane.showMessageDialog(sua, "Sản phẩm đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-    							
+    							LaptopDAO.getintance().WriteUpDateExcel();
     			        	}
     					}
     				}

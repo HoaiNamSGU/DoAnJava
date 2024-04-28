@@ -5,11 +5,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import view.Nhacungcap;
 import view.NhapHang;
 import view.PhieuXuat;
 import view.XuatHang;
+import view.login;
 import view.mainView;
 
 public class mainMouseListener implements MouseListener {
@@ -17,7 +19,6 @@ public class mainMouseListener implements MouseListener {
 	public mainView view;
 	public static JLabel lastClickedLabel;
 	private static PhieuXuat PhieuXuat;
-
 	public mainMouseListener(mainView view) {
 		this.view = view;
 	}
@@ -78,7 +79,30 @@ public class mainMouseListener implements MouseListener {
 			view.panel_center.add(view.cuahangview);
 			view.panel_center.setVisible(true);
 		}
-       
+        else if(clickedLabel.getText().equals("Thông tin tài khoản"))
+        {
+        	view.panel_center.setVisible(false);
+			view.panel_center.removeAll();
+			view.panel_center.setVisible(true);
+			view.jlabel_sanpham.setForeground(Color.BLACK);
+        }
+        else if(clickedLabel.getText().equals("Đăng xuất"))
+        {
+        	view.jlabel_sanpham.setForeground(Color.BLACK);
+        	int result = JOptionPane.showConfirmDialog(view, "Bạn có chắc muốn đăng xuất","Xác nhận",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        	if(result == JOptionPane.YES_OPTION)
+        	{
+        		view.dispose();
+        		new login();
+        	}
+        	else
+        	{
+        		view.jlabel_sanpham.setForeground(Color.WHITE);
+        		view.jlabel_dangxuat.setForeground(Color.BLACK);
+        	}
+        	
+        	
+        }
         // Cập nhật lastClickedLabel
      	lastClickedLabel = clickedLabel;
 	}

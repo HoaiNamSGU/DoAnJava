@@ -222,6 +222,111 @@ public class LaptopDAO implements DAOInterface<Laptop>{
 		return false;
 	}
 	
+	public void WriteUpDateExcel()
+	{
+		try (XSSFWorkbook wordbook = new XSSFWorkbook()) 
+			{
+				try {
+					
+						XSSFSheet sheet = wordbook.createSheet("DanhSachLaptop");
+						XSSFRow row = null;
+						Cell cell = null;
+						row = sheet.createRow(0);
+						cell = row.createCell(0,CellType.STRING);
+						cell.setCellValue("MaLaptop");
+						cell = row.createCell(1,CellType.STRING);
+						cell.setCellValue("TenLaptop");
+						cell = row.createCell(2,CellType.STRING);
+						cell.setCellValue("CPU");
+						cell = row.createCell(3,CellType.STRING);
+						cell.setCellValue("GPU");
+						cell = row.createCell(4,CellType.STRING);
+						cell.setCellValue("Ram");
+						cell = row.createCell(5,CellType.STRING);
+						cell.setCellValue("Rom");
+						cell = row.createCell(6,CellType.STRING);
+						cell.setCellValue("HeDieuHanh");
+						cell = row.createCell(7,CellType.STRING);
+						cell.setCellValue("ManHinh");
+						cell = row.createCell(8,CellType.STRING);
+						cell.setCellValue("Hang");
+						cell = row.createCell(9,CellType.NUMERIC);
+						cell.setCellValue("NamSanXuat");
+						cell = row.createCell(10,CellType.NUMERIC);
+						cell.setCellValue("Gia");
+						cell = row.createCell(11,CellType.NUMERIC);
+						cell.setCellValue("SoLuong");
+						cell = row.createCell(12,CellType.STRING);
+						cell.setCellValue("MaNhaCungCap");
+						cell = row.createCell(13,CellType.STRING);
+						cell.setCellValue("isDelete");
+						
+						
+						ArrayList<Laptop> lt = LaptopDAO.getintance().selectAll();
+						for (int i = 0; i < lt.size();i++) {
+							row = sheet.createRow(i+1);
+							
+							cell = row.createCell(0,CellType.STRING);
+							cell.setCellValue(lt.get(i).getMaLaptop());
+							
+							cell = row.createCell(1,CellType.STRING);
+							cell.setCellValue(lt.get(i).getTenLaptop());
+							
+							cell = row.createCell(2,CellType.STRING);
+							cell.setCellValue(lt.get(i).getCPU());
+							
+							cell = row.createCell(3,CellType.STRING);
+							cell.setCellValue(lt.get(i).getCPU());
+							
+							cell = row.createCell(4,CellType.STRING);
+							cell.setCellValue(lt.get(i).getRam());
+							
+							cell = row.createCell(5,CellType.STRING);
+							cell.setCellValue(lt.get(i).getRom());
+							
+							cell = row.createCell(6,CellType.STRING);
+							cell.setCellValue(lt.get(i).getHeDieuHanh());
+							
+							cell = row.createCell(7,CellType.STRING);
+							cell.setCellValue(lt.get(i).getManHinh());
+							
+							cell = row.createCell(8,CellType.STRING);
+							cell.setCellValue(lt.get(i).getHang());
+							
+							cell = row.createCell(9,CellType.NUMERIC);
+							cell.setCellValue(lt.get(i).getNamSanXuat());
+							
+							cell = row.createCell(10,CellType.NUMERIC);
+							cell.setCellValue(lt.get(i).getGia());
+							
+							cell = row.createCell(11,CellType.NUMERIC);
+							cell.setCellValue(lt.get(i).getSoLuong());
+							
+							cell = row.createCell(12,CellType.STRING);
+							cell.setCellValue(lt.get(i).getMaNhaCungCap());
+							
+							cell = row.createCell(13,CellType.NUMERIC);
+							cell.setCellValue(lt.get(i).getIsDelete());
+							
+						}
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					try {
+						FileOutputStream fos = new FileOutputStream("src/database/DanhSachLaptop.xlsx");
+						wordbook.write(fos);
+						fos.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	}
+	
 	
 	@Override
 	public int insert(Laptop t) {

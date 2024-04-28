@@ -8,7 +8,6 @@ public class NhanVien {
 	private String TenNhanVien;
 	private Date NgaySinh;
 	private int GioiTinh;
-	private String DiaChi;
 	private String SDT;
 	private String MaNguoiDung;
 	private int isDelete;
@@ -17,14 +16,13 @@ public class NhanVien {
 		
 	};
 
-	public NhanVien(String maNhanVien, String tenNhanVien, Date ngaySinh, int gioiTinh, String diaChi, String sDT,
+	public NhanVien(String maNhanVien, String tenNhanVien, Date ngaySinh, int gioiTinh, String sDT,
 			 String maNguoiDung, int isDelete) {
 		
 		MaNhanVien = maNhanVien;
 		TenNhanVien = tenNhanVien;
 		NgaySinh = ngaySinh;
 		GioiTinh = gioiTinh;
-		DiaChi = diaChi;
 		SDT = sDT;
 		MaNguoiDung = maNguoiDung;
 		this.isDelete =isDelete;
@@ -62,13 +60,7 @@ public class NhanVien {
 		GioiTinh = gioiTinh;
 	}
 
-	public String getDiaChi() {
-		return DiaChi;
-	}
-
-	public void setDiaChi(String diaChi) {
-		DiaChi = diaChi;
-	}
+	
 
 	public String getSDT() {
 		return SDT;
@@ -91,7 +83,7 @@ public class NhanVien {
 	@Override
 	public String toString() {
 		return "NhanVien [MaNhanVien=" + MaNhanVien + ", TenNhanVien=" + TenNhanVien + ", NgaySinh=" + NgaySinh
-				+ ", GioiTinh=" + GioiTinh + ", DiaChi=" + DiaChi + ", SDT=" + SDT + ", MaNguoiDung=" + MaNguoiDung
+				+ ", GioiTinh=" + GioiTinh + ", SDT=" + SDT + ", MaNguoiDung=" + MaNguoiDung
 				+ ", isDelete=" + isDelete + "]";
 	}
 
