@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -41,6 +42,28 @@ public class LoginActionlistener implements ActionListener{
 						loginview.dispose();
 						check = true;
 						break;
+					}
+					else if(nguoiDung.getPhamViTruyCap()==1)
+					{
+						/*admin_view ad = new admin_view();
+						ad.nguoidung = nguoiDung;
+						ad.lblNewLabel.setText("Hi!"+ad.nguoidung.getTaiKhoan());
+						NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung", ad.nguoidung.getMaNguoiDung());
+						ad.nhanvien = nv;
+						loginview.dispose();
+						check = true;
+						break;*/
+						
+						mainView mv = new mainView();
+						mv.nguoidung = nguoiDung;
+						mv.lblNewLabel.setText("Hi!"+mv.nguoidung.getTaiKhoan());
+						NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung", mv.nguoidung.getMaNguoiDung());
+						mv.nhanvien = nv;
+						mv.addLabel();
+						loginview.dispose();
+						check = true;
+						break;
+						
 					}
 				}
 			}

@@ -138,14 +138,43 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 
 	@Override
 	public ArrayList<NguoiDung> selectByCondition(String condition) {
-		
 		return null;
 	}
 	
 	
+	public ArrayList<NguoiDung> selectByCondition() {
+		ArrayList<NguoiDung> kq = new ArrayList<NguoiDung>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "select * from nguoidung where isDelete = 0 and PhamViTruyCap = 0";
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				String ma = rs.getString("MaNguoiDung");
+				String tk = rs.getString("TaiKhoan");
+				String mk = rs.getString("MatKhau");
+				int phamvi = rs.getInt("PhamViTruyCap");
+				int isdelete = rs.getInt("isDelete");
+				NguoiDung nd = new NguoiDung();
+				nd.setMaNguoiDung(ma);
+				nd.setTaiKhoan(tk);
+				nd.setMatKhau(mk);
+				nd.setPhamViTruyCap(phamvi);
+				nd.setIsDelete(isdelete);
+				kq.add(nd);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return kq;
+	}
 	
+
 	public static void main(String[] args) {
-		int kq = NguoiDungDAO.getintance().updateByCondition("ND1", "30012004", "3001");
-		System.out.println(kq);
+		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectByCondition();
+		for (NguoiDung nguoiDung : nd) {
+			System.out.println(nguoiDung.toString());
+		}
 	}
 }

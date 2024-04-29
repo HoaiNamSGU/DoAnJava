@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import view.Nhacungcap;
 import view.NhapHang;
 import view.PhieuXuat;
+import view.TaiKhoanView;
 import view.XuatHang;
 import view.login;
 import view.mainView;
@@ -19,10 +20,12 @@ public class mainMouseListener implements MouseListener {
 	public mainView view;
 	public static JLabel lastClickedLabel;
 	private static PhieuXuat PhieuXuat;
+	
 	public mainMouseListener(mainView view) {
 		this.view = view;
 	}
-
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		JLabel clickedLabel = (JLabel) e.getSource();
@@ -79,6 +82,14 @@ public class mainMouseListener implements MouseListener {
 			view.panel_center.add(view.cuahangview);
 			view.panel_center.setVisible(true);
 		}
+        else if(clickedLabel.getText().equals("Tài khoản"))
+        {
+        	view.panel_center.setVisible(false);
+			view.panel_center.removeAll();
+			view.panel_center.add(new TaiKhoanView());
+			view.panel_center.setVisible(true);
+			view.jlabel_sanpham.setForeground(Color.BLACK);
+        }
         else if(clickedLabel.getText().equals("Thông tin tài khoản"))
         {
         	view.panel_center.setVisible(false);

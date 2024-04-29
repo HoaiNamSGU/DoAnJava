@@ -62,6 +62,8 @@ public class mainView extends JFrame {
 	public static NguoiDung nguoidung = new NguoiDung();
 	public static NhanVien nhanvien = new NhanVien();
 	public DoiThongTinUser user = new DoiThongTinUser();
+	public JPanel panel_menu;
+	public JPanel panel_west;
 	
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,10 +100,13 @@ public class mainView extends JFrame {
 		laptopview.table.getColumnModel().getColumn(6).setPreferredWidth(45);
 		laptopview.table.getColumnModel().getColumn(7).setPreferredWidth(73);
 		panel_center.add(laptopview);
-
-		JPanel panel_menu = new JPanel(new GridLayout(9,1));
+		
+		panel_west = new JPanel();
+		panel_west.setLayout(new BorderLayout());
+		getContentPane().add(panel_west,BorderLayout.WEST);
+		panel_menu = new JPanel(new GridLayout(9,1));
 		panel_menu.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
-		getContentPane().add(panel_menu,BorderLayout.WEST);
+		//getContentPane().add(panel_menu,BorderLayout.WEST);
 		//panel_menu.setBounds(0, 0, 197, 763);
 		//panel_menu.setSize(197,763);
 		panel_menu.setBackground(new Color(0, 128, 192));
@@ -194,7 +199,8 @@ public class mainView extends JFrame {
 		jlabel_thongke.addMouseListener(mouse);
 		jlabel_doiThongtin.addMouseListener(mouse);
 		jlabel_dangxuat.addMouseListener(mouse);
-
+		
+		panel_west.add(panel_menu,BorderLayout.CENTER);
 		this.setVisible(true);
 		//this.setResizable(false);
 	}
@@ -324,5 +330,21 @@ public class mainView extends JFrame {
 			tmp.addItem(string);
 		}
 		return tmp;
+	}
+	
+	public void addLabel()
+	{
+		panel_menu.setLayout(new GridLayout(10,1));
+		panel_menu.add(lblNewLabel);
+		panel_menu.add(jlabel_sanpham);
+		panel_menu.add(jlabel_nhacungcap);
+		panel_menu.add(jlabel_nhaphang);
+		panel_menu.add(jlabel_cuahang);
+		panel_menu.add(jlabel_xuathang);
+		panel_menu.add(jlabel_taikhoan);
+		panel_menu.add(jlabel_thongke);
+		panel_menu.add(jlabel_doiThongtin);
+		panel_menu.add(jlabel_dangxuat);
+		
 	}
 }

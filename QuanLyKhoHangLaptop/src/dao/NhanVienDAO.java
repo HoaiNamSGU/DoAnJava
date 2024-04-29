@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 
 import database.JDBCUtil;
+import model.NguoiDung;
 import model.NhanVien;
 public class NhanVienDAO implements DAOInterface<NhanVien>{
 	
@@ -143,6 +144,20 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 		return nv;
 	}
 	
+	public ArrayList<NhanVien> selectByCondition(ArrayList<NguoiDung> nd) {
+		ArrayList<NhanVien> arr = NhanVienDAO.getintance().selectAll();
+		ArrayList<NhanVien> nv = new ArrayList<NhanVien>();
+		for (NhanVien nhanVien : arr) {
+			for (NguoiDung nguoidung : nd) {
+				if(nhanVien.getMaNguoiDung().equals(nguoidung.getMaNguoiDung()))
+				{
+					nv.add(nhanVien);
+				}
+			}
+		}
+		return nv;
+	}
+	
 	
 	@Override
 	public ArrayList<NhanVien> selectByCondition(String condition) {
@@ -151,7 +166,10 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 	}
 
 	public static void main(String[] args) {
-		NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung","ND1");
-		System.out.println(nv.toString());
+		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectByCondition();
+		ArrayList<NhanVien> nv = NhanVienDAO.getintance().selectByCondition(nd);
+		for (NhanVien nhanVien : nv) {
+			System.out.println(nhanVien.toString());
+		}
 	}
 }

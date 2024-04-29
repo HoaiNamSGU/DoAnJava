@@ -283,7 +283,7 @@ public class laptopview extends JPanel {
 				
 		comboBox_Hang = new JComboBox<String>();
 		comboBox_Hang = addItem("Hang");
-		jpanel_Hang.add(comboBox_Hang,BorderLayout.CENTER);
+		//jpanel_Hang.add(comboBox_Hang,BorderLayout.CENTER);
 		comboBox_Hang.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_Hang.setBackground(Color.WHITE);
 				
@@ -301,7 +301,7 @@ public class laptopview extends JPanel {
 		this.add(scrollPane,BorderLayout.CENTER);
 		
 		table = new JTable();
-		table = SanPham();
+		table = TaiKhoan();
 		table.setFont(new Font("Arial", Font.PLAIN, 14));
 		JTableHeader header = table.getTableHeader();
 		header.setFont(new Font("Arial", Font.BOLD, 14));
@@ -320,9 +320,9 @@ public class laptopview extends JPanel {
 	}
 
 	
-	public JTable SanPham() {
+	public JTable TaiKhoan() {
 		ArrayList<Laptop> listLaptop = LaptopDAO.getintance().selectAll();
-
+		
 		data = new Object[listLaptop.size()][9];
 		for (int i = 0; i < listLaptop.size(); i++) {
 			Laptop t = listLaptop.get(i);
