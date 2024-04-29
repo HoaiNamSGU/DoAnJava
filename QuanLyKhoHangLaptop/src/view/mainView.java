@@ -59,12 +59,13 @@ public class mainView extends JFrame {
 	
 	public laptopview laptopview = new laptopview();
 	public CuaHangView cuahangview = new CuaHangView();
-	public NguoiDung nguoidung = new NguoiDung();
-	public NhanVien nhanvien = new NhanVien();
+	public static NguoiDung nguoidung = new NguoiDung();
+	public static NhanVien nhanvien = new NhanVien();
+	public DoiThongTinUser user = new DoiThongTinUser();
 	
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(1400, 800);
+		this.setSize(1300, 800);
 		this.setLocationRelativeTo(null);
 		this.setTitle("màn hình chính");
 		getContentPane().setLayout(new BorderLayout());

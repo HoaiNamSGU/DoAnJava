@@ -13,7 +13,7 @@ import view.PhieuXuat;
 import view.XuatHang;
 import view.login;
 import view.mainView;
-
+import view.DoiThongTinUser;
 public class mainMouseListener implements MouseListener {
 
 	public mainView view;
@@ -83,7 +83,9 @@ public class mainMouseListener implements MouseListener {
         {
         	view.panel_center.setVisible(false);
 			view.panel_center.removeAll();
+			view.panel_center.add(view.user);
 			view.panel_center.setVisible(true);
+			view.user.setJlabel(view.nhanvien, view.nguoidung);
 			view.jlabel_sanpham.setForeground(Color.BLACK);
         }
         else if(clickedLabel.getText().equals("Đăng xuất"))
