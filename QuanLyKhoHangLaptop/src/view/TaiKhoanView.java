@@ -114,157 +114,8 @@ public class TaiKhoanView extends JPanel {
 		panel_border_timKiem.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tìm kiếm",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
-		
-		
-		
-
-		String[] combo = { "Tất cả", "Windows", "MacOS"};
-				
-		String ram[] = {"Tất cả","4 GB","8 GB","16 GB","32 GB","64 GB","128 GB"};
-				
-		String rom[] = {"Tất cả","256 GB","512 GB","1 TB","2 TB","4 TB"};
-				
-		String s[] = {"Tất cả","Dưới 10 triệu","10-15 triệu","15-20 triệu","20-30 triệu","30-50 triệu","Hơn 50 triệu"};
-				GridBagLayout gbl_panel_border_timKiem = new GridBagLayout();
-				gbl_panel_border_timKiem.columnWidths = new int[]{96, 96, 96, 96, 96, 0};
-				gbl_panel_border_timKiem.rowHeights = new int[]{40, 40, 0};
-				gbl_panel_border_timKiem.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-				gbl_panel_border_timKiem.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-				panel_border_timKiem.setLayout(gbl_panel_border_timKiem);
-				comboBox_search = new JComboBox<String>(combo);
-				comboBox_search.setBackground(new Color(255, 255, 255));
-				comboBox_search.setFont(new Font("Arial", Font.PLAIN, 14));
-				
-				JPanel jpanel_search = new JPanel();
-				jpanel_search.setLayout(new BorderLayout(0, 0));
-				JLabel jlabel_search = new JLabel("Hệ điều hành");
-				jlabel_search.setFont(new Font("Tahoma", Font.PLAIN, 14));
-				jpanel_search.add(jlabel_search, BorderLayout.NORTH);
-				jpanel_search.add(comboBox_search, BorderLayout.CENTER);
-				GridBagConstraints gbc_jpanel_search = new GridBagConstraints();
-				gbc_jpanel_search.fill = GridBagConstraints.BOTH;
-				gbc_jpanel_search.insets = new Insets(0, 0, 5, 5);
-				gbc_jpanel_search.gridx = 0;
-				gbc_jpanel_search.gridy = 0;
-				panel_border_timKiem.add(jpanel_search, gbc_jpanel_search);
-				
-				textField = new JTextField();
-				textField.setColumns(20);
-				GridBagConstraints gbc_textField = new GridBagConstraints();
-				gbc_textField.fill = GridBagConstraints.BOTH;
-				gbc_textField.insets = new Insets(0, 0, 5, 5);
-				gbc_textField.gridx = 1;
-				gbc_textField.gridy = 0;
-				gbc_textField.gridwidth = 2;
-				panel_border_timKiem.add(textField, gbc_textField);
-				
-						jbutton_refesh = new JButton(source.icon_refresh);
-						jbutton_refesh.setBackground(new Color(255, 255, 255));
-						GridBagConstraints gbc_jbutton_refesh = new GridBagConstraints();
-						gbc_jbutton_refesh.anchor = GridBagConstraints.EAST;
-						gbc_jbutton_refesh.fill = GridBagConstraints.VERTICAL;
-						gbc_jbutton_refesh.insets = new Insets(0, 0, 5, 5);
-						gbc_jbutton_refesh.gridx = 3;
-						gbc_jbutton_refesh.gridy = 0;
-						panel_border_timKiem.add(jbutton_refesh, gbc_jbutton_refesh);
-				
-				jbutton_Sreach = new JButton("Tìm kiếm");
-				jbutton_Sreach.setBackground(new Color(255, 255, 255));
-				jbutton_Sreach.setBounds(573, 31, 107, 33);
-				GridBagConstraints gbc_jbutton_Sreach = new GridBagConstraints();
-				gbc_jbutton_Sreach.anchor = GridBagConstraints.EAST;
-				gbc_jbutton_Sreach.fill = GridBagConstraints.VERTICAL;
-				gbc_jbutton_Sreach.insets = new Insets(0, 0, 5, 0);
-				gbc_jbutton_Sreach.gridx = 4;
-				gbc_jbutton_Sreach.gridy = 0;
-				panel_border_timKiem.add(jbutton_Sreach, gbc_jbutton_Sreach);
-				
-				
-				JLabel lblHng = new JLabel("Hãng");
-				lblHng.setFont(new Font("Arial", Font.PLAIN, 14));
-				
-				JPanel  jpanel_Hang = new JPanel(new BorderLayout());
-				jpanel_Hang.add(lblHng,BorderLayout.NORTH);
-				GridBagConstraints gbc_jpanel_Hang = new GridBagConstraints();
-				gbc_jpanel_Hang.fill = GridBagConstraints.BOTH;
-				gbc_jpanel_Hang.insets = new Insets(0, 0, 0, 5);
-				gbc_jpanel_Hang.gridx = 0;
-				gbc_jpanel_Hang.gridy = 1;
-				panel_border_timKiem.add(jpanel_Hang, gbc_jpanel_Hang);
-	
-				
-				JLabel lblNewLabel = new JLabel("CPU");
-				lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-				
-				JPanel jpanel_CPU = new JPanel(new BorderLayout());
-				jpanel_CPU.add(lblNewLabel, BorderLayout.NORTH);
-				GridBagConstraints gbc_jpanel_CPU = new GridBagConstraints();
-				gbc_jpanel_CPU.fill = GridBagConstraints.BOTH;
-				gbc_jpanel_CPU.insets = new Insets(0, 0, 0, 5);
-				gbc_jpanel_CPU.gridx = 1;
-				gbc_jpanel_CPU.gridy = 1;
-				panel_border_timKiem.add(jpanel_CPU, gbc_jpanel_CPU);
-				comboBox_Ram = new JComboBox<String>(ram);
-				comboBox_Ram.setFont(new Font("Arial", Font.PLAIN, 14));
-				comboBox_Ram.setBackground(Color.WHITE);
-				
-				JLabel lblRam = new JLabel("Ram");
-				lblRam.setFont(new Font("Arial", Font.PLAIN, 14));
-				
-				JPanel jpanel_Ram = new JPanel(new BorderLayout());
-				jpanel_Ram.add(lblRam,  BorderLayout.NORTH);
-				jpanel_Ram.add(comboBox_Ram, BorderLayout.CENTER);
-				GridBagConstraints gbc_jpanel_Ram = new GridBagConstraints();
-				gbc_jpanel_Ram.fill = GridBagConstraints.BOTH;
-				gbc_jpanel_Ram.insets = new Insets(0, 0, 0, 5);
-				gbc_jpanel_Ram.gridx = 2;
-				gbc_jpanel_Ram.gridy = 1;
-				panel_border_timKiem.add(jpanel_Ram, gbc_jpanel_Ram);
-				comboBox_Rom = new JComboBox<String>(rom);
-				comboBox_Rom.setFont(new Font("Arial", Font.PLAIN, 14));
-				comboBox_Rom.setBackground(Color.WHITE);
-				
-				JLabel lblBNh = new JLabel("Bộ nhớ");
-				lblBNh.setFont(new Font("Arial", Font.PLAIN, 14));
-				
-				JPanel jpanel_Rom = new JPanel(new BorderLayout());
-				jpanel_Rom.add(lblBNh,BorderLayout.NORTH);
-				jpanel_Rom.add(comboBox_Rom,BorderLayout.CENTER);
-				GridBagConstraints gbc_jpanel_Rom = new GridBagConstraints();
-				gbc_jpanel_Rom.fill = GridBagConstraints.BOTH;
-				gbc_jpanel_Rom.insets = new Insets(0, 0, 0, 5);
-				gbc_jpanel_Rom.gridx = 3;
-				gbc_jpanel_Rom.gridy = 1;
-				panel_border_timKiem.add(jpanel_Rom, gbc_jpanel_Rom);
-				comboBox_Gia = new JComboBox<String>(s);
-				comboBox_Gia.setFont(new Font("Arial", Font.PLAIN, 14));
-				comboBox_Gia.setBackground(Color.WHITE);
-				
-				
-				JLabel lblGi = new JLabel("Giá");
-				lblGi.setFont(new Font("Arial", Font.PLAIN, 14));
-				
-				JPanel jpanel_Gia = new JPanel(new BorderLayout());
-				jpanel_Gia.add(lblGi, BorderLayout.NORTH);
-				jpanel_Gia.add(comboBox_Gia,BorderLayout.CENTER);
-				GridBagConstraints gbc_jpanel_Gia = new GridBagConstraints();
-				gbc_jpanel_Gia.fill = GridBagConstraints.BOTH;
-				gbc_jpanel_Gia.gridx = 4;
-				gbc_jpanel_Gia.gridy = 1;
-				panel_border_timKiem.add(jpanel_Gia, gbc_jpanel_Gia);
-				
-				
-		comboBox_Hang = new JComboBox<String>();
-		comboBox_Hang = addItem("Hang");
-		comboBox_Hang.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_Hang.setBackground(Color.WHITE);
-				
-		comboBox_CPU = new JComboBox<String>();
-		comboBox_CPU = addItem("CPU");
-		
-		comboBox_CPU.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_CPU.setBackground(Color.WHITE);
 		jpanel_North.add(panel_border_timKiem);
+		
 		
 		
 		scrollPane = new JScrollPane();
@@ -328,25 +179,34 @@ public class TaiKhoanView extends JPanel {
 	
 
 	
-	public void updateTableData( ArrayList<Laptop> listLaptop) {
+	public void updateTableData() {
 	  
-	    // Tạo lại mảng dữ liệu và cập nhật bảng
-	    Object newData[][] = new Object[listLaptop.size()][9];
-	    for (int i = 0; i < listLaptop.size(); i++) {
-	        Laptop t = listLaptop.get(i);
-	        newData[i][0] = t.getMaLaptop();
-	        newData[i][1] = t.getTenLaptop();
-	        newData[i][2] = t.getSoLuong();
-	        DecimalFormat df = new DecimalFormat("#");
-	        String formattedNumber = df.format(t.getGia());
-	        newData[i][3] = formattedNumber;
-	        newData[i][4] = t.getCPU();
-	        newData[i][5] = t.getRam();
-	        newData[i][6] = t.getRom();
-	        newData[i][7] = t.getHeDieuHanh();
-	        newData[i][8] = t.getMaNhaCungCap();
-	    }
-	    String column[] = { "Id", "Tên laptop", "Số lượng", "Giá", "CPU", "Ram", "Bộ nhớ", "Hệ điều hành","Mã nhà cung cấp" };
+	    ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectByCondition();
+		ArrayList<NhanVien> nv = NhanVienDAO.getintance().selectByCondition(nd);
+		Object newData[][] = new Object[nd.size()][9];
+		for (int i = 0; i < nd.size(); i++) {
+			NhanVien nhanvien = nv.get(i);
+			NguoiDung nguoidung = nd.get(i);
+			newData[i][0] = nhanvien.getMaNhanVien();
+			newData[i][1] = nhanvien.getTenNhanVien();
+			newData[i][2] = nhanvien.getNgaySinh();
+			if(nhanvien.getGioiTinh()==1)
+			{
+				newData[i][3] = "nam";
+			}
+			else if(nhanvien.getGioiTinh()==0)
+			{
+				newData[i][3] = "nữ";
+			}
+			
+			newData[i][4] = nhanvien.getSDT();
+			newData[i][5] = nhanvien.getMaNguoiDung();
+			newData[i][6] = nguoidung.getTaiKhoan();
+			newData[i][7] = nguoidung.getMatKhau();
+			newData[i][8] = nguoidung.getPhamViTruyCap();
+		}
+		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản", "Mật khẩu", "Quyền truy cập"};
+		
 	    // Cập nhật mô hình của bảng
 	    model.setDataVector(newData, column);
 	    setKhoangCachTable();
@@ -371,121 +231,7 @@ public class TaiKhoanView extends JPanel {
 		table.getColumnModel().getColumn(7).setPreferredWidth(100);
 	}
 	
-	public ArrayList<Laptop> select_search_laptop(ArrayList<Laptop> list,String s)
-	{
-		s=s.toUpperCase();
-		ArrayList<Laptop> arr = new ArrayList<Laptop>();
-		for (Laptop laptop : list) {
-			String tmp = laptop.getMaLaptop()+" "+laptop.getTenLaptop()+" "+laptop.getCPU()+" "+laptop.getGPU()+" "+laptop.getRam()+" "
-			    +laptop.getRom()+" "+laptop.getManHinh()+" "+laptop.getHeDieuHanh()+" "+laptop.getHang()+" "+laptop.getNamSanXuat()
-			    +" "+laptop.getSoLuong()+" "+laptop.getGia();
-			tmp=tmp.toUpperCase();
-			if(tmp.indexOf(s)!=-1)
-			{
-				arr.add(laptop);
-			}
-		}
-		return arr;
-	}
 	
 	
-	public JComboBox<String> addItem(String s)
-	{
-		ArrayList<String> arr = LaptopDAO.getintance().getColumn(s);
-		JComboBox<String> tmp = new JComboBox<String>();
-		tmp.addItem("Tất cả");
-		for (String string : arr) {
-			tmp.addItem(string);
-		}
-		return tmp;
-	}
-	
-	
-	public void update_form_comboBoxGia()
-	{
-		ArrayList<Laptop> laptop = LaptopDAO.getintance().selectAll();
-		ArrayList<Laptop> lt = new ArrayList<Laptop>();
-		if(comboBox_Gia.getSelectedIndex()==0)
-		{
-			updateTableData(laptop);
-			lt = select_search_laptop(laptop, textField.getText());
-			updateTableData(lt);
-		}
-		else if(comboBox_Gia.getSelectedIndex()==1)
-		{
-			
-			for (Laptop laptop2 : laptop) {
-				if(laptop2.getGia()<10000000)
-				{
-					System.out.println(laptop2.toString());
-					lt.add(laptop2);
-				}
-			}
-			updateTableData(lt);
-			ArrayList<Laptop> lt3 = select_search_laptop(lt, textField.getText());
-			updateTableData(lt3);
-		}
-		else if(comboBox_Gia.getSelectedIndex()==2)
-		{
-			for (Laptop laptop2 : laptop) {
-				if(laptop2.getGia()<15000000 && laptop2.getGia()>=10000000)
-				{
-					lt.add(laptop2);
-				}
-			}
-			updateTableData(lt);
-			ArrayList<Laptop> lt3 = select_search_laptop(lt, textField.getText());
-			updateTableData(lt3);
-		}
-		else if(comboBox_Gia.getSelectedIndex()==3)
-		{
-			for (Laptop laptop2 : laptop) {
-				if(laptop2.getGia()<20000000 && laptop2.getGia()>=15000000)
-				{
-					lt.add(laptop2);
-				}
-			}
-			updateTableData(lt);
-			ArrayList<Laptop> lt3 = select_search_laptop(lt, textField.getText());
-			updateTableData(lt3);
-		}
-		else if(comboBox_Gia.getSelectedIndex()==4)
-		{
-			for (Laptop laptop2 : laptop) {
-				if(laptop2.getGia()>=20000000 && laptop2.getGia()<30000000)
-				{
-					lt.add(laptop2);
-				}
-			}
-			updateTableData(lt);
-			ArrayList<Laptop> lt3 = select_search_laptop(lt, textField.getText());
-			updateTableData(lt3);
-		}
-		else if(comboBox_Gia.getSelectedIndex()==5)
-		{
-			for (Laptop laptop2 : laptop) {
-				if(laptop2.getGia()>=30000000 && laptop2.getGia()<50000000)
-				{
-					lt.add(laptop2);
-				}
-			}
-			updateTableData(lt);
-			ArrayList<Laptop> lt3 = select_search_laptop(lt, textField.getText());
-			updateTableData(lt3);
-		}
-		else if(comboBox_Gia.getSelectedIndex()==6)
-		{
-			for (Laptop laptop2 : laptop) {
-				if(laptop2.getGia()>=50000000)
-				{
-					lt.add(laptop2);
-				}
-			}
-			updateTableData(lt);
-			ArrayList<Laptop> lt3 = select_search_laptop(lt, textField.getText());
-			updateTableData(lt3);
-		}
-	}
-	 
 	
 }

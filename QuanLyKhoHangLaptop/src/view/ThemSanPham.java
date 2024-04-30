@@ -22,6 +22,9 @@ import model.Laptop;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 
 public class ThemSanPham extends JFrame {
@@ -80,91 +83,6 @@ public class ThemSanPham extends JFrame {
 		lblNewLabel.setBackground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 22));
 		jpanel_title.add(lblNewLabel);
-	
-		
-		JLabel jlabel_masanpham = new JLabel("Mã sản phẩm");
-		jlabel_masanpham.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_masanpham);
-		
-		jtextField_masanpham = new JTextField();
-		jtextField_masanpham.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jtextField_masanpham);
-		jtextField_masanpham.setColumns(10);
-		
-		JLabel jlabel_tensanpham = new JLabel("Tên sản phẩm");
-		jlabel_tensanpham.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_tensanpham);
-		
-		jtextField_tensanpham = new JTextField();
-		jtextField_tensanpham.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_tensanpham.setColumns(10);
-		//contentPane.add(jtextField_tensanpham);
-		
-		JLabel jlabel_CPU = new JLabel("CPU");
-		jlabel_CPU.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_CPU);
-		
-		jtextField_CPU = new JTextField();
-		jtextField_CPU.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_CPU.setColumns(10);
-		//contentPane.add(jtextField_CPU);
-		
-		JLabel jlabel_GPU = new JLabel("GPU");
-		jlabel_GPU.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_GPU);
-		
-		jtextField_GPU = new JTextField();
-		jtextField_GPU.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_GPU.setColumns(10);
-		//contentPane.add(jtextField_GPU);
-		
-		JLabel jlabel_Ram = new JLabel("Ram");
-		jlabel_Ram.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_Ram);
-		
-		jtextField_manhinh = new JTextField();
-		jtextField_manhinh.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_manhinh.setColumns(10);
-		//contentPane.add(jtextField_manhinh);
-		
-		jtextField_Hang = new JTextField();
-		jtextField_Hang.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_Hang.setColumns(10);
-		//contentPane.add(jtextField_Hang);
-		
-		jtextField_hedieuhanh = new JTextField();
-		jtextField_hedieuhanh.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_hedieuhanh.setColumns(10);
-		//contentPane.add(jtextField_hedieuhanh);
-		
-		jtextField_gia = new JTextField();
-		jtextField_gia.setFont(new Font("Arial", Font.PLAIN, 16));
-		jtextField_gia.setText("0");
-		jtextField_gia.setColumns(10);
-		//contentPane.add(jtextField_gia);
-		
-		JLabel jlabel_Rom = new JLabel("Rom");
-		jlabel_Rom.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_Rom);
-		
-		JLabel jlabel_manhinh = new JLabel("Màn hình");
-		jlabel_manhinh.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_manhinh);
-		
-		JLabel jlabel_hang = new JLabel("Hãng");
-		jlabel_hang.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_hang);
-		
-		JLabel jlabel_hedieuhanh = new JLabel("Hệ điều hành");
-		jlabel_hedieuhanh.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_hedieuhanh);
-		
-		JLabel jlabel_namsanxuat = new JLabel("Năm sản xuất");
-		jlabel_namsanxuat.setFont(new Font("Arial", Font.PLAIN, 16));
-		//contentPane.add(jlabel_namsanxuat);
-		
-		JLabel jlabel_gia = new JLabel("Giá");
-		jlabel_gia.setFont(new Font("Arial", Font.PLAIN, 16));
 		//contentPane.add(jlabel_gia);
 		
 		jbutton_xacnhan = new JButton("Xác nhận");
@@ -180,32 +98,16 @@ public class ThemSanPham extends JFrame {
 		//contentPane.add(jbutton_huybo);
 		
 		String Ram[] = {"4 GB", "8 GB", "16 GB","32 GB","64 GB", "128 GB", "256 GB"};
-		comboBox_Ram = new JComboBox<String>(Ram);
-		comboBox_Ram.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBox_Ram.setBackground(Color.WHITE);
 		//contentPane.add(comboBox_Ram);
 		
 		String Rom [] = {"64 GB","128 GB","256 GB","512 GB","1 TB","2 TB", "4 TB"};
-		comboBox_Rom = new JComboBox<String>(Rom);
-		comboBox_Rom.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBox_Rom.setBackground(Color.WHITE);
 		//contentPane.add(comboBox_Rom);
 		
 		String Nam[] = {"2024","2023","2022","2021","2020","2019","2018"};
-		comboBox_Nam = new JComboBox<String>(Nam);
-		comboBox_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBox_Nam.setBackground(Color.WHITE);
-		//contentPane.add(comboBox_Nam);
-		
-		JLabel jlabel_gia_1 = new JLabel("Mã nhà cung cấp");
-		jlabel_gia_1.setFont(new Font("Arial", Font.PLAIN, 16));
 		//contentPane.add(jlabel_gia_1);
 		
 		
 		comboBox_MaNCC = new JComboBox<String>();
-		comboBox_MaNCC = addItem("MaNhaCungCap");
-		comboBox_MaNCC.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBox_MaNCC.setBackground(Color.WHITE);
 		//contentPane.add(comboBox_MaNCC);
 		
 		panel_center = new JPanel();
@@ -215,91 +117,377 @@ public class ThemSanPham extends JFrame {
 		panel_MaLaptop = new JPanel();
 		panel_MaLaptop.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_MaLaptop);
-		panel_MaLaptop.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_MaLaptop.add(jlabel_masanpham);
-		panel_MaLaptop.add(jtextField_masanpham);
+		GridBagLayout gbl_panel_MaLaptop = new GridBagLayout();
+		gbl_panel_MaLaptop.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_MaLaptop.rowHeights = new int[]{68, 0};
+		gbl_panel_MaLaptop.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_MaLaptop.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_MaLaptop.setLayout(gbl_panel_MaLaptop);
+		
+			
+			JLabel jlabel_masanpham = new JLabel("Mã sản phẩm");
+			jlabel_masanpham.setHorizontalAlignment(SwingConstants.CENTER);
+			jlabel_masanpham.setFont(new Font("Arial", Font.PLAIN, 16));
+			GridBagConstraints gbc_jlabel_masanpham = new GridBagConstraints();
+			gbc_jlabel_masanpham.anchor = GridBagConstraints.EAST;
+			gbc_jlabel_masanpham.fill = GridBagConstraints.VERTICAL;
+			gbc_jlabel_masanpham.insets = new Insets(0, 0, 0, 5);
+			gbc_jlabel_masanpham.gridx = 0;
+			gbc_jlabel_masanpham.gridy = 0;
+			panel_MaLaptop.add(jlabel_masanpham, gbc_jlabel_masanpham);
+		//contentPane.add(jlabel_masanpham);
+		
+		jtextField_masanpham = new JTextField();
+		jtextField_masanpham.setFont(new Font("Arial", Font.PLAIN, 16));
+		//contentPane.add(jtextField_masanpham);
+		jtextField_masanpham.setColumns(10);
+		GridBagConstraints gbc_jtextField_masanpham = new GridBagConstraints();
+		gbc_jtextField_masanpham.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtextField_masanpham.gridx = 1;
+		gbc_jtextField_masanpham.gridy = 0;
+		panel_MaLaptop.add(jtextField_masanpham, gbc_jtextField_masanpham);
 		
 		
 		panel_CPU = new JPanel();
 		panel_CPU.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_CPU);
-		panel_CPU.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_CPU.add(jlabel_CPU);
-		panel_CPU.add(jtextField_CPU);
+		GridBagLayout gbl_panel_CPU = new GridBagLayout();
+		gbl_panel_CPU.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_CPU.rowHeights = new int[]{68, 0};
+		gbl_panel_CPU.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_CPU.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_CPU.setLayout(gbl_panel_CPU);
+		//contentPane.add(jtextField_tensanpham);
+		
+		JLabel jlabel_CPU = new JLabel("CPU");
+		jlabel_CPU.setHorizontalAlignment(SwingConstants.CENTER);
+		jlabel_CPU.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_CPU = new GridBagConstraints();
+		gbc_jlabel_CPU.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_CPU.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_CPU.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_CPU.gridx = 0;
+		gbc_jlabel_CPU.gridy = 0;
+		panel_CPU.add(jlabel_CPU, gbc_jlabel_CPU);
+		//contentPane.add(jlabel_CPU);
+		
+		jtextField_CPU = new JTextField();
+		jtextField_CPU.setFont(new Font("Arial", Font.PLAIN, 16));
+		jtextField_CPU.setColumns(10);
+		GridBagConstraints gbc_jtextField_CPU = new GridBagConstraints();
+		gbc_jtextField_CPU.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtextField_CPU.gridx = 1;
+		gbc_jtextField_CPU.gridy = 0;
+		panel_CPU.add(jtextField_CPU, gbc_jtextField_CPU);
 		
 		
 		panel_Ram = new JPanel();
 		panel_Ram.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_Ram);
-		panel_Ram.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_Ram.add(jlabel_Ram);
-		panel_Ram.add(comboBox_Ram);
+		GridBagLayout gbl_panel_Ram = new GridBagLayout();
+		gbl_panel_Ram.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_Ram.rowHeights = new int[]{68, 0};
+		gbl_panel_Ram.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_Ram.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_Ram.setLayout(gbl_panel_Ram);
+		//contentPane.add(jtextField_GPU);
+		
+		JLabel jlabel_Ram = new JLabel("Ram");
+		jlabel_Ram.setHorizontalAlignment(SwingConstants.CENTER);
+		jlabel_Ram.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_Ram = new GridBagConstraints();
+		gbc_jlabel_Ram.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_Ram.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_Ram.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_Ram.gridx = 0;
+		gbc_jlabel_Ram.gridy = 0;
+		panel_Ram.add(jlabel_Ram, gbc_jlabel_Ram);
+		comboBox_Ram = new JComboBox<String>(Ram);
+		comboBox_Ram.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_Ram.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_Ram = new GridBagConstraints();
+		gbc_comboBox_Ram.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_Ram.gridx = 1;
+		gbc_comboBox_Ram.gridy = 0;
+		panel_Ram.add(comboBox_Ram, gbc_comboBox_Ram);
 		
 		
 		panel_TenLap = new JPanel();
 		panel_TenLap.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_TenLap);
-		panel_TenLap.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_TenLap.add(jlabel_tensanpham);
-		panel_TenLap.add(jtextField_tensanpham);
+		GridBagLayout gbl_panel_TenLap = new GridBagLayout();
+		gbl_panel_TenLap.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_TenLap.rowHeights = new int[]{68, 0};
+		gbl_panel_TenLap.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_TenLap.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_TenLap.setLayout(gbl_panel_TenLap);
+		
+		JLabel jlabel_tensanpham = new JLabel("Tên sản phẩm");
+		jlabel_tensanpham.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_tensanpham = new GridBagConstraints();
+		gbc_jlabel_tensanpham.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_tensanpham.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_tensanpham.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_tensanpham.gridx = 0;
+		gbc_jlabel_tensanpham.gridy = 0;
+		panel_TenLap.add(jlabel_tensanpham, gbc_jlabel_tensanpham);
+		//contentPane.add(jlabel_tensanpham);
+		
+		jtextField_tensanpham = new JTextField();
+		jtextField_tensanpham.setFont(new Font("Arial", Font.PLAIN, 16));
+		jtextField_tensanpham.setColumns(10);
+		GridBagConstraints gbc_jtextField_tensanpham = new GridBagConstraints();
+		gbc_jtextField_tensanpham.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtextField_tensanpham.gridx = 1;
+		gbc_jtextField_tensanpham.gridy = 0;
+		panel_TenLap.add(jtextField_tensanpham, gbc_jtextField_tensanpham);
 		
 		
 		panel_GPU = new JPanel();
 		panel_GPU.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_GPU);
-		panel_GPU.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_GPU.add(jlabel_GPU);
-		panel_GPU.add(jtextField_GPU);
+		GridBagLayout gbl_panel_GPU = new GridBagLayout();
+		gbl_panel_GPU.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_GPU.rowHeights = new int[]{68, 0};
+		gbl_panel_GPU.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_GPU.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_GPU.setLayout(gbl_panel_GPU);
+		//contentPane.add(jtextField_CPU);
+		
+		JLabel jlabel_GPU = new JLabel("GPU");
+		jlabel_GPU.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_GPU = new GridBagConstraints();
+		gbc_jlabel_GPU.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_GPU.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_GPU.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_GPU.gridx = 0;
+		gbc_jlabel_GPU.gridy = 0;
+		panel_GPU.add(jlabel_GPU, gbc_jlabel_GPU);
+		//contentPane.add(jlabel_GPU);
+		
+		jtextField_GPU = new JTextField();
+		jtextField_GPU.setFont(new Font("Arial", Font.PLAIN, 16));
+		jtextField_GPU.setColumns(10);
+		GridBagConstraints gbc_jtextField_GPU = new GridBagConstraints();
+		gbc_jtextField_GPU.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtextField_GPU.gridx = 1;
+		gbc_jtextField_GPU.gridy = 0;
+		panel_GPU.add(jtextField_GPU, gbc_jtextField_GPU);
 		
 		panel_Rom = new JPanel();
 		panel_Rom.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_Rom);
-		panel_Rom.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_Rom.add(jlabel_Rom);
-		panel_Rom.add(comboBox_Rom);
+		GridBagLayout gbl_panel_Rom = new GridBagLayout();
+		gbl_panel_Rom.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_Rom.rowHeights = new int[]{68, 0};
+		gbl_panel_Rom.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_Rom.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_Rom.setLayout(gbl_panel_Rom);
+		//contentPane.add(jtextField_gia);
+		
+		JLabel jlabel_Rom = new JLabel("Rom");
+		jlabel_Rom.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_Rom = new GridBagConstraints();
+		gbc_jlabel_Rom.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_Rom.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_Rom.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_Rom.gridx = 0;
+		gbc_jlabel_Rom.gridy = 0;
+		panel_Rom.add(jlabel_Rom, gbc_jlabel_Rom);
+		comboBox_Rom = new JComboBox<String>(Rom);
+		comboBox_Rom.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_Rom.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_Rom = new GridBagConstraints();
+		gbc_comboBox_Rom.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_Rom.gridx = 1;
+		gbc_comboBox_Rom.gridy = 0;
+		panel_Rom.add(comboBox_Rom, gbc_comboBox_Rom);
 		
 		panel_HDH = new JPanel();
 		panel_HDH.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_HDH);
-		panel_HDH.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_HDH.add(jlabel_hedieuhanh);
-		panel_HDH.add(jtextField_hedieuhanh);
+		GridBagLayout gbl_panel_HDH = new GridBagLayout();
+		gbl_panel_HDH.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_HDH.rowHeights = new int[]{68, 0};
+		gbl_panel_HDH.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_HDH.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_HDH.setLayout(gbl_panel_HDH);
+		//contentPane.add(jlabel_hang);
+		
+		JLabel jlabel_hedieuhanh = new JLabel("Hệ điều hành");
+		jlabel_hedieuhanh.setHorizontalAlignment(SwingConstants.CENTER);
+		jlabel_hedieuhanh.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_hedieuhanh = new GridBagConstraints();
+		gbc_jlabel_hedieuhanh.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_hedieuhanh.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_hedieuhanh.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_hedieuhanh.gridx = 0;
+		gbc_jlabel_hedieuhanh.gridy = 0;
+		panel_HDH.add(jlabel_hedieuhanh, gbc_jlabel_hedieuhanh);
+		//contentPane.add(jtextField_Hang);
+		
+		jtextField_hedieuhanh = new JTextField();
+		jtextField_hedieuhanh.setFont(new Font("Arial", Font.PLAIN, 16));
+		jtextField_hedieuhanh.setColumns(10);
+		GridBagConstraints gbc_jtextField_hedieuhanh = new GridBagConstraints();
+		gbc_jtextField_hedieuhanh.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtextField_hedieuhanh.gridx = 1;
+		gbc_jtextField_hedieuhanh.gridy = 0;
+		panel_HDH.add(jtextField_hedieuhanh, gbc_jtextField_hedieuhanh);
 		
 		panel_Hang = new JPanel();
 		panel_Hang.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_Hang);
-		panel_Hang.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_Hang.add(jlabel_hang);
-		panel_Hang.add(jtextField_Hang);
+		GridBagLayout gbl_panel_Hang = new GridBagLayout();
+		gbl_panel_Hang.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_Hang.rowHeights = new int[]{68, 0};
+		gbl_panel_Hang.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_Hang.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_Hang.setLayout(gbl_panel_Hang);
+		//contentPane.add(jlabel_manhinh);
+		
+		JLabel jlabel_hang = new JLabel("Hãng");
+		jlabel_hang.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_hang = new GridBagConstraints();
+		gbc_jlabel_hang.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_hang.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_hang.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_hang.gridx = 0;
+		gbc_jlabel_hang.gridy = 0;
+		panel_Hang.add(jlabel_hang, gbc_jlabel_hang);
+		//contentPane.add(jtextField_manhinh);
+		
+		jtextField_Hang = new JTextField();
+		jtextField_Hang.setFont(new Font("Arial", Font.PLAIN, 16));
+		jtextField_Hang.setColumns(10);
+		GridBagConstraints gbc_jtextField_Hang = new GridBagConstraints();
+		gbc_jtextField_Hang.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtextField_Hang.gridx = 1;
+		gbc_jtextField_Hang.gridy = 0;
+		panel_Hang.add(jtextField_Hang, gbc_jtextField_Hang);
 		
 		
 		panel_NamSX = new JPanel();
 		panel_NamSX.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_NamSX);
-		panel_NamSX.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_NamSX.add(jlabel_namsanxuat);
-		panel_NamSX.add(comboBox_Nam);
+		GridBagLayout gbl_panel_NamSX = new GridBagLayout();
+		gbl_panel_NamSX.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_NamSX.rowHeights = new int[]{68, 0};
+		gbl_panel_NamSX.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_NamSX.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_NamSX.setLayout(gbl_panel_NamSX);
+		//contentPane.add(jlabel_hedieuhanh);
+		
+		JLabel jlabel_namsanxuat = new JLabel("Năm sản xuất");
+		jlabel_namsanxuat.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_namsanxuat = new GridBagConstraints();
+		gbc_jlabel_namsanxuat.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_namsanxuat.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_namsanxuat.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_namsanxuat.gridx = 0;
+		gbc_jlabel_namsanxuat.gridy = 0;
+		panel_NamSX.add(jlabel_namsanxuat, gbc_jlabel_namsanxuat);
+		comboBox_Nam = new JComboBox<String>(Nam);
+		comboBox_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_Nam.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_Nam = new GridBagConstraints();
+		gbc_comboBox_Nam.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_Nam.gridx = 1;
+		gbc_comboBox_Nam.gridy = 0;
+		panel_NamSX.add(comboBox_Nam, gbc_comboBox_Nam);
 		
 		panel_ManHinh = new JPanel();
 		panel_ManHinh.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_ManHinh);
-		panel_ManHinh.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_ManHinh.add(jlabel_manhinh);
-		panel_ManHinh.add(jtextField_manhinh);
+		GridBagLayout gbl_panel_ManHinh = new GridBagLayout();
+		gbl_panel_ManHinh.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_ManHinh.rowHeights = new int[]{68, 0};
+		gbl_panel_ManHinh.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_ManHinh.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_ManHinh.setLayout(gbl_panel_ManHinh);
+		//contentPane.add(jlabel_Rom);
+		
+		JLabel jlabel_manhinh = new JLabel("Màn hình");
+		jlabel_manhinh.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_manhinh = new GridBagConstraints();
+		gbc_jlabel_manhinh.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_manhinh.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_manhinh.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_manhinh.gridx = 0;
+		gbc_jlabel_manhinh.gridy = 0;
+		panel_ManHinh.add(jlabel_manhinh, gbc_jlabel_manhinh);
+		//contentPane.add(jlabel_Ram);
+		
+		jtextField_manhinh = new JTextField();
+		jtextField_manhinh.setFont(new Font("Arial", Font.PLAIN, 16));
+		jtextField_manhinh.setColumns(10);
+		GridBagConstraints gbc_jtextField_manhinh = new GridBagConstraints();
+		gbc_jtextField_manhinh.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtextField_manhinh.gridx = 1;
+		gbc_jtextField_manhinh.gridy = 0;
+		panel_ManHinh.add(jtextField_manhinh, gbc_jtextField_manhinh);
 		
 		panel_Gia = new JPanel();
 		panel_Gia.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_Gia);
-		panel_Gia.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_Gia.add(jlabel_gia);
-		panel_Gia.add(jtextField_gia);
+		GridBagLayout gbl_panel_Gia = new GridBagLayout();
+		gbl_panel_Gia.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_Gia.rowHeights = new int[]{68, 0};
+		gbl_panel_Gia.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_Gia.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_Gia.setLayout(gbl_panel_Gia);
+		//contentPane.add(jlabel_namsanxuat);
+		
+		JLabel jlabel_gia = new JLabel("Giá");
+		jlabel_gia.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_gia = new GridBagConstraints();
+		gbc_jlabel_gia.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_gia.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_gia.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_gia.gridx = 0;
+		gbc_jlabel_gia.gridy = 0;
+		panel_Gia.add(jlabel_gia, gbc_jlabel_gia);
+		//contentPane.add(jtextField_hedieuhanh);
+		
+		jtextField_gia = new JTextField();
+		jtextField_gia.setFont(new Font("Arial", Font.PLAIN, 16));
+		jtextField_gia.setText("0");
+		jtextField_gia.setColumns(10);
+		GridBagConstraints gbc_jtextField_gia = new GridBagConstraints();
+		gbc_jtextField_gia.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtextField_gia.gridx = 1;
+		gbc_jtextField_gia.gridy = 0;
+		panel_Gia.add(jtextField_gia, gbc_jtextField_gia);
 		
 		panel_MaNCC = new JPanel();
 		panel_MaNCC.setBorder(new EmptyBorder(25, 0, 0, 0));
 		panel_center.add(panel_MaNCC);
-		panel_MaNCC.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_MaNCC.add(jlabel_gia_1);
-		panel_MaNCC.add(comboBox_MaNCC);
+		GridBagLayout gbl_panel_MaNCC = new GridBagLayout();
+		gbl_panel_MaNCC.columnWidths = new int[]{130, 130, 0};
+		gbl_panel_MaNCC.rowHeights = new int[]{68, 0};
+		gbl_panel_MaNCC.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_MaNCC.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_MaNCC.setLayout(gbl_panel_MaNCC);
+		//contentPane.add(comboBox_Nam);
+		
+		JLabel jlabel_gia_1 = new JLabel("Mã nhà cung cấp");
+		jlabel_gia_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_jlabel_gia_1 = new GridBagConstraints();
+		gbc_jlabel_gia_1.anchor = GridBagConstraints.EAST;
+		gbc_jlabel_gia_1.fill = GridBagConstraints.VERTICAL;
+		gbc_jlabel_gia_1.insets = new Insets(0, 0, 0, 5);
+		gbc_jlabel_gia_1.gridx = 0;
+		gbc_jlabel_gia_1.gridy = 0;
+		panel_MaNCC.add(jlabel_gia_1, gbc_jlabel_gia_1);
+		comboBox_MaNCC = addItem("MaNhaCungCap");
+		comboBox_MaNCC.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_MaNCC.setBackground(Color.WHITE);
+		GridBagConstraints gbc_tmp = new GridBagConstraints();
+		gbc_tmp.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tmp.gridx = 1;
+		gbc_tmp.gridy = 0;
+		panel_MaNCC.add(comboBox_MaNCC, gbc_tmp);
+		
 		
 		panel_South = new JPanel();
 		contentPane.add(panel_South, BorderLayout.SOUTH);
@@ -318,8 +506,8 @@ public class ThemSanPham extends JFrame {
 	
 	public JComboBox<String> addItem(String s)
 	{
-		ArrayList<String> arr = LaptopDAO.getintance().getColumn(s);
 		JComboBox<String> tmp = new JComboBox<String>();
+		ArrayList<String> arr = LaptopDAO.getintance().getColumn(s);
 		for (String string : arr) {
 			tmp.addItem(string);
 		}

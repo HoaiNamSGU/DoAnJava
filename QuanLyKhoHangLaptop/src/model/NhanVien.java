@@ -95,5 +95,12 @@ public class NhanVien {
 		this.isDelete = isDelete;
 	}
 	
-	
+	public void setNgaySinh(int day, int month, int year)
+	{
+		long milliseconds = Date.valueOf(year + "-" + (month + 1) + "-" + day).getTime();
+        
+        // Tạo đối tượng Date từ số mili giây đã tính được
+        Date date = new Date(milliseconds);
+        NgaySinh = date;
+	}
 }

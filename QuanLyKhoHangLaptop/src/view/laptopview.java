@@ -283,7 +283,7 @@ public class laptopview extends JPanel {
 				
 		comboBox_Hang = new JComboBox<String>();
 		comboBox_Hang = addItem("Hang");
-		//jpanel_Hang.add(comboBox_Hang,BorderLayout.CENTER);
+		jpanel_Hang.add(comboBox_Hang,BorderLayout.CENTER);
 		comboBox_Hang.setFont(new Font("Arial", Font.PLAIN, 14));
 		comboBox_Hang.setBackground(Color.WHITE);
 				

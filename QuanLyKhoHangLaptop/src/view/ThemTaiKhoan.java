@@ -39,6 +39,14 @@ public class ThemTaiKhoan extends JFrame {
 	public SpinnerNumberModel dayModel;
 	public SpinnerNumberModel monthModel;
 	public SpinnerNumberModel yearModel;
+	public ButtonGroup buttonGroup;
+	public JRadioButton radioButton1;
+	public JRadioButton radioButton2;
+	public JButton button_xacnhan;
+	public JButton button_huybo;
+	private JSpinner daySpinner;
+	private JSpinner monthSpinner;
+	private JSpinner yearSpinner;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -161,17 +169,17 @@ public class ThemTaiKhoan extends JFrame {
 
         // Spinner để chọn ngày
         dayModel = new SpinnerNumberModel(1, 1, 31, 1);
-        JSpinner daySpinner = new JSpinner(dayModel);
+        daySpinner = new JSpinner(dayModel);
         daySpinner.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         // Spinner để chọn tháng
         monthModel = new SpinnerNumberModel(1, 1, 12, 1);
-        JSpinner monthSpinner = new JSpinner(monthModel);
+        monthSpinner = new JSpinner(monthModel);
         monthSpinner.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         // Spinner để chọn năm
         yearModel = new SpinnerNumberModel(Calendar.getInstance().get(Calendar.YEAR), 1900, 2100, 1);
-        JSpinner yearSpinner = new JSpinner(yearModel);
+        yearSpinner = new JSpinner(yearModel);
         yearSpinner.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         panel.add(yearSpinner);
@@ -202,13 +210,13 @@ public class ThemTaiKhoan extends JFrame {
 		gbc_panel_radio.gridy = 3;
 		panel_chinh.add(panel_radio, gbc_panel_radio);
 		
-		JRadioButton radioButton1 = new JRadioButton("Nam");
+		radioButton1 = new JRadioButton("Nam");
 		radioButton1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		radioButton1.setHorizontalAlignment(SwingConstants.CENTER);
-	    JRadioButton radioButton2 = new JRadioButton("Nữ");
+	    radioButton2 = new JRadioButton("Nữ");
 	    radioButton2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 	    radioButton2.setHorizontalAlignment(SwingConstants.CENTER);
-	    ButtonGroup buttonGroup = new ButtonGroup();
+	    buttonGroup = new ButtonGroup();
         buttonGroup.add(radioButton1);
         buttonGroup.add(radioButton2);
         panel_radio.setLayout(new GridLayout(1,2));
@@ -305,15 +313,15 @@ public class ThemTaiKhoan extends JFrame {
 		JPanel panelSouth = new JPanel();
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
 		
-		JButton btnNewButton = new JButton("Xác nhận");
-		btnNewButton.setBackground(new Color(0, 128, 192));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panelSouth.add(btnNewButton);
+		button_xacnhan = new JButton("Xác nhận");
+		button_xacnhan.setBackground(new Color(0, 128, 192));
+		button_xacnhan.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panelSouth.add(button_xacnhan);
 		
-		JButton btnNewButton_1 = new JButton("Hủy bỏ");
-		btnNewButton_1.setBackground(new Color(255, 0, 0));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panelSouth.add(btnNewButton_1);
+		button_huybo = new JButton("Hủy bỏ");
+		button_huybo.setBackground(new Color(255, 0, 0));
+		button_huybo.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panelSouth.add(button_huybo);
 		
 		JLabel lblNewLabel_6 = new JLabel("Thêm tài khoản");
 		lblNewLabel_6.setForeground(new Color(0, 128, 192));
@@ -326,5 +334,22 @@ public class ThemTaiKhoan extends JFrame {
 		this.setVisible(true);
 		
 	}
+	
+	public void setYMD_now()
+	{	
+		
+		dayModel = new SpinnerNumberModel(1, 1, 31, 1);
+        daySpinner = new JSpinner(dayModel);
+        daySpinner.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
+        // Spinner để chọn tháng
+        monthModel = new SpinnerNumberModel(1, 1, 12, 1);
+        monthSpinner = new JSpinner(monthModel);
+        monthSpinner.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+        // Spinner để chọn năm
+        yearModel = new SpinnerNumberModel(Calendar.getInstance().get(Calendar.YEAR), 1900, 2100, 1);
+        yearSpinner = new JSpinner(yearModel);
+        yearSpinner.setFont(new Font("Tahoma", Font.PLAIN, 18));
+	}
 }

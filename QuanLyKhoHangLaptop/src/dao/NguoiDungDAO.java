@@ -170,11 +170,31 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 		return kq;
 	}
 	
+	
+	public ArrayList<String> getColumn(String ColumnName)
+	{
+		ArrayList<String> column = new ArrayList<String>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "select distinct "+ColumnName+" from nguoidung";
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				column.add(rs.getString(ColumnName));
+			}
+			
+			JDBCUtil.closeConnection(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return column; 
+	}
 
 	public static void main(String[] args) {
-		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectByCondition();
-		for (NguoiDung nguoiDung : nd) {
-			System.out.println(nguoiDung.toString());
+		ArrayList<String> arr = NguoiDungDAO.getintance().getColumn("MaNguoiDung");
+		for (String string : arr) {
+			System.out.println(string);
 		}
 	}
 }

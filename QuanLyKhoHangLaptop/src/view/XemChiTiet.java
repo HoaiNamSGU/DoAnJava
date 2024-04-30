@@ -65,13 +65,6 @@ public class XemChiTiet extends JFrame {
 		JPanel jpanel_center = new JPanel();
 		jpanel_center.setLayout(new GridLayout(13,2));
 		
-		JLabel jlabel_chitiet = new JLabel("Chi tiết sản phẩm");
-		jlabel_chitiet.setForeground(new Color(0, 128, 192));
-		jlabel_chitiet.setHorizontalAlignment(SwingConstants.CENTER);
-		jlabel_chitiet.setFont(new Font("Arial", Font.BOLD, 26));
-		jlabel_chitiet.setBounds(151, 10, 330, 50);
-		contentPane.add(jlabel_chitiet,BorderLayout.NORTH);
-		
 		JLabel jlabel_malaptop = new JLabel("Mã laptop :");
 		jlabel_malaptop.setForeground(new Color(0, 128, 192));
 		jlabel_malaptop.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -248,6 +241,17 @@ public class XemChiTiet extends JFrame {
 		jpanel_center.add(jlabel_MaNCC);
 		jpanel_center.add(jlabel_MaNCC1);
 		contentPane.add(jpanel_center,BorderLayout.CENTER);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 128, 192));
+		contentPane.add(panel, BorderLayout.NORTH);
+		
+		JLabel jlabel_chitiet = new JLabel("Chi tiết sản phẩm");
+		jlabel_chitiet.setHorizontalAlignment(SwingConstants.CENTER);
+		jlabel_chitiet.setForeground(Color.WHITE);
+		jlabel_chitiet.setFont(new Font("Arial", Font.BOLD, 26));
+		jlabel_chitiet.setBackground(Color.WHITE);
+		panel.add(jlabel_chitiet);
 		
 
 		this.setVisible(true);

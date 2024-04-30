@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="controller.LaptopMouseListener"/>
-    <fullyQualifiedTypeName name="view.LaptopView"/>
-    <fullyQualifiedTypeName name="view.NhapHang"/>
     <fullyQualifiedTypeName name="view.CuaHang_View"/>
     <fullyQualifiedTypeName name="java.awt.CardLayout"/>
     <fullyQualifiedTypeName name="javax.swing.JButton"/>
@@ -34,7 +31,6 @@
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="com.mysql.cj.xdevapi.Result"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="view.DoiThongTinUser"/>
     <fullyQualifiedTypeName name="controller.ThongTinMouseListener"/>
@@ -49,15 +45,19 @@
     <fullyQualifiedTypeName name="controller.AdminMouseListener"/>
     <fullyQualifiedTypeName name="controller.MenuAdminMouseListener"/>
     <fullyQualifiedTypeName name="java.awt.GridLayout"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="model.NguoiDung"/>
-    <fullyQualifiedTypeName name="dao.NguoiDungDAO"/>
-    <fullyQualifiedTypeName name="dao.NhanVienDAO"/>
-    <fullyQualifiedTypeName name="model.NhanVien"/>
     <fullyQualifiedTypeName name="view.TaiKhoanView"/>
     <fullyQualifiedTypeName name="controller.TaiKhoanMouseListener"/>
-    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="view.ThemTaiKhoan"/>
     <fullyQualifiedTypeName name="javax.swing.border.Border"/>
     <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="model.NhanVien"/>
+    <fullyQualifiedTypeName name="model.NguoiDung"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="dao.NhanVienDAO"/>
+    <fullyQualifiedTypeName name="dao.NguoiDungDAO"/>
+    <fullyQualifiedTypeName name="javax.swing.SpinnerNumberModel"/>
 </qualifiedTypeNameHistroy>

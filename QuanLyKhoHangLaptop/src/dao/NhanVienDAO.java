@@ -20,8 +20,24 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 	
 	@Override
 	public int insert(NhanVien t) {
-		// TODO Auto-generated method stub
-		return 0;
+		int kq = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "insert into nhanvien (MaNhanVien,TenNhanVien,NgaySinh,GioiTinh,SDT,MaNguoiDung) "+
+						"values(?,?,?,?,?,?)";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setNString(1, t.getMaNhanVien());
+			pst.setString(2, t.getTenNhanVien());
+			pst.setDate(3, t.getNgaySinh());
+			pst.setInt(4, t.getGioiTinh());
+			pst.setString(5, t.getSDT());
+			pst.setString(6, t.getMaNguoiDung());
+			kq = pst.executeUpdate();
+			JDBCUtil.closeConnection(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return kq;
 	}
 
 	@Override
@@ -144,6 +160,27 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 		return nv;
 	}
 	
+	public ArrayList<String> getColumn(String ColumnName)
+	{
+		ArrayList<String> column = new ArrayList<String>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "select distinct "+ColumnName+" from nhanvien";
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				column.add(rs.getString(ColumnName));
+			}
+			
+			JDBCUtil.closeConnection(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return column; 
+	}
+	
+	
 	public ArrayList<NhanVien> selectByCondition(ArrayList<NguoiDung> nd) {
 		ArrayList<NhanVien> arr = NhanVienDAO.getintance().selectAll();
 		ArrayList<NhanVien> nv = new ArrayList<NhanVien>();
@@ -166,10 +203,9 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 	}
 
 	public static void main(String[] args) {
-		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectByCondition();
-		ArrayList<NhanVien> nv = NhanVienDAO.getintance().selectByCondition(nd);
-		for (NhanVien nhanVien : nv) {
-			System.out.println(nhanVien.toString());
+		ArrayList<String> arr = NhanVienDAO.getintance().getColumn("MaNhanVien");
+		for (String string : arr) {
+			System.out.println(string);
 		}
 	}
 }
