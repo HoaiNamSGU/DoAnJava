@@ -7,8 +7,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,9 +28,6 @@ import java.text.ParseException;
 //import java.sql.Date;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import dao.LaptopDAO;
 import dao.NguoiDungDAO;
@@ -274,8 +281,11 @@ public class TaiKhoanMouseListener implements MouseListener{
 							if(check1 == 1 && check2 ==1)
 							{
 								JOptionPane.showMessageDialog(tk, "Tài khoản đã được thêm thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+								NhanVienDAO.getintance().WriteUpDateExcel();
+								NguoiDungDAO.getintance().WriteUpDateExcel();
+								NguoiDungDAO.getintance().UpDateKetHop();
 								taikhoanview.updateTableData();
-								taikhoanview.setKhoangCach();
+								taikhoanview.setKhoangCachTable();
 							}
 							else
 							{
@@ -306,6 +316,9 @@ public class TaiKhoanMouseListener implements MouseListener{
             		 taikhoanview.model.removeRow(selectedRow);
             		 if(check1==1 && check2 ==1)
             		 {
+            			 NhanVienDAO.getintance().WriteUpDateExcel();
+            			 NguoiDungDAO.getintance().WriteUpDateExcel();
+            			 NguoiDungDAO.getintance().UpDateKetHop();
             			 JOptionPane.showMessageDialog(taikhoanview, "Tài khoản đã được xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             		 }
             		 else 
@@ -392,7 +405,7 @@ public class TaiKhoanMouseListener implements MouseListener{
             	int day = nv.getNgaySinh().getDate();
             	int month = nv.getNgaySinh().getMonth()+1;
             	int year = nv.getNgaySinh().getYear()+1900;
-            	tk.setYMD_now(day, month, year);
+            	tk.setYMD(day, month, year);
             	tk.textField_MaNV.setEditable(false);
             	tk.textField_MaND.setEditable(false);
             	
@@ -446,8 +459,11 @@ public class TaiKhoanMouseListener implements MouseListener{
     							if(check1 == 1 && check2 ==1)
     							{
     								JOptionPane.showMessageDialog(tk, "Tài khoản đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    								NhanVienDAO.getintance().WriteUpDateExcel();
+    								NguoiDungDAO.getintance().WriteUpDateExcel();
+    								NguoiDungDAO.getintance().UpDateKetHop();
     								taikhoanview.updateTableData();
-    								taikhoanview.setKhoangCach();
+    								taikhoanview.setKhoangCachTable();
     							}
     							else
     							{
@@ -466,18 +482,51 @@ public class TaiKhoanMouseListener implements MouseListener{
        	     	clickedLabel.setBackground(null);
         	}
         }
-        else if(labelText.equals("Xem chi tiết"))
-        {
-        	
-        }
-		
         else if(labelText.equals("Xuất Excel"))
         {
+        	boolean check1 = NguoiDungDAO.getintance().KetHopNguoiDungVaNhanVien();
         	
+        	if(check1 == true )
+        	{
+        		JOptionPane.showMessageDialog(taikhoanview,"Xuất file Excel thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}
+        	else
+        	{
+        		JOptionPane.showMessageDialog(taikhoanview,"Xuất file Excel thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}
         }
 		
         else if(labelText.equals("Nhập Excel"))
         {
+        	
+        	
+        	JFileChooser fileChooser = new JFileChooser();
+    		fileChooser.setDialogTitle("Chọn vị trí lưu tệp Excel");
+    		fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xlsx"));
+
+    		int userSelection = fileChooser.showSaveDialog(null);
+    		if (userSelection == JFileChooser.APPROVE_OPTION) {
+    			String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+    			ArrayList<NhanVien> nhanvien = NhanVienDAO.getintance().ReadExcelKetHop(filePath);
+            	ArrayList<NguoiDung> nguoidung = NguoiDungDAO.getintance().ReadExcelKetHop(filePath);
+            	if(nhanvien.isEmpty()==false && nguoidung.isEmpty()==false)
+            	{
+            		taikhoanview.updateTableData(nhanvien,nguoidung);
+            		JOptionPane.showMessageDialog(taikhoanview,"Nhập file Excel thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            		clickedLabel.setForeground(Color.BLACK);
+           	     	clickedLabel.setBackground(null);
+            	}
+            	else
+            	{
+            		JOptionPane.showMessageDialog(taikhoanview,"Nhập file Excel thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
+            		clickedLabel.setForeground(Color.BLACK);
+           	     	clickedLabel.setBackground(null);
+            	}
+    		}
         	
         }
         

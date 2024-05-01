@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="view.CuaHang_View"/>
-    <fullyQualifiedTypeName name="java.awt.CardLayout"/>
     <fullyQualifiedTypeName name="javax.swing.JButton"/>
     <fullyQualifiedTypeName name="view.Laptop_view"/>
     <fullyQualifiedTypeName name="dao.LaptopDAO"/>
@@ -11,7 +9,6 @@
     <fullyQualifiedTypeName name="javax.swing.BorderFactory"/>
     <fullyQualifiedTypeName name="com.mysql.jdbc.Driver"/>
     <fullyQualifiedTypeName name="controller.LaptopActionListener"/>
-    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFWorkbook"/>
     <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFSheet"/>
     <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFRow"/>
     <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
@@ -21,7 +18,6 @@
     <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.WorkbookFactory"/>
     <fullyQualifiedTypeName name="org.apache.poi.sl.usermodel.Sheet"/>
     <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.Row"/>
-    <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.CellType"/>
     <fullyQualifiedTypeName name="model.Laptop"/>
     <fullyQualifiedTypeName name="view.laptopview"/>
     <fullyQualifiedTypeName name="controller.LoginActionlistener"/>
@@ -52,12 +48,16 @@
     <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
-    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="dao.NhanVienDAO"/>
     <fullyQualifiedTypeName name="dao.NguoiDungDAO"/>
     <fullyQualifiedTypeName name="javax.swing.SpinnerNumberModel"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.CreationHelper"/>
+    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFCellStyle"/>
+    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFWorkbook"/>
+    <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.CellType"/>
     <fullyQualifiedTypeName name="model.NguoiDung"/>
+    <fullyQualifiedTypeName name="dao.NhanVienDAO"/>
     <fullyQualifiedTypeName name="model.NhanVien"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
