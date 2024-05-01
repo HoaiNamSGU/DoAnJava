@@ -48,7 +48,7 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 						",MatKhau=? "+
 						",PhamViTruyCap=? "+
 						",isDelete=? "+
-						"WHERE MaLaptop = ?";
+						"WHERE MaNguoiDung = ?";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, t.getMaNguoiDung());
 			pst.setString(2, t.getTaiKhoan());
@@ -85,14 +85,43 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 	}
 	@Override
 	public int delete(NguoiDung t) {
-		
-		return 0;
+		int ketqua = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "UPDATE nguoidung "+
+						"SET "+
+						"isDelete=1 "+
+						"WHERE MaNguoiDung= ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1,t.getMaNguoiDung());
+			ketqua = pst.executeUpdate();
+			JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketqua;
 	}
+	
+	
+	
 
 	@Override
 	public int delete(String t) {
-		
-		return 0;
+		int ketqua = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "UPDATE nguoidung "+
+						"SET "+
+						"isDelete=1 "+
+						"WHERE MaNguoiDung= ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1,t);
+			ketqua = pst.executeUpdate();
+			JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketqua;
 	}
 
 	@Override

@@ -69,6 +69,9 @@ public class DatePickerExample {
 
         panel.add(selectButton);
 
+        yearSpinner.setValue(2022);
+        monthSpinner.setValue(2);
+        daySpinner.setValue(2);
         frame.getContentPane().add(panel);
         frame.pack();
         frame.setVisible(true);
@@ -100,6 +103,8 @@ public class DatePickerExample {
             JOptionPane.showMessageDialog(null, "Invalid date!");
         }
     }
+    
+   
 }
 
 

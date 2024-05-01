@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -42,20 +43,72 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 
 	@Override
 	public int update(NhanVien t) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ketqua = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "UPDATE nhanvien "+
+						"SET "+
+						"MaNhanVien=?"+
+						",TenNhanVien=? "+
+						",NgaySinh=? "+
+						",GioiTinh=? "+
+						",SDT=? "+
+						",MaNguoiDung=? "+
+						",isDelete=? "+
+						"WHERE MaNhanVien = ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, t.getMaNhanVien());
+			pst.setString(2, t.getTenNhanVien());
+			pst.setDate(3, t.getNgaySinh());
+			pst.setInt(4,t.getGioiTinh());
+			pst.setString(5, t.getSDT());
+			pst.setString(6, t.getMaNguoiDung());
+			pst.setInt(7, t.getIsDelete());
+			pst.setString(8,t.getMaNhanVien());
+			ketqua = pst.executeUpdate();
+			JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketqua;
 	}
 
 	@Override
 	public int delete(NhanVien t) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ketqua = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "UPDATE nhanvien "+
+						"SET "+
+						"isDelete=1 "+
+						"WHERE MaNhanVien = ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1,t.getMaNhanVien());
+			ketqua = pst.executeUpdate();
+			JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketqua;
 	}
 
 	@Override
 	public int delete(String t) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ketqua = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "UPDATE nhanvien "+
+						"SET "+
+						"isDelete=1 "+
+						"WHERE MaNhanVien = ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1,t);
+			ketqua = pst.executeUpdate();
+			JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketqua;
 	}
 
 	@Override

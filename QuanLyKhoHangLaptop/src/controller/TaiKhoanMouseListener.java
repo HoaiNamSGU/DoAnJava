@@ -36,7 +36,9 @@ import view.XemChiTiet;
 public class TaiKhoanMouseListener implements MouseListener{
 
 	private TaiKhoanView taikhoanview ;
-	
+	private ThemTaiKhoan tk;
+	private NhanVien nv;
+	private NguoiDung nd;
 	public TaiKhoanMouseListener(TaiKhoanView taikhoanview) {
 		this.taikhoanview = taikhoanview;
 	}
@@ -54,7 +56,7 @@ public class TaiKhoanMouseListener implements MouseListener{
        
         if(labelText.equals("Thêm"))
         {
-        	ThemTaiKhoan tk = new ThemTaiKhoan();
+        	tk = new ThemTaiKhoan();
         	tk.addWindowListener(new WindowAdapter() {
     		    @Override
     		    public void windowClosing(WindowEvent e) {
@@ -63,8 +65,21 @@ public class TaiKhoanMouseListener implements MouseListener{
     		    }
     		});
         	
-        	NhanVien nv = new NhanVien();
-        	NguoiDung nd = new NguoiDung();
+        	tk.button_huybo.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(e.getActionCommand().equals("Hủy bỏ"))
+					{
+						tk.dispose();
+						clickedLabel.setForeground(Color.BLACK);
+        		        clickedLabel.setBackground(null);
+					}
+				}
+			});
+        	
+        	nv = new NhanVien();
+        	nd = new NguoiDung();
             
             tk.button_xacnhan.addActionListener(new ActionListener() {
 				
@@ -242,7 +257,7 @@ public class TaiKhoanMouseListener implements MouseListener{
 			        	if(tk.textField_TaiKhoan.getText().equals("")||tk.textField_MatKhau.getText().equals("")||tk.textField_TaiKhoan.getText().equals("")&&tk.textField_MatKhau.getText().equals(""))
 			        	{
 			        		nd.setTaiKhoan(nv.getMaNguoiDung());
-			        		nd.setMatKhau("12345");
+			        		nd.setMatKhau("1234");
 			        	}
 			        	else
 			        	{
@@ -260,6 +275,7 @@ public class TaiKhoanMouseListener implements MouseListener{
 							{
 								JOptionPane.showMessageDialog(tk, "Tài khoản đã được thêm thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 								taikhoanview.updateTableData();
+								taikhoanview.setKhoangCach();
 							}
 							else
 							{
@@ -270,14 +286,185 @@ public class TaiKhoanMouseListener implements MouseListener{
 					}
 				}
 			});
+            
         }
         else if(labelText.equals("Xóa"))
         {
-        	
+        	int selectedRow = taikhoanview.table.getSelectedRow();
+    		if(selectedRow != -1 )
+    		{	
+    			String maNhanVien = (String) taikhoanview.table.getValueAt(selectedRow, 0);
+    			nv = NhanVienDAO.getintance().selectById(maNhanVien);
+    			int result = JOptionPane.showConfirmDialog(taikhoanview ,
+                        "Bạn có chắc muốn xóa tài khoản ?",
+                        "Xác nhận",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+            	 if(result == JOptionPane.YES_OPTION){
+            		 int check1 = NhanVienDAO.getintance().delete(nv.getMaNhanVien());
+            		 int check2 = NguoiDungDAO.getintance().delete(nv.getMaNguoiDung());
+            		 taikhoanview.model.removeRow(selectedRow);
+            		 if(check1==1 && check2 ==1)
+            		 {
+            			 JOptionPane.showMessageDialog(taikhoanview, "Tài khoản đã được xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            		 }
+            		 else 
+            		 {
+            			 JOptionPane.showMessageDialog(taikhoanview, "Tài khoản xóa thất bại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            			 
+            		 }
+            		 clickedLabel.setForeground(Color.BLACK);
+            	     clickedLabel.setBackground(null);
+                 }
+            	 else
+            	 {
+            		 clickedLabel.setForeground(Color.BLACK);
+            	     clickedLabel.setBackground(null);
+            	 }
+            	 
+    		}
+    		else {
+    			 JOptionPane.showMessageDialog(taikhoanview ,
+                         "Bạn chưa chọn laptop !",
+                         "Lỗi",
+                         JOptionPane.ERROR_MESSAGE);
+    			 clickedLabel.setForeground(Color.BLACK);
+        	     clickedLabel.setBackground(null);
+    		}
         }
         else if(labelText.equals("Sửa"))
         {
-        	
+        	int selectedRow = taikhoanview.table.getSelectedRow();
+        	if(selectedRow != -1)
+        	{
+
+        		tk = new ThemTaiKhoan();
+        		tk.button_huybo.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					if(e.getActionCommand().equals("Hủy bỏ"))
+    					{
+    						tk.dispose();
+    						clickedLabel.setForeground(Color.BLACK);
+            		        clickedLabel.setBackground(null);
+    					}
+    				}
+    			});
+        		
+            	tk.setTitle("Sửa thông tin");
+            	tk.lblNewLabel_6.setText("Sửa thông tin tài khoản");
+            	tk.addWindowListener(new WindowAdapter() {
+        		    @Override
+        		    public void windowClosing(WindowEvent e) {
+        		        clickedLabel.setForeground(Color.BLACK);
+        		        clickedLabel.setBackground(null);
+        		    }
+        		});
+            	
+            	String maNV = (String) taikhoanview.table.getValueAt(selectedRow, 0);
+            	ArrayList<NhanVien> arrNhanVien = NhanVienDAO.getintance().selectAll();
+            	for (NhanVien nhanVien : arrNhanVien) {
+					if(nhanVien.getMaNhanVien().equals(maNV))
+						nv = nhanVien;
+				}
+            	ArrayList<NguoiDung> arrNguoiDung = NguoiDungDAO.getintance().selectAll();
+            	for (NguoiDung nguoiDung : arrNguoiDung) {
+					if(nguoiDung.getMaNguoiDung().equals(nv.getMaNguoiDung()))
+						nd = nguoiDung;
+				}
+            	
+            	tk.textField_MaNV.setText(nv.getMaNhanVien());
+            	tk.textField_HoTen.setText(nv.getTenNhanVien());
+            	tk.textField_MaND.setText(nv.getMaNguoiDung());
+            	tk.textField_MatKhau.setText(nd.getMatKhau());
+            	tk.textField_SDT.setText(nv.getSDT());
+            	tk.textField_TaiKhoan.setText(nd.getTaiKhoan());
+            	if(nv.getGioiTinh()==1)
+            	{
+            		tk.radioButton1.setSelected(true);
+            	}
+            	else if(nv.getGioiTinh()==0)
+            	{
+            		tk.radioButton2.setSelected(true);
+            	}
+            	
+            	int day = nv.getNgaySinh().getDate();
+            	int month = nv.getNgaySinh().getMonth()+1;
+            	int year = nv.getNgaySinh().getYear()+1900;
+            	tk.setYMD_now(day, month, year);
+            	tk.textField_MaNV.setEditable(false);
+            	tk.textField_MaND.setEditable(false);
+            	
+            	
+            	tk.button_xacnhan.addActionListener(new ActionListener() {
+    				
+    				@Override
+    				public void actionPerformed(ActionEvent e) {
+    					if(e.getActionCommand().equals("Xác nhận"))
+    					{
+    						
+    						if(tk.radioButton1.isSelected())
+    						{
+    							nv.setGioiTinh(1);
+    						}
+    						else if(tk.radioButton2.isSelected())
+    						{
+    							nv.setGioiTinh(0);
+    						}
+    						int year = (int) tk.yearModel.getValue();
+    			            int month = (int) tk.monthModel.getValue();
+    			            int day = (int) tk.dayModel.getValue();
+    			            if (isValidDate(year, month, day)==false) {
+    			            	 JOptionPane.showMessageDialog(tk, "Ngày không hợp lệ!");
+    			            	 tk.setYMD_now();
+    			            	 year = (int) tk.yearModel.getValue();
+    					         month = (int) tk.monthModel.getValue();
+    					         day = (int) tk.dayModel.getValue();
+    			            } 
+    						nv.setTenNhanVien(tk.textField_HoTen.getText());
+    			        	nv.setSDT(tk.textField_SDT.getText());
+    			        	nv.setNgaySinh(day, month, year);
+    			        	
+    			        	if(tk.textField_TaiKhoan.getText().equals("")||tk.textField_MatKhau.getText().equals("")||tk.textField_TaiKhoan.getText().equals("")&&tk.textField_MatKhau.getText().equals(""))
+    			        	{
+    			        		nd.setTaiKhoan(nv.getMaNguoiDung());
+    			        		nd.setMatKhau("1234");
+    			        	}
+    			        	else
+    			        	{
+    			        		nd.setTaiKhoan(tk.textField_TaiKhoan.getText());
+    			        		nd.setMatKhau(tk.textField_MatKhau.getText());
+    			        	}
+    			        	
+    			        	int result = JOptionPane.showConfirmDialog(tk, "Bạn có chắc muốn sửa tài khoản ?","Xác nhận",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+    			        	if(result == JOptionPane.YES_OPTION)
+    			        	{
+    							int check1 = NguoiDungDAO.getintance().update(nd);
+    							int check2 = NhanVienDAO.getintance().update(nv);
+    							
+    							if(check1 == 1 && check2 ==1)
+    							{
+    								JOptionPane.showMessageDialog(tk, "Tài khoản đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    								taikhoanview.updateTableData();
+    								taikhoanview.setKhoangCach();
+    							}
+    							else
+    							{
+    								JOptionPane.showMessageDialog(tk, "Tài khoản sửa thất bại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+    							}
+    			        	}
+    			        	
+    					}
+    				}
+    			});
+        	}
+        	else
+        	{
+        		JOptionPane.showMessageDialog(taikhoanview,"Bạn chưa chọn người dùng để sửa !","Lỗi",JOptionPane.ERROR_MESSAGE);
+        		clickedLabel.setForeground(Color.BLACK);
+       	     	clickedLabel.setBackground(null);
+        	}
         }
         else if(labelText.equals("Xem chi tiết"))
         {

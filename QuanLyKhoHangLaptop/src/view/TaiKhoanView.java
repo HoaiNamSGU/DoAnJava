@@ -90,13 +90,6 @@ public class TaiKhoanView extends JPanel {
 		jlabel_xoa.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xoa);
 
-		
-		JLabel jlabel_xemCT = new JLabel("Xem chi tiết", source.icon_eye, JLabel.CENTER);
-		jlabel_xemCT.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_xemCT.setVerticalTextPosition(JLabel.BOTTOM);
-		jlabel_xemCT.setHorizontalTextPosition(JLabel.CENTER);
-		panel_border_chucNang.add(jlabel_xemCT);
-
 		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", source.icon_Excel, JLabel.CENTER);
 		jlabel_nhapExcel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_nhapExcel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -128,9 +121,10 @@ public class TaiKhoanView extends JPanel {
 		JTableHeader header = table.getTableHeader();
 		header.setFont(new Font("Arial", Font.BOLD, 14));
 		table.setFont(new Font("Arial", Font.PLAIN, 14));
-		setKhoangCachTable();
 		scrollPane.setViewportView(table);
-		
+		table.getColumnModel().getColumn(0).setPreferredWidth(40);
+		table.getColumnModel().getColumn(1).setPreferredWidth(170);
+		table.getColumnModel().getColumn(8).setPreferredWidth(100);
 		
 		TaiKhoanMouseListener mouse = new TaiKhoanMouseListener(this);
 		jlabel_them.addMouseListener(mouse);
@@ -138,7 +132,6 @@ public class TaiKhoanView extends JPanel {
 		jlabel_sua.addMouseListener(mouse);
 		jlabel_nhapExcel.addMouseListener(mouse);
 		jlabel_xoa.addMouseListener(mouse);
-		jlabel_xemCT.addMouseListener(mouse);
 	}
 
 	
@@ -171,8 +164,6 @@ public class TaiKhoanView extends JPanel {
 		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản", "Mật khẩu", "Quyền truy cập"};
 		model = new DefaultTableModel(data, column);
 		table = new JTable(model);
-		
-		setKhoangCachTable();
 		return table;
 	}
 	
@@ -209,29 +200,18 @@ public class TaiKhoanView extends JPanel {
 		
 	    // Cập nhật mô hình của bảng
 	    model.setDataVector(newData, column);
-	    setKhoangCachTable();
 	    // Cập nhật lại giao diện
 	    this.revalidate();
 	    this.repaint();
 	}
 	
 	
-	
-	
-	public void setKhoangCachTable()
+	public void setKhoangCach()
 	{
-		table.getColumnModel().getColumn(0).setPreferredWidth(52);
-		table.getColumnModel().getColumn(1).setPreferredWidth(200);
-		table.getColumnModel().getColumn(1).setMinWidth(15);
-		table.getColumnModel().getColumn(2).setPreferredWidth(30);
-		table.getColumnModel().getColumn(3).setPreferredWidth(40);
-		table.getColumnModel().getColumn(4).setPreferredWidth(93);
-		table.getColumnModel().getColumn(5).setPreferredWidth(35);
-		table.getColumnModel().getColumn(6).setPreferredWidth(50);
-		table.getColumnModel().getColumn(7).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setPreferredWidth(40);
+		table.getColumnModel().getColumn(1).setPreferredWidth(170);
+		table.getColumnModel().getColumn(8).setPreferredWidth(100);
 	}
-	
-	
 	
 	
 }

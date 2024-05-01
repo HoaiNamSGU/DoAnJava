@@ -53,11 +53,11 @@
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
-    <fullyQualifiedTypeName name="model.NhanVien"/>
-    <fullyQualifiedTypeName name="model.NguoiDung"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="dao.NhanVienDAO"/>
     <fullyQualifiedTypeName name="dao.NguoiDungDAO"/>
     <fullyQualifiedTypeName name="javax.swing.SpinnerNumberModel"/>
+    <fullyQualifiedTypeName name="model.NguoiDung"/>
+    <fullyQualifiedTypeName name="model.NhanVien"/>
 </qualifiedTypeNameHistroy>
