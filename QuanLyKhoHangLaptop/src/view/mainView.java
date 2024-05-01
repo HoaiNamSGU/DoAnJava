@@ -8,7 +8,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,18 +16,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import controller.mainMouseListener;
-import dao.CuaHangDAO;
 import dao.LaptopDAO;
-import model.CuaHang;
+import img.Source;
 import model.Laptop;
 import model.NguoiDung;
 import model.NhanVien;
-
-import javax.swing.border.Border;
 
 public class mainView extends JFrame {
 
@@ -64,23 +61,13 @@ public class mainView extends JFrame {
 	public DoiThongTinUser user = new DoiThongTinUser();
 	public JPanel panel_menu;
 	public JPanel panel_west;
-	
+	public Source source = new Source();
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1300, 800);
 		this.setLocationRelativeTo(null);
 		this.setTitle("màn hình chính");
 		getContentPane().setLayout(new BorderLayout());
-		ImageIcon icon_sanpham = new ImageIcon(getClass().getResource("/img/product.png"));
-		ImageIcon icon_nhaCungCap = new ImageIcon(getClass().getResource("/img/supplier.png"));
-		ImageIcon icon_nhaphang = new ImageIcon(getClass().getResource("/img/nhaphang.png"));
-		ImageIcon icon_xuathang = new ImageIcon(getClass().getResource("/img/xuathang.png"));
-		ImageIcon icon_cuahang = new ImageIcon(getClass().getResource("/img/store.png"));
-		ImageIcon icon_taikhoan = new ImageIcon(getClass().getResource("/img/taikhoan.png"));
-		ImageIcon icon_thongke = new ImageIcon(getClass().getResource("/img/thongke.png"));
-		ImageIcon icon_doithongtin = new ImageIcon(getClass().getResource("/img/thongtin.png"));
-		ImageIcon icon_dangxuat = new ImageIcon(getClass().getResource("/img/dangxuat.png"));
-
 		mainMouseListener mouse = new mainMouseListener(this);
 
 		panel_center = new JPanel(new BorderLayout());
@@ -128,7 +115,7 @@ public class mainView extends JFrame {
 		jlabel_sanpham.setForeground(new Color(255, 255, 255));
 		//jlabel_sanpham.setBounds(26, 158, 161, 37);
 
-		jlabel_sanpham.setIcon(icon_sanpham);
+		jlabel_sanpham.setIcon(source.icon_sanpham);
 		panel_menu.add(jlabel_sanpham);
 
 		jlabel_nhacungcap = new JLabel("Nhà cung cấp");
@@ -136,7 +123,7 @@ public class mainView extends JFrame {
 		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
 		//jlabel_nhacungcap.setBounds(26, 205, 161, 37);
 
-		jlabel_nhacungcap.setIcon(icon_nhaCungCap);
+		jlabel_nhacungcap.setIcon(source.icon_nhaCungCap);
 		panel_menu.add(jlabel_nhacungcap);
 
 		jlabel_nhaphang = new JLabel("Nhập hàng");
@@ -144,7 +131,7 @@ public class mainView extends JFrame {
 		jlabel_nhaphang.setFont(new Font("Arial", Font.PLAIN, 20));
 
 		//jlabel_nhaphang.setBounds(26, 252, 161, 37);
-		jlabel_nhaphang.setIcon(icon_nhaphang);
+		jlabel_nhaphang.setIcon(source.icon_nhaphang);
 		panel_menu.add(jlabel_nhaphang);
 
 		jlabel_xuathang = new JLabel("Xuất hàng");
@@ -152,13 +139,13 @@ public class mainView extends JFrame {
 		jlabel_xuathang.setFont(new Font("Arial", Font.PLAIN, 20));
 		//jlabel_xuathang.setBounds(26, 299, 161, 37);
 
-		jlabel_xuathang.setIcon(icon_xuathang);
+		jlabel_xuathang.setIcon(source.icon_xuathang);
 		panel_menu.add(jlabel_xuathang);
 
 		jlabel_cuahang = new JLabel("Cửa hàng");
 		jlabel_cuahang.setForeground(new Color(0, 0, 0));
 		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_cuahang.setIcon(icon_cuahang);
+		jlabel_cuahang.setIcon(source.icon_cuahang);
 		//jlabel_cuahang.setBounds(26, 346, 161, 37);
 		panel_menu.add(jlabel_cuahang);
 
@@ -166,28 +153,28 @@ public class mainView extends JFrame {
 		jlabel_taikhoan.setForeground(new Color(0, 0, 0));
 		jlabel_taikhoan.setFont(new Font("Arial", Font.PLAIN, 20));
 		//jlabel_taikhoan.setBounds(26, 440, 161, 37);
-		jlabel_taikhoan.setIcon(icon_taikhoan);
+		jlabel_taikhoan.setIcon(source.icon_taikhoan);
 		//panel_menu.add(jlabel_taikhoan);
 
 		jlabel_thongke = new JLabel("Thống kê");
 		jlabel_thongke.setForeground(new Color(0, 0, 0));
 		jlabel_thongke.setFont(new Font("Arial", Font.PLAIN, 20));
 		//jlabel_thongke.setBounds(26, 393, 161, 37);
-		jlabel_thongke.setIcon(icon_thongke);
+		jlabel_thongke.setIcon(source.icon_thongke);
 		panel_menu.add(jlabel_thongke);
 		
 		jlabel_doiThongtin = new JLabel("Thông tin tài khoản");
 		jlabel_doiThongtin.setForeground(new Color(0, 0, 0));
 		jlabel_doiThongtin.setFont(new Font("Arial", Font.PLAIN, 20));
 		//jlabel_doiThongtin.setBounds(26, 641, 161, 37);
-		jlabel_doiThongtin.setIcon(icon_doithongtin);
+		jlabel_doiThongtin.setIcon(source.icon_doithongtin);
 		panel_menu.add(jlabel_doiThongtin);
 
 		jlabel_dangxuat = new JLabel("Đăng xuất");
 		jlabel_dangxuat.setForeground(new Color(0, 0, 0));
 		jlabel_dangxuat.setFont(new Font("Arial", Font.PLAIN, 20));
 		//jlabel_dangxuat.setBounds(26, 688, 161, 37);
-		jlabel_dangxuat.setIcon(icon_dangxuat);
+		jlabel_dangxuat.setIcon(source.icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
 
 		jlabel_sanpham.addMouseListener(mouse);
@@ -232,27 +219,6 @@ public class mainView extends JFrame {
 		return table;
 	}
 
-	public JTable CuaHang() {
-		ArrayList<CuaHang> ListCuaHang = CuaHangDAO.getintance().selectAll();
-		data = new Object[ListCuaHang.size()][4];
-		for (int i = 0; i < ListCuaHang.size(); i++) {
-			CuaHang CH = ListCuaHang.get(i);
-			data[i][0] = CH.getMaCH();
-			data[i][1] = CH.getTenCH();
-			data[i][2] = CH.getDiaChi();
-			data[i][3] = CH.getSDT();
-
-		}
-		String column[] = { "Mã CH", "Tên Cửa Hàng", "Địa Chỉ", "Điện Thoại" };
-		model = new DefaultTableModel(data, column);
-		table = new JTable(model);
-		table.getColumnModel().getColumn(0).setPreferredWidth(10);
-		table.getColumnModel().getColumn(1).setPreferredWidth(400);
-		table.getColumnModel().getColumn(1).setMinWidth(20);
-		table.getColumnModel().getColumn(2).setPreferredWidth(400);
-		table.getColumnModel().getColumn(3).setPreferredWidth(15);
-		return table;
-	}
 
 	public void updateTable(JTable newTable) {
 		getContentPane().remove(scrollPane);

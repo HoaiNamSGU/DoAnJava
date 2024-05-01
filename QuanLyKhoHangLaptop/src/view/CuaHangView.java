@@ -23,6 +23,7 @@ import dao.CuaHangDAO;
 import img.Source;
 import model.CuaHang;
 import model.XaPhuong;
+import java.awt.GridLayout;
 
 public class CuaHangView extends JPanel {
 
@@ -63,51 +64,49 @@ public class CuaHangView extends JPanel {
 		panel_border_chucNang.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Chức năng",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
-		panel_border_chucNang.setBounds(10, 10, 421, 81);
+		panel_border_chucNang.setBounds(10, 10, 450, 100);
 		this.add(panel_border_chucNang);
-		panel_border_chucNang.setLayout(null);
+		panel_border_chucNang.setLayout(new GridLayout(1, 6, 0, 0));
 
 		JLabel jlabel_them = new JLabel("Thêm", source.icon_add, JLabel.CENTER);
 		jlabel_them.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_them.setBounds(10, 21, 44, 56);
 		jlabel_them.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_them.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_them);
 
-		JLabel jlabel_sua = new JLabel("Sửa", source.icon_pencil, JLabel.CENTER);
-		jlabel_sua.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_sua.setBounds(109, 21, 59, 56);
-		jlabel_sua.setVerticalTextPosition(JLabel.BOTTOM);
-		jlabel_sua.setHorizontalTextPosition(JLabel.CENTER);
-		panel_border_chucNang.add(jlabel_sua);
-
 		JLabel jlabel_xoa = new JLabel("Xóa", source.icon_remove, JLabel.CENTER);
 		jlabel_xoa.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_xoa.setBounds(67, 21, 45, 56);
 		jlabel_xoa.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_xoa.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xoa);
 
 		JLabel jlabel_xemCT = new JLabel("Xem chi tiết", source.icon_eye, JLabel.CENTER);
 		jlabel_xemCT.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_xemCT.setBounds(165, 21, 68, 56);
 		jlabel_xemCT.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_xemCT.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xemCT);
+		
 
 		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", source.icon_Excel, JLabel.CENTER);
 		jlabel_nhapExcel.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_nhapExcel.setBounds(265, 21, 68, 56);
 		jlabel_nhapExcel.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_nhapExcel.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_nhapExcel);
+		
 
 		JLabel jlabel_xuatExcel = new JLabel("Xuất Excel", source.icon_Excel, JLabel.CENTER);
 		jlabel_xuatExcel.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_xuatExcel.setBounds(343, 21, 68, 56);
 		jlabel_xuatExcel.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_xuatExcel.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xuatExcel);
+		
+
+		JLabel jlabel_sua = new JLabel("Sửa", source.icon_pencil, JLabel.CENTER);
+		jlabel_sua.setFont(new Font("Arial", Font.PLAIN, 12));
+		jlabel_sua.setVerticalTextPosition(JLabel.BOTTOM);
+		jlabel_sua.setHorizontalTextPosition(JLabel.CENTER);
+		panel_border_chucNang.add(jlabel_sua);
+		
 
 		panel_border_timKiem = new JPanel();
 		panel_border_timKiem.setLayout(null);
@@ -163,10 +162,10 @@ public class CuaHangView extends JPanel {
 		CuaHangMouseListener mouse = new CuaHangMouseListener(this);
 		jlabel_them.addMouseListener(mouse);
 		jlabel_xoa.addMouseListener(mouse);
-		jlabel_sua.addMouseListener(mouse);
 		jlabel_xemCT.addMouseListener(mouse);
 		jlabel_nhapExcel.addMouseListener(mouse);
 		jlabel_xuatExcel.addMouseListener(mouse);
+		jlabel_sua.addMouseListener(mouse);
 		jbutton_refesh.addActionListener(ac);
 		comboBox_search_QuanHuyen.addActionListener(ac);
 		comboBox_search_XaPhuong.addActionListener(ac);

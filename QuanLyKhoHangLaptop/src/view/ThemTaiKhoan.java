@@ -47,7 +47,6 @@ public class ThemTaiKhoan extends JFrame {
 	private JSpinner daySpinner;
 	private JSpinner monthSpinner;
 	private JSpinner yearSpinner;
-	public JLabel lblNewLabel_6;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -324,7 +323,7 @@ public class ThemTaiKhoan extends JFrame {
 		button_huybo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panelSouth.add(button_huybo);
 		
-		lblNewLabel_6 = new JLabel("Thêm tài khoản");
+		JLabel lblNewLabel_6 = new JLabel("Thêm tài khoản");
 		lblNewLabel_6.setForeground(new Color(0, 128, 192));
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -338,6 +337,8 @@ public class ThemTaiKhoan extends JFrame {
 	
 	public void setYMD_now()
 	{	
+		
+		dayModel = new SpinnerNumberModel(1, 1, 31, 1);
         daySpinner = new JSpinner(dayModel);
         daySpinner.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
@@ -350,12 +351,5 @@ public class ThemTaiKhoan extends JFrame {
         yearModel = new SpinnerNumberModel(Calendar.getInstance().get(Calendar.YEAR), 1900, 2100, 1);
         yearSpinner = new JSpinner(yearModel);
         yearSpinner.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	}
-	
-	public void setYMD_now(int ngay, int thang, int nam )
-	{	
-		 yearSpinner.setValue(nam);
-		 monthSpinner.setValue(thang);
-		 daySpinner.setValue(ngay);
 	}
 }
