@@ -103,15 +103,4 @@ public class NhanVien {
         Date date = new Date(milliseconds);
         NgaySinh = date;
 	}
-	
-	public void setNgaySinh(String ngaysinh)
-	{
-		 NgaySinh = Date.valueOf(ngaysinh);
-	}
-	
-	public static void main(String[] args) {
-		NhanVien nv = new NhanVien();
-		nv.setNgaySinh(12,2,2004);
-		System.out.println(nv.NgaySinh.toString());
-	}
 }

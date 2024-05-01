@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -17,19 +16,9 @@ import javax.swing.SwingConstants;
 public class XemChiTietCuaHang extends JFrame {
 
 	/**
-	 * Launch the application.
+	 * 
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new XemChiTietCuaHang();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private static final long serialVersionUID = 1L;
 
 	public JLabel Label_ChiTietCH_MaCH_Content;
 	public JLabel Label_ChiTietCH_TenCH_Content;
@@ -177,12 +166,13 @@ public class XemChiTietCuaHang extends JFrame {
 
 		// Thêm 4 JPanel vào JFrame, mỗi hàng chứa một JPanel
 
+		
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//this.pack();
 		this.setVisible(true);
 	}
 	public void load() {
 		this.pack();
+		this.setLocationRelativeTo(null);
 	}
 
 }

@@ -29,6 +29,10 @@ import model.NhanVien;
 
 public class mainView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JTextField textField;
 	public JLabel jlabel_sanpham;
 	public JLabel jlabel_nhacungcap;

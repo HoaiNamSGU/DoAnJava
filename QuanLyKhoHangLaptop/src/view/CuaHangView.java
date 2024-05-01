@@ -1,7 +1,12 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
@@ -23,7 +28,6 @@ import dao.CuaHangDAO;
 import img.Source;
 import model.CuaHang;
 import model.XaPhuong;
-import java.awt.GridLayout;
 
 public class CuaHangView extends JPanel {
 
@@ -42,31 +46,33 @@ public class CuaHangView extends JPanel {
 	private CuaHangActionListener ac;
 
 	public Source source = new Source();
+	public String[] Quan_Huyen = { "Tất cả", "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5", "Quận 6", "Quận 7",
+			"Quận 8", "Quận 9", "Quận 10", "Quận 11", "Quận 12", "Quận Thủ Đức", "Quận Gò Vấp", "Quận Bình Thạnh",
+			"Quận Tân Bình", "Quận Tân Phú", "Quận Phú Nhuận", "Quận Bình Tân", "Huyện Củ Chi", "Huyện Bình Chánh",
+			"Huyện Nhà Bè", "Huyện Cần Giờ" };
+
+	public String[] Xa_Phuong;
+	public String[] ThanhPho = { "TP HCM" };
+	private GridBagConstraints gbc_comboBox_search_XaPhuong;
 
 	/**
 	 * Create the panel.
 	 */
 	public CuaHangView() {
 		this.setBounds(0, 0, 1200, 770);
-		setLayout(null);
 
 		ac = new CuaHangActionListener(this);
-
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 190, 1180, 569);
-		this.add(scrollPane);
-
-		table = new JTable();
-		table = loadCuaHang();
-
-		scrollPane.setViewportView(table);
+		setLayout(new BorderLayout(0, 50));
+		JPanel panel_menu = new JPanel();
+		this.add(panel_menu, BorderLayout.NORTH);
+		panel_menu.setLayout(new GridLayout(0, 2, 5, 0));
 		JPanel panel_border_chucNang = new JPanel();
 		panel_border_chucNang.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Chức năng",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
 		panel_border_chucNang.setBounds(10, 10, 450, 100);
-		this.add(panel_border_chucNang);
 		panel_border_chucNang.setLayout(new GridLayout(1, 6, 0, 0));
+		panel_menu.add(panel_border_chucNang);
 
 		JLabel jlabel_them = new JLabel("Thêm", source.icon_add, JLabel.CENTER);
 		jlabel_them.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -80,97 +86,131 @@ public class CuaHangView extends JPanel {
 		jlabel_xoa.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xoa);
 
+		JLabel jlabel_sua = new JLabel("Sửa", source.icon_pencil, JLabel.CENTER);
+		jlabel_sua.setFont(new Font("Arial", Font.PLAIN, 12));
+		jlabel_sua.setVerticalTextPosition(JLabel.BOTTOM);
+		jlabel_sua.setHorizontalTextPosition(JLabel.CENTER);
+		panel_border_chucNang.add(jlabel_sua);
+
 		JLabel jlabel_xemCT = new JLabel("Xem chi tiết", source.icon_eye, JLabel.CENTER);
 		jlabel_xemCT.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_xemCT.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_xemCT.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xemCT);
-		
 
 		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", source.icon_Excel, JLabel.CENTER);
 		jlabel_nhapExcel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_nhapExcel.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_nhapExcel.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_nhapExcel);
-		
 
 		JLabel jlabel_xuatExcel = new JLabel("Xuất Excel", source.icon_Excel, JLabel.CENTER);
 		jlabel_xuatExcel.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_xuatExcel.setVerticalTextPosition(JLabel.BOTTOM);
 		jlabel_xuatExcel.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xuatExcel);
-		
-
-		JLabel jlabel_sua = new JLabel("Sửa", source.icon_pencil, JLabel.CENTER);
-		jlabel_sua.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_sua.setVerticalTextPosition(JLabel.BOTTOM);
-		jlabel_sua.setHorizontalTextPosition(JLabel.CENTER);
-		panel_border_chucNang.add(jlabel_sua);
-		
 
 		panel_border_timKiem = new JPanel();
-		panel_border_timKiem.setLayout(null);
 		panel_border_timKiem.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tìm kiếm",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
-		panel_border_timKiem.setBounds(566, 10, 624, 116);
-		this.add(panel_border_timKiem);
-
-		String[] ThanhPho = { "TP HCM" };
-		comboBox_search_ThanhPho = new JComboBox<Object>(ThanhPho);
-		comboBox_search_ThanhPho.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_search_ThanhPho.setBackground(Color.WHITE);
-		comboBox_search_ThanhPho.setBounds(410, 75, 100, 21);
-		panel_border_timKiem.add(comboBox_search_ThanhPho);
-
-		String[] Quan_Huyen = { "Tất cả", "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5", "Quận 6", "Quận 7",
-				"Quận 8", "Quận 9", "Quận 10", "Quận 11", "Quận 12", "Quận Thủ Đức", "Quận Gò Vấp", "Quận Bình Thạnh",
-				"Quận Tân Bình", "Quận Tân Phú", "Quận Phú Nhuận", "Quận Bình Tân", "Huyện Củ Chi", "Huyện Bình Chánh",
-				"Huyện Nhà Bè", "Huyện Cần Giờ" };
-
-		comboBox_search_QuanHuyen = new JComboBox<Object>(Quan_Huyen);
-		comboBox_search_QuanHuyen.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_search_QuanHuyen.setBackground(Color.WHITE);
-		comboBox_search_QuanHuyen.setBounds(250, 75, 150, 21);
-		panel_border_timKiem.add(comboBox_search_QuanHuyen);
-
-		String[] Xa_Phuong = ChangeXaPhuong();
-		comboBox_search_XaPhuong = new JComboBox<Object>(Xa_Phuong);
-		comboBox_search_XaPhuong.setBackground(new Color(255, 255, 255));
-		comboBox_search_XaPhuong.setFont(new Font("Arial", Font.PLAIN, 14));
-		comboBox_search_XaPhuong.setBounds(10, 75, 230, 21);
-		panel_border_timKiem.add(comboBox_search_XaPhuong);
+		panel_border_timKiem.setBounds(477, 10, 656, 152);
+		GridBagLayout gbl_panel_border_timKiem = new GridBagLayout();
+		gbl_panel_border_timKiem.columnWidths = new int[] { 230, 150, 100, 95, 0 };
+		gbl_panel_border_timKiem.rowHeights = new int[] { 31, 33, 21, 0 };
+		gbl_panel_border_timKiem.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_border_timKiem.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		panel_border_timKiem.setLayout(gbl_panel_border_timKiem);
 
 		textField_Search = new JTextField();
-		textField_Search.setBounds(10, 31, 500, 33);
-		panel_border_timKiem.add(textField_Search);
+		GridBagConstraints gbc_textField_Search = new GridBagConstraints();
+		gbc_textField_Search.weighty = 1.0;
+		gbc_textField_Search.weightx = 1.0;
+		gbc_textField_Search.fill = GridBagConstraints.BOTH;
+		gbc_textField_Search.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_Search.gridwidth = 3;
+		gbc_textField_Search.gridx = 0;
+		gbc_textField_Search.gridy = 0;
+		panel_border_timKiem.add(textField_Search, gbc_textField_Search);
 		textField_Search.setColumns(10);
+		textField_Search.addActionListener(ac);
 
 		jbutton_Sreach = new JButton("Tìm kiếm");
 		jbutton_Sreach.setFont(new Font("Arial", Font.PLAIN, 11));
 		jbutton_Sreach.addActionListener(ac);
 		jbutton_Sreach.setBackground(new Color(255, 255, 255));
-		jbutton_Sreach.setBounds(519, 31, 95, 33);
-		panel_border_timKiem.add(jbutton_Sreach);
+		GridBagConstraints gbc_jbutton_Sreach = new GridBagConstraints();
+		gbc_jbutton_Sreach.weighty = 1.0;
+		gbc_jbutton_Sreach.weightx = 1.0;
+		gbc_jbutton_Sreach.fill = GridBagConstraints.BOTH;
+		gbc_jbutton_Sreach.insets = new Insets(0, 0, 5, 0);
+		gbc_jbutton_Sreach.gridx = 3;
+		gbc_jbutton_Sreach.gridy = 0;
+		panel_border_timKiem.add(jbutton_Sreach, gbc_jbutton_Sreach);
+
+		comboBox_search_QuanHuyen = new JComboBox<Object>(Quan_Huyen);
+		comboBox_search_QuanHuyen.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboBox_search_QuanHuyen.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_search_QuanHuyen = new GridBagConstraints();
+		gbc_comboBox_search_QuanHuyen.weighty = 1.0;
+		gbc_comboBox_search_QuanHuyen.weightx = 1.0;
+		gbc_comboBox_search_QuanHuyen.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_search_QuanHuyen.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox_search_QuanHuyen.gridx = 1;
+		gbc_comboBox_search_QuanHuyen.gridy = 1;
+		panel_border_timKiem.add(comboBox_search_QuanHuyen, gbc_comboBox_search_QuanHuyen);
+		comboBox_search_QuanHuyen.addActionListener(ac);
+		comboBox_search_ThanhPho = new JComboBox<Object>(ThanhPho);
+		comboBox_search_ThanhPho.setFont(new Font("Arial", Font.PLAIN, 14));
+		comboBox_search_ThanhPho.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_search_ThanhPho = new GridBagConstraints();
+		gbc_comboBox_search_ThanhPho.weighty = 1.0;
+		gbc_comboBox_search_ThanhPho.weightx = 1.0;
+		gbc_comboBox_search_ThanhPho.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_search_ThanhPho.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox_search_ThanhPho.gridx = 2;
+		gbc_comboBox_search_ThanhPho.gridy = 1;
+		panel_border_timKiem.add(comboBox_search_ThanhPho, gbc_comboBox_search_ThanhPho);
+
+		comboBox_search_XaPhuong = new JComboBox<Object>(ChangeXaPhuong());
+		comboBox_search_XaPhuong.setBackground(new Color(255, 255, 255));
+		comboBox_search_XaPhuong.setFont(new Font("Arial", Font.PLAIN, 14));
+		gbc_comboBox_search_XaPhuong = new GridBagConstraints();
+		gbc_comboBox_search_XaPhuong.weighty = 1.0;
+		gbc_comboBox_search_XaPhuong.weightx = 1.0;
+		gbc_comboBox_search_XaPhuong.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_search_XaPhuong.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox_search_XaPhuong.gridx = 0;
+		gbc_comboBox_search_XaPhuong.gridy = 1;
+		panel_border_timKiem.add(comboBox_search_XaPhuong, gbc_comboBox_search_XaPhuong);
+		comboBox_search_XaPhuong.addActionListener(ac);
 
 		jbutton_refesh = new JButton(source.icon_refresh);
 		jbutton_refesh.setBackground(new Color(255, 255, 255));
-		jbutton_refesh.setBounds(519, 75, 95, 21);
-		panel_border_timKiem.add(jbutton_refesh);
-
-		// Xử lý các sự kiện chuột và phím
+		GridBagConstraints gbc_jbutton_refesh = new GridBagConstraints();
+		gbc_jbutton_refesh.weighty = 1.0;
+		gbc_jbutton_refesh.weightx = 1.0;
+		gbc_jbutton_refesh.fill = GridBagConstraints.BOTH;
+		gbc_jbutton_refesh.gridx = 3;
+		gbc_jbutton_refesh.gridy = 1;
+		panel_border_timKiem.add(jbutton_refesh, gbc_jbutton_refesh);
+		jbutton_refesh.addActionListener(ac);
 		CuaHangMouseListener mouse = new CuaHangMouseListener(this);
+		panel_menu.add(panel_border_timKiem);
 		jlabel_them.addMouseListener(mouse);
 		jlabel_xoa.addMouseListener(mouse);
 		jlabel_xemCT.addMouseListener(mouse);
 		jlabel_nhapExcel.addMouseListener(mouse);
 		jlabel_xuatExcel.addMouseListener(mouse);
 		jlabel_sua.addMouseListener(mouse);
-		jbutton_refesh.addActionListener(ac);
-		comboBox_search_QuanHuyen.addActionListener(ac);
-		comboBox_search_XaPhuong.addActionListener(ac);
-		textField_Search.addActionListener(ac);
-		this.setVisible(true);
+
+		scrollPane = new JScrollPane();
+		this.add(scrollPane, BorderLayout.CENTER);
+
+		table = new JTable();
+		table = loadCuaHang();
+		scrollPane.setViewportView(table);
+		scrollPane.setEnabled(false);
 
 	}
 
@@ -196,10 +236,10 @@ public class CuaHangView extends JPanel {
 		table = new JTable(model);
 		table.setFont(new Font("Arial", Font.PLAIN, 14));
 		table.getColumnModel().getColumn(0).setPreferredWidth(10);
-		table.getColumnModel().getColumn(1).setPreferredWidth(400);
+		table.getColumnModel().getColumn(1).setPreferredWidth(300);
 		table.getColumnModel().getColumn(1).setMinWidth(20);
 		table.getColumnModel().getColumn(2).setPreferredWidth(400);
-		table.getColumnModel().getColumn(3).setPreferredWidth(15);
+		table.getColumnModel().getColumn(3).setPreferredWidth(25);
 
 		// Thêm bảng mới vào scroll pane và trả về bảng
 		scrollPane.setViewportView(table);
@@ -242,6 +282,7 @@ public class CuaHangView extends JPanel {
 		String tenKhongDau = ChuyenThanhFontThuong(tenQuanHuyen);
 
 		// Loại bỏ các từ "Quận" và "Huyện"
+		// Loại bỏ các từ "Quận" và "Huyện"
 		tenKhongDau = tenKhongDau.toLowerCase();
 
 		// Loại bỏ khoảng trắng và dấu cách
@@ -254,6 +295,8 @@ public class CuaHangView extends JPanel {
 	public static String ChuyenThanhFontThuong(String str) {
 		str = Normalizer.normalize(str, Normalizer.Form.NFD);
 		str = str.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+		// trường hợp đặc biệt
+		str = str.replace("Đ", "D").replace("đ", "d");
 		return str;
 	}
 
@@ -284,7 +327,7 @@ public class CuaHangView extends JPanel {
 		DefaultComboBoxModel<Object> model = new DefaultComboBoxModel<>(ChangeXaPhuong());
 		comboBox_search_XaPhuong.setModel(model);
 		// Thêm comboBox_XaPhuong vào panel_Title_DiaChi
-		panel_border_timKiem.add(comboBox_search_XaPhuong);
+		panel_border_timKiem.add(comboBox_search_XaPhuong, gbc_comboBox_search_XaPhuong);
 
 		// Yêu cầu panel_Title_DiaChi cập nhật lại giao diện
 		panel_border_timKiem.revalidate();

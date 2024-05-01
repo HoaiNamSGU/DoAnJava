@@ -1,8 +1,8 @@
 package dao;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -139,7 +139,6 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 	 */
 	public Boolean updateCuaHang(String old_MaCH, CuaHang CH) {
 		try {
-
 			String sql = "UPDATE cuahang SET MaCuaHang=?, TenCH=?, DiaChi=?, SDT=?, isDelete=?  WHERE MaCuaHang = ? ";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, CH.getMaCH());
@@ -265,55 +264,59 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 	}
 
 	public Boolean readExcel() {
-		try {
-			InputStream inputStream = getClass().getResourceAsStream("/database/CuaHangExcel.xlsx");
-			Workbook workbook = WorkbookFactory.create(inputStream);
-			Sheet sheet = workbook.getSheetAt(0);
+	    JFileChooser fileChooser = new JFileChooser();
+	    fileChooser.setDialogTitle("Chọn tệp Excel để đọc");
+	    fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xlsx"));
 
-			for (int i = 1; i < sheet.getLastRowNum(); i++) {
-				Row row = sheet.getRow(i);
-				if (row != null) {
+	    int userSelection = fileChooser.showOpenDialog(null);
+	    if (userSelection == JFileChooser.APPROVE_OPTION) {
+	        File selectedFile = fileChooser.getSelectedFile();
+	        String filePath = selectedFile.getAbsolutePath();
+	        try {
+	            Workbook workbook = WorkbookFactory.create(new File(filePath));
+	            Sheet sheet = workbook.getSheetAt(0);
 
-					CuaHang CH = new CuaHang();
-					for (int j = 0; j < row.getLastCellNum(); j++) {
+	            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+	                Row row = sheet.getRow(i);
+	                if (row != null) {
+	                    CuaHang CH = new CuaHang();
+	                    for (int j = 0; j < row.getLastCellNum(); j++) {
+	                        String propertyName = sheet.getRow(0).getCell(j).getStringCellValue();
+	                        Cell cell = row.getCell(j);
 
-						String propertyName = sheet.getRow(0).getCell(j).getStringCellValue();
-						Cell cell = row.getCell(j);
+	                        if (cell != null) {
+	                            String cellValue = cell.getStringCellValue();
 
-						if (cell != null) {
-							String CellValue = cell.getStringCellValue();
-
-							switch (propertyName) {
-							case "MaCuaHang":
-								CH.setMaCH(CellValue);
-								break;
-							case "TenCH":
-								CH.setTenCH(CellValue);
-								break;
-							case "DiaChi":
-								CH.setDiaChi(CellValue);
-								break;
-							case "SDT":
-								CH.setSDT(CellValue);
-								break;
-							default:
-								break;
-							}
-						}
-					}
-					if (!isMaCHExists(CH.getMaCH()))
-						insertCuaHang(CH);
-				}
-
-			}
-
-			inputStream.close();
-			workbook.close();
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
+	                            switch (propertyName) {
+	                                case "MaCuaHang":
+	                                    CH.setMaCH(cellValue);
+	                                    break;
+	                                case "TenCH":
+	                                    CH.setTenCH(cellValue);
+	                                    break;
+	                                case "DiaChi":
+	                                    CH.setDiaChi(cellValue);
+	                                    break;
+	                                case "SDT":
+	                                    CH.setSDT(cellValue);
+	                                    break;
+	                                default:
+	                                    break;
+	                            }
+	                        }
+	                    }
+	                    if (!isMaCHExists(CH.getMaCH())) 
+	                    	insertCuaHang(CH);
+	                }
+	            }
+	            workbook.close();
+	            return true;
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+	    return false;
 	}
 
 	public Boolean writeExcel() {
