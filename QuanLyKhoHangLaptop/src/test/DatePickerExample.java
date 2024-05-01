@@ -54,8 +54,8 @@ public class DatePickerExample {
             }
             
         });*/
-        
-        
+
+
         selectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +65,7 @@ public class DatePickerExample {
         });
 
         // Tạo phương thức handleDateSelection để xử lý việc chọn ngày tháng năm
- 
+
 
         panel.add(selectButton);
 
@@ -88,13 +88,13 @@ public class DatePickerExample {
             return false;
         }
     }
-    
+
     private static void handleDateSelection() {
         // Lấy giá trị của ngày, tháng và năm từ Spinner
         int year = (int) yearSpinner.getValue();
         int month = (int) monthSpinner.getValue();
         int day = (int) daySpinner.getValue();
-        
+
         // Kiểm tra ngày tháng năm hợp lệ và hiển thị thông báo
         if (isValidDate(year, month, day)) {
             String date = String.format("%04d/%02d/%02d", year, month, day);
@@ -103,8 +103,6 @@ public class DatePickerExample {
             JOptionPane.showMessageDialog(null, "Invalid date!");
         }
     }
-    
-   
+
+
 }
-
-

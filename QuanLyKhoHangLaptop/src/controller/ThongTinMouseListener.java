@@ -17,9 +17,9 @@ import model.NguoiDung;
 import view.DoiThongTinUser;
 
 public class ThongTinMouseListener implements MouseListener{
-	
+
 	private DoiThongTinUser user;
-	
+
 	public ThongTinMouseListener(DoiThongTinUser user) {
 		this.user = user;
 	}
@@ -27,13 +27,13 @@ public class ThongTinMouseListener implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		JLabel clickedLabel = (JLabel) e.getSource();
-        
+
         String labelText = clickedLabel.getText();
         if(labelText.equals("Xem thông tin"))
         {
         	user.jlabel_xemCT.setForeground(Color.WHITE);
         	user.jlabel_sua.setForeground(Color.BLACK);
-        	
+
         }
         else if(labelText.equals("Đổi mật khẩu"))
         {
@@ -41,7 +41,7 @@ public class ThongTinMouseListener implements MouseListener{
         	user.jlabel_xemCT.setForeground(Color.BLACK);
         	DoiMatKhau mk = new DoiMatKhau();
         	mk.btnHuyBo.addActionListener(new ActionListener() {
-				
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					if(e.getActionCommand().equals("Hủy bỏ"))
@@ -53,13 +53,13 @@ public class ThongTinMouseListener implements MouseListener{
 				}
 			});
         	mk.btnXacNhan.addActionListener(new ActionListener() {
-				
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					if(e.getActionCommand().equals("Xác nhận"))
 					{	
 						NguoiDung nd = view.mainView.nguoidung;
-						
+
 						if(nd.getMatKhau().equals(mk.passwordField_1.getText()))
 						{
 							if(mk.passwordField_2.getText().equals(mk.passwordField_3.getText()) && !mk.passwordField_2.getText().equals("") && !mk.passwordField_3.getText().equals(""))
@@ -81,13 +81,13 @@ public class ThongTinMouseListener implements MouseListener{
 										JOptionPane.showMessageDialog(mk,"Đổi mật khẩu thất bại","Thông báo",JOptionPane.ERROR_MESSAGE);
 									}
 								}
-							
+
 							}
 							else
 							{
 								JOptionPane.showMessageDialog(mk,"Mật khẩu mới không hợp lệ","Thông báo",JOptionPane.ERROR_MESSAGE);
 							}
-							
+
 						}
 						else
 						{
@@ -96,7 +96,7 @@ public class ThongTinMouseListener implements MouseListener{
 					}
 				}
 			});
-        	
+
         	mk.addWindowListener(new WindowAdapter() {
     		    @Override
     		    public void windowClosing(WindowEvent e) {
@@ -105,31 +105,31 @@ public class ThongTinMouseListener implements MouseListener{
     		    }
     		});
         }
-    	
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

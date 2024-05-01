@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public class LoginActionlistener implements ActionListener{
 						loginview.dispose();
 						check = true;
 						break;*/
-						
+
 						mainView mv = new mainView();
 						mv.nguoidung = nguoiDung;
 						mv.lblNewLabel.setText("Hi!"+mv.nguoidung.getTaiKhoan());
@@ -63,7 +62,7 @@ public class LoginActionlistener implements ActionListener{
 						loginview.dispose();
 						check = true;
 						break;
-						
+
 					}
 				}
 			}
@@ -71,7 +70,7 @@ public class LoginActionlistener implements ActionListener{
 			{
 				JOptionPane.showMessageDialog(loginview,"Tài khoản hoặc mật khẩu không đúng\nVui lòng nhập lại","Lỗi",JOptionPane.ERROR_MESSAGE);
 			}
-			
+
 		}
 	}
 

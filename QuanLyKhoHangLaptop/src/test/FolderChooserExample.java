@@ -12,7 +12,7 @@ import model.Laptop;
 
 public class FolderChooserExample {
     public static void main(String[] args) {
-    	
+
     	 FileInputStream fis = null;
          Workbook workbook = null;
          try {

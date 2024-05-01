@@ -2,20 +2,20 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.DecimalFormat;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+
 import model.Laptop;
 
 public class XemChiTiet extends JFrame {
-
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel jlabel_malaptop_1;
@@ -31,6 +31,22 @@ public class XemChiTiet extends JFrame {
 	private JLabel jlabel_soluong1;
 	private JLabel jlabel_gia1;
 	private JLabel jlabel_MaNCC1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new XemChiTiet();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the frame.
@@ -235,7 +251,6 @@ public class XemChiTiet extends JFrame {
 		jlabel_chitiet.setBackground(Color.WHITE);
 		panel.add(jlabel_chitiet);
 		
-
 		this.setVisible(true);
 		
 	}

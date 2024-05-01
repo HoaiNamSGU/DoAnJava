@@ -23,7 +23,7 @@ public class GhiFileExcel {
 	 public static void main(String[] args) {
 			try (XSSFWorkbook wordbook = new XSSFWorkbook()) {
 				try {
-					
+
 						XSSFSheet sheet = wordbook.createSheet("DanhSach");
 						XSSFRow row = null;
 						Cell cell = null;
@@ -41,22 +41,22 @@ public class GhiFileExcel {
 							row = sheet.createRow(i+4);
 							cell = row.createCell(0,CellType.NUMERIC);
 							cell.setCellValue(i+1);
-							
+
 							cell = row.createCell(1,CellType.STRING);
 							cell.setCellValue(lt.get(i).getMaLaptop());
-							
+
 							cell = row.createCell(2,CellType.STRING);
 							cell.setCellValue(lt.get(i).getTenLaptop());
-							
+
 							cell = row.createCell(3,CellType.STRING);
 							cell.setCellValue(lt.get(i).getMaNhaCungCap());
 						}
-						
+
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 					File f = new File("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\FileExcel\\DanhSachLaptop.xlsx");
-					
+
 					try {
 						FileOutputStream fos = new FileOutputStream(f);
 						wordbook.write(fos);
@@ -64,10 +64,11 @@ public class GhiFileExcel {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 	}
 }

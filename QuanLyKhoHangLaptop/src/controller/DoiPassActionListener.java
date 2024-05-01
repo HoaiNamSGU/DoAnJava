@@ -7,7 +7,7 @@ import view.DoiMatKhau;
 
 public class DoiPassActionListener implements ActionListener{
 	private DoiMatKhau view;
-	
+
 	public DoiPassActionListener(DoiMatKhau view) {
 		this.view = view;
 	}
@@ -15,7 +15,7 @@ public class DoiPassActionListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String src = e.getActionCommand();
-		
+
 		if(src.equals("Hủy bỏ"))
 		{
 			view.dispose();
