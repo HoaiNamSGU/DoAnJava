@@ -59,8 +59,7 @@ public class CuaHangActionListener implements ActionListener {
 	public ArrayList<CuaHang> advancedSearch() {
 		String Quan_Huyen_condition = CuaHangView.comboBox_search_QuanHuyen.getSelectedItem().toString();
 		String Xa_phuong_condition = CuaHangView.comboBox_search_XaPhuong.getSelectedItem().toString();
-		ArrayList<CuaHang> mixerResult = CuaHangDAO.getintance().advancedSearch(Quan_Huyen_condition,
-				Xa_phuong_condition);
+		ArrayList<CuaHang> mixerResult = CuaHangDAO.getintance().advancedSearch(Quan_Huyen_condition,Xa_phuong_condition);
 		return mixerResult;
 	}
 }

@@ -13,9 +13,10 @@ import model.NhanVien;
 import view.login;
 import view.mainView;
 
-public class LoginActionlistener implements ActionListener{
+public class LoginActionlistener implements ActionListener {
 
 	private login loginview;
+
 	public LoginActionlistener(login loginview) {
 		this.loginview = loginview;
 	}
@@ -23,40 +24,37 @@ public class LoginActionlistener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String src = e.getActionCommand();
-		if(src.equals("Đăng nhập"))
-		{	boolean check = false;
+		if (src.equals("Đăng nhập")) {
+			boolean check = false;
 			String tk = loginview.textField_username.getText();
 			String mk = loginview.passwordField.getText();
 			ArrayList<NguoiDung> arr = NguoiDungDAO.getintance().selectAll();
 			for (NguoiDung nguoiDung : arr) {
-				if(nguoiDung.getTaiKhoan().equals(tk) && nguoiDung.getMatKhau().equals(mk))
-				{
-					if(nguoiDung.getPhamViTruyCap()==0)
-					{
+				if (nguoiDung.getTaiKhoan().equals(tk) && nguoiDung.getMatKhau().equals(mk)) {
+					if (nguoiDung.getPhamViTruyCap() == 0) {
 						mainView mv = new mainView();
 						mv.nguoidung = nguoiDung;
-						mv.lblNewLabel.setText("Hi!"+mv.nguoidung.getTaiKhoan());
-						NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung", mv.nguoidung.getMaNguoiDung());
+						mv.lblNewLabel.setText("Hi!" + mv.nguoidung.getTaiKhoan());
+						NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung",
+								mv.nguoidung.getMaNguoiDung());
 						mv.nhanvien = nv;
 						loginview.dispose();
 						check = true;
 						break;
-					}
-					else if(nguoiDung.getPhamViTruyCap()==1)
-					{
-						/*admin_view ad = new admin_view();
-						ad.nguoidung = nguoiDung;
-						ad.lblNewLabel.setText("Hi!"+ad.nguoidung.getTaiKhoan());
-						NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung", ad.nguoidung.getMaNguoiDung());
-						ad.nhanvien = nv;
-						loginview.dispose();
-						check = true;
-						break;*/
+					} else if (nguoiDung.getPhamViTruyCap() == 1) {
+						/*
+						 * admin_view ad = new admin_view(); ad.nguoidung = nguoiDung;
+						 * ad.lblNewLabel.setText("Hi!"+ad.nguoidung.getTaiKhoan()); NhanVien nv =
+						 * NhanVienDAO.getintance().selectByCondition("MaNguoiDung",
+						 * ad.nguoidung.getMaNguoiDung()); ad.nhanvien = nv; loginview.dispose(); check
+						 * = true; break;
+						 */
 
 						mainView mv = new mainView();
 						mv.nguoidung = nguoiDung;
-						mv.lblNewLabel.setText("Hi!"+mv.nguoidung.getTaiKhoan());
-						NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung", mv.nguoidung.getMaNguoiDung());
+						mv.lblNewLabel.setText("Hi!" + mv.nguoidung.getTaiKhoan());
+						NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung",
+								mv.nguoidung.getMaNguoiDung());
 						mv.nhanvien = nv;
 						mv.addLabel();
 						loginview.dispose();
@@ -66,9 +64,9 @@ public class LoginActionlistener implements ActionListener{
 					}
 				}
 			}
-			if(check == false)
-			{
-				JOptionPane.showMessageDialog(loginview,"Tài khoản hoặc mật khẩu không đúng\nVui lòng nhập lại","Lỗi",JOptionPane.ERROR_MESSAGE);
+			if (check == false) {
+				JOptionPane.showMessageDialog(loginview, "Tài khoản hoặc mật khẩu không đúng\nVui lòng nhập lại", "Lỗi",
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 		}
