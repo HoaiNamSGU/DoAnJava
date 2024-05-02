@@ -2,7 +2,12 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -22,18 +27,9 @@ import controller.TaiKhoanActionListener;
 import controller.TaiKhoanMouseListener;
 import dao.NguoiDungDAO;
 import dao.NhanVienDAO;
-import database.JDBCUtil;
 import img.Source;
 import model.NguoiDung;
 import model.NhanVien;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.awt.event.ActionEvent;
 public class TaiKhoanView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -207,7 +203,7 @@ public class TaiKhoanView extends JPanel {
 		
 		TaiKhoanActionListener ac = new TaiKhoanActionListener(this);
 		button_refesh1.addActionListener(ac);
-		button_search1.addMouseListener(mouse);
+		button_search1.addActionListener(ac);
 		textField_timkiem.addActionListener(ac);
 	}
 
@@ -284,13 +280,13 @@ public class TaiKhoanView extends JPanel {
 	    this.repaint();
 	}
 
-	public void updateTableData(ArrayList<NhanVien> nv, ArrayList<NguoiDung> nd) {
+	public void updateTableData( ArrayList<NguoiDung> nd) {
 
 
 		Object newData[][] = new Object[nd.size()][9];
 		for (int i = 0; i < nd.size(); i++) {
-			NhanVien nhanvien = nv.get(i);
 			NguoiDung nguoidung = nd.get(i);
+			NhanVien nhanvien = NhanVienDAO.getintance().selectByCondition("MaNguoiDung",nguoidung.getMaNguoiDung());
 			newData[i][0] = nhanvien.getMaNhanVien();
 			newData[i][1] = nhanvien.getTenNhanVien();
 			newData[i][2] = nhanvien.getNgaySinh();

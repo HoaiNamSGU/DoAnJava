@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import dao.NguoiDungDAO;
+import dao.NhanVienDAO;
 import model.NguoiDung;
+import model.NhanVien;
 import view.TaiKhoanView;
 
 public class TaiKhoanActionListener implements ActionListener{
@@ -22,17 +24,15 @@ public class TaiKhoanActionListener implements ActionListener{
 		
 		if(e.getSource()==view.button_refesh1)
 		{
-			view.textField_timkiem.setText("");
+			view.textField_timkiem.setText(null);
 		}
 		else if(e.getSource()==view.button_search1)
 		{
 
 			String tmp = view.textField_timkiem.getText();
-			System.out.println(tmp);
-			/*ArrayList<NguoiDung> arr = NguoiDungDAO.getintance().select_search(tmp);
-			for (NguoiDung nguoiDung : arr) {
-				System.out.println(nguoiDung.toString());
-			}*/
+
+			ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().select_search(tmp);
+			view.updateTableData(nd);
 		}
 	}
 

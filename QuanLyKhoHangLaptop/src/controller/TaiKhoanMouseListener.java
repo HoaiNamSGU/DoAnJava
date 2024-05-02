@@ -500,7 +500,7 @@ public class TaiKhoanMouseListener implements MouseListener{
             	ArrayList<NguoiDung> nguoidung = NguoiDungDAO.getintance().ReadExcelKetHop(filePath);
             	if(nhanvien.isEmpty()==false && nguoidung.isEmpty()==false)
             	{
-            		taikhoanview.updateTableData(nhanvien,nguoidung);
+            		taikhoanview.updateTableData(nguoidung);
             		JOptionPane.showMessageDialog(taikhoanview,"Nhập file Excel thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             		clickedLabel.setForeground(Color.BLACK);
            	     	clickedLabel.setBackground(null);
