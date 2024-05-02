@@ -47,10 +47,8 @@ public class CuaHangActionListener implements ActionListener {
 		});
 		if (src == CuaHangView.jbutton_refesh) {
 
-			CuaHangView.comboBox_search_QuanHuyen.setSelectedItem("Tất cả");
+			CuaHangView.comboBox_search_QuanHuyen.setSelectedIndex(0);;
 			CuaHangView.textField_Search.setText(null);
-			CuaHangView.updateComBoBox_XaPhuong();
-			CuaHangView.loadCuaHang();
 		}
 
 	}
