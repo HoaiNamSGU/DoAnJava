@@ -220,11 +220,7 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				String MaCH = rs.getString("MaCuaHang");
-				String TenCH = rs.getString("TenCH");
-				String DiaChi = rs.getString("DiaChi");
-				String SDT = rs.getString("SDT");
-				int isDelete = rs.getInt("isDelete");
-				CuaHang CH = new CuaHang(MaCH, TenCH, DiaChi, SDT, isDelete);
+				CuaHang CH = selectById(MaCH);
 				kq.add(CH);
 			}
 			JDBCUtil.closeConnection(con);
@@ -249,11 +245,7 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				String MaCH = rs.getString("MaCuaHang");
-				String TenCH = rs.getString("TenCH");
-				String DiaChi = rs.getString("DiaChi");
-				String SDT = rs.getString("SDT");
-				int isDelete = rs.getInt("isDelete");
-				CuaHang CH = new CuaHang(MaCH, TenCH, DiaChi, SDT, isDelete);
+				CuaHang CH = selectById(MaCH);
 				kq.add(CH);
 			}
 			JDBCUtil.closeConnection(con);
