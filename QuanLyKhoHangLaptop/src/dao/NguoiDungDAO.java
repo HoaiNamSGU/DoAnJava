@@ -26,13 +26,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import database.JDBCUtil;
 import model.NguoiDung;
 import model.NhanVien;
+import view.TaiKhoanView;
 
 public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 
 	public static NguoiDungDAO getintance() {
 		return new NguoiDungDAO();
 	}
-
+	
+	
+	
 	public boolean KetHopNguoiDungVaNhanVien()
 	{
 		JFileChooser fileChooser = new JFileChooser();
@@ -672,8 +675,41 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 		return column; 
 	}
 
+	
+	public ArrayList<NguoiDung>select_search(String tmp )
+	{
+		ArrayList<NguoiDung> kq = new ArrayList<NguoiDung>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "select * from nguoidung where MaNguoiDung like ? and isDelete=0 and PhamViTruyCap=0  or TaiKhoan like ? and isDelete=0 and PhamViTruyCap=0";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, "%"+tmp+"%");
+			pst.setString(2, "%"+tmp+"%");
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				String ma = rs.getString("MaNguoiDung");
+				String tk = rs.getString("TaiKhoan");
+				String mk = rs.getString("MatKhau");
+				int phamvi = rs.getInt("PhamViTruyCap");
+				int isdelete = rs.getInt("isDelete");
+				NguoiDung nd = new NguoiDung();
+				nd.setMaNguoiDung(ma);
+				nd.setTaiKhoan(tk);
+				nd.setMatKhau(mk);
+				nd.setPhamViTruyCap(phamvi);
+				nd.setIsDelete(isdelete);
+				kq.add(nd);
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return kq;
+	}	
+	
 	public static void main(String[] args) {
-		ArrayList<NguoiDung> arr = NguoiDungDAO.getintance().ReadExcelKetHop("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\database\\DanhSachThongTaiKhoan.xlsx");
+		ArrayList<NguoiDung> arr = NguoiDungDAO.getintance().select_search("Hoai");
 		for (NguoiDung nguoiDung : arr) {
 			System.out.println(nguoiDung.toString());
 		}

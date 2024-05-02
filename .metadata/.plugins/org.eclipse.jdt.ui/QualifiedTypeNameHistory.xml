@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.swing.JButton"/>
     <fullyQualifiedTypeName name="view.Laptop_view"/>
     <fullyQualifiedTypeName name="dao.LaptopDAO"/>
     <fullyQualifiedTypeName name="img.Source"/>
@@ -24,7 +23,6 @@
     <fullyQualifiedTypeName name="view.login"/>
     <fullyQualifiedTypeName name="database.JDBCUtil"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="com.mysql.cj.xdevapi.Result"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
@@ -33,7 +31,6 @@
     <fullyQualifiedTypeName name="view.DoiMatKhau"/>
     <fullyQualifiedTypeName name="java.lang.ModuleLayer.Controller"/>
     <fullyQualifiedTypeName name="controller.DoiPassActionListener"/>
-    <fullyQualifiedTypeName name="view.mainView"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="view.admin_view"/>
     <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
@@ -41,7 +38,6 @@
     <fullyQualifiedTypeName name="controller.AdminMouseListener"/>
     <fullyQualifiedTypeName name="controller.MenuAdminMouseListener"/>
     <fullyQualifiedTypeName name="java.awt.GridLayout"/>
-    <fullyQualifiedTypeName name="view.TaiKhoanView"/>
     <fullyQualifiedTypeName name="controller.TaiKhoanMouseListener"/>
     <fullyQualifiedTypeName name="view.ThemTaiKhoan"/>
     <fullyQualifiedTypeName name="javax.swing.border.Border"/>
@@ -49,15 +45,19 @@
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="dao.NguoiDungDAO"/>
     <fullyQualifiedTypeName name="javax.swing.SpinnerNumberModel"/>
-    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.CreationHelper"/>
     <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFCellStyle"/>
     <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFWorkbook"/>
     <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.CellType"/>
-    <fullyQualifiedTypeName name="model.NguoiDung"/>
     <fullyQualifiedTypeName name="dao.NhanVienDAO"/>
     <fullyQualifiedTypeName name="model.NhanVien"/>
+    <fullyQualifiedTypeName name="view.TaiKhoanView"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="controller.TaiKhoanActionListener"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="dao.NguoiDungDAO"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="model.NguoiDung"/>
+    <fullyQualifiedTypeName name="view.mainView"/>
 </qualifiedTypeNameHistroy>

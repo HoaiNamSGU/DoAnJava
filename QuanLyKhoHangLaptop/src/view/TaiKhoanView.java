@@ -18,30 +18,36 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import controller.TaiKhoanActionListener;
 import controller.TaiKhoanMouseListener;
 import dao.NguoiDungDAO;
 import dao.NhanVienDAO;
+import database.JDBCUtil;
 import img.Source;
 import model.NguoiDung;
 import model.NhanVien;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.awt.event.ActionEvent;
 public class TaiKhoanView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	public JButton jbutton_refesh;
 	public Object data[][];
 	public JTable table;
 	public DefaultTableModel model;
 	public JScrollPane scrollPane;
-	public JComboBox<String> comboBox_search;
-	public JButton jbutton_Sreach;
-	public JComboBox<String> comboBox_Gia;
-	public JComboBox<String> comboBox_Rom;
-	public JComboBox<String> comboBox_Ram;
-	public JComboBox<String> comboBox_CPU;
-	public JComboBox<String> comboBox_Hang;
-	public JTextField textField;
 	private Source source = new Source();
+	public JTextField textField_timkiem;
+
+	public JButton button_refesh1;
+
+	public JButton button_search1;
 	
 	
 	public TaiKhoanView() {
@@ -97,6 +103,84 @@ public class TaiKhoanView extends JPanel {
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tìm kiếm",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
 		jpanel_North.add(panel_border_timKiem);
+		GridBagLayout gbl_panel_border_timKiem = new GridBagLayout();
+		gbl_panel_border_timKiem.columnWidths = new int[]{100, 100, 100, 100, 100, 0};
+		gbl_panel_border_timKiem.rowHeights = new int[]{22, 22, 0};
+		gbl_panel_border_timKiem.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_border_timKiem.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		panel_border_timKiem.setLayout(gbl_panel_border_timKiem);
+		
+		textField_timkiem = new JTextField();
+		GridBagConstraints gbc_textField_timkiem = new GridBagConstraints();
+		gbc_textField_timkiem.fill = GridBagConstraints.BOTH;
+		gbc_textField_timkiem.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_timkiem.gridx = 0;
+		gbc_textField_timkiem.gridy = 0;
+		gbc_textField_timkiem.gridwidth = 3;
+		
+		panel_border_timKiem.add(textField_timkiem, gbc_textField_timkiem);
+		textField_timkiem.setColumns(10);
+		
+		
+		
+		button_refesh1 = new JButton(source.icon_refresh);
+		button_refesh1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_button_refesh1 = new GridBagConstraints();
+		gbc_button_refesh1.fill = GridBagConstraints.BOTH;
+		gbc_button_refesh1.insets = new Insets(0, 0, 5, 5);
+		gbc_button_refesh1.gridx = 3;
+		gbc_button_refesh1.gridy = 0;
+		panel_border_timKiem.add(button_refesh1, gbc_button_refesh1);
+		
+		button_search1 = new JButton("Tìm kiếm");
+		GridBagConstraints gbc_button_search1 = new GridBagConstraints();
+		gbc_button_search1.fill = GridBagConstraints.BOTH;
+		gbc_button_search1.insets = new Insets(0, 0, 5, 0);
+		gbc_button_search1.gridx = 4;
+		gbc_button_search1.gridy = 0;
+		panel_border_timKiem.add(button_search1, gbc_button_search1);
+		
+		JComboBox comboBox = new JComboBox();
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.fill = GridBagConstraints.BOTH;
+		gbc_comboBox.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox.gridx = 0;
+		gbc_comboBox.gridy = 1;
+		panel_border_timKiem.add(comboBox, gbc_comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+		gbc_comboBox_1.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_1.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox_1.gridx = 1;
+		gbc_comboBox_1.gridy = 1;
+		panel_border_timKiem.add(comboBox_1, gbc_comboBox_1);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
+		gbc_comboBox_2.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_2.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox_2.gridx = 2;
+		gbc_comboBox_2.gridy = 1;
+		panel_border_timKiem.add(comboBox_2, gbc_comboBox_2);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		GridBagConstraints gbc_comboBox_3 = new GridBagConstraints();
+		gbc_comboBox_3.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_3.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox_3.gridx = 3;
+		gbc_comboBox_3.gridy = 1;
+		panel_border_timKiem.add(comboBox_3, gbc_comboBox_3);
+		
+		JComboBox comboBox_4 = new JComboBox();
+		GridBagConstraints gbc_comboBox_4 = new GridBagConstraints();
+		gbc_comboBox_4.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_4.gridx = 4;
+		gbc_comboBox_4.gridy = 1;
+		panel_border_timKiem.add(comboBox_4, gbc_comboBox_4);
 		
 		
 		
@@ -120,6 +204,11 @@ public class TaiKhoanView extends JPanel {
 		jlabel_sua.addMouseListener(mouse);
 		jlabel_nhapExcel.addMouseListener(mouse);
 		jlabel_xoa.addMouseListener(mouse);
+		
+		TaiKhoanActionListener ac = new TaiKhoanActionListener(this);
+		button_refesh1.addActionListener(ac);
+		button_search1.addMouseListener(mouse);
+		textField_timkiem.addActionListener(ac);
 	}
 
 	
@@ -240,5 +329,5 @@ public class TaiKhoanView extends JPanel {
 
 
 
-
+	
 }
