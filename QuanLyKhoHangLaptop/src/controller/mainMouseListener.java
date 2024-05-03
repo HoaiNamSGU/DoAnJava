@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 
 import view.Nhacungcap;
 import view.NhapHang;
-import view.PhieuXuat;
 import view.TaiKhoanView;
 import view.XuatHang;
 import view.login;
@@ -19,7 +18,6 @@ public class mainMouseListener implements MouseListener {
 
 	public mainView view;
 	public static JLabel lastClickedLabel;
-	private static PhieuXuat PhieuXuat;
 	
 	public mainMouseListener(mainView view) {
 		this.view = view;

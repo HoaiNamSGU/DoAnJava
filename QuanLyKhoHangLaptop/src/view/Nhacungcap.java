@@ -416,7 +416,6 @@ public class Nhacungcap extends JFrame {
 	public void thanhtimkiem() {
 		dsnhacungcap=nhacungcapDao.getInstance().selectAll();
 		String text=txtx_timkiem.getText();
-        ArrayList<Nhacungcaptmppp> result = new ArrayList<>();
         model.setRowCount(0);
         String timitem=cbb_timkiem.getSelectedItem()+"";
         if(timitem.equals("Tất cả")) {

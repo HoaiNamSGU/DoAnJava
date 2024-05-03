@@ -1,7 +1,6 @@
 package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -27,9 +26,9 @@ import javax.swing.table.DefaultTableModel;
 import controller.Controllernhaphang;
 import dao.LaptopDAO;
 import dao.PhieuNhapDao;
+import model.ChiTietPhieuNhap;
 import model.Laptop;
 import model.PhieuNhap;
-import model.ChiTietPhieuNhap;
 
 public class NhapHang extends JFrame {
 	ArrayList<Laptop> sanpham=LaptopDAO.getintance().selectAll();

@@ -7,11 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import database.JDBCUtil;
 import model.ChiTietPhieuNhap;
-import model.NhaCungCap;
 import model.PhieuNhap;
 
 public class PhieuNhapDao implements DAOInterface<PhieuNhap>{
@@ -285,6 +285,29 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap>{
 	public int delete(PhieuNhap t) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	public ArrayList<String> selectDay() {
+		ArrayList<String> firstDay = new ArrayList<String>();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+
+		try {
+			con = JDBCUtil.getConnection();
+			String sql = "SELECT DISTINCT NgayNhap AS Day FROM phieuNhap ORDER BY NgayNhap ASC";
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				Date Date = rs.getDate("Day");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				firstDay.add(sdf.format(Date));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return firstDay;
 	}
 
 }

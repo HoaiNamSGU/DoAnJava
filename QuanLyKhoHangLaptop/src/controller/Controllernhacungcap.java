@@ -1,21 +1,18 @@
 package controller;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import dao.nhacungcapDao;
 import model.NhaCungCap;
 import view.Nhacungcap;
-import view.Nhacungcaptmppp;
+
 public class Controllernhacungcap {
 	static ArrayList<NhaCungCap> dsnhacungcap=nhacungcapDao.getInstance().selectAll();
 	private static Nhacungcap ncc;

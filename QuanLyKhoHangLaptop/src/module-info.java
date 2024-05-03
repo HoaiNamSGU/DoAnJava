@@ -6,6 +6,6 @@ module QuanLyKhoHangLaptop {
 	requires org.apache.poi.ooxml;
 	requires org.apache.poi.poi;
 	requires itextpdf;
-	requires javafx.controls;
-	opens test to javafx.graphics, javafx.fxml;
+	requires jcommon;
+	requires jfreechart;
 }

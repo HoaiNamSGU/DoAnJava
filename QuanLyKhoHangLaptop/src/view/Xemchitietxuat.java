@@ -59,7 +59,7 @@ public class Xemchitietxuat extends JFrame {
 	 */
 	public Xemchitietxuat(String maphieun,String macuahang,String ngayn,String tennhanvien) {
 		this.ctpn=PhieuXuatDao.getInstance().laydulieutuphieu(maphieun);
-		this.nc1=CuaHangDAO.getintance().chon1nhacc(macuahang);
+		this.nc1=CuaHangDAO.getintance().selectById(macuahang);
 		tennv=tennhanvien;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //		setBounds(100, 100, 1115, 546);
