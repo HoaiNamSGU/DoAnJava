@@ -336,11 +336,13 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 				// Ghi dữ liệu từ danh sách cửa hàng vào các hàng tiếp theo
 				int rowNum = 1;
 				for (CuaHang cuaHang : CuaHangList) {
+					if(cuaHang.getIsDelete()==0) {
 					Row row = sheet.createRow(rowNum++);
 					row.createCell(0).setCellValue(cuaHang.getMaCH());
 					row.createCell(1).setCellValue(cuaHang.getTenCH());
 					row.createCell(2).setCellValue(cuaHang.getDiaChi());
 					row.createCell(3).setCellValue(cuaHang.getSDT());
+					}
 				}
 
 				// Ghi workbook ra file tại đường dẫn đã cho

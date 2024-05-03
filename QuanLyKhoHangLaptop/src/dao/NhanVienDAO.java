@@ -546,6 +546,7 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 	{	
 		ArrayList<NhanVien> arr = NhanVienDAO.getintance().selectAll();
 		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectAll();
+		
 		s = s.toUpperCase();
 		ArrayList<NhanVien> kq = new ArrayList<NhanVien>();
 		for (NhanVien nhanVien : arr) {
@@ -562,10 +563,10 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 			if (tmp.indexOf(s) != -1 ) {
 				for(NguoiDung nguoidung : nd)
 				{
-					if(nhanVien.getMaNguoiDung().equals(nguoidung.getMaNguoiDung()) && nguoidung.getPhamViTruyCap()!=1)
+					if(nhanVien.getMaNguoiDung().equals(nguoidung.getMaNguoiDung()) && nguoidung.getPhamViTruyCap()==0)
+						
 					{
 						kq.add(nhanVien);
-						
 					}
 				}
 			}
