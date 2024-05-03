@@ -13,6 +13,37 @@ public class nhacungcapDao implements DAOInterface<NhaCungCap>{
 	public static nhacungcapDao getInstance() {
 		return new nhacungcapDao();
 	}
+
+public NhaCungCap chon1nhacc(String tennc) {
+		NhaCungCap ketqua=null;
+		try {
+//		BƯỚC 1: TẠO KẾT NỐI ĐẾN CSDL
+			Connection con=JDBCUtil.getConnection();
+//		BƯỚC 2: TẠO RA ĐỐI TƯỢNG STATEMENT
+			String sql="SELECT * FROM nhacungcap WHERE TenNhaCungCap='"+tennc+"'";
+			PreparedStatement pst=con.prepareStatement(sql);
+//		BƯỚC 3: THỰC THI CÂU LỆNH SQL
+//		System.out.println(sql);
+		ResultSet rs=pst.executeQuery(sql);
+		// BƯỚC 4 XỬ LÝ KẾT QUẢ
+//		String manhacungcap, String tennhacungcap, String diachi, String sdt, String email
+		while(rs.next()) {
+			String mncc=rs.getString("MaNhaCungCap");
+			String tm=rs.getString("TenNhaCungCap");
+			String dc=rs.getString("DiaChi");
+			String sdt=rs.getString("SDT");
+			String em=rs.getString("Email");
+			ketqua=new NhaCungCap(mncc,tm,dc,sdt,em);
+		}
+//		BƯỚC 5: NGẮT KẾT NỐI
+		JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ketqua;
+	}
+	
 	@Override
 	public int insert(NhaCungCap t) {
 		int ketqua=0;
