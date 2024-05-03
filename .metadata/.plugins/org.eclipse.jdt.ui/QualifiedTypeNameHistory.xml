@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="view.Laptop_view"/>
     <fullyQualifiedTypeName name="dao.LaptopDAO"/>
     <fullyQualifiedTypeName name="img.Source"/>
     <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
@@ -24,7 +23,6 @@
     <fullyQualifiedTypeName name="database.JDBCUtil"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="com.mysql.cj.xdevapi.Result"/>
-    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="view.DoiThongTinUser"/>
     <fullyQualifiedTypeName name="controller.ThongTinMouseListener"/>
@@ -39,7 +37,6 @@
     <fullyQualifiedTypeName name="controller.MenuAdminMouseListener"/>
     <fullyQualifiedTypeName name="java.awt.GridLayout"/>
     <fullyQualifiedTypeName name="controller.TaiKhoanMouseListener"/>
-    <fullyQualifiedTypeName name="view.ThemTaiKhoan"/>
     <fullyQualifiedTypeName name="javax.swing.border.Border"/>
     <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
@@ -51,13 +48,16 @@
     <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFWorkbook"/>
     <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.CellType"/>
     <fullyQualifiedTypeName name="dao.NhanVienDAO"/>
-    <fullyQualifiedTypeName name="model.NhanVien"/>
     <fullyQualifiedTypeName name="view.TaiKhoanView"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="controller.TaiKhoanActionListener"/>
+    <fullyQualifiedTypeName name="model.NguoiDung"/>
+    <fullyQualifiedTypeName name="view.ThemTaiKhoan"/>
+    <fullyQualifiedTypeName name="view.mainView"/>
+    <fullyQualifiedTypeName name="controller.mainMouseListener"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="dao.NguoiDungDAO"/>
+    <fullyQualifiedTypeName name="model.NhanVien"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="model.NguoiDung"/>
-    <fullyQualifiedTypeName name="view.mainView"/>
 </qualifiedTypeNameHistroy>

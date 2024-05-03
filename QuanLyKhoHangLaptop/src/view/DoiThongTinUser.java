@@ -28,10 +28,10 @@ public class DoiThongTinUser extends JPanel {
 	private JLabel sdt1;
 	private JLabel mand1;
 	private JLabel tentaikhoan1;
-	public JLabel jlabel_xemCT;
 	public JLabel jlabel_sua;
 	public JPanel panel_chinh;
 	public JPanel panel_center;
+	public JLabel jlabel_doithongtin;
 	private static final long serialVersionUID = 1L;
 	public DoiThongTinUser() {
 		setLayout(new BorderLayout(0, 0));
@@ -45,16 +45,17 @@ public class DoiThongTinUser extends JPanel {
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Chức năng",
 				TitledBorder.LEFT, TitledBorder.ABOVE_TOP, new Font("Arial", Font.ITALIC, 14), new Color(0, 0, 0)));
 		panel_border_chucNang.setLayout(new GridLayout(1,2));
-		
-		jlabel_xemCT = new JLabel("Xem thông tin", source.icon_eye, JLabel.CENTER);
-		jlabel_xemCT.setForeground(new Color(255, 255, 255));
-		jlabel_xemCT.setFont(new Font("Arial", Font.PLAIN, 12));
-		jlabel_xemCT.setVerticalTextPosition(JLabel.BOTTOM);
-		jlabel_xemCT.setHorizontalTextPosition(JLabel.CENTER);
-		panel_border_chucNang.add(jlabel_xemCT);
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_border_chucNang);
 		panel.add(panel_1);
+		
+		jlabel_doithongtin = new JLabel("Đổi thông tin",source.icon_change, JLabel.CENTER);
+		jlabel_doithongtin.setFont(new Font("Arial", Font.PLAIN, 12));
+		jlabel_doithongtin.setVerticalTextPosition(JLabel.BOTTOM);
+		jlabel_doithongtin.setHorizontalTextPosition(JLabel.CENTER);
+		
+		
+		panel_border_chucNang.add(jlabel_doithongtin);
 		jlabel_sua = new JLabel("Đổi mật khẩu", source.icon_pencil, JLabel.CENTER);
 		jlabel_sua.setFont(new Font("Arial", Font.PLAIN, 12));
 		jlabel_sua.setVerticalTextPosition(JLabel.BOTTOM);
@@ -160,8 +161,8 @@ public class DoiThongTinUser extends JPanel {
 		
 		
 		ThongTinMouseListener mouse = new ThongTinMouseListener(this);
-		jlabel_xemCT.addMouseListener(mouse);
 		jlabel_sua.addMouseListener(mouse);
+		jlabel_doithongtin.addMouseListener(mouse);
 	}
 	
 	public void setJlabel(NhanVien nv, NguoiDung nd)
@@ -280,7 +281,7 @@ public class DoiThongTinUser extends JPanel {
 		panel_tmp2.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		ThongTinMouseListener mouse = new ThongTinMouseListener(this);
-		jlabel_xemCT.addMouseListener(mouse);
 		jlabel_sua.addMouseListener(mouse);
+		
 	}
 }

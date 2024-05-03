@@ -271,6 +271,7 @@ public class TaiKhoanMouseListener implements MouseListener{
 								NguoiDungDAO.getintance().UpDateKetHop();
 								taikhoanview.updateTableData();
 								taikhoanview.setKhoangCachTable();
+								taikhoanview.comboBox_maND.addItem(nv.getMaNguoiDung());
 							}
 							else
 							{
@@ -290,12 +291,21 @@ public class TaiKhoanMouseListener implements MouseListener{
     		{	
     			String maNhanVien = (String) taikhoanview.table.getValueAt(selectedRow, 0);
     			nv = NhanVienDAO.getintance().selectById(maNhanVien);
+    			
     			int result = JOptionPane.showConfirmDialog(taikhoanview ,
                         "Bạn có chắc muốn xóa tài khoản ?",
                         "Xác nhận",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
             	 if(result == JOptionPane.YES_OPTION){
+            		 String s = nv.getMaNguoiDung();
+            		for(int j=0;j<taikhoanview.comboBox_maND.getItemCount();j++)
+         			{
+                 		if(taikhoanview.comboBox_maND.getItemAt(j).equals(s))
+                 		{
+                 			taikhoanview.comboBox_maND.removeItemAt(j);
+                 		}
+         			}
             		 int check1 = NhanVienDAO.getintance().delete(nv.getMaNhanVien());
             		 int check2 = NguoiDungDAO.getintance().delete(nv.getMaNguoiDung());
             		 taikhoanview.model.removeRow(selectedRow);
@@ -305,6 +315,7 @@ public class TaiKhoanMouseListener implements MouseListener{
             			 NguoiDungDAO.getintance().WriteUpDateExcel();
             			 NguoiDungDAO.getintance().UpDateKetHop();
             			 JOptionPane.showMessageDialog(taikhoanview, "Tài khoản đã được xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            			 
             		 }
             		 else 
             		 {
@@ -332,6 +343,7 @@ public class TaiKhoanMouseListener implements MouseListener{
         }
         else if(labelText.equals("Sửa"))
         {
+        	
         	int selectedRow = taikhoanview.table.getSelectedRow();
         	if(selectedRow != -1)
         	{

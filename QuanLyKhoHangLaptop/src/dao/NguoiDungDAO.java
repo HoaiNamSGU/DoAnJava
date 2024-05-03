@@ -624,13 +624,41 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 	public ArrayList<NguoiDung> selectByCondition(String condition) {
 		return null;
 	}
-
+	
+	
+	public NguoiDung selectByCondition(String nameColumn, String condition) {
+		NguoiDung nd = new NguoiDung();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = " select* from nguoidung where "+nameColumn+" like ? and isDelete=0 and PhamViTruyCap=0";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, condition);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				String ma = rs.getString("MaNguoiDung");
+				String tk = rs.getString("TaiKhoan");
+				String mk = rs.getString("MatKhau");
+				int phamvi = rs.getInt("PhamViTruyCap");
+				int isdelete = rs.getInt("isDelete");
+				nd.setMaNguoiDung(ma);
+				nd.setTaiKhoan(tk);
+				nd.setMatKhau(mk);
+				nd.setPhamViTruyCap(phamvi);
+				nd.setIsDelete(isdelete);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return nd;
+	}
+	
 
 	public ArrayList<NguoiDung> selectByCondition() {
 		ArrayList<NguoiDung> kq = new ArrayList<NguoiDung>();
 		try {
 			Connection con = JDBCUtil.getConnection();
-			String sql = "select * from nguoidung where isDelete = 0 and PhamViTruyCap = 0";
+			String sql = "select* from nguoidung where isDelete = 0 and PhamViTruyCap = 0";
 			PreparedStatement pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while(rs.next())
@@ -681,7 +709,7 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 		ArrayList<NguoiDung> kq = new ArrayList<NguoiDung>();
 		try {
 			Connection con = JDBCUtil.getConnection();
-			String sql = "select * from nguoidung where MaNguoiDung like ? and isDelete=0 and PhamViTruyCap=0  or TaiKhoan like ? and isDelete=0 and PhamViTruyCap=0";
+			String sql = "select* from nguoidung where MaNguoiDung like ? and isDelete=0 and PhamViTruyCap=0  or TaiKhoan like ? and isDelete=0 and PhamViTruyCap=0";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, "%"+tmp+"%");
 			pst.setString(2, "%"+tmp+"%");
@@ -709,8 +737,8 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 	}	
 	
 	public static void main(String[] args) {
-		ArrayList<NguoiDung> arr = NguoiDungDAO.getintance().select_search("Hoai");
-		for (NguoiDung nguoiDung : arr) {
+		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().select_search("");
+		for (NguoiDung nguoiDung : nd) {
 			System.out.println(nguoiDung.toString());
 		}
 	}

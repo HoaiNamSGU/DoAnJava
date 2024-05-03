@@ -45,6 +45,8 @@ public class ThemTaiKhoan extends JFrame {
 	public JSpinner monthSpinner;
 	public JSpinner yearSpinner;
 	public JLabel lblNewLabel_6;
+	public JLabel MatKhau;
+	public JPanel panel_chinh;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -88,7 +90,7 @@ public class ThemTaiKhoan extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		panelCenter.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JPanel panel_chinh = new JPanel();
+		panel_chinh = new JPanel();
 		GridBagConstraints gbc_panel_chinh = new GridBagConstraints();
 		gbc_panel_chinh.fill = GridBagConstraints.BOTH;
 		gbc_panel_chinh.insets = new Insets(0, 0, 0, 5);
@@ -277,7 +279,7 @@ public class ThemTaiKhoan extends JFrame {
 		panel_chinh.add(textField_TaiKhoan, gbc_textField_TaiKhoan);
 		textField_TaiKhoan.setColumns(10);
 		
-		JLabel MatKhau = new JLabel("Mật khẩu:");
+		MatKhau = new JLabel("Mật khẩu:");
 		MatKhau.setForeground(new Color(0, 128, 192));
 		MatKhau.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_MatKhau = new GridBagConstraints();
@@ -352,5 +354,6 @@ public class ThemTaiKhoan extends JFrame {
 		monthSpinner.setValue(thang);
 		yearSpinner.setValue(nam);
 	}
-
+	
+	
 }

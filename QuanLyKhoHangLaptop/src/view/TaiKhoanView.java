@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,6 +26,7 @@ import javax.swing.table.JTableHeader;
 
 import controller.TaiKhoanActionListener;
 import controller.TaiKhoanMouseListener;
+import dao.LaptopDAO;
 import dao.NguoiDungDAO;
 import dao.NhanVienDAO;
 import img.Source;
@@ -44,6 +46,10 @@ public class TaiKhoanView extends JPanel {
 	public JButton button_refesh1;
 
 	public JButton button_search1;
+
+	public JComboBox<String> comboBox_gioitinh;
+
+	public JComboBox<String> comboBox_maND;
 	
 	
 	public TaiKhoanView() {
@@ -107,6 +113,7 @@ public class TaiKhoanView extends JPanel {
 		panel_border_timKiem.setLayout(gbl_panel_border_timKiem);
 		
 		textField_timkiem = new JTextField();
+		textField_timkiem.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_textField_timkiem = new GridBagConstraints();
 		gbc_textField_timkiem.fill = GridBagConstraints.BOTH;
 		gbc_textField_timkiem.insets = new Insets(0, 0, 5, 5);
@@ -120,6 +127,8 @@ public class TaiKhoanView extends JPanel {
 		
 		
 		button_refesh1 = new JButton(source.icon_refresh);
+		button_refesh1.setBackground(new Color(255, 255, 255));
+		button_refesh1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		button_refesh1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -132,6 +141,8 @@ public class TaiKhoanView extends JPanel {
 		panel_border_timKiem.add(button_refesh1, gbc_button_refesh1);
 		
 		button_search1 = new JButton("Tìm kiếm");
+		button_search1.setBackground(new Color(255, 255, 255));
+		button_search1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_button_search1 = new GridBagConstraints();
 		gbc_button_search1.fill = GridBagConstraints.BOTH;
 		gbc_button_search1.insets = new Insets(0, 0, 5, 0);
@@ -139,44 +150,46 @@ public class TaiKhoanView extends JPanel {
 		gbc_button_search1.gridy = 0;
 		panel_border_timKiem.add(button_search1, gbc_button_search1);
 		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.fill = GridBagConstraints.BOTH;
-		gbc_comboBox.insets = new Insets(0, 0, 0, 5);
-		gbc_comboBox.gridx = 0;
-		gbc_comboBox.gridy = 1;
-		panel_border_timKiem.add(comboBox, gbc_comboBox);
+		JLabel lblNewLabel = new JLabel("Mã tài khoản");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 1;
+		panel_border_timKiem.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_1.insets = new Insets(0, 0, 0, 5);
-		gbc_comboBox_1.gridx = 1;
-		gbc_comboBox_1.gridy = 1;
-		panel_border_timKiem.add(comboBox_1, gbc_comboBox_1);
+		comboBox_maND = new JComboBox<>();
+		comboBox_maND.setBackground(new Color(255, 255, 255));
+		comboBox_maND = addItemMaNguoiDung();
+		comboBox_maND.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_comboBox_maND = new GridBagConstraints();
+		gbc_comboBox_maND.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_maND.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox_maND.gridx = 1;
+		gbc_comboBox_maND.gridy = 1;
+		panel_border_timKiem.add(comboBox_maND, gbc_comboBox_maND);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
-		gbc_comboBox_2.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_2.insets = new Insets(0, 0, 0, 5);
-		gbc_comboBox_2.gridx = 2;
-		gbc_comboBox_2.gridy = 1;
-		panel_border_timKiem.add(comboBox_2, gbc_comboBox_2);
+		JLabel lblNewLabel_1 = new JLabel("Giới tính");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_1.gridx = 3;
+		gbc_lblNewLabel_1.gridy = 1;
+		panel_border_timKiem.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		GridBagConstraints gbc_comboBox_3 = new GridBagConstraints();
-		gbc_comboBox_3.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_3.insets = new Insets(0, 0, 0, 5);
-		gbc_comboBox_3.gridx = 3;
-		gbc_comboBox_3.gridy = 1;
-		panel_border_timKiem.add(comboBox_3, gbc_comboBox_3);
-		
-		JComboBox comboBox_4 = new JComboBox();
-		GridBagConstraints gbc_comboBox_4 = new GridBagConstraints();
-		gbc_comboBox_4.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_4.gridx = 4;
-		gbc_comboBox_4.gridy = 1;
-		panel_border_timKiem.add(comboBox_4, gbc_comboBox_4);
+		comboBox_gioitinh = new JComboBox<>();
+		comboBox_gioitinh.setBackground(new Color(255, 255, 255));
+		comboBox_gioitinh.addItem("Tất cả");
+		comboBox_gioitinh.addItem("nam");
+		comboBox_gioitinh.addItem("nữ");
+		comboBox_gioitinh.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_comboBox_gioitinh = new GridBagConstraints();
+		gbc_comboBox_gioitinh.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_gioitinh.gridx = 4;
+		gbc_comboBox_gioitinh.gridy = 1;
+		panel_border_timKiem.add(comboBox_gioitinh, gbc_comboBox_gioitinh);
 		
 		
 		
@@ -205,13 +218,15 @@ public class TaiKhoanView extends JPanel {
 		button_refesh1.addActionListener(ac);
 		button_search1.addActionListener(ac);
 		textField_timkiem.addActionListener(ac);
+		comboBox_gioitinh.addActionListener(ac);
+		comboBox_maND.addActionListener(ac);
 	}
 
 	
 	public JTable SanPham() {
 		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectByCondition();
 		ArrayList<NhanVien> nv = NhanVienDAO.getintance().selectByCondition(nd);
-		data = new Object[nd.size()][9];
+		data = new Object[nd.size()][7];
 		for (int i = 0; i < nd.size(); i++) {
 			NhanVien nhanvien = nv.get(i);
 			NguoiDung nguoidung = nd.get(i);
@@ -230,10 +245,8 @@ public class TaiKhoanView extends JPanel {
 			data[i][4] = nhanvien.getSDT();
 			data[i][5] = nhanvien.getMaNguoiDung();
 			data[i][6] = nguoidung.getTaiKhoan();
-			data[i][7] = nguoidung.getMatKhau();
-			data[i][8] = nguoidung.getPhamViTruyCap();
 		}
-		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản", "Mật khẩu", "Quyền truy cập"};
+		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản"};
 		model = new DefaultTableModel(data, column);
 		table = new JTable(model);
 
@@ -248,10 +261,14 @@ public class TaiKhoanView extends JPanel {
 	  
 	    ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectByCondition();
 		ArrayList<NhanVien> nv = NhanVienDAO.getintance().selectByCondition(nd);
-		Object newData[][] = new Object[nd.size()][9];
+		Object newData[][] = new Object[nd.size()][7];
 		for (int i = 0; i < nd.size(); i++) {
 			NhanVien nhanvien = nv.get(i);
 			NguoiDung nguoidung = nd.get(i);
+			if(nguoidung.getPhamViTruyCap()==1)
+			{
+				continue;
+			}
 			newData[i][0] = nhanvien.getMaNhanVien();
 			newData[i][1] = nhanvien.getTenNhanVien();
 			newData[i][2] = nhanvien.getNgaySinh();
@@ -267,10 +284,8 @@ public class TaiKhoanView extends JPanel {
 			newData[i][4] = nhanvien.getSDT();
 			newData[i][5] = nhanvien.getMaNguoiDung();
 			newData[i][6] = nguoidung.getTaiKhoan();
-			newData[i][7] = nguoidung.getMatKhau();
-			newData[i][8] = nguoidung.getPhamViTruyCap();
 		}
-		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản", "Mật khẩu", "Quyền truy cập"};
+		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản"};
 
 	    // Cập nhật mô hình của bảng
 	    model.setDataVector(newData, column);
@@ -287,6 +302,10 @@ public class TaiKhoanView extends JPanel {
 		for (int i = 0; i < nd.size(); i++) {
 			NguoiDung nguoidung = nd.get(i);
 			NhanVien nhanvien = NhanVienDAO.getintance().selectByCondition("MaNguoiDung",nguoidung.getMaNguoiDung());
+			if(nguoidung.getPhamViTruyCap()==1)
+			{
+				continue;
+			}
 			newData[i][0] = nhanvien.getMaNhanVien();
 			newData[i][1] = nhanvien.getTenNhanVien();
 			newData[i][2] = nhanvien.getNgaySinh();
@@ -302,10 +321,47 @@ public class TaiKhoanView extends JPanel {
 			newData[i][4] = nhanvien.getSDT();
 			newData[i][5] = nhanvien.getMaNguoiDung();
 			newData[i][6] = nguoidung.getTaiKhoan();
-			newData[i][7] = nguoidung.getMatKhau();
-			newData[i][8] = nguoidung.getPhamViTruyCap();
 		}
-		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản", "Mật khẩu", "Quyền truy cập"};
+		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản"};
+		
+	    // Cập nhật mô hình của bảng
+	    model.setDataVector(newData, column);
+	    setKhoangCachTable();
+	    // Cập nhật lại giao diện
+	    this.revalidate();
+	    this.repaint();
+	}
+	
+	
+	public void updateTableDataByNhanVien( ArrayList<NhanVien> arrNhanVien) {
+
+
+		Object newData[][] = new Object[arrNhanVien.size()][9];
+		for (int i = 0; i < arrNhanVien.size(); i++) {
+			NhanVien nhanvien = arrNhanVien.get(i);
+			NguoiDung nguoidung = NguoiDungDAO.getintance().selectByCondition("MaNguoiDung", nhanvien.getMaNguoiDung());
+			if(nguoidung.getPhamViTruyCap()==0)
+			{
+				newData[i][0] = nhanvien.getMaNhanVien();
+				newData[i][1] = nhanvien.getTenNhanVien();
+				newData[i][2] = nhanvien.getNgaySinh();
+				if(nhanvien.getGioiTinh()==1)
+				{
+					newData[i][3] = "nam";
+				}
+				else if(nhanvien.getGioiTinh()==0)
+				{
+					newData[i][3] = "nữ";
+				}
+
+				newData[i][4] = nhanvien.getSDT();
+				newData[i][5] = nhanvien.getMaNguoiDung();
+				newData[i][6] = nguoidung.getTaiKhoan();
+				
+			}
+			
+		}
+		String column[] = { "MaNV", "Họ tên ", "Ngày sinh", "Giới tính", "SDT", "Mã tài khoản", "Tài khoản"};
 		
 	    // Cập nhật mô hình của bảng
 	    model.setDataVector(newData, column);
@@ -320,10 +376,46 @@ public class TaiKhoanView extends JPanel {
 	{
 		table.getColumnModel().getColumn(0).setPreferredWidth(40);
 		table.getColumnModel().getColumn(1).setPreferredWidth(170);
-		table.getColumnModel().getColumn(8).setPreferredWidth(100);
 	}
 
 
-
+	public JComboBox<String> addItemMaNguoiDung() {
+		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().select_search("");
+		ArrayList<NhanVien> arr = new ArrayList<NhanVien>();
+		for(int i=0;i<nd.size();i++)
+		{
+			NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung",nd.get(i).getMaNguoiDung());
+			arr.add(nv);
+		}
+		
+		JComboBox<String> tmp = new JComboBox<String>();
+		tmp.addItem("Tất cả");
+		for(int i=0;i<arr.size();i++)
+		{
+			tmp.addItem(arr.get(i).getMaNguoiDung());
+		}
+		return tmp;
+	}
 	
+	
+	public ArrayList<NhanVien> select_search(String s , ArrayList<NhanVien> nv, ArrayList<NguoiDung> nd)
+	{
+		ArrayList<NhanVien> kq= new ArrayList<NhanVien>();
+		s = s.toUpperCase();
+		for(int i = 0;i<nv.size();i++)
+		{
+			String tmp = nv.get(i).getTenNhanVien() + nv.get(i).getMaNguoiDung()+nv.get(i).getGioiTinh()+""+nv.get(i).getMaNhanVien()+nv.get(i).getSDT()+nv.get(i).getNgaySinh()+nd.get(i).getTaiKhoan();
+			tmp = tmp.toUpperCase();
+			if(tmp.indexOf(s)!=-1)
+			{
+				kq.add(nv.get(i));
+			}
+		}
+		return kq;
+	}
+	
+	public void setComboBoxMaNguoiDung()
+	{
+		comboBox_maND = addItemMaNguoiDung();
+	}
 }

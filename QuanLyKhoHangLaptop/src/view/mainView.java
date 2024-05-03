@@ -48,14 +48,8 @@ public class mainView extends JFrame {
 	public JTable table;
 	public DefaultTableModel model;
 	public JScrollPane scrollPane;
-	public JComboBox<String> comboBox_search;
 	public JButton jbutton_Sreach;
 	public JPanel panel_center;
-	public JComboBox<String> comboBox_Gia;
-	public JComboBox<String> comboBox_Rom;
-	public JComboBox<String> comboBox_Ram;
-	public JComboBox<String> comboBox_CPU;
-	public JComboBox<String> comboBox_Hang;
 	public JLabel lblNewLabel;
 	
 	public laptopview laptopview = new laptopview();
@@ -75,7 +69,6 @@ public class mainView extends JFrame {
 		mainMouseListener mouse = new mainMouseListener(this);
 
 		panel_center = new JPanel(new BorderLayout());
-		//panel_center.setBounds(197, 0, 1189, 763);
 		
 		Border border = BorderFactory.createEmptyBorder(0, 10, 0, 10);
         panel_center.setBorder(border);
@@ -97,27 +90,17 @@ public class mainView extends JFrame {
 		getContentPane().add(panel_west,BorderLayout.WEST);
 		panel_menu = new JPanel(new GridLayout(9,1));
 		panel_menu.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
-		//getContentPane().add(panel_menu,BorderLayout.WEST);
-		//panel_menu.setBounds(0, 0, 197, 763);
-		//panel_menu.setSize(197,763);
 		panel_menu.setBackground(new Color(0, 128, 192));
 
 		lblNewLabel = new JLabel("  Hi! User");
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-		//lblNewLabel.setBounds(63, 45, 36, 24);
 		panel_menu.add(lblNewLabel);
 
-		/*JLabel lblNewLabel_1 = new JLabel("Admin");
-		lblNewLabel_1.setForeground(new Color(0, 0, 0));
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(52, 79, 68, 24);
-		panel_menu.add(lblNewLabel_1);*/
-
+		
 		jlabel_sanpham = new JLabel("Sản phẩm");
 		jlabel_sanpham.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_sanpham.setForeground(new Color(255, 255, 255));
-		//jlabel_sanpham.setBounds(26, 158, 161, 37);
 
 		jlabel_sanpham.setIcon(source.icon_sanpham);
 		panel_menu.add(jlabel_sanpham);
@@ -125,7 +108,6 @@ public class mainView extends JFrame {
 		jlabel_nhacungcap = new JLabel("Nhà cung cấp");
 		jlabel_nhacungcap.setForeground(new Color(0, 0, 0));
 		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
-		//jlabel_nhacungcap.setBounds(26, 205, 161, 37);
 
 		jlabel_nhacungcap.setIcon(source.icon_nhaCungCap);
 		panel_menu.add(jlabel_nhacungcap);
@@ -134,14 +116,13 @@ public class mainView extends JFrame {
 		jlabel_nhaphang.setForeground(new Color(0, 0, 0));
 		jlabel_nhaphang.setFont(new Font("Arial", Font.PLAIN, 20));
 
-		//jlabel_nhaphang.setBounds(26, 252, 161, 37);
+		
 		jlabel_nhaphang.setIcon(source.icon_nhaphang);
 		panel_menu.add(jlabel_nhaphang);
 
 		jlabel_xuathang = new JLabel("Xuất hàng");
 		jlabel_xuathang.setForeground(new Color(0, 0, 0));
 		jlabel_xuathang.setFont(new Font("Arial", Font.PLAIN, 20));
-		//jlabel_xuathang.setBounds(26, 299, 161, 37);
 
 		jlabel_xuathang.setIcon(source.icon_xuathang);
 		panel_menu.add(jlabel_xuathang);
@@ -150,34 +131,28 @@ public class mainView extends JFrame {
 		jlabel_cuahang.setForeground(new Color(0, 0, 0));
 		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlabel_cuahang.setIcon(source.icon_cuahang);
-		//jlabel_cuahang.setBounds(26, 346, 161, 37);
 		panel_menu.add(jlabel_cuahang);
 
 		jlabel_taikhoan = new JLabel("Tài khoản");
 		jlabel_taikhoan.setForeground(new Color(0, 0, 0));
 		jlabel_taikhoan.setFont(new Font("Arial", Font.PLAIN, 20));
-		//jlabel_taikhoan.setBounds(26, 440, 161, 37);
 		jlabel_taikhoan.setIcon(source.icon_taikhoan);
-		//panel_menu.add(jlabel_taikhoan);
 
 		jlabel_thongke = new JLabel("Thống kê");
 		jlabel_thongke.setForeground(new Color(0, 0, 0));
 		jlabel_thongke.setFont(new Font("Arial", Font.PLAIN, 20));
-		//jlabel_thongke.setBounds(26, 393, 161, 37);
 		jlabel_thongke.setIcon(source.icon_thongke);
 		panel_menu.add(jlabel_thongke);
 		
 		jlabel_doiThongtin = new JLabel("Thông tin tài khoản");
 		jlabel_doiThongtin.setForeground(new Color(0, 0, 0));
 		jlabel_doiThongtin.setFont(new Font("Arial", Font.PLAIN, 20));
-		//jlabel_doiThongtin.setBounds(26, 641, 161, 37);
 		jlabel_doiThongtin.setIcon(source.icon_doithongtin);
 		panel_menu.add(jlabel_doiThongtin);
 
 		jlabel_dangxuat = new JLabel("Đăng xuất");
 		jlabel_dangxuat.setForeground(new Color(0, 0, 0));
 		jlabel_dangxuat.setFont(new Font("Arial", Font.PLAIN, 20));
-		//jlabel_dangxuat.setBounds(26, 688, 161, 37);
 		jlabel_dangxuat.setIcon(source.icon_dangxuat);
 		panel_menu.add(jlabel_dangxuat);
 
@@ -193,7 +168,6 @@ public class mainView extends JFrame {
 		
 		panel_west.add(panel_menu,BorderLayout.CENTER);
 		this.setVisible(true);
-		//this.setResizable(false);
 	}
 
 	public JTable SanPham() {

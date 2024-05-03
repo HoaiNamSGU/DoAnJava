@@ -25,6 +25,7 @@ public class Source {
 	public ImageIcon icon_dangnhap = new ImageIcon(getClass().getResource("/img/login_mini.png"));
 	public ImageIcon icon_user = new ImageIcon(getClass().getResource("/img/user.png"));
 	public ImageIcon icon_refresh = new ImageIcon(getClass().getResource("/img/arrow.png"));
+	public ImageIcon icon_change = new ImageIcon(getClass().getResource("/img/change_32px.png"));
 	public Source() {
 		
 	}

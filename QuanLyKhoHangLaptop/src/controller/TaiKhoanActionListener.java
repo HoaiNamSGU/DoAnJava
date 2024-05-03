@@ -28,11 +28,24 @@ public class TaiKhoanActionListener implements ActionListener{
 		}
 		else if(e.getSource()==view.button_search1)
 		{
-
+			ArrayList<NhanVien> nv = NhanVienDAO.getintance().select_search(view.comboBox_maND.getSelectedItem()+"",view.comboBox_gioitinh.getSelectedItem()+"");
+			view.updateTableDataByNhanVien(nv);
+			ArrayList<NguoiDung> nd = new ArrayList<NguoiDung>();
+			for(int i=0;i<nv.size();i++)
+			{
+				NguoiDung ngd = NguoiDungDAO.getintance().selectByCondition("MaNguoiDung", nv.get(i).getMaNguoiDung());
+				nd.add(ngd);
+			}
+			
 			String tmp = view.textField_timkiem.getText();
-
-			ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().select_search(tmp);
-			view.updateTableData(nd);
+			ArrayList<NhanVien> arr = view.select_search(tmp, nv, nd);
+			view.updateTableDataByNhanVien(arr);
+			
+		}
+		else if(e.getSource()==view.comboBox_gioitinh|| e.getSource()==view.comboBox_maND)
+		{
+			ArrayList<NhanVien> nv = NhanVienDAO.getintance().select_search(view.comboBox_maND.getSelectedItem()+"",view.comboBox_gioitinh.getSelectedItem()+"");
+			view.updateTableDataByNhanVien(nv);
 		}
 	}
 

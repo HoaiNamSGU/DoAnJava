@@ -423,6 +423,7 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 				nv.setIsDelete(isdelete);
 				kq.add(nv);
 			}
+			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -471,7 +472,7 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 		NhanVien nv = new NhanVien();
 		try {
 			Connection con = JDBCUtil.getConnection();
-			String sql = "select * from nhanvien where "+nameColumn+" like ?";
+			String sql = "select * from nhanvien where "+nameColumn+" like ? and isDelete=0";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1,conditon);
 			ResultSet rs = pst.executeQuery();
@@ -539,9 +540,114 @@ public class NhanVienDAO implements DAOInterface<NhanVien>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	
+	public ArrayList<NhanVien> select_search(String s)
+	{	
+		ArrayList<NhanVien> arr = NhanVienDAO.getintance().selectAll();
+		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().selectAll();
+		s = s.toUpperCase();
+		ArrayList<NhanVien> kq = new ArrayList<NhanVien>();
+		for (NhanVien nhanVien : arr) {
+			String tmp = nhanVien.getMaNhanVien()+nhanVien.getTenNhanVien()+nhanVien.getSDT()+nhanVien.getNgaySinh()+"";
+			if(nhanVien.getGioiTinh()==1)
+			{
+				tmp = tmp+"nam";
+			}
+			else if(nhanVien.getGioiTinh()==0)
+			{
+				tmp = tmp+"nữ";
+			}
+			tmp = tmp.toUpperCase();
+			if (tmp.indexOf(s) != -1 ) {
+				for(NguoiDung nguoidung : nd)
+				{
+					if(nhanVien.getMaNguoiDung().equals(nguoidung.getMaNguoiDung()) && nguoidung.getPhamViTruyCap()!=1)
+					{
+						kq.add(nhanVien);
+						
+					}
+				}
+			}
+		}
+		return kq;
+	}
+	
+	
+	public ArrayList<NhanVien> select_nhanvienThuong()
+	{
+		ArrayList<NguoiDung> nd = NguoiDungDAO.getintance().select_search("");
+		ArrayList<NhanVien> arr = new ArrayList<NhanVien>();
+		for(int i=0;i<nd.size();i++)
+		{
+			NhanVien nv = NhanVienDAO.getintance().selectByCondition("MaNguoiDung",nd.get(i).getMaNguoiDung());
+			arr.add(nv);
+		}
+		return arr;
+	}
+	
+	public ArrayList<NhanVien> select_search(String name1, String name2)
+	{
+		int gt = -1;
+		if(name2.equals("nam"))
+		{
+			gt = 1;
+		}
+		else if(name2.equals("nữ"))
+		{
+			gt = 0;
+		}
+		ArrayList<NhanVien> kq = new ArrayList<NhanVien>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql;
+	
+			if(name1.equals("Tất cả")&&name2.equals("Tất cả"))
+			{
+				kq = NhanVienDAO.getintance().select_nhanvienThuong();
+				return kq;
+			}
+			else if(!name1.equals("Tất cả")&&!name2.equals("Tất cả"))
+			{
+				sql = "select* from nhanvien where MaNguoiDung like ? and GioiTinh=?";
+			}
+			else
+			{
+				sql = "select* from nhanvien where MaNguoiDung like ? or GioiTinh=?";
+			}
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, name1);
+			pst.setInt(2, gt);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				String ma = rs.getString("MaNhanVien");
+				String ten = rs.getString("TenNhanVien");
+				Date ngaysinh = rs.getDate("NgaySinh");
+				int gioitinh = rs.getInt("GioiTinh");
+				String sdt = rs.getString("SDT");
+				String MaND = rs.getString("MaNguoiDung");
+				int isdelete = rs.getInt("isDelete");
+				NhanVien nv = new NhanVien();
+				nv.setMaNhanVien(ma);
+				nv.setTenNhanVien(ten);
+				nv.setNgaySinh(ngaysinh);
+				nv.setGioiTinh(gioitinh);
+				nv.setSDT(sdt);
+				nv.setMaNguoiDung(MaND);
+				nv.setIsDelete(isdelete);
+				kq.add(nv);
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return kq;
+	}
+	
+	
 	public static void main(String[] args) {
-		ArrayList<NhanVien> nv = NhanVienDAO.getintance().ReadExcelKetHop("src/database/DanhSachThongTaiKhoan.xlsx");
+		ArrayList<NhanVien> nv = NhanVienDAO.getintance().select_search("ND1", "nam");
 		for (NhanVien nhanVien : nv) {
 			System.out.println(nhanVien.toString());
 		}
