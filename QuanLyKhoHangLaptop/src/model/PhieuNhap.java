@@ -8,6 +8,7 @@ public class PhieuNhap {
 	private String MaNhaCungCap;
 	private String MaNhanVien;
 	private double TongTien;
+	private int TongSoLuong;
 	private Date NgayNhap;
 	private int isDelete;
 	
@@ -15,13 +16,22 @@ public class PhieuNhap {
 		
 	};
 
-	public PhieuNhap(String maPhieuNhap, String maNhaCungCap, String maNhanVien, double tongTien, Date ngayNhap, int isDelete) {
+	public PhieuNhap(String maPhieuNhap, String maNhaCungCap, String maNhanVien, double tongTien,int TongSoLuong ,Date ngayNhap, int isDelete) {
 		MaPhieuNhap = maPhieuNhap;
 		MaNhaCungCap = maNhaCungCap;
 		MaNhanVien = maNhanVien;
 		TongTien = tongTien;
+		this.TongSoLuong=TongSoLuong;
 		NgayNhap = ngayNhap;
 		this.isDelete = isDelete;
+	}
+	
+	public int getTongSoLuong() {
+		return TongSoLuong;
+	}
+
+	public void setTongSoLuong(int tongSoLuong) {
+		TongSoLuong = tongSoLuong;
 	}
 
 	public String getMaPhieuNhap() {

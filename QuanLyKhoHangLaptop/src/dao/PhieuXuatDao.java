@@ -20,7 +20,23 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 	public static PhieuXuatDao getInstance() {
 		return new PhieuXuatDao();
 	}
-
+	public int getTotal(String mapn,String type) {
+	    int Total = 0;
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+	        String sql = "SELECT SUM("+type+") AS Total FROM chitietphieuxuat WHERE MaPhieuXuat = ?";
+	        PreparedStatement pst = con.prepareStatement(sql);
+	        pst.setString(1, mapn);
+	        ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	            Total = rs.getInt("Total");
+	        }
+	        con.close(); // Đóng kết nối sau khi sử dụng xong
+	    } catch (Exception e) {
+	        System.out.println(e);
+	    }
+	    return Total;
+	}
 	public void inchitietphieu(ChiTietPhieuXuat t) {
 		try {
 //			public ChiTietPhieuXuat(String maPhieuXuat, String maLaptop, int soLuong, Double thanhTien, int isDelete) {
@@ -116,7 +132,7 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, t.getMaPhieuNhap());
 			pst.setString(2, t.getMaLaptop());
-			pst.setString(3, t.getSoLuong());
+			pst.setInt(3, t.getSoLuong());
 			pst.setDouble(4, t.getThanhTien());
 			pst.setLong(5, t.getIsDelete());
 			pst.executeUpdate();
@@ -166,12 +182,13 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 				String mpn = rs.getString("MaPhieuXuat");
 				String mncc = rs.getString("MaCuaHang");
 				String tt = rs.getString("TongTien");
+				int tongsl = rs.getInt("TongSoLuong");
 				Date nn = rs.getDate("NgayXuat");
 				String mnv = rs.getString("MaNhanVien");
 				int xoa = rs.getInt("isDelete");
 				DecimalFormat df2 = new DecimalFormat("#");
 				String formattedNumber2 = df2.format(Double.parseDouble(tt));
-				PhieuXuat sp = new PhieuXuat(mpn, mncc, mnv, nn, Double.parseDouble(formattedNumber2), xoa);
+				PhieuXuat sp = new PhieuXuat(mpn, mncc, mnv, nn, Double.parseDouble(formattedNumber2),tongsl, xoa);
 				ketqua.add(sp);
 			}
 //		BƯỚC 5: NGẮT KẾT NỐI

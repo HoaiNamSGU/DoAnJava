@@ -9,18 +9,20 @@ public class PhieuXuat {
 	private String MaNhanVien;
 	private Date NgayXuat;
 	private double TongTien;
+	private int TongSoLuong;
 	private int isDelete;
 	public PhieuXuat() {
 		
 	}
 
-	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int isDelete) {
+	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int TongSoLuong, int isDelete) {
 		super();
 		MaPhieuXuat = maPhieuXuat;
 		MaCuaHang = maCuaHang;
 		MaNhanVien = maNhanVien;
 		NgayXuat = ngayXuat;
 		TongTien = tongTien;
+		this.setTongSoLuong(TongSoLuong);
 		this.isDelete = isDelete;
 	}
 
@@ -76,6 +78,14 @@ public class PhieuXuat {
 
 	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
+	}
+
+	public int getTongSoLuong() {
+		return TongSoLuong;
+	}
+
+	public void setTongSoLuong(int tongSoLuong) {
+		TongSoLuong = tongSoLuong;
 	}
 	
 	

@@ -521,20 +521,21 @@ public class NhapHang extends JFrame {
 		String maphieun=jl_mapn.getText();
 		String manhacc=jt_manhacc.getText();
 		String tongtienn=tongtien+"";
+		int tongsl=Integer.parseInt(jt_soluong.getText());
 		String manhanvi=jtmanhanvien.getText();
 		String xoais=0+"";
 		System.out.println(maphieun);
 		DecimalFormat df2 = new DecimalFormat("#");
 	     String formattedNumber2 = df2.format(Double.parseDouble(tongtienn));
-			PhieuNhap pn1=new PhieuNhap(maphieun,manhacc,manhanvi,Double.parseDouble(formattedNumber2),date,0);
+			PhieuNhap pn1=new PhieuNhap(maphieun,manhacc,manhanvi,Double.parseDouble(formattedNumber2),tongsl,date,0);
 			PhieuNhapDao.getInstance().insert(pn1);
 			for(int i=0;i<table1.getRowCount();i++) {
 				String masanpham=model1.getValueAt(i, 2)+"";
-				String soluongm=model1.getValueAt(i, 12)+"";
+				int soluongm = Integer.parseInt(String.valueOf(model1.getValueAt(i, 12)));
 				String thanhtienm=model1.getValueAt(i, 11)+"";
 				ChiTietPhieuNhap ctpn=new ChiTietPhieuNhap(maphieun,masanpham,soluongm,Double.parseDouble(thanhtienm),0);
 				PhieuNhapDao.getInstance().inchitietphieu(ctpn);
-				LaptopDAO.getintance().update1dulieu(masanpham, Long.parseLong(soluongm));
+				LaptopDAO.getintance().update1dulieu(masanpham, soluongm);
 			}
 			model.setRowCount(0);
 			model1.setRowCount(0);

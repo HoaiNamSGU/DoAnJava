@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import view.Nhacungcap;
 import view.NhapHang;
 import view.TaiKhoanView;
+import view.ThongKeView;
 import view.XuatHang;
 import view.login;
 import view.mainView;
@@ -68,7 +69,6 @@ public class mainMouseListener implements MouseListener {
         else if (labelText.equals("Nhà cung cấp")) {
 			view.panel_center.setVisible(false);
 			Nhacungcap nh = new Nhacungcap();
-
 			view.panel_center.removeAll(); // Xóa tất cả các thành phần con hiện có trong panel_center
 			view.panel_center.add(nh.panel_cungcap); // Thêm panel_nhaphang vào panel_center
 			view.panel_center.setVisible(true); // Hiển thị panel_center
@@ -114,6 +114,13 @@ public class mainMouseListener implements MouseListener {
         	
         	
         }
+        else if (clickedLabel.getText().equals("Thống kê")) {
+        	view.panel_center.setVisible(false);
+			view.panel_center.removeAll();
+			view.panel_center.add(new ThongKeView());
+			view.panel_center.setVisible(true);
+			view.jlabel_sanpham.setForeground(Color.BLACK);
+		}
         // Cập nhật lastClickedLabel
      	lastClickedLabel = clickedLabel;
 	}

@@ -431,7 +431,7 @@ public class LaptopDAO implements DAOInterface<Laptop> {
 		return ketqua;
 	}
 
-	public int update1dulieu(String mm, long sl) {
+	public int update1dulieu(String mm, int sl) {
 		// TODO Auto-generated method stub
 		int ketqua = 0;
 		try {

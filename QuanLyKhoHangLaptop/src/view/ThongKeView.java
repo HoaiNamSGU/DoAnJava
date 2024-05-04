@@ -7,18 +7,19 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.MouseListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import controller.ThongKeActionListener;
+import controller.ThongKeMouseListener;
 import dao.PhieuNhapDao;
 import dao.PhieuXuatDao;
 import img.Source;
@@ -26,7 +27,6 @@ import img.Source;
 public class ThongKeView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -37,10 +37,12 @@ public class ThongKeView extends JPanel {
 	public JComboBox<Object> comboBox_NgayKT;
 	public String[] dateFormat = { "dd/MM/yyyy", "MM/yyyy", "yyyy" };
 	public JComboBox<Object> comboBox_CongViec;
+	public BieuDoThongKe bieuDoThongKe=new BieuDoThongKe();
+	public JPanel panel_Center;
 
 	public ThongKeView() {
 		setLayout(new BorderLayout(0, 0));
-		setSize(1200, 770);
+		this.setBounds(0, 0, 1200, 770);
 		JPanel panel_ChucNang = new JPanel();
 		add(panel_ChucNang, BorderLayout.NORTH);
 		GridBagLayout gbl_panel_ChucNang = new GridBagLayout();
@@ -63,7 +65,7 @@ public class ThongKeView extends JPanel {
 		comboBox_ThoiGian.setFont(new Font("Arial", Font.BOLD, 16));
 		GridBagConstraints gbc_comboBox_ThoiGian = new GridBagConstraints();
 		gbc_comboBox_ThoiGian.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_ThoiGian.insets = new Insets(5, 0, 5, 50);
+		gbc_comboBox_ThoiGian.insets = new Insets(5, 0, 5, 85);
 		gbc_comboBox_ThoiGian.gridx = 1;
 		gbc_comboBox_ThoiGian.gridy = 0;
 		panel_ChucNang.add(comboBox_ThoiGian, gbc_comboBox_ThoiGian);
@@ -81,7 +83,7 @@ public class ThongKeView extends JPanel {
 		comboBox_NgayBD.setFont(new Font("Arial", Font.BOLD, 16));
 		GridBagConstraints gbc_comboBox_NgayBD = new GridBagConstraints();
 		gbc_comboBox_NgayBD.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_NgayBD.insets = new Insets(5, 0, 5, 50);
+		gbc_comboBox_NgayBD.insets = new Insets(5, 0, 5, 85);
 		gbc_comboBox_NgayBD.gridx = 3;
 		gbc_comboBox_NgayBD.gridy = 0;
 		panel_ChucNang.add(comboBox_NgayBD, gbc_comboBox_NgayBD);
@@ -100,7 +102,7 @@ public class ThongKeView extends JPanel {
 		comboBox_CongViec.setFont(new Font("Arial", Font.BOLD, 16));
 		GridBagConstraints gbc_comboBox_CongViec = new GridBagConstraints();
 		gbc_comboBox_CongViec.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_CongViec.insets = new Insets(5, 0, 5, 50);
+		gbc_comboBox_CongViec.insets = new Insets(5, 0, 5, 85);
 		gbc_comboBox_CongViec.gridx = 1;
 		gbc_comboBox_CongViec.gridy = 1;
 		panel_ChucNang.add(comboBox_CongViec, gbc_comboBox_CongViec);
@@ -118,25 +120,20 @@ public class ThongKeView extends JPanel {
 		comboBox_NgayKT.setFont(new Font("Arial", Font.BOLD, 16));
 		GridBagConstraints gbc_comboBox_NgayKT = new GridBagConstraints();
 		gbc_comboBox_NgayKT.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_NgayKT.insets = new Insets(5, 0, 5, 50);
+		gbc_comboBox_NgayKT.insets = new Insets(5, 0, 5, 85);
 		gbc_comboBox_NgayKT.gridx = 3;
 		gbc_comboBox_NgayKT.gridy = 1;
 		panel_ChucNang.add(comboBox_NgayKT, gbc_comboBox_NgayKT);
 
-		JPanel panel_Center = new JPanel();
+		panel_Center = new JPanel();
+		panel_Center.add(bieuDoThongKe);
 		add(panel_Center, BorderLayout.CENTER);
-		panel_Center.setLayout(new GridLayout(0, 1, 0, 0));
-
-		JScrollPane scrollPane = new JScrollPane();
-		panel_Center.add(scrollPane);
-
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		panel_Center.setLayout(new GridLayout(1, 1, 0, 0));
 
 		JPanel panel_Menu = new JPanel();
 		add(panel_Menu, BorderLayout.EAST);
 		GridBagLayout gbl_panel_Menu = new GridBagLayout();
-		gbl_panel_Menu.columnWidths = new int[] { 130 };
+		gbl_panel_Menu.columnWidths = new int[] {130};
 		gbl_panel_Menu.rowHeights = new int[] { 130, 130, 130, 130 };
 		gbl_panel_Menu.columnWeights = new double[] { 0.0 };
 		gbl_panel_Menu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
@@ -187,6 +184,8 @@ public class ThongKeView extends JPanel {
 		gbc_Label_NhaCC.gridy = 3;
 		panel_Menu.add(Label_NhaCC, gbc_Label_NhaCC);
 		ThongKeActionListener ac = new ThongKeActionListener(this);
+		ThongKeMouseListener mouse = new ThongKeMouseListener(this);
+		Label_SanPham.addMouseListener(mouse);
 		comboBox_ThoiGian.addActionListener(ac);
 		comboBox_CongViec.addActionListener(ac);
 		comboBox_NgayBD.addActionListener(ac);
@@ -222,23 +221,26 @@ public class ThongKeView extends JPanel {
 	
 	private ArrayList<String> getDateFormats(ArrayList<String> dateList, String dateFormat) {
 	    ArrayList<String> formattedDates = new ArrayList<String>();
+	    HashSet<String> uniqueDates = new HashSet<>();
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	    for (String dateString : dateList) {
 	        LocalDate date = LocalDate.parse(dateString, formatter);
 	        switch (dateFormat) {
 	            case "dd/MM/yyyy":
-	                formattedDates.add(String.format("%02d", date.getDayOfMonth()) + "/" + String.format("%02d", date.getMonthValue()) + "/" + date.getYear());
+	                uniqueDates.add(String.format("%02d", date.getDayOfMonth()) + "/" + String.format("%02d", date.getMonthValue()) + "/" + date.getYear());
 	                break;
 	            case "MM/yyyy":
-	                formattedDates.add(String.format("%02d", date.getMonthValue()) + "/" + date.getYear());
+	                uniqueDates.add(String.format("%02d", date.getMonthValue()) + "/" + date.getYear());
 	                break;
 	            case "yyyy":
-	                formattedDates.add(String.valueOf(date.getYear()));
+	                uniqueDates.add(String.valueOf(date.getYear()));
 	                break;
 	            default:
 	                break;
 	        }
 	    }
+	    formattedDates.addAll(uniqueDates);
+	    formattedDates.sort(null);
 	    return formattedDates;
 	}
 

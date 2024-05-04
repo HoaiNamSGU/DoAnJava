@@ -4,7 +4,7 @@ public class ChiTietPhieuNhap {
 	
 	private String MaPhieuNhap;
 	private String MaLaptop;
-	private String SoLuong;
+	private int SoLuong;
 	private Double ThanhTien;
 	private int isDelete;
 	
@@ -12,7 +12,7 @@ public class ChiTietPhieuNhap {
 	public ChiTietPhieuNhap() {
 		
 	}
-	public ChiTietPhieuNhap(String maPhieuNhap, String maLaptop, String soLuong, Double thanhTien, int isDelete) {
+	public ChiTietPhieuNhap(String maPhieuNhap, String maLaptop, int soLuong, Double thanhTien, int isDelete) {
 		MaPhieuNhap = maPhieuNhap;
 		MaLaptop = maLaptop;
 		SoLuong = soLuong;
@@ -56,11 +56,11 @@ public class ChiTietPhieuNhap {
 		MaLaptop = maLaptop;
 	}
 
-	public String getSoLuong() {
+	public int getSoLuong() {
 		return SoLuong;
 	}
 
-	public void setSoLuong(String soLuong) {
+	public void setSoLuong(int soLuong) {
 		SoLuong = soLuong;
 	}
 
