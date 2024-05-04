@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import database.JDBCUtil;
-import model.ChiTietPhieuNhap;
 import model.ChiTietPhieuXuat;
 //public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int isDelete) {
 import model.PhieuXuat;
@@ -20,23 +19,64 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 	public static PhieuXuatDao getInstance() {
 		return new PhieuXuatDao();
 	}
-	public int getTotal(String mapn,String type) {
-	    int Total = 0;
+
+	public int getTotalSoLuong(String ngayXuat) {
+	    int total = 0;
 	    try {
 	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM("+type+") AS Total FROM chitietphieuxuat WHERE MaPhieuXuat = ?";
+	        String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieuxuat WHERE NgayXuat LIKE ?";
 	        PreparedStatement pst = con.prepareStatement(sql);
-	        pst.setString(1, mapn);
+	        
+	        // Chuyển đổi ngày xuất thành ngày SQL
+	        String day = convertToDate(ngayXuat);
+	        pst.setString(1,"%"+day+"%" );
 	        ResultSet rs = pst.executeQuery();
 	        if (rs.next()) {
-	            Total = rs.getInt("Total");
+	            total = rs.getInt("Total");
 	        }
-	        con.close(); // Đóng kết nối sau khi sử dụng xong
+	        con.close();
 	    } catch (Exception e) {
 	        System.out.println(e);
 	    }
-	    return Total;
+	    return total;
 	}
+
+	public double getTotalTongTien(String ngayXuat) {
+	    double total = 0.0;
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+	        String sql = "SELECT SUM(TongTien) AS Total FROM phieuxuat WHERE NgayXuat LIKE ?";
+	        PreparedStatement pst = con.prepareStatement(sql);
+	        
+	        // Chuyển đổi ngày xuất thành ngày SQL
+	        String day = convertToDate(ngayXuat);
+	        pst.setString(1,"%"+day+"%");
+	        ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	            total = rs.getDouble("Total");
+	        }
+	        con.close();
+	    } catch (Exception e) {
+	        System.out.println(e);
+	    }
+	    return total;
+	}
+
+	// Phương thức chuyển đổi chuỗi ngày thành java.sql.Date
+	private String convertToDate(String ngayXuat) {
+		String[] day = ngayXuat.split("/");
+		StringBuilder newDay = new StringBuilder();
+		for (int i = day.length - 1; i >= 0; i--) {
+			newDay.append(day[i]);
+			if (i != 0) {
+				newDay.append("-");
+			}
+		}
+		return newDay.toString();
+	}
+
+
+
 	public void inchitietphieu(ChiTietPhieuXuat t) {
 		try {
 //			public ChiTietPhieuXuat(String maPhieuXuat, String maLaptop, int soLuong, Double thanhTien, int isDelete) {
@@ -123,14 +163,14 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 		}
 	}
 
-	public void inchitietphieu(ChiTietPhieuNhap t) {
+	public void inchitietphieuxuat(ChiTietPhieuXuat t) {
 		try {
 			Connection con = JDBCUtil.getConnection();
 //			System.out.println(t.toString());
 			String sql = "INSERT INTO chitietphieuxuat(MaPhieuXuat,MaLaptop,SoLuong,ThanhTien,isDelete)\r\n"
 					+ "VALUES (?,?,?,?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, t.getMaPhieuNhap());
+			pst.setString(1, t.getMaPhieuXuat());
 			pst.setString(2, t.getMaLaptop());
 			pst.setInt(3, t.getSoLuong());
 			pst.setDouble(4, t.getThanhTien());
@@ -188,7 +228,7 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 				int xoa = rs.getInt("isDelete");
 				DecimalFormat df2 = new DecimalFormat("#");
 				String formattedNumber2 = df2.format(Double.parseDouble(tt));
-				PhieuXuat sp = new PhieuXuat(mpn, mncc, mnv, nn, Double.parseDouble(formattedNumber2),tongsl, xoa);
+				PhieuXuat sp = new PhieuXuat(mpn, mncc, mnv, nn, Double.parseDouble(formattedNumber2), tongsl, xoa);
 				ketqua.add(sp);
 			}
 //		BƯỚC 5: NGẮT KẾT NỐI

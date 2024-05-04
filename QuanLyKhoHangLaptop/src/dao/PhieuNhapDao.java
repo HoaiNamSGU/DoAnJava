@@ -19,23 +19,65 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		return new PhieuNhapDao();
 	}
 
-	public int getTotal(String mapn, String type) {
-		int Total = 0;
-		try {
-			Connection con = JDBCUtil.getConnection();
-			String sql = "SELECT SUM(" + type + ") AS Total FROM chitietphieunhap WHERE MaPhieuNhap = ?";
-			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, mapn);
-			ResultSet rs = pst.executeQuery();
-			if (rs.next()) {
-				Total = rs.getInt("Total");
-			}
-			con.close(); // Đóng kết nối sau khi sử dụng xong
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return Total;
+	public int getTotalSoLuong(String ngayNhap) {
+	    int total = 0;
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+	        String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieunhap WHERE NgayNhap LIKE ?";
+	        PreparedStatement pst = con.prepareStatement(sql);
+	        
+	        // Chuyển đổi ngày nhập thành ngày SQL
+	        String day = convertToDate(ngayNhap);
+	        pst.setString(1,"%"+day+"%");
+	        ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	            total = rs.getInt("Total");
+	        }
+	        con.close();
+	    } catch (Exception e) {
+	        System.out.println(e);
+	    }
+	    return total;
 	}
+
+	public double getTotalTongTien(String ngayNhap) {
+	    double total = 0.0;
+	    try {
+	        Connection con = JDBCUtil.getConnection();
+	        String sql = "SELECT SUM(TongTien) AS Total FROM phieunhap WHERE NgayNhap LIKE ?";
+	        PreparedStatement pst = con.prepareStatement(sql);
+	        
+	        // Chuyển đổi ngày nhập thành ngày SQL
+	        String day = convertToDate(ngayNhap);
+	        pst.setString(1,"%"+day+"%");
+	        ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	            total = rs.getDouble("Total");
+
+	        }
+	        con.close();
+	    } catch (Exception e) {
+	        System.out.println(e);
+	    }
+	    return total;
+	}
+
+	// Phương thức chuyển đổi chuỗi ngày thành java.sql.Date
+	private String convertToDate(String ngayXuat) {
+		String[] day = ngayXuat.split("/");
+		StringBuilder newDay = new StringBuilder();
+		for (int i = day.length - 1; i >= 0; i--) {
+			newDay.append(day[i]);
+			if (i != 0) {
+				newDay.append("-");
+			}
+		}
+		return newDay.toString();
+	}
+
+
+
+
 
 	public void inchitietphieu(ChiTietPhieuNhap t) {
 		try {

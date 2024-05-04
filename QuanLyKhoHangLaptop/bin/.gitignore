@@ -1,8 +1,3 @@
-/controller/
 /dao/
-/database/
-/img/
-/model/
-/module-info.class
-/test/
 /view/
+/controller/

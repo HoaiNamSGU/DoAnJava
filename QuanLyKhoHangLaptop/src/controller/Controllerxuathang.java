@@ -31,7 +31,7 @@ public class Controllerxuathang {
 		jt.addKeyListener(new KeyAdapter() {
 		@Override
 		public void keyReleased(KeyEvent e) {
-			if(e.getSource()==nh.jtext_tim) {
+			if(e.getSource()==nh.jt_otimkiem) {
 				nh.thanhtimkiem();
 			}
 		}	
@@ -43,8 +43,8 @@ public class Controllerxuathang {
 		jt.addMouseListener(new MouseAdapter() {
 		 	@Override
 		 	public void mouseClicked(MouseEvent e) {
-		 		if(e.getSource()== nh.btn_them) {
-					nh.themhang();
+		 		if(e.getSource()== nh.btn_themsp) {
+					nh.themsanpham();
 				}
 				else if(e.getSource()==nh.btn_xoasp) {
 					nh.xoasanpham();

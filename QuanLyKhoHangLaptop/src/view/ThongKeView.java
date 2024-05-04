@@ -7,7 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.MouseListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -37,8 +36,8 @@ public class ThongKeView extends JPanel {
 	public JComboBox<Object> comboBox_NgayKT;
 	public String[] dateFormat = { "dd/MM/yyyy", "MM/yyyy", "yyyy" };
 	public JComboBox<Object> comboBox_CongViec;
-	public BieuDoThongKe bieuDoThongKe=new BieuDoThongKe();
 	public JPanel panel_Center;
+	public BieuDoThongKeSP bd = new BieuDoThongKeSP();
 
 	public ThongKeView() {
 		setLayout(new BorderLayout(0, 0));
@@ -126,14 +125,14 @@ public class ThongKeView extends JPanel {
 		panel_ChucNang.add(comboBox_NgayKT, gbc_comboBox_NgayKT);
 
 		panel_Center = new JPanel();
-		panel_Center.add(bieuDoThongKe);
+		panel_Center.add(bd);
 		add(panel_Center, BorderLayout.CENTER);
 		panel_Center.setLayout(new GridLayout(1, 1, 0, 0));
 
 		JPanel panel_Menu = new JPanel();
 		add(panel_Menu, BorderLayout.EAST);
 		GridBagLayout gbl_panel_Menu = new GridBagLayout();
-		gbl_panel_Menu.columnWidths = new int[] {130};
+		gbl_panel_Menu.columnWidths = new int[] { 130 };
 		gbl_panel_Menu.rowHeights = new int[] { 130, 130, 130, 130 };
 		gbl_panel_Menu.columnWeights = new double[] { 0.0 };
 		gbl_panel_Menu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
@@ -190,6 +189,7 @@ public class ThongKeView extends JPanel {
 		comboBox_CongViec.addActionListener(ac);
 		comboBox_NgayBD.addActionListener(ac);
 		comboBox_NgayKT.addActionListener(ac);
+
 		updateDateFormats();
 		setVisible(true);
 	}
@@ -200,49 +200,67 @@ public class ThongKeView extends JPanel {
 		// xóa dữ liệu comboBox hiện tại
 		comboBox_NgayBD.removeAllItems();
 		comboBox_NgayKT.removeAllItems();
-		
+
 		ArrayList<String> startDayString = new ArrayList<String>();
-		
+
 		// lấy dữ liệu ngày/tháng/năm mới
 		if (comboBox_CongViec.getSelectedItem().toString() == "Nhập Hàng")
 			startDayString = PhieuNhapDao.getInstance().selectDay();
 		else
 			startDayString = PhieuXuatDao.getInstance().selectDay();
-		
+
 		// định dạng ngày
-		ArrayList<String> dates = getDateFormats(startDayString,selectedFormat);
-		
+		ArrayList<String> dates = getDateFormats(startDayString, selectedFormat);
+
 		// cập nhật dữ liệu
 		for (String date : dates) {
 			comboBox_NgayBD.addItem(date);
 			comboBox_NgayKT.addItem(date);
 		}
-	}
-	
-	private ArrayList<String> getDateFormats(ArrayList<String> dateList, String dateFormat) {
-	    ArrayList<String> formattedDates = new ArrayList<String>();
-	    HashSet<String> uniqueDates = new HashSet<>();
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	    for (String dateString : dateList) {
-	        LocalDate date = LocalDate.parse(dateString, formatter);
-	        switch (dateFormat) {
-	            case "dd/MM/yyyy":
-	                uniqueDates.add(String.format("%02d", date.getDayOfMonth()) + "/" + String.format("%02d", date.getMonthValue()) + "/" + date.getYear());
-	                break;
-	            case "MM/yyyy":
-	                uniqueDates.add(String.format("%02d", date.getMonthValue()) + "/" + date.getYear());
-	                break;
-	            case "yyyy":
-	                uniqueDates.add(String.valueOf(date.getYear()));
-	                break;
-	            default:
-	                break;
-	        }
-	    }
-	    formattedDates.addAll(uniqueDates);
-	    formattedDates.sort(null);
-	    return formattedDates;
+		comboBox_NgayBD.setSelectedIndex(0);
+		comboBox_NgayKT.setSelectedIndex(0);
 	}
 
+	private ArrayList<String> getDateFormats(ArrayList<String> dateList, String dateFormat) {
+		ArrayList<String> formattedDates = new ArrayList<String>();
+		HashSet<String> uniqueDates = new HashSet<>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		for (String dateString : dateList) {
+			LocalDate date = LocalDate.parse(dateString, formatter);
+			switch (dateFormat) {
+			case "dd/MM/yyyy":
+				uniqueDates.add(String.format("%02d", date.getDayOfMonth()) + "/"
+						+ String.format("%02d", date.getMonthValue()) + "/" + date.getYear());
+				break;
+			case "MM/yyyy":
+				uniqueDates.add(String.format("%02d", date.getMonthValue()) + "/" + date.getYear());
+				break;
+			case "yyyy":
+				uniqueDates.add(String.valueOf(date.getYear()));
+				break;
+			default:
+				break;
+			}
+		}
+		formattedDates.addAll(uniqueDates);
+		formattedDates.sort(null);
+		return formattedDates;
+	}
+
+	public void updateData() {
+		panel_Center.remove(bd);
+		String congViec = comboBox_CongViec.getSelectedItem().toString();
+		int StartDay = comboBox_NgayBD.getSelectedIndex();
+		int EndDay = comboBox_NgayKT.getSelectedIndex();
+		
+		ArrayList<String> day = new ArrayList<String>();
+		for (int i = StartDay; i <= EndDay; i++)
+			if (comboBox_NgayBD.getItemAt(i)!=null)
+				day.add(comboBox_NgayBD.getItemAt(i).toString());
+		
+		String DateFomart = dateFormat[comboBox_ThoiGian.getSelectedIndex()];
+		bd.Update(congViec, day, DateFomart);
+		panel_Center.add(bd);
+	}
 
 }

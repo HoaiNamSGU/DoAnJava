@@ -6,7 +6,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
-import view.BieuDoThongKe;
 import view.ThongKeView;
 
 public class ThongKeMouseListener implements MouseListener {
@@ -20,13 +19,17 @@ public class ThongKeMouseListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		JLabel clickedLabel = (JLabel) e.getSource();
-		clickedLabel.setBackground(Color.BLUE);
-
+		clickedLabel.setBackground(null);
+		clickedLabel.setForeground(Color.BLUE);
 		String labelText = clickedLabel.getText();
 		if (labelText.equals("Sản Phẩm")) {
 			thongKeView.panel_Center.setVisible(false);
 			thongKeView.panel_Center.removeAll();
-			thongKeView.panel_Center.add(new BieuDoThongKe());
+			thongKeView.panel_Center.add(thongKeView.bd);
+			thongKeView.comboBox_NgayBD.setSelectedIndex(0);
+			thongKeView.comboBox_NgayKT.setSelectedIndex(0);
+			thongKeView.comboBox_CongViec.setSelectedIndex(0);
+			thongKeView.comboBox_ThoiGian.setSelectedIndex(0);
 			thongKeView.panel_Center.setVisible(true);
 		}
 	}
