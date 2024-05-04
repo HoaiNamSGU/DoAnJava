@@ -222,8 +222,7 @@ public class ThongKeView extends JPanel {
 	
 	private ArrayList<String> getDateFormats(ArrayList<String> dateList, String dateFormat) {
 	    ArrayList<String> formattedDates = new ArrayList<String>();
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
-
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	    for (String dateString : dateList) {
 	        LocalDate date = LocalDate.parse(dateString, formatter);
 	        switch (dateFormat) {

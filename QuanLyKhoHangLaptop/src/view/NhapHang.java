@@ -583,7 +583,7 @@ public class NhapHang extends JFrame {
 	public void themvaobang() {
 		if(jt_soluong.getText().length()>0) {
 			stt1++;
-		 Laptop lt=LaptopDAO.getintance().lay1sp(jt_masanpham.getText());
+	 Laptop lt=LaptopDAO.getintance().lay1sp(jt_masanpham.getText());
 		    model1.addRow(new Object[] {
 //					"STT","Mã sản phẩm","Tên sản phẩm","CPU","GPU","Ram","Rom","Hệ điều hành","Màn hình","Hãng","Gía","Số lượng"
 		    		stt1,lt.getMaNhaCungCap(),lt.getMaLaptop(),lt.getTenLaptop(),lt.getCPU(),lt.getGPU(),lt.getRam(),lt.getRom(),lt.getHeDieuHanh(),lt.getManHinh(),lt.getHang(),jt_thanhtien.getText(),jt_soluong.getText()
@@ -617,11 +617,11 @@ public class NhapHang extends JFrame {
 		if(sol.length()>0) {
 		 int j=table.getSelectedRow();
 		 String tmpma=model.getValueAt(j, 0)+"";
-		 Laptop lap=LaptopDAO.getintance().lay1sp(tmpma);
-		 double giaca=Double.parseDouble(sol)*lap.getGia();
+		 //Laptop lap=LaptopDAO.getintance().lay1sp(tmpma);
+		 //double giaca=Double.parseDouble(sol)*lap.getGia();
 	     DecimalFormat df = new DecimalFormat("#");
-	     String formattedNumber = df.format(giaca);
-		 jt_thanhtien.setText(formattedNumber);
+	    // String formattedNumber = df.format(giaca);
+		 //jt_thanhtien.setText(formattedNumber);
 		 
 		 }else 		 jt_thanhtien.setText("");
 

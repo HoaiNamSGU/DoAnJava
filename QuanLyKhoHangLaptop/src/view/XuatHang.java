@@ -454,14 +454,14 @@ public class XuatHang extends JFrame {
 			table1.getTableHeader().setResizingAllowed(false);
 			table1.getTableHeader().setReorderingAllowed(false);
 			
-			Controllerxuathang.ActionListener(btn_themsp, this);
-			Controllerxuathang.addKeyListener(jt_otimkiem, this);
-			Controllerxuathang.addKeyListener(jt_soluong, this);
-//			Controllerxuathang.addMouseListener(table, this);
-//			Controllerxuathang.addMouseListener(table1, this);
-			Controllerxuathang.ActionListener(btn_nhaphang, this);
-			Controllerxuathang.ActionListener(btn_quaylai, this);
-			Controllerxuathang.ActionListener(btn_timkiem, this);
+//			Controllerxuathang.ActionListener(btn_themsp, this);
+//			Controllerxuathang.addKeyListener(jt_otimkiem, this);
+//			Controllerxuathang.addKeyListener(jt_soluong, this);
+////			Controllerxuathang.addMouseListener(table, this);
+////			Controllerxuathang.addMouseListener(table1, this);
+//			Controllerxuathang.ActionListener(btn_nhaphang, this);
+//			Controllerxuathang.ActionListener(btn_quaylai, this);
+//			Controllerxuathang.ActionListener(btn_timkiem, this);
 
 	}
 

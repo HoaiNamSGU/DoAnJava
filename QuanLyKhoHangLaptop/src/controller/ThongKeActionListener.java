@@ -33,7 +33,6 @@ public class ThongKeActionListener implements ActionListener {
 			int EndDate = ThongKeView.comboBox_NgayKT.getSelectedIndex();
 			if (StartDate > 0 && StartDate > EndDate) {
 				ThongKeView.comboBox_NgayKT.setSelectedIndex(StartDate);
-				System.out.println("why not?" +EndDate);
 			}
 
 		}
