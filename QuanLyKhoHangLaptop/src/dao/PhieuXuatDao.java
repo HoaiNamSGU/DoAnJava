@@ -1,5 +1,6 @@
 package dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -20,15 +21,20 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 		return new PhieuXuatDao();
 	}
 
-	public int getTotalSoLuong(String ngayXuat) {
+	public int getTotalSoLuong(String type,String ngayXuat) {
 	    int total = 0;
 	    try {
 	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieuxuat WHERE NgayXuat LIKE ?";
+	        String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieuxuat WHERE "+type+" LIKE ?";
 	        PreparedStatement pst = con.prepareStatement(sql);
 	        
 	        // Chuyển đổi ngày xuất thành ngày SQL
-	        String day = convertToDate(ngayXuat);
+	        String day;
+	        if(type.equals("NgayXuat"))
+	        	day = convertToDate(ngayXuat);
+	        else 
+				day=ngayXuat;
+	        
 	        pst.setString(1,"%"+day+"%" );
 	        ResultSet rs = pst.executeQuery();
 	        if (rs.next()) {
@@ -41,19 +47,26 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 	    return total;
 	}
 
-	public double getTotalTongTien(String ngayXuat) {
-	    double total = 0.0;
+	public Double getTotalTongTien(String type,String ngayXuat) {
+		Double total = 0.0;
 	    try {
 	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM(TongTien) AS Total FROM phieuxuat WHERE NgayXuat LIKE ?";
+	        String sql = "SELECT SUM(TongTien) AS Total FROM phieuxuat WHERE "+type+" LIKE ?";
 	        PreparedStatement pst = con.prepareStatement(sql);
 	        
 	        // Chuyển đổi ngày xuất thành ngày SQL
-	        String day = convertToDate(ngayXuat);
+	        String day;
+	        if(type.equals("NgayXuat"))
+	        	day = convertToDate(ngayXuat);
+	        else 
+				day=ngayXuat;
 	        pst.setString(1,"%"+day+"%");
 	        ResultSet rs = pst.executeQuery();
 	        if (rs.next()) {
-	            total = rs.getDouble("Total");
+	        	 BigDecimal totalBigDecimal = rs.getBigDecimal("Total");
+	             if (totalBigDecimal != null) {
+	            	 total = rs.getDouble("Total")/1000000.0;
+	             }
 	        }
 	        con.close();
 	    } catch (Exception e) {

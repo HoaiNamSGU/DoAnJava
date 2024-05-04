@@ -33,4 +33,4 @@ public class BieuDO {
         frame.pack();
         frame.setVisible(true);
     }
-}
+} 

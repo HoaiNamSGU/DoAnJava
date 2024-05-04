@@ -19,15 +19,20 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		return new PhieuNhapDao();
 	}
 
-	public int getTotalSoLuong(String ngayNhap) {
+	public int getTotalSoLuong(String type,String ngayNhap) {
 	    int total = 0;
 	    try {
 	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieunhap WHERE NgayNhap LIKE ?";
+	        String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieunhap WHERE "+type+" LIKE ?";
 	        PreparedStatement pst = con.prepareStatement(sql);
 	        
 	        // Chuyển đổi ngày nhập thành ngày SQL
-	        String day = convertToDate(ngayNhap);
+	        String day;
+	        if(type.equals("NgayNhap"))
+	        	day = convertToDate(ngayNhap);
+	        else 
+				day=ngayNhap;
+			
 	        pst.setString(1,"%"+day+"%");
 	        ResultSet rs = pst.executeQuery();
 	        if (rs.next()) {
@@ -40,20 +45,24 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 	    return total;
 	}
 
-	public double getTotalTongTien(String ngayNhap) {
-	    double total = 0.0;
+	public Double getTotalTongTien(String type,String ngayNhap) {
+		Double total = 0.0;
 	    try {
 	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM(TongTien) AS Total FROM phieunhap WHERE NgayNhap LIKE ?";
+	        String sql = "SELECT SUM(TongTien) AS Total FROM phieunhap WHERE "+type+" LIKE ?";
 	        PreparedStatement pst = con.prepareStatement(sql);
 	        
 	        // Chuyển đổi ngày nhập thành ngày SQL
-	        String day = convertToDate(ngayNhap);
+	        String day;
+	        if(type.equals("NgayNhap"))
+	        	day = convertToDate(ngayNhap);
+	        else 
+				day=ngayNhap;
+	        
 	        pst.setString(1,"%"+day+"%");
 	        ResultSet rs = pst.executeQuery();
 	        if (rs.next()) {
-	            total = rs.getDouble("Total");
-
+	            total = rs.getDouble("Total")/1000000.0;
 	        }
 	        con.close();
 	    } catch (Exception e) {

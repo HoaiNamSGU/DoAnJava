@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -22,6 +22,8 @@ import controller.ThongKeMouseListener;
 import dao.PhieuNhapDao;
 import dao.PhieuXuatDao;
 import img.Source;
+import model.PhieuNhap;
+import model.PhieuXuat;
 
 public class ThongKeView extends JPanel {
 
@@ -37,7 +39,9 @@ public class ThongKeView extends JPanel {
 	public String[] dateFormat = { "dd/MM/yyyy", "MM/yyyy", "yyyy" };
 	public JComboBox<Object> comboBox_CongViec;
 	public JPanel panel_Center;
-	public BieuDoThongKeSP bd = new BieuDoThongKeSP();
+	public BieuDoThongKeSP bdsp = new BieuDoThongKeSP();
+	public BieuDoThongKeCH bdch = new BieuDoThongKeCH();
+	public String loai = "Sản Phẩm";
 
 	public ThongKeView() {
 		setLayout(new BorderLayout(0, 0));
@@ -45,9 +49,9 @@ public class ThongKeView extends JPanel {
 		JPanel panel_ChucNang = new JPanel();
 		add(panel_ChucNang, BorderLayout.NORTH);
 		GridBagLayout gbl_panel_ChucNang = new GridBagLayout();
-		gbl_panel_ChucNang.columnWidths = new int[] { 100, 296, 100, 296 };
+		gbl_panel_ChucNang.columnWidths = new int[] { 100, 296, 100, 296, 0, 0 };
 		gbl_panel_ChucNang.rowHeights = new int[] { 30, 30 };
-		gbl_panel_ChucNang.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
+		gbl_panel_ChucNang.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_panel_ChucNang.rowWeights = new double[] { 0.0, 0.0 };
 		panel_ChucNang.setLayout(gbl_panel_ChucNang);
 
@@ -125,66 +129,36 @@ public class ThongKeView extends JPanel {
 		panel_ChucNang.add(comboBox_NgayKT, gbc_comboBox_NgayKT);
 
 		panel_Center = new JPanel();
-		panel_Center.add(bd);
+		panel_Center.add(bdsp);
 		add(panel_Center, BorderLayout.CENTER);
 		panel_Center.setLayout(new GridLayout(1, 1, 0, 0));
 
 		JPanel panel_Menu = new JPanel();
 		add(panel_Menu, BorderLayout.EAST);
-		GridBagLayout gbl_panel_Menu = new GridBagLayout();
-		gbl_panel_Menu.columnWidths = new int[] { 130 };
-		gbl_panel_Menu.rowHeights = new int[] { 130, 130, 130, 130 };
-		gbl_panel_Menu.columnWeights = new double[] { 0.0 };
-		gbl_panel_Menu.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
-		panel_Menu.setLayout(gbl_panel_Menu);
-
-		JLabel Label_NhanVien = new JLabel("Nhân Viên");
-		Label_NhanVien.setBackground(new Color(255, 255, 255));
-		Label_NhanVien.setFont(new Font("Arial", Font.BOLD, 16));
-		Label_NhanVien.setIcon(source.icon_taikhoan);
-		Label_NhanVien.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_Label_NhanVien = new GridBagConstraints();
-		gbc_Label_NhanVien.fill = GridBagConstraints.BOTH;
-		gbc_Label_NhanVien.insets = new Insets(20, 5, 20, 5);
-		gbc_Label_NhanVien.gridx = 0;
-		gbc_Label_NhanVien.gridy = 0;
-		panel_Menu.add(Label_NhanVien, gbc_Label_NhanVien);
+		panel_Menu.setLayout(new GridLayout(0, 1, 0, 50));
 
 		JLabel Label_SanPham = new JLabel("Sản Phẩm");
 		Label_SanPham.setFont(new Font("Arial", Font.BOLD, 16));
 		Label_SanPham.setIcon(source.icon_sanpham);
 		Label_SanPham.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_Label_SanPham = new GridBagConstraints();
-		gbc_Label_SanPham.fill = GridBagConstraints.BOTH;
-		gbc_Label_SanPham.insets = new Insets(20, 5, 20, 5);
-		gbc_Label_SanPham.gridx = 0;
-		gbc_Label_SanPham.gridy = 1;
-		panel_Menu.add(Label_SanPham, gbc_Label_SanPham);
+		panel_Menu.add(Label_SanPham);
 
 		JLabel Label_CuaHang = new JLabel("Cửa Hàng");
 		Label_CuaHang.setFont(new Font("Arial", Font.BOLD, 16));
 		Label_CuaHang.setIcon(source.icon_cuahang);
 		Label_CuaHang.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_Label_CuaHang = new GridBagConstraints();
-		gbc_Label_CuaHang.insets = new Insets(20, 5, 20, 5);
-		gbc_Label_CuaHang.fill = GridBagConstraints.BOTH;
-		gbc_Label_CuaHang.gridx = 0;
-		gbc_Label_CuaHang.gridy = 2;
-		panel_Menu.add(Label_CuaHang, gbc_Label_CuaHang);
+		panel_Menu.add(Label_CuaHang);
 
 		JLabel Label_NhaCC = new JLabel("Nhà Cung Cấp");
 		Label_NhaCC.setFont(new Font("Arial", Font.BOLD, 16));
 		Label_NhaCC.setIcon(source.icon_nhaCungCap);
 		Label_NhaCC.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_Label_NhaCC = new GridBagConstraints();
-		gbc_Label_NhaCC.insets = new Insets(20, 5, 20, 5);
-		gbc_Label_NhaCC.fill = GridBagConstraints.BOTH;
-		gbc_Label_NhaCC.gridx = 0;
-		gbc_Label_NhaCC.gridy = 3;
-		panel_Menu.add(Label_NhaCC, gbc_Label_NhaCC);
+		panel_Menu.add(Label_NhaCC);
 		ThongKeActionListener ac = new ThongKeActionListener(this);
 		ThongKeMouseListener mouse = new ThongKeMouseListener(this);
 		Label_SanPham.addMouseListener(mouse);
+		Label_CuaHang.addMouseListener(mouse);
+		Label_NhaCC.addMouseListener(mouse);
 		comboBox_ThoiGian.addActionListener(ac);
 		comboBox_CongViec.addActionListener(ac);
 		comboBox_NgayBD.addActionListener(ac);
@@ -217,8 +191,6 @@ public class ThongKeView extends JPanel {
 			comboBox_NgayBD.addItem(date);
 			comboBox_NgayKT.addItem(date);
 		}
-		comboBox_NgayBD.setSelectedIndex(0);
-		comboBox_NgayKT.setSelectedIndex(0);
 	}
 
 	private ArrayList<String> getDateFormats(ArrayList<String> dateList, String dateFormat) {
@@ -247,20 +219,52 @@ public class ThongKeView extends JPanel {
 		return formattedDates;
 	}
 
-	public void updateData() {
-		panel_Center.remove(bd);
+	public void updateData(String loai) {
+		panel_Center.removeAll();
 		String congViec = comboBox_CongViec.getSelectedItem().toString();
 		int StartDay = comboBox_NgayBD.getSelectedIndex();
 		int EndDay = comboBox_NgayKT.getSelectedIndex();
-		
+
 		ArrayList<String> day = new ArrayList<String>();
-		for (int i = StartDay; i <= EndDay; i++)
-			if (comboBox_NgayBD.getItemAt(i)!=null)
-				day.add(comboBox_NgayBD.getItemAt(i).toString());
-		
+		ArrayList<PhieuXuat> CH = PhieuXuatDao.getInstance().selectAll();
+		ArrayList<PhieuNhap> NCC = PhieuNhapDao.getInstance().selectAll();
+
 		String DateFomart = dateFormat[comboBox_ThoiGian.getSelectedIndex()];
-		bd.Update(congViec, day, DateFomart);
-		panel_Center.add(bd);
+		switch (loai) {
+		case "Sản Phẩm":
+			for (int i = StartDay; i <= EndDay; i++)
+				if (comboBox_NgayBD.getItemAt(i) != null)
+					day.add(comboBox_NgayBD.getItemAt(i).toString());
+			bdsp.Update(congViec, loai, day, DateFomart);
+			panel_Center.add(bdsp);
+			break;
+		case "Cửa Hàng":
+			Set<String> uniqueMaCH = new HashSet<>();
+
+			// Lặp qua danh sách CH để lấy các mã CH duy nhất
+			for (PhieuXuat px : CH) {
+				uniqueMaCH.add(px.getMaCuaHang());
+			}
+
+			day.addAll(uniqueMaCH);
+			bdch.Update("Xuất Hàng", loai, day, DateFomart);
+			panel_Center.add(bdch);
+			break;
+		case "Nhà Cung Cấp":
+			Set<String> uniqueMaNCC = new HashSet<>();
+
+			// Lặp qua danh sách CH để lấy các mã CH duy nhất
+			for (PhieuNhap px : NCC) {
+				uniqueMaNCC.add(px.getMaNhaCungCap());
+			}
+
+			day.addAll(uniqueMaNCC);
+			bdch.Update("Nhập Hàng", loai, day, DateFomart);
+			panel_Center.add(bdch);
+			break;
+		default:
+			break;
+		}
 	}
 
 }
