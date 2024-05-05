@@ -262,7 +262,7 @@ public class Nhacungcap extends JPanel {
 		String dc = model.getValueAt(i, 2) + "";
 		String sdt = model.getValueAt(i, 3) + "";
 		String email = model.getValueAt(i, 4) + "";
-		nhacung1 = new NhaCungCap(mnc, tnc, dc, sdt, email);
+		nhacung1 = new NhaCungCap(mnc, tnc, dc, sdt, email,0);
 		FixNhaCungCap frame = new FixNhaCungCap(this, 2, nhacung1);
 		frame.setVisible(true);
 	}
@@ -279,8 +279,8 @@ public class Nhacungcap extends JPanel {
 				String dc = model.getValueAt(i, 2) + "";
 				String sdt = model.getValueAt(i, 3) + "";
 				String email = model.getValueAt(i, 4) + "";
-				NhaCungCap nc1 = new NhaCungCap(mnc, tnc, dc, sdt, email);
-				nhacungcapDao.getInstance().delete1(nc1);
+				NhaCungCap nc1 = new NhaCungCap(mnc, tnc, dc, sdt, email,1);
+				nhacungcapDao.getInstance().update(nc1);
 				model.removeRow(i);
 			}
 		}

@@ -21,13 +21,7 @@ public class NhaCungCap {
 		Email = email;
 		this.isDelete = isDelete;
 	}
-	public NhaCungCap(String maNhaCungCap, String tenNhaCungCap, String diaChi, String sDT, String email) {
-		MaNhaCungCap = maNhaCungCap;
-		TenNhaCungCap = tenNhaCungCap;
-		DiaChi = diaChi;
-		SDT = sDT;
-		Email = email;
-	}
+	
 	public String getMaNhaCungCap() {
 		return MaNhaCungCap;
 	}

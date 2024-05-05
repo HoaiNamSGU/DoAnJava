@@ -138,24 +138,53 @@ public class AddNhaCungCap extends JFrame {
 						|| tx5.getText() == "") {
 					JOptionPane.showConfirmDialog(null, " Dữ liệu bạn nhập vào đang bị thiếu. Mời bạn nhập lại", "hi",
 							JOptionPane.CLOSED_OPTION);
-				} else {
+					return;
+				} 
+				if (nhacungcapDao.getInstance().isMaNCCExit(tx1.getText())) {
+					NhaCungCap CH = nhacungcapDao.getInstance().selectById(tx1.getText());
+					if (CH.getIsDelete() == 0) {
+						JOptionPane.showMessageDialog(null, "Mã nhà cung cấp đã tồn tại", "Lỗi",
+								JOptionPane.ERROR_MESSAGE);
+						return;
+
+					} else {
+						int choice = JOptionPane.showConfirmDialog(null,
+								"nhà cung cấp đã bị xóa, bạn có muốn khôi phục lại không?", "Xác nhận",
+								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+						if (choice == JOptionPane.YES_OPTION) {
+							nhacungcapDao.getInstance().restoreNCC(tx1.getText());
+							dispose();
+							return;
+
+						} else {
+							JOptionPane.showMessageDialog(null, "Mã nhà cung cấp đã tồn tại", "Lỗi",
+									JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+					}
+				}
+				
+				if (!tx5.getText().startsWith("0") || !tx5.getText().matches("\\d+") || tx5.getText().length() < 10 || tx5.getText().length() > 11) {
+					JOptionPane.showMessageDialog(null, "Số điện thoại của nhà cung cấp không hợp lệ", "Lỗi",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 					String mnc = tx1.getText();
 					String tnc = tx2.getText();
 					String email = tx3.getText();
 					String dc = tx4.getText();
 					String sdt = tx5.getText();
-					NhaCungCap sp = new NhaCungCap(mnc, tnc, dc, sdt, email);
-					System.out.println(sp.toString());
+					NhaCungCap sp = new NhaCungCap(mnc, tnc, dc, sdt, email,0);
 					nhacungcapDao.getInstance().insert(sp);
-					JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công");
+					JOptionPane.showMessageDialog(null, "Thêm Nhà cung cấp thành công");
 //							setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					int i = ncc.model.getRowCount();
 					ncc.model.addRow(new Object[] { sp.getMaNhaCungCap(), sp.getTenNhaCungCap(), sp.getDiaChi(),
 							sp.getSDT(), sp.getEmail() });
 					ncc.table.setModel(ncc.model);
-					JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(btn_them);
-					currentFrame.dispose();
-				}
+					dispose();
+					return;
+				
 			}
 		});
 

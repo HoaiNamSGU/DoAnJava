@@ -231,7 +231,7 @@ public class FixNhaCungCap extends JFrame {
 				ncc.model.setValueAt(tx4.getText(), i, 2);
 				ncc.model.setValueAt(tx5.getText(), i, 3);
 				ncc.model.setValueAt(tx3.getText(), i, 4);
-				NhaCungCap nc2 = new NhaCungCap(ncc.model.getValueAt(i, 0) + "", tnc, dc, sdt, email);
+				NhaCungCap nc2 = new NhaCungCap(ncc.model.getValueAt(i, 0) + "", tnc, dc, sdt, email,0);
 				nhacungcapDao.getInstance().update(nc2);
 				JOptionPane.showMessageDialog(null, "Sửa sản phẩm thành công");
 				JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(btn_them);
