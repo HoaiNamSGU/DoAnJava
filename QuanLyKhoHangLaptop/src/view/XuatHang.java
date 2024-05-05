@@ -4,14 +4,19 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,22 +32,13 @@ import controller.Controllerxuathang;
 import dao.CuaHangDAO;
 import dao.LaptopDAO;
 import dao.NhanVienDAO;
-import dao.PhieuNhapDao;
 import dao.PhieuXuatDao;
-import dao.nhacungcapDao;
 import img.Source;
 import model.ChiTietPhieuXuat;
 import model.CuaHang;
 import model.Laptop;
-import model.NhaCungCap;
 import model.NhanVien;
-import model.PhieuNhap;
 import model.PhieuXuat;
-import javax.swing.JComboBox;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.ImageIcon;
 
 public class XuatHang extends JFrame {
 	public int thu;
@@ -319,14 +315,14 @@ public class XuatHang extends JFrame {
 		btn_suasp.setIcon(new ImageIcon(XuatHang.class.getResource("/img/pencil.png")));
 		btn_suasp.setBackground(new Color(255, 128, 64));
 		btn_suasp.setEnabled(false);
-		btn_suasp.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_suasp.setFont(new Font("Arial", Font.BOLD, 16));
 		panelg_phai.add(btn_suasp);
 
 		btn_xoasp = new JButton("Xóa sản phẩm");
 		btn_xoasp.setIcon(new ImageIcon(XuatHang.class.getResource("/img/remove.png")));
 		btn_xoasp.setBackground(new Color(255, 128, 128));
 		btn_xoasp.setEnabled(false);
-		btn_xoasp.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_xoasp.setFont(new Font("Arial", Font.BOLD, 16));
 		panelg_phai.add(btn_xoasp);
 //	        JLabel jl_masanpham = new JLabel("Mã sản phẩm");
 //	        jl_masanpham.setFont(new Font("Arial", Font.BOLD, 15));
@@ -370,11 +366,11 @@ public class XuatHang extends JFrame {
 		btn_themsp = new JButton("Thêm sản phẩm");
 		btn_themsp.setIcon(new ImageIcon(XuatHang.class.getResource("/img/plus.png")));
 		btn_themsp.setBackground(new Color(0, 255, 255));
-		btn_themsp.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_themsp.setFont(new Font("Arial", Font.BOLD, 16));
 		btn_nhapexcel = new JButton("Nhập Excel");
 		btn_nhapexcel.setIcon(new ImageIcon(XuatHang.class.getResource("/img/nhapExcel.png")));
 		btn_nhapexcel.setBackground(new Color(0, 255, 0));
-		btn_nhapexcel.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_nhapexcel.setFont(new Font("Arial", Font.BOLD, 16));
 		panelg_trai_duoi.add(btn_themsp);
 		panelg_trai_duoi.add(btn_nhapexcel);
 
@@ -397,8 +393,7 @@ public class XuatHang extends JFrame {
 //			    		stt,sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),PhieuNhapDao.getInstance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),sp.getTongTien()
 //			    });
 //			}
-		table1.getTableHeader().setResizingAllowed(false);
-		table1.getTableHeader().setReorderingAllowed(false);
+
 
 			Controllerxuathang.ActionListener(btn_themsp, this);
 			Controllerxuathang.addKeyListener(jt_otimkiem, this);

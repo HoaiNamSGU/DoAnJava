@@ -325,12 +325,12 @@ public class NhapHang extends JFrame {
 
 		btn_suasp = new JButton("Sửa sản phẩm");
 		btn_suasp.setIcon(new ImageIcon(NhapHang.class.getResource("/img/pencil.png")));
-		btn_suasp.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_suasp.setFont(new Font("Arial", Font.BOLD, 16));
 		panelg_phai.add(btn_suasp);
 
 		btn_xoasp = new JButton("Xóa sản phẩm");
 		btn_xoasp.setIcon(new ImageIcon(NhapHang.class.getResource("/img/remove.png")));
-		btn_xoasp.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_xoasp.setFont(new Font("Arial", Font.BOLD, 16));
 		panelg_phai.add(btn_xoasp);
 		btn_suasp.setBackground(new Color(255, 128, 64));
 		btn_xoasp.setBackground(new Color(255, 128, 128));
@@ -375,11 +375,11 @@ public class NhapHang extends JFrame {
 		btn_themsp = new JButton("Thêm sản phẩm");
 		btn_themsp.setIcon(new ImageIcon(NhapHang.class.getResource("/img/plus.png")));
 		btn_themsp.setBackground(new Color(0, 255, 255));
-		btn_themsp.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_themsp.setFont(new Font("Arial", Font.BOLD, 16));
 		btn_nhapexcel = new JButton("Nhập Excel");
 		btn_nhapexcel.setIcon(new ImageIcon(NhapHang.class.getResource("/img/nhapExcel.png")));
 		btn_nhapexcel.setBackground(new Color(0, 255, 0));
-		btn_nhapexcel.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_nhapexcel.setFont(new Font("Arial", Font.BOLD, 16));
 		panelg_trai_duoi.add(btn_themsp);
 		panelg_trai_duoi.add(btn_nhapexcel);
 
