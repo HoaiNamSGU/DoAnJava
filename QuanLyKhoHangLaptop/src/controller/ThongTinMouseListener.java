@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -9,11 +10,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import view.DoiMatKhau;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 import dao.NguoiDungDAO;
 import dao.NhanVienDAO;
@@ -38,7 +42,16 @@ public class ThongTinMouseListener implements MouseListener{
         String labelText = clickedLabel.getText();
         if(labelText.equals("Đổi thông tin"))
         {
+        	user.jlabel_sua.setForeground(Color.BLACK);
+        	user.jlabel_doithongtin.setForeground(Color.WHITE);
         	ThemTaiKhoan tk = new ThemTaiKhoan();
+        	tk.addWindowListener(new WindowAdapter() {
+    		    @Override
+    		    public void windowClosing(WindowEvent e) {
+    		    	user.jlabel_doithongtin.setForeground(Color.BLACK);
+		        	
+    		    }
+    		});
         	tk.setTitle("Đổi thông tin");
         	tk.lblNewLabel_6.setText("Đổi thông tin tài khoản");
         	NhanVien nv = mainView.nhanvien;
@@ -71,46 +84,47 @@ public class ThongTinMouseListener implements MouseListener{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					
+					if(tk.radioButton1.isSelected())
+					{
+						nv.setGioiTinh(1);
+					}
+					else if(tk.radioButton2.isSelected())
+					{
+						nv.setGioiTinh(0);
+					}
+					
 					if(e.getActionCommand().equals("Xác nhận"))
 					{
 
-						if(tk.radioButton1.isSelected())
-						{
-							nv.setGioiTinh(1);
-						}
-						else if(tk.radioButton2.isSelected())
-						{
-							nv.setGioiTinh(0);
-						}
+						
 						int year = (int) tk.yearModel.getValue();
 			            int month = (int) tk.monthModel.getValue();
 			            int day = (int) tk.dayModel.getValue();
-			            if (isValidDate(year, month, day)==false) {
-			            	 JOptionPane.showMessageDialog(tk, "Ngày không hợp lệ!");
-			            	 tk.setYMD_now();
+			            if (isValidDate(year, month, day)==true) {
 			            	 year = (int) tk.yearModel.getValue();
 					         month = (int) tk.monthModel.getValue();
 					         day = (int) tk.dayModel.getValue();
+					         nv.setNgaySinh(day, month, year);
 			            } 
-						nv.setTenNhanVien(tk.textField_HoTen.getText());
+						
 			        	nv.setSDT(tk.textField_SDT.getText());
-			        	nv.setNgaySinh(day, month, year);
+			        	nv.setTenNhanVien(tk.textField_HoTen.getText());
 
 			        	
 
 			        	int result = JOptionPane.showConfirmDialog(tk, "Bạn có chắc muốn sửa tài khoản ?","Xác nhận",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 			        	if(result == JOptionPane.YES_OPTION)
 			        	{
-							int check1 = NguoiDungDAO.getintance().update(nd);
-							int check2 = NhanVienDAO.getintance().update(nv);
-
+			        		
+			        		int check1 = NhanVienDAO.getintance().updateBoMaVaMaNDvaDL(nv);
+							int check2 = NguoiDungDAO.getintance().updateByCondition(nd.getMaNguoiDung(),nd.getMatKhau(), nd.getMatKhau());
+							
 							if(check1 == 1 && check2 ==1)
 							{
 								JOptionPane.showMessageDialog(tk, "Tài khoản đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-								NhanVienDAO.getintance().WriteUpDateExcel();
-								NguoiDungDAO.getintance().WriteUpDateExcel();
-								NguoiDungDAO.getintance().UpDateKetHop();
 								user.setJlabel(nv, nd);
+								
 							}
 							else
 							{
@@ -122,13 +136,24 @@ public class ThongTinMouseListener implements MouseListener{
 				}
 			});
         	
+        	tk.button_huybo.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(e.getActionCommand().equals("Hủy bỏ"))
+					{
+						tk.dispose();
+						user.jlabel_doithongtin.setForeground(Color.BLACK);
+					}
+				}
+			});
         	user.jlabel_sua.setForeground(Color.BLACK);
 
         }
         else if(labelText.equals("Đổi mật khẩu"))
         {
         	user.jlabel_sua.setForeground(Color.WHITE);
-        	
+        	user.jlabel_doithongtin.setForeground(Color.BLACK);
         	DoiMatKhau mk = new DoiMatKhau();
         	mk.btnHuyBo.addActionListener(new ActionListener() {
 
