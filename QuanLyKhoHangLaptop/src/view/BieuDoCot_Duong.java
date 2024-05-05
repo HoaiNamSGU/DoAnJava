@@ -86,7 +86,7 @@ public class BieuDoCot_Duong extends JPanel {
 
 		// Thêm trục y thứ hai
 		// Tạo trục y thứ hai
-		NumberAxis yAxis2 = new NumberAxis("Tổng số lượng");
+		NumberAxis yAxis2 = new NumberAxis("Tổng số lượng (chiếc)");
 
 		// Tăng kích thước chữ cho nhãn và dấu gạch trên trục
 		Font font = new Font("Arial", Font.BOLD, 20); // Thay đổi kích thước và kiểu chữ tại đây

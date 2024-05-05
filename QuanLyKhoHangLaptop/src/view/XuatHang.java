@@ -2,18 +2,15 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.security.KeyStore.PrivateKeyEntry;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,17 +23,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controller.Controllernhaphang;
 import controller.Controllerxuathang;
 import dao.LaptopDAO;
-import dao.PhieuNhapDao;
 import dao.PhieuXuatDao;
 import img.Source;
-import model.Laptop;
-import model.PhieuNhap;
-import model.PhieuXuat;
-import model.ChiTietPhieuNhap;
 import model.ChiTietPhieuXuat;
+import model.Laptop;
+import model.PhieuXuat;
 
 public class XuatHang extends JFrame {
 	public int thu;

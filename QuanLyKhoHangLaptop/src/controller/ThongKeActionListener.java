@@ -26,29 +26,15 @@ public class ThongKeActionListener implements ActionListener {
 				|| e.getSource().equals(ThongKeView.comboBox_ThoiGian)) {
 			// Cập nhật định dạng cho combobox Ngày bắt đầu và Ngày kết thúc
 			ThongKeView.updateDateFormats();
-			ThongKeView.updateData(ThongKeView.loai);
 			return;
 		}
 
-		if (e.getSource().equals(ThongKeView.comboBox_NgayBD)) {
-			int StartDate = ThongKeView.comboBox_NgayBD.getSelectedIndex();
-			int EndDate = ThongKeView.comboBox_NgayKT.getSelectedIndex();
-
-			if (StartDate>0&&StartDate > EndDate)
-				ThongKeView.comboBox_NgayBD.setSelectedIndex(EndDate);
+		if (e.getSource().equals(ThongKeView.comboBox_NgayBD) || e.getSource().equals(ThongKeView.comboBox_NgayKT)) {
+			ThongKeView.updateComboBox();
+			//ThongKeView.updateData(ThongKeView.loai);
 			
-			ThongKeView.updateData(ThongKeView.loai);
 		}
-		if (e.getSource().equals(ThongKeView.comboBox_NgayKT)) {
-			int StartDate = ThongKeView.comboBox_NgayBD.getSelectedIndex();
-			int EndDate = ThongKeView.comboBox_NgayKT.getSelectedIndex();
 
-			if (StartDate>0 &&StartDate > EndDate)
-				ThongKeView.comboBox_NgayBD.setSelectedIndex(StartDate);
-			
-			ThongKeView.updateData(ThongKeView.loai);
-
-		}
 	}
 
 }

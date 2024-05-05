@@ -167,7 +167,16 @@ public class ThongKeView extends JPanel {
 		updateDateFormats();
 		setVisible(true);
 	}
-
+	public void updateComboBox() {
+		int StartDate = comboBox_NgayBD.getSelectedIndex();
+		int EndDate = comboBox_NgayKT.getSelectedIndex();
+		
+		if (StartDate>0&&StartDate > EndDate)
+			comboBox_NgayBD.setSelectedIndex(EndDate);
+		updateData(loai);
+		revalidate(); // Revalidate panel để cập nhật layout
+	    repaint();
+	}
 	public void updateDateFormats() {
 		String selectedFormat = dateFormat[comboBox_ThoiGian.getSelectedIndex()];
 
@@ -191,6 +200,7 @@ public class ThongKeView extends JPanel {
 			comboBox_NgayBD.addItem(date);
 			comboBox_NgayKT.addItem(date);
 		}
+		updateData(loai);
 	}
 
 	private ArrayList<String> getDateFormats(ArrayList<String> dateList, String dateFormat) {
