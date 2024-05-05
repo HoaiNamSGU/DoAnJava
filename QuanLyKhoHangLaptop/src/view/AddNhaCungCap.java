@@ -155,6 +155,7 @@ public class AddNhaCungCap extends JFrame {
 						if (choice == JOptionPane.YES_OPTION) {
 							nhacungcapDao.getInstance().restoreNCC(tx1.getText());
 							dispose();
+							ncc.nutlammoi();
 							return;
 
 						} else {
@@ -183,9 +184,11 @@ public class AddNhaCungCap extends JFrame {
 							sp.getSDT(), sp.getEmail() });
 					ncc.table.setModel(ncc.model);
 					dispose();
+					ncc.nutlammoi();
 					return;
 				
 			}
+			
 		});
 
 		btn_them.setBackground(new Color(0, 255, 0));

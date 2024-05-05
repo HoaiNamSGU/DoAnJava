@@ -285,6 +285,7 @@ public class Nhacungcap extends JPanel {
 				model.removeRow(i);
 			}
 		}
+		nutlammoi();
 	}
 
 	public void nutlammoi() {
@@ -292,8 +293,9 @@ public class Nhacungcap extends JPanel {
 		txtx_timkiem.setText("");
 		ArrayList<NhaCungCap> dsNhacungcap = nhacungcapDao.getInstance().selectAll();
 		for (NhaCungCap nc : dsNhacungcap) {
-			model.addRow(new Object[] { nc.getMaNhaCungCap(), nc.getTenNhaCungCap(), nc.getDiaChi(), nc.getSDT(),
-					nc.getEmail() });
+			if (nc.getIsDelete() != 1)
+				model.addRow(new Object[] { nc.getMaNhaCungCap(), nc.getTenNhaCungCap(), nc.getDiaChi(), nc.getSDT(),
+						nc.getEmail() });
 		}
 		cbb_timkiem.setSelectedIndex(0);
 
