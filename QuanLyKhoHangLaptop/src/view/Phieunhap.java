@@ -291,7 +291,7 @@ public class Phieunhap extends JFrame {
 		ImageIcon icon_lammoi = new ImageIcon(
 				"D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png");
 		///////// chan///////////////
-		// them
+		// them dddd
 
 		JLabel jl_chuthem = new JLabel("Thêm");
 		jl_chuthem.setFont(new Font("Tahoma", Font.PLAIN, 15));
