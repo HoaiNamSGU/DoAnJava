@@ -78,7 +78,8 @@ public class XuatHang extends JFrame {
 	private JLabel tongsoluog;
 	private int tongsoluongphieu = 0, sua = 0;
 	private JComboBox comboBox_ch;
-	private JComboBox comboBox_nv;
+	private JLabel Label_nv;
+	DoiThongTinUser user = new DoiThongTinUser();
 
 	/**
 	 * Launch the application.
@@ -191,6 +192,14 @@ public class XuatHang extends JFrame {
 		gbc_manhanvien.gridx = 0;
 		gbc_manhanvien.gridy = 3;
 		panel_bentren.add(manhanvien, gbc_manhanvien);
+		
+		Label_nv = new JLabel(user.manv1.getText());
+		Label_nv.setEnabled(false);
+		GridBagConstraints gbc_label_nv = new GridBagConstraints();
+		gbc_label_nv.insets = new Insets(50, 0, 50, 0);
+		gbc_label_nv.gridx = 1;
+		gbc_label_nv.gridy = 3;
+		panel_bentren.add(Label_nv, gbc_label_nv);
 
 		ArrayList<NhanVien> nv = NhanVienDAO.getintance().selectAll();
 		ArrayList<String> nv1 = new ArrayList<>(); // Khởi tạo ArrayList<String> ncc1
@@ -199,13 +208,6 @@ public class XuatHang extends JFrame {
 			if (n.getIsDelete() != 1)
 				nv1.add(n.getMaNhanVien()); // Thêm tên nhà cung cấp vào danh sách ncc1
 		}
-		comboBox_nv = new JComboBox<String>(nv1.toArray(new String[0]));
-		GridBagConstraints gbc_comboBox_nv = new GridBagConstraints();
-		gbc_comboBox_nv.insets = new Insets(50, 0, 50, 0);
-		gbc_comboBox_nv.fill = GridBagConstraints.BOTH;
-		gbc_comboBox_nv.gridx = 1;
-		gbc_comboBox_nv.gridy = 3;
-		panel_bentren.add(comboBox_nv, gbc_comboBox_nv);
 
 		JPanel panel_benduoi = new JPanel();
 		panel_benduoi.setLayout(new GridLayout(3, 1, 0, 0));
@@ -472,7 +474,7 @@ public class XuatHang extends JFrame {
 		String maphieun = jl_mapn.getText().toUpperCase();
 		String manhacc = comboBox_ch.getSelectedItem().toString().toUpperCase();
 //		String tongtienn = tongtien + "";
-		String manhanvi = comboBox_nv.getSelectedItem().toString().toUpperCase();
+		String manhanvi = Label_nv.getText().toString().toUpperCase();
 
 		if (maphieun.isEmpty() || manhacc.isEmpty() || manhanvi.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -511,7 +513,6 @@ public class XuatHang extends JFrame {
 		model1.setRowCount(0);
 		jl_mapn.setText("");
 		comboBox_ch.setSelectedIndex(0);
-		comboBox_nv.setSelectedIndex(0);
 		sanpham = LaptopDAO.getintance().selectAll();
 		for (Laptop sp : sanpham) {
 			stt = 0;

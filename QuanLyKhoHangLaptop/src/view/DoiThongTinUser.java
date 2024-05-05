@@ -21,7 +21,7 @@ import model.NhanVien;
 public class DoiThongTinUser extends JPanel {
 
 	private Source source = new Source();
-	private JLabel manv1;
+	public JLabel manv1;
 	private JLabel tennv1;
 	private JLabel ngaysinh1;
 	private JLabel gioitinh1;
@@ -32,6 +32,7 @@ public class DoiThongTinUser extends JPanel {
 	public JPanel panel_chinh;
 	public JPanel panel_center;
 	public JLabel jlabel_doithongtin;
+	public JLabel jlabel_MaNV;
 	private static final long serialVersionUID = 1L;
 	public DoiThongTinUser() {
 		setLayout(new BorderLayout(0, 0));
@@ -89,7 +90,7 @@ public class DoiThongTinUser extends JPanel {
 		panel_center.add(panel_chinh, gbc_panel_chinh);
 		panel_chinh.setLayout(new GridLayout(7,2));
 		
-		JLabel jlabel_MaNV = new JLabel("Mã nhân viên:");
+		jlabel_MaNV = new JLabel("Mã nhân viên:");
 		jlabel_MaNV.setForeground(new Color(0, 128, 192));
 		jlabel_MaNV.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel_chinh.add(jlabel_MaNV);
