@@ -25,6 +25,8 @@ public class TaiKhoanActionListener implements ActionListener{
 		if(e.getSource()==view.button_refesh1)
 		{
 			view.textField_timkiem.setText(null);
+			view.comboBox_gioitinh.setSelectedIndex(0);
+			view.comboBox_maND.setSelectedIndex(0);
 		}
 		else if(e.getSource()==view.button_search1)
 		{
