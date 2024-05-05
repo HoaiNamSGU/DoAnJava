@@ -26,6 +26,7 @@ public class Source {
 	public ImageIcon icon_user = new ImageIcon(getClass().getResource("/img/user.png"));
 	public ImageIcon icon_refresh = new ImageIcon(getClass().getResource("/img/arrow.png"));
 	public ImageIcon icon_change = new ImageIcon(getClass().getResource("/img/change_32px.png"));
+	public ImageIcon icon_search = new ImageIcon(getClass().getResource("/img/search.png"));
 	public Source() {
 		
 	}
