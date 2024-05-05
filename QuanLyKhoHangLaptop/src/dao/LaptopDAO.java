@@ -33,6 +33,39 @@ public class LaptopDAO implements DAOInterface<Laptop> {
 		return new LaptopDAO();
 	}
 
+	@Override
+	public Laptop selectById(String T) {
+		Laptop kq = new Laptop();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "select * from laptop where MaLaptop = ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, T);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				String ma = rs.getString("MaLaptop");
+				String ten = rs.getString("TenLaptop");
+				String cpu = rs.getString("CPU");
+				String gpu = rs.getString("GPU");
+				String ram = rs.getString("Ram");
+				String rom = rs.getString("Rom");
+				String hdh = rs.getString("HeDieuHanh");
+				String man = rs.getString("ManHinh");
+				String hang = rs.getString("Hang");
+				int namsx = rs.getInt("NamSanXuat");
+				int soluong = rs.getInt("SoLuong");
+				double gia = rs.getDouble("Gia");
+				String maNCC = rs.getString("MaNhaCungCap");
+				int isDelete = rs.getInt("isDelete");
+				kq = new Laptop(ma, ten, cpu, gpu, ram, rom, hdh, man, hang, namsx, soluong, gia, maNCC, isDelete);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return kq;
+	}
+	
 	// tìm kiếm nâng cao - Nam fixed
 	public ArrayList<Laptop> advancedSearch(String condition1, String condition2, String condition3, String condition4,
 			String condition5, int giaMin, int giaMax) {
