@@ -308,6 +308,7 @@ public class laptopview extends JPanel {
 		jlabel_nhapExcel.addMouseListener(mouse);
 		jlabel_xoa.addMouseListener(mouse);
 		jlabel_xemCT.addMouseListener(mouse);
+		jlabel_KTIMEI.addMouseListener(mouse);
 		jbutton_refesh.addActionListener(ac);
 		comboBox_search.addActionListener(ac);
 		comboBox_Hang.addActionListener(ac);
