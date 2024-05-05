@@ -95,14 +95,14 @@ public class ThongTinMouseListener implements MouseListener{
 
 						
 						int year = (int) tk.yearModel.getValue();
-			            int month = (int) tk.monthModel.getValue();
-			            int day = (int) tk.dayModel.getValue();
-			            if (isValidDate(year, month, day)==true) {
-			            	 year = (int) tk.yearModel.getValue();
-					         month = (int) tk.monthModel.getValue();
+			            		int month = (int) tk.monthModel.getValue() -1;
+			           		 int day = (int) tk.dayModel.getValue();
+			            		if (isValidDate(year, month, day)==true) {
+			            		 year = (int) tk.yearModel.getValue();
+					         month = (int) tk.monthModel.getValue()-1;
 					         day = (int) tk.dayModel.getValue();
 					         nv.setNgaySinh(day, month, year);
-			            } 
+			            		} 
 						
 			        	nv.setSDT(tk.textField_SDT.getText());
 			        	nv.setTenNhanVien(tk.textField_HoTen.getText());
