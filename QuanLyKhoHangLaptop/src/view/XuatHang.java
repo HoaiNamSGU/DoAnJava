@@ -79,6 +79,7 @@ public class XuatHang extends JFrame {
 	private int tongsoluongphieu = 0, sua = 0;
 	private JComboBox comboBox_ch;
 	private JComboBox comboBox_nv;
+
 	/**
 	 * Launch the application.
 	 */
@@ -105,7 +106,7 @@ public class XuatHang extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+
 		panel_nhaphang = new JPanel();
 		panel_nhaphang.setBounds(197, 0, 1189, 763);
 		contentPane.add(panel_nhaphang, BorderLayout.CENTER);
@@ -120,10 +121,10 @@ public class XuatHang extends JFrame {
 		panel.add(panel_bentren, BorderLayout.CENTER);
 		panel.setBounds(0, 0, 197, 763);
 		GridBagLayout gbl_panel_bentren = new GridBagLayout();
-		gbl_panel_bentren.columnWidths = new int[]{110, 110, 0};
-		gbl_panel_bentren.rowHeights = new int[]{135, 135, 135, 135, 0};
-		gbl_panel_bentren.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_bentren.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_bentren.columnWidths = new int[] { 110, 110, 0 };
+		gbl_panel_bentren.rowHeights = new int[] { 135, 135, 135, 135, 0 };
+		gbl_panel_bentren.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_bentren.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_bentren.setLayout(gbl_panel_bentren);
 		JLabel mapn = new JLabel("Mã phiếu xuất");
 		mapn.setFont(new Font("Arial", Font.BOLD, 15));
@@ -149,12 +150,13 @@ public class XuatHang extends JFrame {
 		gbc_manhacc.gridx = 0;
 		gbc_manhacc.gridy = 1;
 		panel_bentren.add(manhacc, gbc_manhacc);
-		
+
 		ArrayList<CuaHang> ch = CuaHangDAO.getintance().selectAll();
 		ArrayList<String> ch1 = new ArrayList<>(); // Khởi tạo ArrayList<String> ncc1
 		ch1.add("");
 		for (CuaHang nc : ch) {
-		    ch1.add(nc.getMaCH()); // Thêm tên nhà cung cấp vào danh sách ncc1
+			if (nc.getIsDelete() != 1)
+				ch1.add(nc.getMaCH());// Thêm tên nhà cung cấp vào danh sách ncc1
 		}
 		comboBox_ch = new JComboBox<String>(ch1.toArray(new String[0]));
 		GridBagConstraints gbc_comboBox_ch = new GridBagConstraints();
@@ -189,12 +191,13 @@ public class XuatHang extends JFrame {
 		gbc_manhanvien.gridx = 0;
 		gbc_manhanvien.gridy = 3;
 		panel_bentren.add(manhanvien, gbc_manhanvien);
-		
-		ArrayList<NhanVien>nv=NhanVienDAO.getintance().selectAll();
+
+		ArrayList<NhanVien> nv = NhanVienDAO.getintance().selectAll();
 		ArrayList<String> nv1 = new ArrayList<>(); // Khởi tạo ArrayList<String> ncc1
 		nv1.add("");
 		for (NhanVien n : nv) {
-		    nv1.add(n.getMaNhanVien()); // Thêm tên nhà cung cấp vào danh sách ncc1
+			if (n.getIsDelete() != 1)
+				nv1.add(n.getMaNhanVien()); // Thêm tên nhà cung cấp vào danh sách ncc1
 		}
 		comboBox_nv = new JComboBox<String>(nv1.toArray(new String[0]));
 		GridBagConstraints gbc_comboBox_nv = new GridBagConstraints();
@@ -224,7 +227,7 @@ public class XuatHang extends JFrame {
 		tongsoluog.setHorizontalAlignment(SwingConstants.CENTER);
 		tongsoluog.setFont(new Font("Arial", Font.BOLD, 15));
 		panel_conduoi.add(tongsoluog);
-		
+
 		kqtongsoluong = new JLabel("0");
 		kqtongsoluong.setHorizontalAlignment(SwingConstants.CENTER);
 		kqtongsoluong.setFont(new Font("Arial", Font.BOLD, 15));
@@ -394,19 +397,19 @@ public class XuatHang extends JFrame {
 //			    });
 //			}
 
-
-			Controllerxuathang.ActionListener(btn_themsp, this);
-			Controllerxuathang.addKeyListener(jt_otimkiem, this);
-			Controllerxuathang.addKeyListener(jt_soluong, this);
-			Controllerxuathang.addMouseListener(table, this);
+		Controllerxuathang.ActionListener(btn_themsp, this);
+		Controllerxuathang.addKeyListener(jt_otimkiem, this);
+		Controllerxuathang.addKeyListener(jt_soluong, this);
+		Controllerxuathang.addMouseListener(table, this);
 //			Controllerxuathang.addMouseListener(table1, this);
-			Controllerxuathang.ActionListener(btn_nhaphang, this);
-			Controllerxuathang.ActionListener(btn_quaylai, this);
-			Controllerxuathang.ActionListener(btn_timkiem, this);
-			Controllerxuathang.ActionListener(btn_suasp, this);
-			Controllerxuathang.ActionListener(btn_xoasp, this);
+		Controllerxuathang.ActionListener(btn_nhaphang, this);
+		Controllerxuathang.ActionListener(btn_quaylai, this);
+		Controllerxuathang.ActionListener(btn_timkiem, this);
+		Controllerxuathang.ActionListener(btn_suasp, this);
+		Controllerxuathang.ActionListener(btn_xoasp, this);
 
 	}
+
 	public void suasanphamthem() {
 		int i = table1.getSelectedRow();
 		System.out.println(i);
@@ -431,6 +434,7 @@ public class XuatHang extends JFrame {
 		}
 		update();
 	}
+
 	public void thanhtimkiem() {
 		stt = 0;
 		model.setRowCount(0);
@@ -458,7 +462,7 @@ public class XuatHang extends JFrame {
 	public void nutquaylai() {
 		panel_nhaphang.setVisible(false);
 		panel_nhaphang.removeAll();
-		Phieunhap pn = new Phieunhap();
+		Phieuxuat pn = new Phieuxuat();
 		panel_nhaphang.add(pn.panel_phieunhap);
 		panel_nhaphang.setVisible(true);
 		update();
@@ -469,30 +473,28 @@ public class XuatHang extends JFrame {
 		String manhacc = comboBox_ch.getSelectedItem().toString().toUpperCase();
 //		String tongtienn = tongtien + "";
 		String manhanvi = comboBox_nv.getSelectedItem().toString().toUpperCase();
-		
-		if(maphieun.isEmpty()||manhacc.isEmpty()||manhanvi.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
-					JOptionPane.ERROR_MESSAGE);
+
+		if (maphieun.isEmpty() || manhacc.isEmpty() || manhanvi.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		ArrayList<PhieuXuat> pn=PhieuXuatDao.getInstance().selectAll();
-		for(PhieuXuat p:pn) {
-			if(maphieun.equals(p.getMaPhieuXuat())){
-				JOptionPane.showMessageDialog(null, "Mã phiếu xuất đã tồn tại", "Lỗi",
-						JOptionPane.ERROR_MESSAGE);
+		ArrayList<PhieuXuat> pn = PhieuXuatDao.getInstance().selectAll();
+		for (PhieuXuat p : pn) {
+			if (maphieun.equals(p.getMaPhieuXuat())) {
+				JOptionPane.showMessageDialog(null, "Mã phiếu xuất đã tồn tại", "Lỗi", JOptionPane.ERROR_MESSAGE);
 				jl_mapn.setText("");
 				return;
 			}
 		}
-			
-		
+
 //		String xoais = 0 + "
-		
+
 //		System.out.println(maphieun);
 //		DecimalFormat df2 = new DecimalFormat("#");
 //		String formattedNumber2 = df2.format(Double.parseDouble(tongtienn));
 //	 	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int isDelete) {
-		PhieuXuat pn1 = new PhieuXuat(maphieun, manhacc, manhanvi, date, Double.parseDouble(kqtongtiennn.getText()),Integer.parseInt(kqtongsoluong.getText()), 0);
+		PhieuXuat pn1 = new PhieuXuat(maphieun, manhacc, manhanvi, date, Double.parseDouble(kqtongtiennn.getText()),
+				Integer.parseInt(kqtongsoluong.getText()), 0);
 		PhieuXuatDao.getInstance().insert(pn1);
 		for (int i = 0; i < table1.getRowCount(); i++) {
 			String masanpham = model1.getValueAt(i, 2) + "";
@@ -500,9 +502,10 @@ public class XuatHang extends JFrame {
 
 			String thanhtienm = model1.getValueAt(i, 11) + "";
 //				public ChiTietPhieuXuat(String maPhieuXuat, String maLaptop, int soLuong, Double thanhTien, int isDelete) {
-			ChiTietPhieuXuat ctpn = new ChiTietPhieuXuat(maphieun, masanpham, soluongm, Double.parseDouble(thanhtienm),0);
+			ChiTietPhieuXuat ctpn = new ChiTietPhieuXuat(maphieun, masanpham, soluongm, Double.parseDouble(thanhtienm),
+					0);
 			PhieuXuatDao.getInstance().inchitietphieu(ctpn);
-			LaptopDAO.getintance().update1dulieu(masanpham, 0-soluongm);
+			LaptopDAO.getintance().update1dulieu(masanpham, 0 - soluongm);
 		}
 		model.setRowCount(0);
 		model1.setRowCount(0);
@@ -597,11 +600,12 @@ public class XuatHang extends JFrame {
 			jt_thanhtien.setText(formattedNumber);
 		}
 	}
+
 	public void update() {
-		tongsoluongphieu=0;
-		tongtien=0.0;
-		for(int i=0;i<table1.getRowCount();i++) {
-			tongsoluongphieu+=Integer.parseInt(model1.getValueAt(i, 12).toString());
+		tongsoluongphieu = 0;
+		tongtien = 0.0;
+		for (int i = 0; i < table1.getRowCount(); i++) {
+			tongsoluongphieu += Integer.parseInt(model1.getValueAt(i, 12).toString());
 			tongtien += Double.parseDouble(model1.getValueAt(i, 11).toString());
 		}
 		kqtongtiennn.setText(String.valueOf(tongtien));

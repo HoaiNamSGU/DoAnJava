@@ -129,10 +129,10 @@ public class NhapHang extends JFrame {
 		panel.add(panel_bentren, BorderLayout.CENTER);
 		panel.setBounds(0, 0, 197, 763);
 		GridBagLayout gbl_panel_bentren = new GridBagLayout();
-		gbl_panel_bentren.columnWidths = new int[]{113, 113, 0};
-		gbl_panel_bentren.rowHeights = new int[]{134, 134, 134, 134, 0};
-		gbl_panel_bentren.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_bentren.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_bentren.columnWidths = new int[] { 113, 113, 0 };
+		gbl_panel_bentren.rowHeights = new int[] { 134, 134, 134, 134, 0 };
+		gbl_panel_bentren.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_bentren.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_bentren.setLayout(gbl_panel_bentren);
 		JLabel mapn = new JLabel("Mã phiếu nhập");
 		mapn.setFont(new Font("Arial", Font.BOLD, 15));
@@ -158,14 +158,16 @@ public class NhapHang extends JFrame {
 		gbc_manhacc.gridx = 0;
 		gbc_manhacc.gridy = 1;
 		panel_bentren.add(manhacc, gbc_manhacc);
-		
+
 		ArrayList<NhaCungCap> ncc = nhacungcapDao.getInstance().selectAll();
 		ArrayList<String> ncc1 = new ArrayList<>(); // Khởi tạo ArrayList<String> ncc1
 		ncc1.add("");
 		for (NhaCungCap nc : ncc) {
-		    ncc1.add(nc.getMaNhaCungCap()); // Thêm tên nhà cung cấp vào danh sách ncc1
+			if (nc.getIsDelete() != 1)
+				ncc1.add(nc.getMaNhaCungCap()); // Thêm tên nhà cung cấp vào danh sách ncc1
 		}
-		comboBox_ncc = new JComboBox<String>(ncc1.toArray(new String[0])); // Chuyển ArrayList thành mảng String và sử dụng nó cho JComboBox
+		comboBox_ncc = new JComboBox<String>(ncc1.toArray(new String[0])); // Chuyển ArrayList thành mảng String và sử
+																			// dụng nó cho JComboBox
 		GridBagConstraints gbc_comboBox_ncc = new GridBagConstraints();
 		gbc_comboBox_ncc.fill = GridBagConstraints.BOTH;
 		gbc_comboBox_ncc.insets = new Insets(50, 0, 50, 0);
@@ -198,12 +200,13 @@ public class NhapHang extends JFrame {
 		gbc_manhanvien.gridx = 0;
 		gbc_manhanvien.gridy = 3;
 		panel_bentren.add(manhanvien, gbc_manhanvien);
-		
-		ArrayList<NhanVien>nv=NhanVienDAO.getintance().selectAll();
+
+		ArrayList<NhanVien> nv = NhanVienDAO.getintance().selectAll();
 		ArrayList<String> nv1 = new ArrayList<>(); // Khởi tạo ArrayList<String> ncc1
 		nv1.add("");
 		for (NhanVien n : nv) {
-		    nv1.add(n.getMaNhanVien()); // Thêm tên nhà cung cấp vào danh sách ncc1
+			if (n.getIsDelete() != 1)
+				nv1.add(n.getMaNhanVien()); // Thêm tên nhà cung cấp vào danh sách ncc1
 		}
 		comboBox_nv = new JComboBox<String>(nv1.toArray(new String[0]));
 		GridBagConstraints gbc_comboBox_nv = new GridBagConstraints();
@@ -475,16 +478,14 @@ public class NhapHang extends JFrame {
 		String manhacc = comboBox_ncc.getSelectedItem().toString().toUpperCase();
 //		String tongtienn = tongtien + "";
 		String manhanvi = comboBox_nv.getSelectedItem().toString().toUpperCase();
-		if(maphieun.isEmpty()||manhacc.isEmpty()||manhanvi.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
-					JOptionPane.ERROR_MESSAGE);
+		if (maphieun.isEmpty() || manhacc.isEmpty() || manhanvi.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		ArrayList<PhieuNhap> pn=PhieuNhapDao.getInstance().selectAll();
-		for(PhieuNhap p:pn) {
-			if(maphieun.equals(p.getMaPhieuNhap())){
-				JOptionPane.showMessageDialog(null, "Mã phiếu nhập đã tồn tại", "Lỗi",
-						JOptionPane.ERROR_MESSAGE);
+		ArrayList<PhieuNhap> pn = PhieuNhapDao.getInstance().selectAll();
+		for (PhieuNhap p : pn) {
+			if (maphieun.equals(p.getMaPhieuNhap())) {
+				JOptionPane.showMessageDialog(null, "Mã phiếu nhập đã tồn tại", "Lỗi", JOptionPane.ERROR_MESSAGE);
 				jl_mapn.setText("");
 				return;
 			}
@@ -492,15 +493,17 @@ public class NhapHang extends JFrame {
 		// String xoais = 0 + "";
 //		DecimalFormat df2 = new DecimalFormat("#");
 //		String formattedNumber2 = df2.format(Double.parseDouble(tongtienn));
-		PhieuNhap pn1 = new PhieuNhap(maphieun, manhacc, manhanvi, Double.parseDouble(kqtongtiennn.getText()),Integer.parseInt(kqtongsoluong.getText()), date, 0);
+		PhieuNhap pn1 = new PhieuNhap(maphieun, manhacc, manhanvi, Double.parseDouble(kqtongtiennn.getText()),
+				Integer.parseInt(kqtongsoluong.getText()), date, 0);
 		PhieuNhapDao.getInstance().insert(pn1);
 		for (int i = 0; i < table1.getRowCount(); i++) {
 			String masanpham = model1.getValueAt(i, 0) + "";
 			String soluongm = model1.getValueAt(i, 10) + "";
 			String thanhtienm = model1.getValueAt(i, 9) + "";
 //				public ChiTietPhieuNhap(String maPhieuNhap, String maLaptop, int soLuong, Double thanhTien, int isDelete) {
-			
-			ChiTietPhieuNhap chitietphieunhap = new ChiTietPhieuNhap(maphieun, masanpham, Integer.parseInt(soluongm),Double.parseDouble(thanhtienm), 0);
+
+			ChiTietPhieuNhap chitietphieunhap = new ChiTietPhieuNhap(maphieun, masanpham, Integer.parseInt(soluongm),
+					Double.parseDouble(thanhtienm), 0);
 			System.out.println(chitietphieunhap.getMaPhieuNhap());
 			PhieuNhapDao.getInstance().inchitietphieu(chitietphieunhap);
 			LaptopDAO.getintance().update1dulieu(masanpham, Integer.parseInt(soluongm));

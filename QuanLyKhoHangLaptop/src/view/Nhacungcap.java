@@ -232,8 +232,9 @@ public class Nhacungcap extends JPanel {
 		table.getColumnModel().getColumn(4).setPreferredWidth(40);
 		model = (DefaultTableModel) table.getModel();
 		for (NhaCungCap nc : dsnhacungcap) {
-			model.addRow(new Object[] { nc.getMaNhaCungCap(), nc.getTenNhaCungCap(), nc.getDiaChi(), nc.getSDT(),
-					nc.getEmail() });
+			if (nc.getIsDelete() != 1)
+				model.addRow(new Object[] { nc.getMaNhaCungCap(), nc.getTenNhaCungCap(), nc.getDiaChi(), nc.getSDT(),
+						nc.getEmail() });
 		}
 		table.getTableHeader().setResizingAllowed(false);
 		table.getTableHeader().setReorderingAllowed(false);
@@ -262,7 +263,7 @@ public class Nhacungcap extends JPanel {
 		String dc = model.getValueAt(i, 2) + "";
 		String sdt = model.getValueAt(i, 3) + "";
 		String email = model.getValueAt(i, 4) + "";
-		nhacung1 = new NhaCungCap(mnc, tnc, dc, sdt, email,0);
+		nhacung1 = new NhaCungCap(mnc, tnc, dc, sdt, email, 0);
 		FixNhaCungCap frame = new FixNhaCungCap(this, 2, nhacung1);
 		frame.setVisible(true);
 	}
@@ -279,7 +280,7 @@ public class Nhacungcap extends JPanel {
 				String dc = model.getValueAt(i, 2) + "";
 				String sdt = model.getValueAt(i, 3) + "";
 				String email = model.getValueAt(i, 4) + "";
-				NhaCungCap nc1 = new NhaCungCap(mnc, tnc, dc, sdt, email,1);
+				NhaCungCap nc1 = new NhaCungCap(mnc, tnc, dc, sdt, email, 1);
 				nhacungcapDao.getInstance().update(nc1);
 				model.removeRow(i);
 			}
