@@ -262,7 +262,8 @@ public class Phieuxuat extends JFrame {
 //				jp_chucnang.setLayout(null);
 				cbb_timkiem.addItem("Tất cả");
 				cbb_timkiem.addItem("Mã phiếu");
-				cbb_timkiem.addItem("Tên nhà cung cấp");
+				cbb_timkiem.addItem("Mã cửa hàng");
+				cbb_timkiem.addItem("Mã nhân viên");
 //				cbb_timkiem.addItem("Địa chỉ");
 //				cbb_timkiem.addItem("Số điện thoại");
 //				cbb_timkiem.addItem("Email");
@@ -506,7 +507,7 @@ public class Phieuxuat extends JFrame {
 //		nh.setVisible(true);
 		panel_phieunhap.setVisible(false);
 		panel_phieunhap.removeAll();
-		XuatHangtmp nhaphang=new XuatHangtmp();
+		XuatHang nhaphang=new XuatHang();
 		panel_phieunhap.add(nhaphang.panel_nhaphang);
 		panel_phieunhap.setVisible(true);
 	}
@@ -525,9 +526,20 @@ public class Phieuxuat extends JFrame {
 					}
 		}
 		else {
-		if (timitem.equals("Mã phiếu")) {
+			if (timitem.equals("Tất cả")) {
+				for (PhieuXuat sp : dspn) {
+					if (sp.getMaPhieuXuat().equals(text) && sp.getMaCuaHang().equals(text) && sp.getNgayXuat().equals(text) && sp.getMaNhanVien().equals(text)){
+						DecimalFormat df10 = new DecimalFormat("#");
+					     String formattedNumber2 = df10.format(sp.getTongTien());
+							model.addRow(new Object[] {
+						    		sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongSoLuong(),formattedNumber2,sp.getNgayXuat(),sp.getMaNhanVien()
+						    });		
+				}
+				}
+			}
+		else if (timitem.equals("Mã phiếu")) {
 			for (PhieuXuat sp : dspn) {
-				if (sp.getMaPhieuXuat().contains(text)) {
+				if (sp.getMaPhieuXuat().equals(text)) {
 					DecimalFormat df10 = new DecimalFormat("#");
 				     String formattedNumber2 = df10.format(sp.getTongTien());
 						model.addRow(new Object[] {
@@ -539,6 +551,17 @@ public class Phieuxuat extends JFrame {
 		else if (timitem.equals("Mã cửa hàng")) {
 			for (PhieuXuat sp : dspn) {
 				if (sp.getMaCuaHang().equals(text)) {
+					DecimalFormat df10 = new DecimalFormat("#");
+				     String formattedNumber2 = df10.format(sp.getTongTien());
+						model.addRow(new Object[] {
+					    		sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongSoLuong(),formattedNumber2,sp.getNgayXuat(),sp.getMaNhanVien()
+					    });						}
+
+			}
+		}
+		else if (timitem.equals("Mã nhân viên")) {
+			for (PhieuXuat sp : dspn) {
+				if (sp.getMaNhanVien().equals(text)) {
 					DecimalFormat df10 = new DecimalFormat("#");
 				     String formattedNumber2 = df10.format(sp.getTongTien());
 						model.addRow(new Object[] {
