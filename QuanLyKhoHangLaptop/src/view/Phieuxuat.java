@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -26,7 +25,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controller.Controllerphieunhap;
 import controller.Controllerphieuxuat;
 import dao.LaptopDAO;
 import dao.NhanVienDAO;
@@ -36,13 +34,10 @@ import dao.nhacungcapDao;
 import img.Source;
 import model.Laptop;
 import model.NhaCungCap;
-import model.PhieuNhap;
 import model.PhieuXuat;
-import view.Xemchitietnhap;
-import dao.PhieuNhapDao;
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class Phieuxuat extends JFrame {
 	private JTextField textField;
@@ -84,7 +79,7 @@ public class Phieuxuat extends JFrame {
 	public JPanel panel_phieunhap;
 	public JComboBox cmb_ncc;
 	public JComboBox cmb_nvn;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -254,63 +249,81 @@ public class Phieuxuat extends JFrame {
 			jp_timkiem.setBounds(450, 10, 695, 97);
 			jp_timkiem.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "T\u00ECm ki\u1EBFm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			jp_chucnang.add(jp_timkiem);
-			 jp_timkiem.setLayout(new GridLayout(1, 3, 2, 2));
-			
-			 cbb_timkiem = new JComboBox();	 
-				cbb_timkiem.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				jp_timkiem.add(cbb_timkiem);
-//				jp_chucnang.setLayout(null);
-				cbb_timkiem.addItem("Tất cả");
-				cbb_timkiem.addItem("Mã phiếu");
-				cbb_timkiem.addItem("Mã cửa hàng");
-				cbb_timkiem.addItem("Mã nhân viên");
-//				cbb_timkiem.addItem("Địa chỉ");
-//				cbb_timkiem.addItem("Số điện thoại");
-//				cbb_timkiem.addItem("Email");
-//				cbb_timkiem.addItem("Tên");
-
-
-				cbb_timkiem.setSelectedIndex(0);
-				
-				txtx_timkiem = new JTextField();
-				jp_timkiem.add(txtx_timkiem);
-				txtx_timkiem.setColumns(10);
-				
-				ImageIcon icon_lammoi =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png");
+			 GridBagLayout gbl_jp_timkiem = new GridBagLayout();
+			 gbl_jp_timkiem.columnWidths = new int[] {195, 195, 195};
+			 gbl_jp_timkiem.rowHeights = new int[] {32, 32};
+			 gbl_jp_timkiem.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+			 gbl_jp_timkiem.rowWeights = new double[]{0.0};
+			 jp_timkiem.setLayout(gbl_jp_timkiem);
+			 
 //				JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
-				 btn_lammoi = new JButton("Làm mới", icon_lammoi);
-				 btn_lammoi.addMouseListener(new MouseAdapter() {
-				 	@Override
-				 	public void mouseClicked(MouseEvent e) {
-				 	}
-				 });
-				btn_lammoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				jp_timkiem.add(btn_lammoi);
+			  btn_lammoi = new JButton("Làm mới", source.icon_refresh);
+			  btn_lammoi.addMouseListener(new MouseAdapter() {
+			  	@Override
+			  	public void mouseClicked(MouseEvent e) {
+			  	}
+			  });
+			  
+			   cbb_timkiem = new JComboBox();	 
+			   cbb_timkiem.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			   GridBagConstraints gbc_cbb_timkiem = new GridBagConstraints();
+			   gbc_cbb_timkiem.fill = GridBagConstraints.BOTH;
+			   gbc_cbb_timkiem.insets = new Insets(0, 0, 0, 5);
+			   gbc_cbb_timkiem.gridx = 0;
+			   gbc_cbb_timkiem.gridy = 0;
+			   jp_timkiem.add(cbb_timkiem, gbc_cbb_timkiem);
+			   //				jp_chucnang.setLayout(null);
+			   				cbb_timkiem.addItem("Tất cả");
+			   				cbb_timkiem.addItem("Mã phiếu");
+			   				cbb_timkiem.addItem("Mã cửa hàng");
+			   				cbb_timkiem.addItem("Mã nhân viên");
+			   				//				cbb_timkiem.addItem("Địa chỉ");
+			   				//				cbb_timkiem.addItem("Số điện thoại");
+			   				//				cbb_timkiem.addItem("Email");
+			   				//				cbb_timkiem.addItem("Tên");
+			   				
+			   				
+			   								cbb_timkiem.setSelectedIndex(0);
+			  
+			  txtx_timkiem = new JTextField();
+			  GridBagConstraints gbc_txtx_timkiem = new GridBagConstraints();
+			  gbc_txtx_timkiem.fill = GridBagConstraints.BOTH;
+			  gbc_txtx_timkiem.insets = new Insets(0, 0, 0, 5);
+			  gbc_txtx_timkiem.gridx = 1;
+			  gbc_txtx_timkiem.gridy = 0;
+			  jp_timkiem.add(txtx_timkiem, gbc_txtx_timkiem);
+			  txtx_timkiem.setColumns(10);
+			  
+			  Controllerphieuxuat.addKeyListener(txtx_timkiem, this);
+			  btn_lammoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			  GridBagConstraints gbc_btn_lammoi = new GridBagConstraints();
+			  gbc_btn_lammoi.fill = GridBagConstraints.BOTH;
+			  gbc_btn_lammoi.gridx = 2;
+			  gbc_btn_lammoi.gridy = 0;
+			  jp_timkiem.add(btn_lammoi, gbc_btn_lammoi);
 	        /////////chan///////////////
 	      //them
-			ImageIcon icon_add = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
+
 			JLabel jl_chuthem = new JLabel("Thêm");	
 			jl_chuthem.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_chuthem.setBounds(15, 63, 45, 21);
 			jl_nutadd = new JLabel("");
 			jl_nutadd.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_nutadd.setBounds(15, 13, 33, 55);
-			jl_nutadd.setIcon(icon_add);
+			jl_nutadd.setIcon(source.icon_add);
 			jc_cntrai.add(jl_nutadd);
-			ImageIcon icon_xoa =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
 			JLabel jl_chuxoa = new JLabel("Xóa");
 			jl_chuxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_chuxoa.setBounds(86, 63, 33, 21);
 			jl_nutxoa = new JLabel("");
 			jl_nutxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_nutxoa.setBounds(80, 13, 39, 55);
-			jl_nutxoa.setIcon(icon_xoa);
+			jl_nutxoa.setIcon(source.icon_remove);
 			jc_cntrai.add(jl_nutxoa);
-			ImageIcon icon_sua =  new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
 			jl_nutsua = new JLabel("");
 			jl_nutsua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_nutsua.setBounds(142, 13, 39, 55);
-			jl_nutsua.setIcon(icon_sua);
+			jl_nutsua.setIcon(source.icon_eye);
 			JLabel jl_chusua = new JLabel("Xem chi tiết");
 			jl_chusua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_chusua.setBounds(142, 63, 28, 21);
@@ -318,7 +331,6 @@ public class Phieuxuat extends JFrame {
 			
 
 			
-			ImageIcon icon_xuatexcel = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 			JLabel jl_nutxuatexcel = new JLabel("");
 			jl_nutxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_nutxuatexcel.setBounds(220, 13, 33, 55);
@@ -326,9 +338,8 @@ public class Phieuxuat extends JFrame {
 			JLabel jl_chuxuatexcel = new JLabel("Xuất Excel");
 			jl_chuxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_chuxuatexcel.setBounds(208, 63, 70, 21);
-			jl_nutxuatexcel.setIcon(icon_xuatexcel);
+			jl_nutxuatexcel.setIcon(source.icon_Excel);
 			
-			ImageIcon icon_nhapexcel = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 			JLabel jl_nutnhapexcel = new JLabel("");
 			jl_nutnhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_nutnhapexcel.setBounds(301, 13, 70, 55);
@@ -336,7 +347,7 @@ public class Phieuxuat extends JFrame {
 			JLabel jl_chunhapexcel = new JLabel("Nhập Excel");
 			jl_chunhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			jl_chunhapexcel.setBounds(300, 63, 88, 21);
-			jl_nutnhapexcel.setIcon(icon_nhapexcel);
+			jl_nutnhapexcel.setIcon(source.icon_Excel);
 			
 			jc_cntrai.add(jl_chuthem);
 			jc_cntrai.add(jl_chuxoa);
@@ -443,8 +454,6 @@ public class Phieuxuat extends JFrame {
 				}
 				table.getTableHeader().setResizingAllowed(false);
 				table.getTableHeader().setReorderingAllowed(false);
-				
-				Controllerphieuxuat.addKeyListener(txtx_timkiem, this);
 				Controllerphieuxuat.addMouseListener(jl_nutadd, this);
 				Controllerphieuxuat.addMouseListener(jl_nutxoa, this);
 				Controllerphieuxuat.addMouseListener(jl_nutsua, this);

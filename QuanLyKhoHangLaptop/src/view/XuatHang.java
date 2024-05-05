@@ -233,7 +233,7 @@ public class XuatHang extends JFrame {
 		btn_nhaphang.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_benduoi.add(btn_nhaphang);
 
-		btn_quaylai = new JButton("Quay lại");
+		btn_quaylai = new JButton("Xem chi tiết");
 		btn_quaylai.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_benduoi.add(btn_quaylai);
 
