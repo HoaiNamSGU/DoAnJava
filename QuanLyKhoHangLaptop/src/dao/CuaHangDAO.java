@@ -52,6 +52,37 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 		return 0;
 	}
 
+public CuaHang chon1nhacc(String macuahang) {
+		CuaHang ketqua=null;
+		try {
+//		BƯỚC 1: TẠO KẾT NỐI ĐẾN CSDL
+			Connection con=JDBCUtil.getConnection();
+//		BƯỚC 2: TẠO RA ĐỐI TƯỢNG STATEMENT
+			String sql="SELECT * FROM cuahang WHERE MaCuaHang='"+macuahang+"'";
+			PreparedStatement pst=con.prepareStatement(sql);
+//		BƯỚC 3: THỰC THI CÂU LỆNH SQL
+//		System.out.println(sql);
+		ResultSet rs=pst.executeQuery(sql);
+		// BƯỚC 4 XỬ LÝ KẾT QUẢ
+//		String manhacungcap, String tennhacungcap, String diachi, String sdt, String email
+		while(rs.next()) {
+			String mncc=rs.getString("MaCuaHang");
+			String tm=rs.getString("TenCH");
+			String dc=rs.getString("DiaChi");
+			String sdt=rs.getString("SDT");
+			int em=rs.getInt("isDelete");
+//			public CuaHang(String MaCH, String TenCH, String DiaChi, String SDT, int isDelete) {
+			ketqua=new CuaHang(mncc,tm,dc,sdt,em);
+		}
+//		BƯỚC 5: NGẮT KẾT NỐI
+		JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ketqua;
+	}
+	
 	@Override
 	public ArrayList<CuaHang> selectAll() {
 		ArrayList<CuaHang> CH = new ArrayList<CuaHang>();
