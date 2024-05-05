@@ -266,9 +266,6 @@ public class TaiKhoanMouseListener implements MouseListener{
 							if(check1 == 1 && check2 ==1)
 							{
 								JOptionPane.showMessageDialog(tk, "Tài khoản đã được thêm thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-								NhanVienDAO.getintance().WriteUpDateExcel();
-								NguoiDungDAO.getintance().WriteUpDateExcel();
-								NguoiDungDAO.getintance().UpDateKetHop();
 								taikhoanview.updateTableData();
 								taikhoanview.setKhoangCachTable();
 								taikhoanview.comboBox_maND.addItem(nv.getMaNguoiDung());
@@ -311,9 +308,7 @@ public class TaiKhoanMouseListener implements MouseListener{
             		 taikhoanview.model.removeRow(selectedRow);
             		 if(check1==1 && check2 ==1)
             		 {
-            			 NhanVienDAO.getintance().WriteUpDateExcel();
-            			 NguoiDungDAO.getintance().WriteUpDateExcel();
-            			 NguoiDungDAO.getintance().UpDateKetHop();
+            			 
             			 JOptionPane.showMessageDialog(taikhoanview, "Tài khoản đã được xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             			 
             		 }
@@ -456,9 +451,7 @@ public class TaiKhoanMouseListener implements MouseListener{
     							if(check1 == 1 && check2 ==1)
     							{
     								JOptionPane.showMessageDialog(tk, "Tài khoản đã được sửa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-    								NhanVienDAO.getintance().WriteUpDateExcel();
-    								NguoiDungDAO.getintance().WriteUpDateExcel();
-    								NguoiDungDAO.getintance().UpDateKetHop();
+    							
     								taikhoanview.updateTableData();
     								taikhoanview.setKhoangCachTable();
     							}
