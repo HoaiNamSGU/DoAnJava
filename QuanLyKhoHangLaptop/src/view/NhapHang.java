@@ -77,9 +77,7 @@ public class NhapHang extends JFrame {
 	private JLabel kqtongsoluong;
 	private JComboBox comboBox_ncc;
 	private JLabel Label_nv;
-	NhanVien nv = new NhanVien();
-	mainView mn = new mainView();
-	DoiThongTinUser user = new DoiThongTinUser();
+	
 
 	/**
 	 * Launch the application.
@@ -101,6 +99,7 @@ public class NhapHang extends JFrame {
 	 * Create the frame.
 	 */
 	public NhapHang() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1400, 800);
 		contentPane = new JPanel();
@@ -203,7 +202,8 @@ public class NhapHang extends JFrame {
 		gbc_manhanvien.gridx = 0;
 		gbc_manhanvien.gridy = 3;
 		panel_bentren.add(manhanvien, gbc_manhanvien);
-		Label_nv = new JLabel(user.manv1.getText());
+		
+		Label_nv = new JLabel(view.mainView.nhanvien.getMaNhanVien());
 		Label_nv.setEnabled(false);
 		GridBagConstraints gbc_label_nv = new GridBagConstraints();
 		gbc_label_nv.insets = new Insets(50, 0, 50, 0);

@@ -79,8 +79,6 @@ public class XuatHang extends JFrame {
 	private int tongsoluongphieu = 0, sua = 0;
 	private JComboBox comboBox_ch;
 	private JLabel Label_nv;
-	DoiThongTinUser user = new DoiThongTinUser();
-
 	/**
 	 * Launch the application.
 	 */
@@ -193,7 +191,7 @@ public class XuatHang extends JFrame {
 		gbc_manhanvien.gridy = 3;
 		panel_bentren.add(manhanvien, gbc_manhanvien);
 		
-		Label_nv = new JLabel(user.manv1.getText());
+		Label_nv = new JLabel(view.mainView.nhanvien.getMaNhanVien());
 		Label_nv.setEnabled(false);
 		GridBagConstraints gbc_label_nv = new GridBagConstraints();
 		gbc_label_nv.insets = new Insets(50, 0, 50, 0);

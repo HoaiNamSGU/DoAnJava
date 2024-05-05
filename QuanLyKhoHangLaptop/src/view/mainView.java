@@ -61,6 +61,7 @@ public class mainView extends JFrame {
 	public JPanel panel_menu;
 	public JPanel panel_west;
 	public Source source = new Source();
+	public static String manv;
 	public mainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1300, 800);
@@ -166,7 +167,7 @@ public class mainView extends JFrame {
 		jlabel_thongke.addMouseListener(mouse);
 		jlabel_doiThongtin.addMouseListener(mouse);
 		jlabel_dangxuat.addMouseListener(mouse);
-		
+	
 		panel_west.add(panel_menu,BorderLayout.CENTER);
 		this.setVisible(true);
 	}
