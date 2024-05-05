@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import view.Phieunhap;
 import view.Phieuxuat;
 
 public class Controllerphieuxuat {
@@ -37,10 +38,10 @@ public class Controllerphieuxuat {
 		});
 	}
 
-	public static void addActionListener(JComboBox<?> label, Phieuxuat nh) {
+	public static void addActionListener(JComboBox label, Phieuxuat nh) {
 		label.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
-				JComboBox<?> check = (JComboBox<?>) e.getSource();
+				JComboBox check = (JComboBox) e.getSource();
          		if(check==nh.cmb_ncc) {
 					nh.thaydoicombo2();
 				}else if(check==nh.cmb_nvn) {
@@ -56,7 +57,7 @@ public class Controllerphieuxuat {
 			public void keyReleased(KeyEvent e) {
 				JTextField check=(JTextField)e.getSource();
 					if(check==nh.txtx_timkiem) {
-					
+					nh.thanhtimkiem();
 				}
 			}
 		});
