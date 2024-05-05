@@ -421,7 +421,7 @@ public class Phieunhap extends JFrame {
 					new Object[][] {			
 					},
 					new String[] {
-							"Mã phiếu","Tên nhà cung cấp","Tên nhân viên nhập","Thời gian","Tổng tiền"
+							"Mã phiếu","Tên nhà cung cấp","Tên nhân viên nhập","Thời gian","Số lượng sản phẩm","Tổng tiền"
 					}
 				));
 				
@@ -430,7 +430,7 @@ public class Phieunhap extends JFrame {
 					DecimalFormat df7 = new DecimalFormat("#");
 				     String formattedNumber7 = df7.format(sp.getTongTien());
 				    model.addRow(new Object[] {
-				    		sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),formattedNumber7
+				    		sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),sp.getTongSoLuong(),formattedNumber7
 				    });
 				}
 				table.getTableHeader().setResizingAllowed(false);
@@ -450,8 +450,12 @@ public class Phieunhap extends JFrame {
 		model.setRowCount(0);
 		if(cmb_ncc.getSelectedItem().equals("Tất cả")) {
 			for (PhieuNhap sp : dspn) {
-				model.addRow(new Object[] {sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),sp.getTongTien()});
-		}
+				DecimalFormat df7 = new DecimalFormat("#");
+			     String formattedNumber7 = df7.format(sp.getTongTien());
+			    model.addRow(new Object[] {
+			    		sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),sp.getTongSoLuong(),formattedNumber7
+			    });
+			}
 		}else {
 		String text=PhieuNhapDao.getInstance().laymanhacungcap(cmb_ncc.getSelectedItem()+"");
 		String manvnha=NhanVienDAO.getintance().laymanhanvien(cmb_nvn.getSelectedItem()+"");
@@ -460,8 +464,9 @@ public class Phieunhap extends JFrame {
 			stt++;
 			DecimalFormat df2 = new DecimalFormat("#");
 		     String formattedNumber2 = df2.format(sp.getTongTien());
-			model.addRow(new Object[] {stt,sp.getMaPhieuNhap(),text,NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),formattedNumber2 });
-		}
+		     model.addRow(new Object[] {
+			    		sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),sp.getTongSoLuong(),formattedNumber2
+			    });		}
 		}
 	}
 	}
@@ -508,16 +513,18 @@ public class Phieunhap extends JFrame {
 		if(text.equals("")) {
 			for (PhieuNhap sp : dspn) {
 			     String formattedNumber8= df8.format(sp.getTongTien());
-					model.addRow(new Object[] {sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),formattedNumber8 });
-				}
+			     model.addRow(new Object[] {
+				    		sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),sp.getTongSoLuong(),formattedNumber8
+				    });				}
 		}
 		else {
 		if (timitem.equals("Tên nhà cung cấp")) {
 			for (PhieuNhap sp : dspn) {
 				if (PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()).contains(text)) {
 				     String formattedNumber8= df8.format(sp.getTongTien());
-					model.addRow(new Object[] {sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),formattedNumber8 });
-				}
+				     model.addRow(new Object[] {
+					    		sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),sp.getTongSoLuong(),formattedNumber8
+					    });				}
 
 			}
 		}
@@ -525,8 +532,9 @@ public class Phieunhap extends JFrame {
 			for (PhieuNhap sp : dspn) {
 				if (sp.getMaPhieuNhap().equals(text)) {
 				     String formattedNumber8= df8.format(sp.getTongTien());
-					model.addRow(new Object[] {sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),formattedNumber8 });
-				}
+				     model.addRow(new Object[] {
+					    		sp.getMaPhieuNhap(),PhieuNhapDao.getInstance().laytennhacungcap(sp.getMaNhaCungCap()),NhanVienDAO.getintance().laytennhanvien(sp.getMaNhanVien()),sp.getNgayNhap(),sp.getTongSoLuong(),formattedNumber8
+					    });				}
 
 			}
 		}
