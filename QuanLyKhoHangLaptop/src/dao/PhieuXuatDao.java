@@ -21,58 +21,58 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 		return new PhieuXuatDao();
 	}
 
-	public int getTotalSoLuong(String type,String ngayXuat) {
-	    int total = 0;
-	    try {
-	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieuxuat WHERE "+type+" LIKE ?";
-	        PreparedStatement pst = con.prepareStatement(sql);
-	        
-	        // Chuyển đổi ngày xuất thành ngày SQL
-	        String day;
-	        if(type.equals("NgayXuat"))
-	        	day = convertToDate(ngayXuat);
-	        else 
-				day=ngayXuat;
-	        
-	        pst.setString(1,"%"+day+"%" );
-	        ResultSet rs = pst.executeQuery();
-	        if (rs.next()) {
-	            total = rs.getInt("Total");
-	        }
-	        con.close();
-	    } catch (Exception e) {
-	        System.out.println(e);
-	    }
-	    return total;
+	public int getTotalSoLuong(String type, String ngayXuat) {
+		int total = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieuxuat WHERE " + type + " LIKE ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+
+			// Chuyển đổi ngày xuất thành ngày SQL
+			String day;
+			if (type.equals("NgayXuat"))
+				day = convertToDate(ngayXuat);
+			else
+				day = ngayXuat;
+
+			pst.setString(1, "%" + day + "%");
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				total = rs.getInt("Total");
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return total;
 	}
 
-	public Double getTotalTongTien(String type,String ngayXuat) {
+	public Double getTotalTongTien(String type, String ngayXuat) {
 		Double total = 0.0;
-	    try {
-	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM(TongTien) AS Total FROM phieuxuat WHERE "+type+" LIKE ?";
-	        PreparedStatement pst = con.prepareStatement(sql);
-	        
-	        // Chuyển đổi ngày xuất thành ngày SQL
-	        String day;
-	        if(type.equals("NgayXuat"))
-	        	day = convertToDate(ngayXuat);
-	        else 
-				day=ngayXuat;
-	        pst.setString(1,"%"+day+"%");
-	        ResultSet rs = pst.executeQuery();
-	        if (rs.next()) {
-	        	 BigDecimal totalBigDecimal = rs.getBigDecimal("Total");
-	             if (totalBigDecimal != null) {
-	            	 total = rs.getDouble("Total")/1000000.0;
-	             }
-	        }
-	        con.close();
-	    } catch (Exception e) {
-	        System.out.println(e);
-	    }
-	    return total;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "SELECT SUM(TongTien) AS Total FROM phieuxuat WHERE " + type + " LIKE ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+
+			// Chuyển đổi ngày xuất thành ngày SQL
+			String day;
+			if (type.equals("NgayXuat"))
+				day = convertToDate(ngayXuat);
+			else
+				day = ngayXuat;
+			pst.setString(1, "%" + day + "%");
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				BigDecimal totalBigDecimal = rs.getBigDecimal("Total");
+				if (totalBigDecimal != null) {
+					total = rs.getDouble("Total") / 1000000.0;
+				}
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return total;
 	}
 
 	// Phương thức chuyển đổi chuỗi ngày thành java.sql.Date
@@ -87,8 +87,6 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 		}
 		return newDay.toString();
 	}
-
-
 
 	public void inchitietphieu(ChiTietPhieuXuat t) {
 		try {
@@ -116,15 +114,16 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 		int ketqua = 0;
 		try {
 			Connection con = JDBCUtil.getConnection();
-			String sql = "INSERT INTO phieuxuat(MaPhieuXuat,MaCuaHang,TongTien,NgayXuat,MaNhanVien,isDelete)\r\n"
-					+ "VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO phieuxuat(MaPhieuXuat,MaCuaHang,MaNhanVien,TongTien,TongSoLuong,NgayXuat,isDelete)\r\n"
+					+ "VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, t.getMaPhieuXuat());
 			pst.setString(2, t.getMaCuaHang());
-			pst.setDouble(3, t.getTongTien());
-			pst.setDate(4, t.getNgayXuat());
-			pst.setString(5, t.getMaNhanVien());
-			pst.setLong(6, t.getIsDelete());
+			pst.setString(3, t.getMaNhanVien());
+			pst.setDouble(4, t.getTongTien());
+			pst.setInt(5, t.getTongSoLuong());
+			pst.setDate(6, t.getNgayXuat());
+			pst.setInt(7, t.getIsDelete());
 			ketqua = pst.executeUpdate();
 			// BƯỚC 4 XỬ LÝ KẾT QUẢ
 			System.out.println("BẠN ĐÃ THỰC THI : " + sql);

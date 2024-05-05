@@ -67,6 +67,9 @@ public class XuatHang extends JFrame {
 	public JButton btn_quaylai;
 	public JButton btn_timkiem;
 	private Source source = new Source();
+	private JLabel kqtongsoluong;
+	private JLabel tongsoluog;
+	private int tongsoluongphieu = 0, sua = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -141,7 +144,7 @@ public class XuatHang extends JFrame {
 		panel.setBounds(0, 0, 197, 763);
 
 		JPanel panel_conduoi = new JPanel();
-		panel_conduoi.setLayout(new GridLayout(1, 2, 0, 0));
+		panel_conduoi.setLayout(new GridLayout(2, 1, 0, 0));
 		panel_benduoi.add(panel_conduoi);
 		JLabel tongtiennn = new JLabel("Tổng tiền : ");
 		tongtiennn.setHorizontalAlignment(SwingConstants.CENTER);
@@ -151,7 +154,15 @@ public class XuatHang extends JFrame {
 		kqtongtiennn.setHorizontalAlignment(SwingConstants.CENTER);
 		kqtongtiennn.setFont(new Font("Arial", Font.BOLD, 15));
 		panel_conduoi.add(kqtongtiennn);
-
+		tongsoluog = new JLabel("Tổng số lượng:");
+		tongsoluog.setHorizontalAlignment(SwingConstants.CENTER);
+		tongsoluog.setFont(new Font("Arial", Font.BOLD, 15));
+		panel_conduoi.add(tongsoluog);
+		
+		kqtongsoluong = new JLabel("0");
+		kqtongsoluong.setHorizontalAlignment(SwingConstants.CENTER);
+		kqtongsoluong.setFont(new Font("Arial", Font.BOLD, 15));
+		panel_conduoi.add(kqtongsoluong);
 		btn_nhaphang = new JButton("Xuất hàng");
 		btn_nhaphang.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_benduoi.add(btn_nhaphang);
@@ -332,6 +343,7 @@ public class XuatHang extends JFrame {
 		jt_tensanpham.setText(model1.getValueAt(i, 3) + "");
 		jt_soluong.setText(model1.getValueAt(i, 12) + "");
 		jt_thanhtien.setText(model1.getValueAt(i, 11) + "");
+		update();
 	}
 
 	public void xoasanphamthem() {
@@ -346,6 +358,7 @@ public class XuatHang extends JFrame {
 				model1.removeRow(i);
 			}
 		}
+		update();
 	}
 	public void thanhtimkiem() {
 		stt = 0;
@@ -357,6 +370,7 @@ public class XuatHang extends JFrame {
 				model.addRow(new Object[] { sp.getMaLaptop(), sp.getTenLaptop(), sp.getSoLuong() });
 			}
 		}
+		update();
 
 	}
 
@@ -367,6 +381,7 @@ public class XuatHang extends JFrame {
 			stt = 0;
 			model.addRow(new Object[] { sp.getMaLaptop(), sp.getTenLaptop(), sp.getSoLuong() });
 		}
+		update();
 	}
 
 	public void nutquaylai() {
@@ -375,20 +390,20 @@ public class XuatHang extends JFrame {
 		Phieunhap pn = new Phieunhap();
 		panel_nhaphang.add(pn.panel_phieunhap);
 		panel_nhaphang.setVisible(true);
+		update();
 	}
 
 	public void nhaphang() {
 		String maphieun = jl_mapn.getText();
 		String manhacc = jt_manhacc.getText();
-		String tongtienn = tongtien + "";
-		int tongsl=Integer.parseInt(jt_soluong.getText());
+//		String tongtienn = tongtien + "";
 		String manhanvi = jtmanhanvien.getText();
-		String xoais = 0 + "";
-		System.out.println(maphieun);
-		DecimalFormat df2 = new DecimalFormat("#");
-		String formattedNumber2 = df2.format(Double.parseDouble(tongtienn));
+//		String xoais = 0 + "";
+//		System.out.println(maphieun);
+//		DecimalFormat df2 = new DecimalFormat("#");
+//		String formattedNumber2 = df2.format(Double.parseDouble(tongtienn));
 //	 	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int isDelete) {
-		PhieuXuat pn1 = new PhieuXuat(maphieun, manhacc, manhanvi, date, Double.parseDouble(formattedNumber2),tongsl, 0);
+		PhieuXuat pn1 = new PhieuXuat(maphieun, manhacc.toUpperCase(), manhanvi.toUpperCase(), date, Double.parseDouble(kqtongtiennn.getText()),Integer.parseInt(kqtongsoluong.getText()), 0);
 		PhieuXuatDao.getInstance().insert(pn1);
 		for (int i = 0; i < table1.getRowCount(); i++) {
 			String masanpham = model1.getValueAt(i, 2) + "";
@@ -396,10 +411,9 @@ public class XuatHang extends JFrame {
 
 			String thanhtienm = model1.getValueAt(i, 11) + "";
 //				public ChiTietPhieuXuat(String maPhieuXuat, String maLaptop, int soLuong, Double thanhTien, int isDelete) {
-			ChiTietPhieuXuat ctpn = new ChiTietPhieuXuat(maphieun, masanpham, soluongm, Double.parseDouble(thanhtienm),
-					0);
+			ChiTietPhieuXuat ctpn = new ChiTietPhieuXuat(maphieun, masanpham, soluongm, Double.parseDouble(thanhtienm),0);
 			PhieuXuatDao.getInstance().inchitietphieu(ctpn);
-			LaptopDAO.getintance().update1dulieu(masanpham, soluongm);
+			LaptopDAO.getintance().update1dulieu(masanpham, 0-soluongm);
 		}
 		model.setRowCount(0);
 		model1.setRowCount(0);
@@ -411,7 +425,7 @@ public class XuatHang extends JFrame {
 			stt = 0;
 			model.addRow(new Object[] { sp.getMaLaptop(), sp.getTenLaptop(), sp.getSoLuong() });
 		}
-
+		update();
 		JOptionPane.showConfirmDialog(null, "Nhập hàng thành công", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
 	}
 
@@ -428,6 +442,7 @@ public class XuatHang extends JFrame {
 			table1.setRowSelectionInterval(lastRow, lastRow);
 			table1.changeSelection(lastRow, 0, true, true);
 		}
+		update();
 	}
 
 	public void themsanpham() {
@@ -442,7 +457,7 @@ public class XuatHang extends JFrame {
 		jt_masanpham.setText(model.getValueAt(i, 0) + "");
 		jt_tensanpham.setText(model.getValueAt(i, 1) + "");
 		thu = i;
-
+		update();
 	}
 
 	public void themvaobang() {
@@ -465,10 +480,7 @@ public class XuatHang extends JFrame {
 					table1.setRowSelectionAllowed(true);
 
 				}
-				tongtien += Double.parseDouble(jt_thanhtien.getText());
-				DecimalFormat df1 = new DecimalFormat("#");
-				String formattedNumber1 = df1.format(tongtien);
-				kqtongtiennn.setText(formattedNumber1 + "đ");
+				update();
 				jt_masanpham.setText("");
 				jt_tensanpham.setText("");
 				jt_soluong.setText("");
@@ -495,5 +507,15 @@ public class XuatHang extends JFrame {
 			String formattedNumber = df.format(giaca);
 			jt_thanhtien.setText(formattedNumber);
 		}
+	}
+	public void update() {
+		tongsoluongphieu=0;
+		tongtien=0.0;
+		for(int i=0;i<table1.getRowCount();i++) {
+			tongsoluongphieu+=Integer.parseInt(model1.getValueAt(i, 12).toString());
+			tongtien += Double.parseDouble(model1.getValueAt(i, 11).toString());
+		}
+		kqtongtiennn.setText(String.valueOf(tongtien));
+		kqtongsoluong.setText(String.valueOf(tongsoluongphieu));
 	}
 }
