@@ -174,8 +174,7 @@ public class ThongKeView extends JPanel {
 		if (StartDate>0&&StartDate > EndDate)
 			comboBox_NgayBD.setSelectedIndex(EndDate);
 		updateData(loai);
-		revalidate(); // Revalidate panel để cập nhật layout
-	    repaint();
+		
 	}
 	public void updateDateFormats() {
 		String selectedFormat = dateFormat[comboBox_ThoiGian.getSelectedIndex()];
@@ -274,7 +273,10 @@ public class ThongKeView extends JPanel {
 			break;
 		default:
 			break;
+			
 		}
+		revalidate(); // Revalidate panel để cập nhật layout
+	    repaint();
 	}
 
 }
