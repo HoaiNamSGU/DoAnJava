@@ -97,6 +97,12 @@ public class laptopview extends JPanel {
 		jlabel_xemCT.setHorizontalTextPosition(JLabel.CENTER);
 		panel_border_chucNang.add(jlabel_xemCT);
 
+		JLabel jlabel_KTIMEI = new JLabel("Tra IMEI", source.icon_search, JLabel.CENTER);
+		jlabel_KTIMEI.setFont(new Font("Arial", Font.PLAIN, 12));
+		jlabel_KTIMEI.setVerticalTextPosition(JLabel.BOTTOM);
+		jlabel_KTIMEI.setHorizontalTextPosition(JLabel.CENTER);
+		panel_border_chucNang.add(jlabel_KTIMEI);
+		
 		JLabel jlabel_nhapExcel = new JLabel("Nhập Excel", source.icon_Excel, JLabel.CENTER);
 		jlabel_nhapExcel.setFont(new Font("Arial", Font.PLAIN, 12));
 		// jlabel_nhapExcel.setBounds(265, 21, 68, 56);
