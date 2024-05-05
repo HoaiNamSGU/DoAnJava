@@ -84,6 +84,7 @@ public class Phieuxuat extends JFrame {
 	public JPanel panel_phieunhap;
 	public JComboBox cmb_ncc;
 	public JComboBox cmb_nvn;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -424,7 +425,9 @@ public class Phieuxuat extends JFrame {
 					new Object[][] {			
 					},
 					new String[] {
-							"Mã phiếu","Mã cửa hàng","Tổng tiền","Ngày xuất","Mã nhân viên"
+							"Mã phiếu","Mã cửa hàng","Số lượng","Tổng tiền","Ngày xuất","Mã nhân viên"
+//							"Mã phiếu","Tên nhà cung cấp","Tên nhân viên nhập","Thời gian","Số lượng sản phẩm","Tổng tiền"
+
 					}
 				));
 				
@@ -434,7 +437,7 @@ public class Phieuxuat extends JFrame {
 				     String formattedNumber2 = df10.format(sp.getTongTien());
 				
 				    model.addRow(new Object[] {
-				    		sp.getMaPhieuXuat(),sp.getMaCuaHang(),formattedNumber2,sp.getNgayXuat(),sp.getMaNhanVien()
+				    		sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongSoLuong(),formattedNumber2,sp.getNgayXuat(),sp.getMaNhanVien()
 				    });
 				}
 				table.getTableHeader().setResizingAllowed(false);
@@ -477,11 +480,10 @@ public class Phieuxuat extends JFrame {
 
 	public void xemchitietphieu() {
 		 int i=table.getSelectedRow();
-//			"Mã phiếu","Mã cửa hàng","Tổng tiền","Ngày xuất","Mã nhân viên"
 		String maphieunhap= model.getValueAt(i, 0)+"";
 		String macuahang=model.getValueAt(i, 1)+"";
-		String ngaynhap=model.getValueAt(i, 3)+"";
-		String manhanvien=model.getValueAt(i, 4)+"";
+		String ngaynhap=model.getValueAt(i, 4)+"";
+		String manhanvien=model.getValueAt(i, 5)+"";
 		String tennhanvien=NhanVienDAO.getintance().laytennhanvien(manhanvien);
 		Xemchitietxuat xcttpn = new Xemchitietxuat(maphieunhap,macuahang,ngaynhap,tennhanvien);
 		xcttpn.setVisible(true);
@@ -504,41 +506,44 @@ public class Phieuxuat extends JFrame {
 //		nh.setVisible(true);
 		panel_phieunhap.setVisible(false);
 		panel_phieunhap.removeAll();
-		XuatHang nhaphang=new XuatHang();
+		XuatHangtmp nhaphang=new XuatHangtmp();
 		panel_phieunhap.add(nhaphang.panel_nhaphang);
 		panel_phieunhap.setVisible(true);
 	}
 	
 	public void thanhtimkiem() {
-		stt=0;
 		model.setRowCount(0);
 		String timitem = cbb_timkiem.getSelectedItem() + "";
 		String text = txtx_timkiem.getText();
 		if(text.equals("")) {
 			for (PhieuXuat sp : dspn) {
-					stt++;
+				DecimalFormat df10 = new DecimalFormat("#");
+			     String formattedNumber2 = df10.format(sp.getTongTien());
 					model.addRow(new Object[] {
-				    		stt,sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongTien(),sp.getNgayXuat(),sp.getMaNhanVien()
-				    });					}
+				    		sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongSoLuong(),formattedNumber2,sp.getNgayXuat(),sp.getMaNhanVien()
+				    });			
+					}
 		}
 		else {
 		if (timitem.equals("Mã phiếu")) {
 			for (PhieuXuat sp : dspn) {
 				if (sp.getMaPhieuXuat().contains(text)) {
-					stt++;
-					model.addRow(new Object[] {
-				    		stt,sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongTien(),sp.getNgayXuat(),sp.getMaNhanVien()
-				    });		
+					DecimalFormat df10 = new DecimalFormat("#");
+				     String formattedNumber2 = df10.format(sp.getTongTien());
+						model.addRow(new Object[] {
+					    		sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongSoLuong(),formattedNumber2,sp.getNgayXuat(),sp.getMaNhanVien()
+					    });		
 			}
 			}
 		}
 		else if (timitem.equals("Mã cửa hàng")) {
 			for (PhieuXuat sp : dspn) {
 				if (sp.getMaCuaHang().equals(text)) {
-					stt++;
-					model.addRow(new Object[] {
-				    		stt,sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongTien(),sp.getNgayXuat(),sp.getMaNhanVien()
-				    });						}
+					DecimalFormat df10 = new DecimalFormat("#");
+				     String formattedNumber2 = df10.format(sp.getTongTien());
+						model.addRow(new Object[] {
+					    		sp.getMaPhieuXuat(),sp.getMaCuaHang(),sp.getTongSoLuong(),formattedNumber2,sp.getNgayXuat(),sp.getMaNhanVien()
+					    });						}
 
 			}
 		}
