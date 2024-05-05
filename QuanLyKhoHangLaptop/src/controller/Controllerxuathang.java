@@ -15,13 +15,12 @@ import javax.swing.JTextField;
 
 import view.Phieunhap;
 import view.XuatHang;
-import view.XuatHangtmp;
 import view.NhapHang;
 
-public class Controllernxuathang {
+public class Controllerxuathang {
 	private static XuatHang nh;
 
-	public Controllernxuathang(XuatHang nhh) {
+	public Controllerxuathang(XuatHang nhh) {
 		this.nh = nhh;
 	}
 
