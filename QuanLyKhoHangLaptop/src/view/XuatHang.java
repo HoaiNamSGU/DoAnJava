@@ -24,12 +24,25 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controllerxuathang;
+import dao.CuaHangDAO;
 import dao.LaptopDAO;
+import dao.NhanVienDAO;
+import dao.PhieuNhapDao;
 import dao.PhieuXuatDao;
+import dao.nhacungcapDao;
 import img.Source;
 import model.ChiTietPhieuXuat;
+import model.CuaHang;
 import model.Laptop;
+import model.NhaCungCap;
+import model.NhanVien;
+import model.PhieuNhap;
 import model.PhieuXuat;
+import javax.swing.JComboBox;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.ImageIcon;
 
 public class XuatHang extends JFrame {
 	public int thu;
@@ -48,7 +61,6 @@ public class XuatHang extends JFrame {
 	public JTextField jt_ngaynhap;
 	public JTextField jt_masanpham;
 	public JTextField jt_tensanpham;
-	public JTextField jtmanhanvien;
 	public JTextField jt_soluong;
 	public JTextField jt_thanhtien;
 	public JTextField jt_otimkiem;
@@ -61,7 +73,6 @@ public class XuatHang extends JFrame {
 	public JLabel kqtongtiennn;
 	public JButton btn_nhapexcel;
 	public JButton btn_nhaphang;
-	public JTextField jt_manhacc;
 	public LocalDate ngay = LocalDate.now();
 	public Date date = Date.valueOf(ngay);
 	public JButton btn_quaylai;
@@ -70,6 +81,8 @@ public class XuatHang extends JFrame {
 	private JLabel kqtongsoluong;
 	private JLabel tongsoluog;
 	private int tongsoluongphieu = 0, sua = 0;
+	private JComboBox comboBox_ch;
+	private JComboBox comboBox_nv;
 	/**
 	 * Launch the application.
 	 */
@@ -108,35 +121,92 @@ public class XuatHang extends JFrame {
 		panel.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_bentren = new JPanel();
-		panel_bentren.setLayout(new GridLayout(6, 1, 0, 0));
 		panel.add(panel_bentren, BorderLayout.CENTER);
 		panel.setBounds(0, 0, 197, 763);
+		GridBagLayout gbl_panel_bentren = new GridBagLayout();
+		gbl_panel_bentren.columnWidths = new int[]{110, 110, 0};
+		gbl_panel_bentren.rowHeights = new int[]{135, 135, 135, 135, 0};
+		gbl_panel_bentren.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_bentren.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_bentren.setLayout(gbl_panel_bentren);
 		JLabel mapn = new JLabel("Mã phiếu xuất");
 		mapn.setFont(new Font("Arial", Font.BOLD, 15));
-		panel_bentren.add(mapn);
+		GridBagConstraints gbc_mapn = new GridBagConstraints();
+		gbc_mapn.fill = GridBagConstraints.BOTH;
+		gbc_mapn.insets = new Insets(50, 0, 50, 5);
+		gbc_mapn.gridx = 0;
+		gbc_mapn.gridy = 0;
+		panel_bentren.add(mapn, gbc_mapn);
 		jl_mapn = new JTextField();
-		panel_bentren.add(jl_mapn);
+		GridBagConstraints gbc_jl_mapn = new GridBagConstraints();
+		gbc_jl_mapn.fill = GridBagConstraints.BOTH;
+		gbc_jl_mapn.insets = new Insets(50, 0, 50, 0);
+		gbc_jl_mapn.gridx = 1;
+		gbc_jl_mapn.gridy = 0;
+		panel_bentren.add(jl_mapn, gbc_jl_mapn);
 		jl_mapn.setColumns(10);
 		JLabel manhacc = new JLabel("Mã cửa hàng");
 		manhacc.setFont(new Font("Arial", Font.BOLD, 15));
-		panel_bentren.add(manhacc);
-		jt_manhacc = new JTextField();
-		panel_bentren.add(jt_manhacc);
-		jt_manhacc.setColumns(1);
+		GridBagConstraints gbc_manhacc = new GridBagConstraints();
+		gbc_manhacc.fill = GridBagConstraints.BOTH;
+		gbc_manhacc.insets = new Insets(50, 0, 50, 5);
+		gbc_manhacc.gridx = 0;
+		gbc_manhacc.gridy = 1;
+		panel_bentren.add(manhacc, gbc_manhacc);
+		
+		ArrayList<CuaHang> ch = CuaHangDAO.getintance().selectAll();
+		ArrayList<String> ch1 = new ArrayList<>(); // Khởi tạo ArrayList<String> ncc1
+		ch1.add("");
+		for (CuaHang nc : ch) {
+		    ch1.add(nc.getMaCH()); // Thêm tên nhà cung cấp vào danh sách ncc1
+		}
+		comboBox_ch = new JComboBox<String>(ch1.toArray(new String[0]));
+		GridBagConstraints gbc_comboBox_ch = new GridBagConstraints();
+		gbc_comboBox_ch.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_ch.insets = new Insets(50, 0, 50, 0);
+		gbc_comboBox_ch.gridx = 1;
+		gbc_comboBox_ch.gridy = 1;
+		panel_bentren.add(comboBox_ch, gbc_comboBox_ch);
 		JLabel ngaynhap = new JLabel("Ngày xuất");
 		ngaynhap.setFont(new Font("Arial", Font.BOLD, 15));
-		panel_bentren.add(ngaynhap);
+		GridBagConstraints gbc_ngaynhap = new GridBagConstraints();
+		gbc_ngaynhap.fill = GridBagConstraints.BOTH;
+		gbc_ngaynhap.insets = new Insets(50, 0, 50, 5);
+		gbc_ngaynhap.gridx = 0;
+		gbc_ngaynhap.gridy = 2;
+		panel_bentren.add(ngaynhap, gbc_ngaynhap);
 		jt_ngaynhap = new JTextField();
 		jt_ngaynhap.setText(date + "");
 		jt_ngaynhap.setEnabled(false);
-		panel_bentren.add(jt_ngaynhap);
+		GridBagConstraints gbc_jt_ngaynhap = new GridBagConstraints();
+		gbc_jt_ngaynhap.fill = GridBagConstraints.BOTH;
+		gbc_jt_ngaynhap.insets = new Insets(50, 0, 50, 0);
+		gbc_jt_ngaynhap.gridx = 1;
+		gbc_jt_ngaynhap.gridy = 2;
+		panel_bentren.add(jt_ngaynhap, gbc_jt_ngaynhap);
 		jt_ngaynhap.setColumns(1);
 		JLabel manhanvien = new JLabel("Mã nhân viên");
 		manhanvien.setFont(new Font("Arial", Font.BOLD, 15));
-		panel_bentren.add(manhanvien);
-		jtmanhanvien = new JTextField();
-		panel_bentren.add(jtmanhanvien);
-		jtmanhanvien.setColumns(1);
+		GridBagConstraints gbc_manhanvien = new GridBagConstraints();
+		gbc_manhanvien.fill = GridBagConstraints.BOTH;
+		gbc_manhanvien.insets = new Insets(50, 0, 50, 5);
+		gbc_manhanvien.gridx = 0;
+		gbc_manhanvien.gridy = 3;
+		panel_bentren.add(manhanvien, gbc_manhanvien);
+		
+		ArrayList<NhanVien>nv=NhanVienDAO.getintance().selectAll();
+		ArrayList<String> nv1 = new ArrayList<>(); // Khởi tạo ArrayList<String> ncc1
+		nv1.add("");
+		for (NhanVien n : nv) {
+		    nv1.add(n.getMaNhanVien()); // Thêm tên nhà cung cấp vào danh sách ncc1
+		}
+		comboBox_nv = new JComboBox<String>(nv1.toArray(new String[0]));
+		GridBagConstraints gbc_comboBox_nv = new GridBagConstraints();
+		gbc_comboBox_nv.insets = new Insets(50, 0, 50, 0);
+		gbc_comboBox_nv.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_nv.gridx = 1;
+		gbc_comboBox_nv.gridy = 3;
+		panel_bentren.add(comboBox_nv, gbc_comboBox_nv);
 
 		JPanel panel_benduoi = new JPanel();
 		panel_benduoi.setLayout(new GridLayout(3, 1, 0, 0));
@@ -246,11 +316,15 @@ public class XuatHang extends JFrame {
 		jt_thanhtien.setColumns(1);
 
 		btn_suasp = new JButton("Sửa sản phẩm");
+		btn_suasp.setIcon(new ImageIcon(XuatHang.class.getResource("/img/pencil.png")));
+		btn_suasp.setBackground(new Color(255, 128, 64));
 		btn_suasp.setEnabled(false);
 		btn_suasp.setFont(new Font("Arial", Font.BOLD, 20));
 		panelg_phai.add(btn_suasp);
 
 		btn_xoasp = new JButton("Xóa sản phẩm");
+		btn_xoasp.setIcon(new ImageIcon(XuatHang.class.getResource("/img/remove.png")));
+		btn_xoasp.setBackground(new Color(255, 128, 128));
 		btn_xoasp.setEnabled(false);
 		btn_xoasp.setFont(new Font("Arial", Font.BOLD, 20));
 		panelg_phai.add(btn_xoasp);
@@ -294,9 +368,11 @@ public class XuatHang extends JFrame {
 		panelg_trai.add(panelg_trai_duoi, BorderLayout.SOUTH);
 		panelg_trai_duoi.setLayout(new GridLayout(1, 2, 0, 0));
 		btn_themsp = new JButton("Thêm sản phẩm");
+		btn_themsp.setIcon(new ImageIcon(XuatHang.class.getResource("/img/plus.png")));
 		btn_themsp.setBackground(new Color(0, 255, 255));
 		btn_themsp.setFont(new Font("Arial", Font.BOLD, 20));
 		btn_nhapexcel = new JButton("Nhập Excel");
+		btn_nhapexcel.setIcon(new ImageIcon(XuatHang.class.getResource("/img/nhapExcel.png")));
 		btn_nhapexcel.setBackground(new Color(0, 255, 0));
 		btn_nhapexcel.setFont(new Font("Arial", Font.BOLD, 20));
 		panelg_trai_duoi.add(btn_themsp);
@@ -394,16 +470,34 @@ public class XuatHang extends JFrame {
 	}
 
 	public void nhaphang() {
-		String maphieun = jl_mapn.getText();
-		String manhacc = jt_manhacc.getText();
+		String maphieun = jl_mapn.getText().toUpperCase();
+		String manhacc = comboBox_ch.getSelectedItem().toString().toUpperCase();
 //		String tongtienn = tongtien + "";
-		String manhanvi = jtmanhanvien.getText();
-//		String xoais = 0 + "";
+		String manhanvi = comboBox_nv.getSelectedItem().toString().toUpperCase();
+		
+		if(maphieun.isEmpty()||manhacc.isEmpty()||manhanvi.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		ArrayList<PhieuXuat> pn=PhieuXuatDao.getInstance().selectAll();
+		for(PhieuXuat p:pn) {
+			if(maphieun.equals(p.getMaPhieuXuat())){
+				JOptionPane.showMessageDialog(null, "Mã phiếu xuất đã tồn tại", "Lỗi",
+						JOptionPane.ERROR_MESSAGE);
+				jl_mapn.setText("");
+				return;
+			}
+		}
+			
+		
+//		String xoais = 0 + "
+		
 //		System.out.println(maphieun);
 //		DecimalFormat df2 = new DecimalFormat("#");
 //		String formattedNumber2 = df2.format(Double.parseDouble(tongtienn));
 //	 	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int isDelete) {
-		PhieuXuat pn1 = new PhieuXuat(maphieun, manhacc.toUpperCase(), manhanvi.toUpperCase(), date, Double.parseDouble(kqtongtiennn.getText()),Integer.parseInt(kqtongsoluong.getText()), 0);
+		PhieuXuat pn1 = new PhieuXuat(maphieun, manhacc, manhanvi, date, Double.parseDouble(kqtongtiennn.getText()),Integer.parseInt(kqtongsoluong.getText()), 0);
 		PhieuXuatDao.getInstance().insert(pn1);
 		for (int i = 0; i < table1.getRowCount(); i++) {
 			String masanpham = model1.getValueAt(i, 2) + "";
@@ -418,8 +512,8 @@ public class XuatHang extends JFrame {
 		model.setRowCount(0);
 		model1.setRowCount(0);
 		jl_mapn.setText("");
-		jt_manhacc.setText("");
-		jtmanhanvien.setText("");
+		comboBox_ch.setSelectedIndex(0);
+		comboBox_nv.setSelectedIndex(0);
 		sanpham = LaptopDAO.getintance().selectAll();
 		for (Laptop sp : sanpham) {
 			stt = 0;

@@ -37,7 +37,8 @@ public class Xemchitietxuat extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	public JPanel panel_xemchitiet;
-
+	private Double tongtienphieu=(double) 0;
+	private int tongsoluongsp=0;
 	/**
 	 * Launch the application.
 	 */
@@ -246,7 +247,7 @@ public class Xemchitietxuat extends JFrame {
 			 table.setBackground(new Color(255, 255, 255));
 			 JScrollPane scrollPane = new JScrollPane(table);
 			 scrollPane.setBounds(197, 0, 100, 100);
-			 panel_9.add(scrollPane);
+			 panel_9.add(scrollPane,BorderLayout.CENTER);
 			table.setDefaultEditor(Object.class, null);
 			table.setModel(new DefaultTableModel(
 				new Object[][] {			
@@ -264,9 +265,37 @@ public class Xemchitietxuat extends JFrame {
 			    model.addRow(new Object[] {
 			    		sp.getMaLaptop(),sp.getSoLuong(),formattedNumber2
 			    });
+			    tongtienphieu+=sp.getThanhTien();
+	    		tongsoluongsp+=sp.getSoLuong();
 			}
 			table.getTableHeader().setResizingAllowed(false);
 			table.getTableHeader().setReorderingAllowed(false);
+			
+			
+			JPanel panel_16 = new JPanel();
+			panel_9.add(panel_16, BorderLayout.SOUTH);
+			panel_16.setLayout(new GridLayout(1, 4, 0, 0));
+			
+			JLabel lblNewLabel_8 = new JLabel("Tổng số lượng sản phẩm");
+			lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+			panel_16.add(lblNewLabel_8);
+			
+			JLabel lblNewLabel_14 = new JLabel(tongsoluongsp+"");
+			lblNewLabel_14.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblNewLabel_14.setHorizontalAlignment(SwingConstants.CENTER);
+			panel_16.add(lblNewLabel_14);
+			
+			JLabel lblNewLabel_15 = new JLabel("Tổng tiền");
+			lblNewLabel_15.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblNewLabel_15.setHorizontalAlignment(SwingConstants.CENTER);
+			panel_16.add(lblNewLabel_15);
+			DecimalFormat df7 = new DecimalFormat("#");
+		     String doit = df7.format(tongtienphieu);
+			JLabel lblNewLabel_16 = new JLabel(doit);
+			lblNewLabel_16.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_16.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			panel_16.add(lblNewLabel_16);
 //		JLabel lblNewLabel = new JLabel("Thông tin phiếu nhập");
 //		lblNewLabel.setOpaque(true);
 //		lblNewLabel.setBackground(new Color(0, 128, 255));

@@ -39,7 +39,7 @@ public class CuaHangMouseListener implements MouseListener {
 			Excel(action[0]);
 			return;
 		}
-		String MaCH = getSelectedMaCH();
+		String MaCH = getSelectedMaCH().toUpperCase();
 		if (MaCH != null) {
 			switch (LabelText) {
 			case "Xóa":
@@ -218,7 +218,7 @@ public class CuaHangMouseListener implements MouseListener {
 				}
 
 				// Tạo đối tượng cửa hàng mới
-				CuaHang CH = new CuaHang(maCH, tenCH, diaChi, sdt, 0);
+				CuaHang CH = new CuaHang(maCH.toUpperCase(), tenCH, diaChi, sdt, 0);
 				// Chỉnh sử dữ liệu cửa hàng trong cơ sở dữ liệu
 				if (CH != null) {
 					Boolean isCRUD = false;

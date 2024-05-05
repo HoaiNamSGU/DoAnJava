@@ -120,7 +120,6 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		int kq=0;
 		try {
 			Connection con = JDBCUtil.getConnection();
-			System.out.println(t.toString());
 			String sql = "INSERT INTO chitietphieunhap(MaPhieuNhap,MaLapTop,SoLuong,ThanhTien,isDelete)\r\n"
 					+ "VALUES (?,?,?,?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
@@ -132,8 +131,6 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 			kq = pst.executeUpdate();
 //			kq=pst.executeUpdate();
 			JDBCUtil.closeConnection(con);
-			System.out.println("BẠN ĐÃ THỰC THI : " + sql);
-			System.out.println("Số dòng thay đổi: " + kq);
 			if (kq > 0) System.out.println("Thêm dữ liệu thành công");
 			else System.out.println("Thêm dữ liệu thất bại");
 		} catch (SQLException e) {
@@ -351,7 +348,6 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 	public int insert(PhieuNhap t) {
 		int ketqua = 0;
 		try {
-			System.out.println("duc");
 			Connection con = JDBCUtil.getConnection();
 			String sql = "INSERT INTO phieunhap(MaPhieuNhap,MaNhaCungCap,MaNhanVien,TongTien,TongSoLuong,NgayNhap,isDelete)\r\n"
 					+ "VALUES (?,?,?,?,?,?,?)";
@@ -362,11 +358,9 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 			pst.setDouble(4, t.getTongTien());
 			pst.setInt(5, t.getTongSoLuong());
 			pst.setDate(6, t.getNgayNhap());
-			pst.setLong(7, t.getIsDelete());
+			pst.setInt(7, t.getIsDelete());
 			ketqua = pst.executeUpdate();
 			// BƯỚC 4 XỬ LÝ KẾT QUẢ
-			System.out.println("BẠN ĐÃ THỰC THI : " + sql);
-			System.out.println("Số dòng thay đổi: " + ketqua);
 			if (ketqua > 0)
 				System.out.println("Thêm dữ liệu thành công");
 			else
