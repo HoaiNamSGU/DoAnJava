@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import database.JDBCUtil;
 import model.ChiTietPhieuNhap;
-import model.NhaCungCap;
 import model.PhieuNhap;
 
 public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
@@ -87,12 +86,41 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 
 
 
-
+//	public int insert(PhieuNhap t) {
+//		int ketqua = 0;
+//		try {
+//			Connection con = JDBCUtil.getConnection();
+//			String sql = "INSERT INTO phieunhap(MaPhieuNhap,MaNhaCungCap,TongSoLuong,TongTien,NgayNhap,MaNhanVien,isDelete)\r\n"
+//					+ "VALUES (?,?,?,?,?,?,?)";
+//			PreparedStatement pst = con.prepareStatement(sql);
+//			pst.setString(1, t.getMaPhieuNhap());
+//			pst.setString(2, t.getMaNhaCungCap());
+//			pst.setInt(3, t.getTongSoLuong());
+//			pst.setDouble(4, t.getTongTien());
+//			pst.setDate(5, t.getNgayNhap());
+//			pst.setString(6, t.getMaNhanVien());
+//			pst.setLong(7, t.getIsDelete());
+//			ketqua = pst.executeUpdate();
+//			// BƯỚC 4 XỬ LÝ KẾT QUẢ
+//			System.out.println("BẠN ĐÃ THỰC THI : " + sql);
+//			System.out.println("Số dòng thay đổi: " + ketqua);
+//			if (ketqua > 0)
+//				System.out.println("Thêm dữ liệu thành công");
+//			else
+//				System.out.println("Thêm dữ liệu thất bại");
+//			JDBCUtil.closeConnection(con);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return ketqua;
+//	}
 
 	public void inchitietphieu(ChiTietPhieuNhap t) {
+		int kq=0;
 		try {
 			Connection con = JDBCUtil.getConnection();
-//			System.out.println(t.toString());
+			System.out.println(t.toString());
 			String sql = "INSERT INTO chitietphieunhap(MaPhieuNhap,MaLapTop,SoLuong,ThanhTien,isDelete)\r\n"
 					+ "VALUES (?,?,?,?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
@@ -101,8 +129,13 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 			pst.setInt(3, t.getSoLuong());
 			pst.setDouble(4, t.getThanhTien());
 			pst.setLong(5, t.getIsDelete());
-			pst.executeUpdate();
+			kq = pst.executeUpdate();
+//			kq=pst.executeUpdate();
 			JDBCUtil.closeConnection(con);
+			System.out.println("BẠN ĐÃ THỰC THI : " + sql);
+			System.out.println("Số dòng thay đổi: " + kq);
+			if (kq > 0) System.out.println("Thêm dữ liệu thành công");
+			else System.out.println("Thêm dữ liệu thất bại");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -221,59 +254,59 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		return s;
 	}
 
-	public String laytennhanvien(String manhanv) {
-		String s=null;
-		try {
-			Connection con=JDBCUtil.getConnection();
-			String sql="SELECT * FROM nhanvien WHERE  MaNhanVien='" + manhanv + "'";
-			PreparedStatement pst=con.prepareStatement(sql);
-			ResultSet rs=pst.executeQuery(sql);
-			while(rs.next()) {
-				s=rs.getString("TenNhanVien");
-			}
-			JDBCUtil.closeConnection(con);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return s;
-	}
-	
-	public String laymanhanvien(String manhanv) {
-		String s=null;
-		try {
-			Connection con=JDBCUtil.getConnection();
-			String sql="SELECT * FROM nhanvien WHERE  TenNhanVien='" + manhanv + "'";
-			PreparedStatement pst=con.prepareStatement(sql);
-			ResultSet rs=pst.executeQuery(sql);
-			while(rs.next()) {
-				s=rs.getString("MaNhanVien");
-			}
-			JDBCUtil.closeConnection(con);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return s;
-	}
-//
-	public ArrayList<String> Layalltennv() {
-		ArrayList<String> ketqua=new ArrayList<String>();
-		try {
-			Connection con=JDBCUtil.getConnection();
-			String sql="SELECT TenNhanVien FROM nhanvien";
-			PreparedStatement pst=con.prepareStatement(sql);
-		ResultSet rs=pst.executeQuery(sql);
-		while(rs.next()) {
-			String tnv=rs.getString("TenNhanVien");
-			ketqua.add(tnv);
-		}
-//		BƯỚC 5: NGẮT KẾT NỐI
-		JDBCUtil.closeConnection(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ketqua;
-	}
+//	public String laytennhanvien(String manhanv) {
+//		String s=null;
+//		try {
+//			Connection con=JDBCUtil.getConnection();
+//			String sql="SELECT * FROM nhanvien WHERE  MaNhanVien='" + manhanv + "'";
+//			PreparedStatement pst=con.prepareStatement(sql);
+//			ResultSet rs=pst.executeQuery(sql);
+//			while(rs.next()) {
+//				s=rs.getString("TenNhanVien");
+//			}
+//			JDBCUtil.closeConnection(con);
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return s;
+//	}
+//	
+//	public String laymanhanvien(String manhanv) {
+//		String s=null;
+//		try {
+//			Connection con=JDBCUtil.getConnection();
+//			String sql="SELECT * FROM nhanvien WHERE  TenNhanVien='" + manhanv + "'";
+//			PreparedStatement pst=con.prepareStatement(sql);
+//			ResultSet rs=pst.executeQuery(sql);
+//			while(rs.next()) {
+//				s=rs.getString("MaNhanVien");
+//			}
+//			JDBCUtil.closeConnection(con);
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return s;
+//	}
+
+//	public ArrayList<String> Layalltennv() {
+//		ArrayList<String> ketqua=new ArrayList<String>();
+//		try {
+//			Connection con=JDBCUtil.getConnection();
+//			String sql="SELECT TenNhanVien FROM nhanvien";
+//			PreparedStatement pst=con.prepareStatement(sql);
+//		ResultSet rs=pst.executeQuery(sql);
+//		while(rs.next()) {
+//			String tnv=rs.getString("TenNhanVien");
+//			ketqua.add(tnv);
+//		}
+////		BƯỚC 5: NGẮT KẾT NỐI
+//		JDBCUtil.closeConnection(con);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return ketqua;
+//	}
 
 	@Override
 	public PhieuNhap selectById(PhieuNhap t) {
@@ -287,9 +320,9 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		return null;
 	}
 
-//	@Override
-//	public ArrayList<PhieuNhap> selectByCondition(String condition) {
-//		return null;
+	@Override
+	public ArrayList<PhieuNhap> selectByCondition(String condition) {
+		return null;
 //		ArrayList<NhaCungCap> ketqua=new ArrayList<NhaCungCap>();
 //		try {
 //			Connection con=JDBCUtil.getConnection();
@@ -312,22 +345,23 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 //			e.printStackTrace();
 //		}
 //		return ketqua;
-//	}
+	}
 
 	@Override
 	public int insert(PhieuNhap t) {
 		int ketqua = 0;
 		try {
 			Connection con = JDBCUtil.getConnection();
-			String sql = "INSERT INTO phieunhap(MaPhieuNhap,MaNhaCungCap,TongTien,NgayNhap,MaNhanVien,isDelete)\r\n"
-					+ "VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO phieunhap(MaPhieuNhap,MaNhaCungCap,TongSoLuong,TongTien,NgayNhap,MaNhanVien,isDelete)\r\n"
+					+ "VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, t.getMaPhieuNhap());
 			pst.setString(2, t.getMaNhaCungCap());
-			pst.setDouble(3, t.getTongTien());
-			pst.setDate(4, t.getNgayNhap());
-			pst.setString(5, t.getMaNhanVien());
-			pst.setLong(6, t.getIsDelete());
+			pst.setInt(3, t.getTongSoLuong());
+			pst.setDouble(4, t.getTongTien());
+			pst.setDate(5, t.getNgayNhap());
+			pst.setString(6, t.getMaNhanVien());
+			pst.setLong(7, t.getIsDelete());
 			ketqua = pst.executeUpdate();
 			// BƯỚC 4 XỬ LÝ KẾT QUẢ
 			System.out.println("BẠN ĐÃ THỰC THI : " + sql);
@@ -378,12 +412,6 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		}
 
 		return firstDay;
-	}
-
-	@Override
-	public ArrayList<PhieuNhap> selectByCondition(String condition) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

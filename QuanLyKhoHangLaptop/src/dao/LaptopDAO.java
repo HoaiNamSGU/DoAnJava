@@ -33,6 +33,39 @@ public class LaptopDAO implements DAOInterface<Laptop> {
 		return new LaptopDAO();
 	}
 
+public Laptop lay1sp(String mltp) {
+		
+		Laptop kq  = new Laptop();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "select * from laptop where MaLaptop = ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1,mltp);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				String ma = rs.getString("MaLaptop");
+				String ten = rs.getString("TenLaptop");
+				String cpu = rs.getString("CPU");
+				String gpu = rs.getString("GPU");
+				String ram = rs.getString("Ram");
+				String rom = rs.getString("Rom");
+				String hdh = rs.getString("HeDieuHanh");
+				String man = rs.getString("ManHinh");
+				String hang = rs.getString("Hang");
+				int namsx = rs.getInt("NamSanXuat");
+				int soluong = rs.getInt("SoLuong");
+				double gia = rs.getDouble("Gia");
+				String maNCC = rs.getString("MaNhaCungCap");
+				int isDelete = rs.getInt("isDelete");
+				kq = new Laptop(ma, ten, cpu, gpu, ram, rom, hdh, man, hang, namsx, soluong, gia, maNCC, isDelete);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return kq;
+	}
+	
 	public Laptop selectById(String T) {
 		Laptop kq = new Laptop();
 		try {
@@ -463,6 +496,39 @@ public class LaptopDAO implements DAOInterface<Laptop> {
 		return ketqua;
 	}
 
+public int update1dulieu1(String mm, int sl) {
+		// TODO Auto-generated method stub
+		int ketqua = 0;
+		try {
+			// TODO Auto-generated method stub
+//				BƯỚC 1: TẠO KẾT NỐI ĐẾN CSDL
+			Connection con = JDBCUtil.getConnection();
+
+//				BƯỚC 2: TẠO RA ĐỐI TƯỢNG STATEMENT
+			Statement st = con.createStatement();
+			// String sql1 = "SELECT soluong FROM laptop WHERE id='" + mm + "'";
+			String sql = "UPDATE laptop " + " SET SoLuong = soluong - " + sl + " WHERE MaLaptop = '" + mm + "'";
+
+//				BƯỚC 3: THỰC THI CÂU LỆNH SQL
+			ketqua = st.executeUpdate(sql);
+			// BƯỚC 4 XỬ LÝ KẾT QUẢ
+			System.out.println("BẠN ĐÃ THỰC THI : " + sql);
+			System.out.println("Số dòng thay đổi: " + ketqua);
+			if (ketqua > 0)
+				System.out.println("Thêm dữ liệu thành công");
+			else
+				System.out.println("Thêm dữ liệu thất bại");
+
+//				BƯỚC 5: NGẮT KẾT NỐI
+			JDBCUtil.closeConnection(con);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ketqua;
+	}
+	
 	public int update1dulieu(String mm, int sl) {
 		// TODO Auto-generated method stub
 		int ketqua = 0;
