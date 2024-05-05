@@ -100,7 +100,7 @@ public class DoiMatKhau extends JFrame {
 		gbc_passwordField_2.gridy = 1;
 		panel.add(passwordField_2, gbc_passwordField_2);
 		
-		JLabel jlabel_mk2 = new JLabel("Mật khẩu mới");
+		JLabel jlabel_mk2 = new JLabel("Nhập lại mật khẩu mới");
 		jlabel_mk2.setForeground(new Color(0, 128, 192));
 		jlabel_mk2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_jlabel_mk2 = new GridBagConstraints();
