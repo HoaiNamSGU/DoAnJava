@@ -17,6 +17,7 @@ import model.Laptop;
 import view.laptopview;
 import view.ThemSanPham;
 import view.XemChiTiet;
+import view.TimKiemIMEI;
 
 public class LaptopMouseListener implements MouseListener{
 
@@ -419,6 +420,53 @@ public class LaptopMouseListener implements MouseListener{
         		clickedLabel.setForeground(Color.BLACK);
        	     	clickedLabel.setBackground(null);
         	}
+        }
+
+	 else if(labelText.equals("Tra IMEI"))
+        {
+        	TimKiemIMEI timkiem = new TimKiemIMEI();
+        	timkiem.addWindowListener(new WindowAdapter() {
+    		    @Override
+    		    public void windowClosing(WindowEvent e) {
+    		        clickedLabel.setForeground(Color.BLACK);
+    		        clickedLabel.setBackground(null);
+    		    }
+    		});
+        	
+        	timkiem.btnNewButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(e.getActionCommand().equals("Kiểm tra"))
+					{
+						String ma = timkiem.textField.getText();
+						int check = IMEIDAO.getintance().KTIMEI(ma);
+						if(check == 1)
+						{
+							timkiem.label_kq.setText("IMEI sản phẩm này tồn tại");
+						}
+						else
+						{
+							timkiem.label_kq.setText("IMEI sản phẩm này không tồn tại");
+						}
+					}
+				}
+			});
+        	
+        	timkiem.btnNewButton_1.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(e.getActionCommand().equals("Hủy bỏ"))
+					{
+						timkiem.dispose();
+						clickedLabel.setForeground(Color.BLACK);
+		    		        	clickedLabel.setBackground(null);
+					}
+				}
+			});
+        	
+        	
         }
 		
         else if(labelText.equals("Xuất Excel"))
