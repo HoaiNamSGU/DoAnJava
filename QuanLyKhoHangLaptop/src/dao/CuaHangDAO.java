@@ -91,29 +91,12 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 		return null; // Trả về null nếu không có kết quả
 	}
 
-	@Override
-	public ArrayList<CuaHang> selectByCondition(String condition) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public CuaHang selectById(CuaHang t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int delete(String t) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public Boolean isMaCHExists(String MaCH) {
 
 		return selectById(MaCH) != null;
 	}
-
+	
+	// thêm 1 cửa hàng
 	public Boolean insertCuaHang(CuaHang CH) {
 		try {
 
@@ -132,11 +115,6 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 	}
 
 	// cập nhật
-	/*
-	 * public Boolean updateCuaHang(String old_MaCH, CuaHang CH) { try { if
-	 * (deleteCuaHang(old_MaCH)) insert(CH); return true; } catch (Exception e) { //
-	 * TODO: handle exception return false; } }
-	 */
 	public Boolean updateCuaHang(String old_MaCH, CuaHang CH) {
 		try {
 			String sql = "UPDATE cuahang SET MaCuaHang=?, TenCH=?, DiaChi=?, SDT=?, isDelete=?  WHERE MaCuaHang = ? ";
@@ -256,59 +234,59 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 	}
 
 	public Boolean readExcel() {
-	    JFileChooser fileChooser = new JFileChooser();
-	    fileChooser.setDialogTitle("Chọn tệp Excel để đọc");
-	    fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xlsx"));
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Chọn tệp Excel để đọc");
+		fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xlsx"));
 
-	    int userSelection = fileChooser.showOpenDialog(null);
-	    if (userSelection == JFileChooser.APPROVE_OPTION) {
-	        File selectedFile = fileChooser.getSelectedFile();
-	        String filePath = selectedFile.getAbsolutePath();
-	        try {
-	            Workbook workbook = WorkbookFactory.create(new File(filePath));
-	            Sheet sheet = workbook.getSheetAt(0);
+		int userSelection = fileChooser.showOpenDialog(null);
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			File selectedFile = fileChooser.getSelectedFile();
+			String filePath = selectedFile.getAbsolutePath();
+			try {
+				Workbook workbook = WorkbookFactory.create(new File(filePath));
+				Sheet sheet = workbook.getSheetAt(0);
 
-	            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-	                Row row = sheet.getRow(i);
-	                if (row != null) {
-	                    CuaHang CH = new CuaHang();
-	                    for (int j = 0; j < row.getLastCellNum(); j++) {
-	                        String propertyName = sheet.getRow(0).getCell(j).getStringCellValue();
-	                        Cell cell = row.getCell(j);
+				for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+					Row row = sheet.getRow(i);
+					if (row != null) {
+						CuaHang CH = new CuaHang();
+						for (int j = 0; j < row.getLastCellNum(); j++) {
+							String propertyName = sheet.getRow(0).getCell(j).getStringCellValue();
+							Cell cell = row.getCell(j);
 
-	                        if (cell != null) {
-	                            String cellValue = cell.getStringCellValue();
+							if (cell != null) {
+								String cellValue = cell.getStringCellValue();
 
-	                            switch (propertyName) {
-	                                case "MaCuaHang":
-	                                    CH.setMaCH(cellValue);
-	                                    break;
-	                                case "TenCH":
-	                                    CH.setTenCH(cellValue);
-	                                    break;
-	                                case "DiaChi":
-	                                    CH.setDiaChi(cellValue);
-	                                    break;
-	                                case "SDT":
-	                                    CH.setSDT(cellValue);
-	                                    break;
-	                                default:
-	                                    break;
-	                            }
-	                        }
-	                    }
-	                    if (!isMaCHExists(CH.getMaCH())) 
-	                    	insertCuaHang(CH);
-	                }
-	            }
-	            workbook.close();
-	            return true;
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            return false;
-	        }
-	    }
-	    return false;
+								switch (propertyName) {
+								case "MaCuaHang":
+									CH.setMaCH(cellValue);
+									break;
+								case "TenCH":
+									CH.setTenCH(cellValue);
+									break;
+								case "DiaChi":
+									CH.setDiaChi(cellValue);
+									break;
+								case "SDT":
+									CH.setSDT(cellValue);
+									break;
+								default:
+									break;
+								}
+							}
+						}
+						if (!isMaCHExists(CH.getMaCH()))
+							insertCuaHang(CH);
+					}
+				}
+				workbook.close();
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+		return false;
 	}
 
 	public Boolean writeExcel() {
@@ -336,12 +314,12 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 				// Ghi dữ liệu từ danh sách cửa hàng vào các hàng tiếp theo
 				int rowNum = 1;
 				for (CuaHang cuaHang : CuaHangList) {
-					if(cuaHang.getIsDelete()==0) {
-					Row row = sheet.createRow(rowNum++);
-					row.createCell(0).setCellValue(cuaHang.getMaCH());
-					row.createCell(1).setCellValue(cuaHang.getTenCH());
-					row.createCell(2).setCellValue(cuaHang.getDiaChi());
-					row.createCell(3).setCellValue(cuaHang.getSDT());
+					if (cuaHang.getIsDelete() == 0) {
+						Row row = sheet.createRow(rowNum++);
+						row.createCell(0).setCellValue(cuaHang.getMaCH());
+						row.createCell(1).setCellValue(cuaHang.getTenCH());
+						row.createCell(2).setCellValue(cuaHang.getDiaChi());
+						row.createCell(3).setCellValue(cuaHang.getSDT());
 					}
 				}
 
@@ -357,4 +335,23 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 		}
 		return false;
 	}
+
+	@Override
+	public ArrayList<CuaHang> selectByCondition(String condition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CuaHang selectById(CuaHang t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int delete(String t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

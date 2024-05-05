@@ -39,8 +39,8 @@ public class ThongKeView extends JPanel {
 	public String[] dateFormat = { "dd/MM/yyyy", "MM/yyyy", "yyyy" };
 	public JComboBox<Object> comboBox_CongViec;
 	public JPanel panel_Center;
-	public BieuDoThongKeSP bdsp = new BieuDoThongKeSP();
-	public BieuDoThongKeCH bdch = new BieuDoThongKeCH();
+	public BieuDoDuong_Duong bdsp = new BieuDoDuong_Duong();
+	public BieuDoCot_Duong bdch = new BieuDoCot_Duong();
 	public String loai = "Sản Phẩm";
 
 	public ThongKeView() {

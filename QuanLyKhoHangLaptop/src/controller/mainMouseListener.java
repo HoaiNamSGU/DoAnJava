@@ -68,9 +68,8 @@ public class mainMouseListener implements MouseListener {
 		}
         else if (labelText.equals("Nhà cung cấp")) {
 			view.panel_center.setVisible(false);
-			Nhacungcap nh = new Nhacungcap();
 			view.panel_center.removeAll(); // Xóa tất cả các thành phần con hiện có trong panel_center
-			view.panel_center.add(nh.panel_cungcap); // Thêm panel_nhaphang vào panel_center
+			view.panel_center.add(view.nhacungcap); // Thêm panel_nhaphang vào panel_center
 			view.panel_center.setVisible(true); // Hiển thị panel_center
 			view.jlabel_sanpham.setForeground(Color.BLACK);
 		}

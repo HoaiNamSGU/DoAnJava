@@ -2,25 +2,24 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -28,12 +27,10 @@ import javax.swing.table.JTableHeader;
 
 import controller.Controllernhacungcap;
 import dao.nhacungcapDao;
+import img.Source;
 import model.NhaCungCap;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class Nhacungcap extends JFrame {
+public class Nhacungcap extends JPanel {
 	private JTextField textField;
 	private NhaCungCap nhacung1;
 	ArrayList<NhaCungCap> dsnhacungcap = nhacungcapDao.getInstance().selectAll();
@@ -61,6 +58,7 @@ public class Nhacungcap extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel jp_chucnang;
+	private Source source = new Source();
 
 	/**
 	 * Launch the application.
@@ -82,124 +80,17 @@ public class Nhacungcap extends JFrame {
 	 * Create the frame.
 	 */
 	public Nhacungcap() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1400, 800);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-
-		panel_menu = new JPanel();
-		panel_menu.setBackground(new Color(0, 128, 192));
-		contentPane.add(panel_menu, BorderLayout.WEST);
-		panel_menu.setForeground(new Color(255, 255, 255));
-		panel_menu.setBounds(0, 0, 197, 763);
-//			panel_cungcap.setBackground(new Color(192, 192, 192));
-//			getContentPane().add(panel_cungcap);
-		panel_menu.setLayout(new GridLayout(13, 1, 0, 0));
-//			scrollPane.setBounds(0, 0, 1189, 602);
-
-		JLabel lblNewLabel = new JLabel("Hi !");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-		panel_menu.add(lblNewLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("Admin");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
-		panel_menu.add(lblNewLabel_1);
-
-		JLabel jlabel_sanpham = new JLabel("Sản phẩm");
-		jlabel_sanpham.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_sanpham.setForeground(new Color(255, 255, 255));
-		ImageIcon icon_sanpham = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\product.png");
-		jlabel_sanpham.setIcon(icon_sanpham);
-		panel_menu.add(jlabel_sanpham);
-
-		JLabel jlabel_nhacungcap = new JLabel("Nhà cung cấp");
-		jlabel_nhacungcap.setForeground(Color.WHITE);
-		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_nhaCungCap = new ImageIcon(
-				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\supplier.png");
-		jlabel_nhacungcap.setIcon(icon_nhaCungCap);
-		panel_menu.add(jlabel_nhacungcap);
-
-		JLabel jlabel_nhaphang = new JLabel("Nhập hàng");
-		jlabel_nhaphang.setForeground(Color.WHITE);
-		jlabel_nhaphang.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_nhaphang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\nhaphang.png");
-		jlabel_nhaphang.setIcon(icon_nhaphang);
-		panel_menu.add(jlabel_nhaphang);
-
-		JLabel jlabel_phieunhap = new JLabel("Phiếu nhập");
-		jlabel_phieunhap.setForeground(Color.WHITE);
-		jlabel_phieunhap.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_phieunhap = new ImageIcon(
-				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\phieunhap.png");
-		jlabel_phieunhap.setIcon(icon_phieunhap);
-		panel_menu.add(jlabel_phieunhap);
-
-		JLabel jlabel_xuathang = new JLabel("Xuất hàng");
-		jlabel_xuathang.setForeground(Color.WHITE);
-		jlabel_xuathang.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_xuathang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\xuathang.png");
-		jlabel_xuathang.setIcon(icon_xuathang);
-		panel_menu.add(jlabel_xuathang);
-
-		JLabel jlabel_phieuxuat = new JLabel("Phiếu xuất");
-		jlabel_phieuxuat.setForeground(Color.WHITE);
-		jlabel_phieuxuat.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_phieuxuat = new ImageIcon(
-				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\phieuxuat.png");
-		jlabel_phieuxuat.setIcon(icon_phieuxuat);
-		panel_menu.add(jlabel_phieuxuat);
-
-		JLabel jlabel_cuahang = new JLabel("Cửa hàng");
-		jlabel_cuahang.setForeground(Color.WHITE);
-		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_cuahang = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\store.png");
-		jlabel_cuahang.setIcon(icon_cuahang);
-		panel_menu.add(jlabel_cuahang);
-
-		JLabel jlabel_taikhoan = new JLabel("Tài khoản");
-		jlabel_taikhoan.setForeground(Color.WHITE);
-		jlabel_taikhoan.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_taikhoan = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\taikhoan.png");
-		jlabel_taikhoan.setIcon(icon_taikhoan);
-		panel_menu.add(jlabel_taikhoan);
-
-		JLabel jlabel_thongke = new JLabel("Thống kê");
-		jlabel_thongke.setForeground(Color.WHITE);
-		jlabel_thongke.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_thongke = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\thongke.png");
-		jlabel_thongke.setIcon(icon_thongke);
-		panel_menu.add(jlabel_thongke);
-
-		JLabel jlabel_đổiThongtin = new JLabel("Đổi thông tin");
-		jlabel_đổiThongtin.setForeground(Color.WHITE);
-		jlabel_đổiThongtin.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_doithongtin = new ImageIcon(
-				"G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\thongtin.png");
-		jlabel_đổiThongtin.setIcon(icon_doithongtin);
-		panel_menu.add(jlabel_đổiThongtin);
-
-		JLabel jlabel_dangxuat = new JLabel("Đăng xuất");
-		jlabel_dangxuat.setForeground(Color.WHITE);
-		jlabel_dangxuat.setFont(new Font("Arial", Font.PLAIN, 20));
-		ImageIcon icon_dangxuat = new ImageIcon("G:\\My Drive\\DoAnJava\\QuanLyKhoHangLaptop\\src\\img\\dangxuat.png");
-		jlabel_dangxuat.setIcon(icon_dangxuat);
-		panel_menu.add(jlabel_dangxuat);
-
-		JPanel panel_cungcap = new JPanel();
-		panel_cungcap.setBounds(197, 0, 1189, 763);
-		contentPane.add(panel_cungcap, BorderLayout.CENTER);
+		this.setBounds(0, 0, 1200, 770);
+		setLayout(new BorderLayout(0, 0));
+		panel_cungcap = new JPanel();
 		panel_cungcap.setLayout(new BorderLayout(0, 0));
+		add(panel_cungcap);
 
 		jp_chucnang = new JPanel();
 		jp_chucnang.setBounds(10, 10, 398, 97);
 //			jp_chucnang.setLayout(new FlowLayout());
 //			jp_chucnang.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 50)); // Thiết lập FlowLayout với khoảng cách giữa các thành phần là 10px
-		jp_chucnang.setLayout(new GridLayout(1, 2, 50, 50));
+		jp_chucnang.setLayout(new GridLayout(1, 2, 50, 20));
 		panel_cungcap.add(jp_chucnang, BorderLayout.NORTH);
 
 		JPanel jc_cntrai = new JPanel();
@@ -216,70 +107,84 @@ public class Nhacungcap extends JFrame {
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
 				"T\u00ECm ki\u1EBFm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		jp_chucnang.add(jp_timkiem);
-		jp_timkiem.setLayout(new GridLayout(1, 3, 2, 2));
 
-		cbb_timkiem = new JComboBox();
+		String[] options = { "Tất cả", "Mã cung cấp", "Địa chỉ", "Số điện thoại", "Email", "Tên" };
+		GridBagLayout gbl_jp_timkiem = new GridBagLayout();
+		gbl_jp_timkiem.columnWidths = new int[] { 187, 187, 187 };
+		gbl_jp_timkiem.rowHeights = new int[] { 32, 32 };
+		gbl_jp_timkiem.columnWeights = new double[] { 0.0, 0.0, 0.0 };
+		gbl_jp_timkiem.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		jp_timkiem.setLayout(gbl_jp_timkiem);
+		cbb_timkiem = new JComboBox<Object>(options);
 		cbb_timkiem.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		jp_timkiem.add(cbb_timkiem);
-//				jp_chucnang.setLayout(null);
-		cbb_timkiem.addItem("Tất cả");
-		cbb_timkiem.addItem("Mã cung cấp");
-		cbb_timkiem.addItem("Địa chỉ");
-		cbb_timkiem.addItem("Số điện thoại");
-		cbb_timkiem.addItem("Email");
-		cbb_timkiem.addItem("Tên");
+		GridBagConstraints gbc_cbb_timkiem = new GridBagConstraints();
+		gbc_cbb_timkiem.weighty = 1.0;
+		gbc_cbb_timkiem.weightx = 1.0;
+		gbc_cbb_timkiem.fill = GridBagConstraints.BOTH;
+		gbc_cbb_timkiem.insets = new Insets(0, 0, 0, 5);
+		gbc_cbb_timkiem.gridx = 0;
+		gbc_cbb_timkiem.gridy = 0;
+		jp_timkiem.add(cbb_timkiem, gbc_cbb_timkiem);
 
 		cbb_timkiem.setSelectedIndex(0);
 
 		txtx_timkiem = new JTextField();
-		jp_timkiem.add(txtx_timkiem);
-		txtx_timkiem.setColumns(10);
+		GridBagConstraints gbc_txtx_timkiem = new GridBagConstraints();
+		gbc_txtx_timkiem.weighty = 1.0;
+		gbc_txtx_timkiem.weightx = 1.0;
+		gbc_txtx_timkiem.fill = GridBagConstraints.BOTH;
+		gbc_txtx_timkiem.insets = new Insets(0, 0, 0, 5);
+		gbc_txtx_timkiem.gridx = 1;
+		gbc_txtx_timkiem.gridy = 0;
+		jp_timkiem.add(txtx_timkiem, gbc_txtx_timkiem);
+		txtx_timkiem.setColumns(50);
+		Controllernhacungcap.addKeyListener(txtx_timkiem, this);
 
-		ImageIcon icon_lammoi = new ImageIcon(
-				"D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png");
-//				JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
-		btn_lammoi = new JButton("Làm mới", icon_lammoi);
+		// JLabel jlabel_them = new JLabel("Thêm", icon_add, JLabel.CENTER);
+		btn_lammoi = new JButton("Làm mới", source.icon_refresh);
 		btn_lammoi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
 		btn_lammoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		jp_timkiem.add(btn_lammoi);
+		GridBagConstraints gbc_btn_lammoi = new GridBagConstraints();
+		gbc_btn_lammoi.insets = new Insets(0, 0, 0, 5);
+		gbc_btn_lammoi.weighty = 1.0;
+		gbc_btn_lammoi.weightx = 1.0;
+		gbc_btn_lammoi.fill = GridBagConstraints.BOTH;
+		gbc_btn_lammoi.gridx = 2;
+		gbc_btn_lammoi.gridy = 0;
+		jp_timkiem.add(btn_lammoi, gbc_btn_lammoi);
+		Controllernhacungcap.ActionListener(btn_lammoi, this);
 		///////// chan///////////////
 		// them
-		ImageIcon icon_add = new ImageIcon("D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\plus.png");
 		JLabel jl_chuthem = new JLabel("Thêm");
 		jl_chuthem.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuthem.setBounds(15, 63, 45, 21);
 		jl_nutadd = new JLabel("");
 		jl_nutadd.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutadd.setBounds(15, 13, 33, 55);
-		jl_nutadd.setIcon(icon_add);
+		jl_nutadd.setIcon(source.icon_add);
 		jc_cntrai.add(jl_nutadd);
-		ImageIcon icon_xoa = new ImageIcon(
-				"D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\remove.png");
 		JLabel jl_chuxoa = new JLabel("Xóa");
 		jl_chuxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuxoa.setBounds(86, 63, 33, 21);
 		jl_nutxoa = new JLabel("");
 		jl_nutxoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutxoa.setBounds(80, 13, 39, 55);
-		jl_nutxoa.setIcon(icon_xoa);
+		jl_nutxoa.setIcon(source.icon_remove);
 		jc_cntrai.add(jl_nutxoa);
-		ImageIcon icon_sua = new ImageIcon(
-				"D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\pencil.png");
+
 		jl_nutsua = new JLabel("");
 		jl_nutsua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutsua.setBounds(142, 13, 39, 55);
-		jl_nutsua.setIcon(icon_sua);
+		jl_nutsua.setIcon(source.icon_pencil);
 		JLabel jl_chusua = new JLabel("Sửa");
 		jl_chusua.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chusua.setBounds(142, 63, 28, 21);
 		jc_cntrai.add(jl_nutsua);
 
-		ImageIcon icon_xuatexcel = new ImageIcon(
-				"D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JLabel jl_nutxuatexcel = new JLabel("");
 		jl_nutxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutxuatexcel.setBounds(220, 13, 33, 55);
@@ -287,10 +192,8 @@ public class Nhacungcap extends JFrame {
 		JLabel jl_chuxuatexcel = new JLabel("Xuất Excel");
 		jl_chuxuatexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chuxuatexcel.setBounds(208, 63, 70, 21);
-		jl_nutxuatexcel.setIcon(icon_xuatexcel);
+		jl_nutxuatexcel.setIcon(source.icon_Excel);
 
-		ImageIcon icon_nhapexcel = new ImageIcon(
-				"D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\xuatExcel.png");
 		JLabel jl_nutnhapexcel = new JLabel("");
 		jl_nutnhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_nutnhapexcel.setBounds(301, 13, 70, 55);
@@ -298,7 +201,7 @@ public class Nhacungcap extends JFrame {
 		JLabel jl_chunhapexcel = new JLabel("Nhập Excel");
 		jl_chunhapexcel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		jl_chunhapexcel.setBounds(300, 63, 88, 21);
-		jl_nutnhapexcel.setIcon(icon_nhapexcel);
+		jl_nutnhapexcel.setIcon(source.icon_Excel);
 
 		jc_cntrai.add(jl_chuthem);
 		jc_cntrai.add(jl_chuxoa);
@@ -342,9 +245,7 @@ public class Nhacungcap extends JFrame {
 		Controllernhacungcap.addMouseListener(jl_nutadd, this);
 		Controllernhacungcap.addMouseListener(jl_nutxoa, this);
 		Controllernhacungcap.addMouseListener(jl_nutsua, this);
-		Controllernhacungcap.addKeyListener(txtx_timkiem, this);
-		Controllernhacungcap.ActionListener(btn_lammoi, this);
-
+		this.setVisible(true);
 	}
 
 	public void hienaddnhacungcap() {
@@ -388,9 +289,10 @@ public class Nhacungcap extends JFrame {
 	public void nutlammoi() {
 		model.setRowCount(0);
 		txtx_timkiem.setText("");
-		for (NhaCungCap nc : dsnhacungcap) {
-			model.addRow(new Object[] { nc.getMaNhaCungCap(), nc.getTenNhaCungCap(), nc.getTenNhaCungCap(),
-					nc.getTenNhaCungCap(), nc.getEmail() });
+		ArrayList<NhaCungCap> dsNhacungcap = nhacungcapDao.getInstance().selectAll();
+		for (NhaCungCap nc : dsNhacungcap) {
+			model.addRow(new Object[] { nc.getMaNhaCungCap(), nc.getTenNhaCungCap(), nc.getDiaChi(), nc.getSDT(),
+					nc.getEmail() });
 		}
 		cbb_timkiem.setSelectedIndex(0);
 

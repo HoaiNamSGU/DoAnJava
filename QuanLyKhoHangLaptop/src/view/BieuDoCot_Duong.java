@@ -20,13 +20,13 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class BieuDoThongKeCH extends JPanel {
+public class BieuDoCot_Duong extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private DefaultCategoryDataset dataset1;
 	private DefaultCategoryDataset dataset2;
 
-	public BieuDoThongKeCH() {
+	public BieuDoCot_Duong() {
 		dataset1 = new DefaultCategoryDataset();
 		dataset2 = new DefaultCategoryDataset();
 
@@ -41,25 +41,26 @@ public class BieuDoThongKeCH extends JPanel {
 	public JFreeChart createChart(DefaultCategoryDataset dataset1, DefaultCategoryDataset dataset2) {
 		// Tạo biểu đồ cột
 		JFreeChart chart = ChartFactory.createBarChart("Số lượng và Tổng giá trị", // Tiêu đề biểu đồ
-				"Tên CH", // Nhãn trục x
-				"Giá trị (triệu)", // Nhãn trục y
+				"Tên CH", 
+				"Giá trị (triệu)",
 				dataset2, // Dataset cho biểu đồ cột
-				PlotOrientation.VERTICAL, // Hướng của biểu đồ
-				true, // Hiển thị chú thích
-				true, // Hiển thị tiêu đề
+				PlotOrientation.VERTICAL, 
+				true, //  chú thích
+				true, // tiêu đề
 				false // Không hiển thị URL
 		);
 
 		// Lấy plot từ biểu đồ
 		CategoryPlot plot = (CategoryPlot) chart.getPlot();
-		// Thiết lập màu nền của plot là màu trắng
+		
+
 		plot.setBackgroundPaint(Color.WHITE);
 		// Thiết lập màu của các đường grid trên trục x là màu đen
 		plot.setDomainGridlinePaint(Color.BLACK);
 		// Thiết lập màu của các đường grid trên trục y là màu đen
 		plot.setRangeGridlinePaint(Color.BLACK);
 
-		// Lấy trục x từ plot
+
 		CategoryAxis domainAxis = plot.getDomainAxis();
 		// Thiết lập vị trí của nhãn trên trục x là 45 độ
 		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
@@ -112,8 +113,8 @@ public class BieuDoThongKeCH extends JPanel {
 
 	public void Update(String CongViec, String loai, ArrayList<String> day, String dateFormatStr) {
 		try {
-			dataset1 = view.BieuDoThongKeSP.setData(CongViec, "Số lượng", loai, day, dateFormatStr);
-			dataset2 = view.BieuDoThongKeSP.setData(CongViec, "Giá trị", loai, day, dateFormatStr);
+			dataset1 = view.BieuDoDuong_Duong.setData(CongViec, "Số lượng", loai, day, dateFormatStr);
+			dataset2 = view.BieuDoDuong_Duong.setData(CongViec, "Giá trị", loai, day, dateFormatStr);
 			removeAll();
 			JFreeChart chart = createChart(dataset1, dataset2);
 			ChartPanel chartPanel = new ChartPanel(chart);

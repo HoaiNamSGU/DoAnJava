@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,7 +25,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import database.JDBCUtil;
 import model.NguoiDung;
 import model.NhanVien;
-import view.TaiKhoanView;
 
 public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 

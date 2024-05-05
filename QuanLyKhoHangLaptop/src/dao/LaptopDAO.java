@@ -33,7 +33,6 @@ public class LaptopDAO implements DAOInterface<Laptop> {
 		return new LaptopDAO();
 	}
 
-	@Override
 	public Laptop selectById(String T) {
 		Laptop kq = new Laptop();
 		try {
@@ -640,11 +639,6 @@ public class LaptopDAO implements DAOInterface<Laptop> {
 		return ketqua;
 	}
 
-	@Override
-	public Laptop selectById(String T) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int delete(String t) {

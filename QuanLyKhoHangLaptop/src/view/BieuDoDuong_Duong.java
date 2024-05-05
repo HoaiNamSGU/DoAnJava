@@ -20,13 +20,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import dao.PhieuNhapDao;
 import dao.PhieuXuatDao;
 
-public class BieuDoThongKeSP extends JPanel {
+public class BieuDoDuong_Duong extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private DefaultCategoryDataset dataset2;
 	private DefaultCategoryDataset dataset1;
 
-	public BieuDoThongKeSP() {
+	public BieuDoDuong_Duong() {
 		// Tạo bộ dữ liệu mẫu cho biểu đồ
 		dataset1 = new DefaultCategoryDataset();
 		dataset2 = new DefaultCategoryDataset();
@@ -111,7 +111,6 @@ public class BieuDoThongKeSP extends JPanel {
         	loai2="";
         	break;
 		default:
-
 		}
 	
         if (CongViec.equals("Nhập Hàng")&&!loai1.isEmpty()) {

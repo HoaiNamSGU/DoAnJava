@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import view.XuatHang;
@@ -26,12 +27,27 @@ public class Controllerxuathang {
 			}
 		});
 	}
-	
+	public static void addMouseListener(JTable label, XuatHang nh) {
+		label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JTable check = (JTable) e.getSource();
+				if(check==nh.table) {
+					nh.themsanpham();
+				}else if(check==nh.table1) {
+					nh.clickvaotable1();
+				}
+			}
+		});
+	}
 	public static void addKeyListener(JTextField jt,XuatHang nh) {
 		jt.addKeyListener(new KeyAdapter() {
 		@Override
 		public void keyReleased(KeyEvent e) {
-			if(e.getSource()==nh.jt_otimkiem) {
+			JTextField check=(JTextField)e.getSource();
+			if(check==nh.jt_soluong) {
+				nh.hiengiakhithem();
+			}else if (check==nh.jt_otimkiem){
 				nh.thanhtimkiem();
 			}
 		}	
@@ -39,24 +55,26 @@ public class Controllerxuathang {
 	}
 	
 	
-	public static void ActionListener(JButton jt,XuatHang nh) {
+	public static void ActionListener(JButton jt, XuatHang nh) {
 		jt.addMouseListener(new MouseAdapter() {
-		 	@Override
-		 	public void mouseClicked(MouseEvent e) {
-		 		if(e.getSource()== nh.btn_themsp) {
-					nh.themsanpham();
-				}
-				else if(e.getSource()==nh.btn_xoasp) {
-					nh.xoasanpham();
-				}else if(e.getSource()==nh.btn_lammoi) {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JButton check=(JButton)e.getSource();
+				if(check==nh.btn_themsp) {
+					nh.themvaobang();
+				}else if(check==nh.btn_nhaphang) {
+					nh.nhaphang();
+				}else if(check ==nh.btn_quaylai) {
+					nh.nutquaylai();
+				}else if(check==nh.btn_timkiem) {
 					nh.lammoithanh();
-				
-				}else if(e.getSource()==nh.btn_nhaphang) {
-					nh.NhapHang();
-				}else if(e.getSource()==nh.btn_suasoluong){
-					nh.suasl();
 				}
-		 	}
-		 });
+				else if(check==nh.btn_xoasp) {
+					nh.xoasanphamthem();
+				}else if(check==nh.btn_suasp) {
+					nh.suasanphamthem();
+				}
+			}
+		});
 	}
 }

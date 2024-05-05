@@ -57,6 +57,7 @@ public class mainView extends JFrame {
 	public static NguoiDung nguoidung = new NguoiDung();
 	public static NhanVien nhanvien = new NhanVien();
 	public DoiThongTinUser user = new DoiThongTinUser();
+	public Nhacungcap nhacungcap=new Nhacungcap();
 	public JPanel panel_menu;
 	public JPanel panel_west;
 	public Source source = new Source();

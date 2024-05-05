@@ -27,7 +27,9 @@ public class LoginActionlistener implements ActionListener {
 		if (src.equals("Đăng nhập")) {
 			boolean check = false;
 			String tk = loginview.textField_username.getText();
-			String mk = loginview.passwordField.getText();
+			char[] pass = loginview.passwordField.getPassword();
+			String mk = new String(pass);
+
 			ArrayList<NguoiDung> arr = NguoiDungDAO.getintance().selectAll();
 			for (NguoiDung nguoiDung : arr) {
 				if (nguoiDung.getTaiKhoan().equals(tk) && nguoiDung.getMatKhau().equals(mk)) {

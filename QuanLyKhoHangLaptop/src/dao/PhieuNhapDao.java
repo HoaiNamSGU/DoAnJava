@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import database.JDBCUtil;
 import model.ChiTietPhieuNhap;
+import model.NhaCungCap;
 import model.PhieuNhap;
 
 public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
@@ -220,59 +221,59 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		return s;
 	}
 
-//	public String laytennhanvien(String manhanv) {
-//		String s=null;
-//		try {
-//			Connection con=JDBCUtil.getConnection();
-//			String sql="SELECT * FROM nhanvien WHERE  MaNhanVien='" + manhanv + "'";
-//			PreparedStatement pst=con.prepareStatement(sql);
-//			ResultSet rs=pst.executeQuery(sql);
-//			while(rs.next()) {
-//				s=rs.getString("TenNhanVien");
-//			}
-//			JDBCUtil.closeConnection(con);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return s;
-//	}
-//	
-//	public String laymanhanvien(String manhanv) {
-//		String s=null;
-//		try {
-//			Connection con=JDBCUtil.getConnection();
-//			String sql="SELECT * FROM nhanvien WHERE  TenNhanVien='" + manhanv + "'";
-//			PreparedStatement pst=con.prepareStatement(sql);
-//			ResultSet rs=pst.executeQuery(sql);
-//			while(rs.next()) {
-//				s=rs.getString("MaNhanVien");
-//			}
-//			JDBCUtil.closeConnection(con);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return s;
-//	}
-
-//	public ArrayList<String> Layalltennv() {
-//		ArrayList<String> ketqua=new ArrayList<String>();
-//		try {
-//			Connection con=JDBCUtil.getConnection();
-//			String sql="SELECT TenNhanVien FROM nhanvien";
-//			PreparedStatement pst=con.prepareStatement(sql);
-//		ResultSet rs=pst.executeQuery(sql);
-//		while(rs.next()) {
-//			String tnv=rs.getString("TenNhanVien");
-//			ketqua.add(tnv);
-//		}
-////		BƯỚC 5: NGẮT KẾT NỐI
-//		JDBCUtil.closeConnection(con);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return ketqua;
-//	}
+	public String laytennhanvien(String manhanv) {
+		String s=null;
+		try {
+			Connection con=JDBCUtil.getConnection();
+			String sql="SELECT * FROM nhanvien WHERE  MaNhanVien='" + manhanv + "'";
+			PreparedStatement pst=con.prepareStatement(sql);
+			ResultSet rs=pst.executeQuery(sql);
+			while(rs.next()) {
+				s=rs.getString("TenNhanVien");
+			}
+			JDBCUtil.closeConnection(con);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return s;
+	}
+	
+	public String laymanhanvien(String manhanv) {
+		String s=null;
+		try {
+			Connection con=JDBCUtil.getConnection();
+			String sql="SELECT * FROM nhanvien WHERE  TenNhanVien='" + manhanv + "'";
+			PreparedStatement pst=con.prepareStatement(sql);
+			ResultSet rs=pst.executeQuery(sql);
+			while(rs.next()) {
+				s=rs.getString("MaNhanVien");
+			}
+			JDBCUtil.closeConnection(con);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return s;
+	}
+//
+	public ArrayList<String> Layalltennv() {
+		ArrayList<String> ketqua=new ArrayList<String>();
+		try {
+			Connection con=JDBCUtil.getConnection();
+			String sql="SELECT TenNhanVien FROM nhanvien";
+			PreparedStatement pst=con.prepareStatement(sql);
+		ResultSet rs=pst.executeQuery(sql);
+		while(rs.next()) {
+			String tnv=rs.getString("TenNhanVien");
+			ketqua.add(tnv);
+		}
+//		BƯỚC 5: NGẮT KẾT NỐI
+		JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ketqua;
+	}
 
 	@Override
 	public PhieuNhap selectById(PhieuNhap t) {
@@ -286,9 +287,9 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		return null;
 	}
 
-	@Override
-	public ArrayList<PhieuNhap> selectByCondition(String condition) {
-		return null;
+//	@Override
+//	public ArrayList<PhieuNhap> selectByCondition(String condition) {
+//		return null;
 //		ArrayList<NhaCungCap> ketqua=new ArrayList<NhaCungCap>();
 //		try {
 //			Connection con=JDBCUtil.getConnection();
@@ -311,7 +312,7 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 //			e.printStackTrace();
 //		}
 //		return ketqua;
-	}
+//	}
 
 	@Override
 	public int insert(PhieuNhap t) {
@@ -377,6 +378,12 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		}
 
 		return firstDay;
+	}
+
+	@Override
+	public ArrayList<PhieuNhap> selectByCondition(String condition) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

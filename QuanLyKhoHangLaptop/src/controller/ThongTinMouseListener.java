@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -10,19 +9,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
-import view.DoiMatKhau;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 
 import dao.NguoiDungDAO;
 import dao.NhanVienDAO;
 import model.NguoiDung;
 import model.NhanVien;
+import view.DoiMatKhau;
 import view.DoiThongTinUser;
 import view.ThemTaiKhoan;
 import view.mainView;

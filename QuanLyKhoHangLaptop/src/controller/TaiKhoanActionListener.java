@@ -20,7 +20,7 @@ public class TaiKhoanActionListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		String src = e.getActionCommand();
+		//String src = e.getActionCommand();
 		
 		if(e.getSource()==view.button_refesh1)
 		{

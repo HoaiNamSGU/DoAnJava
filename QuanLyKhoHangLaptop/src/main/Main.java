@@ -1,8 +1,8 @@
-package test;
+package main;
 
 import view.login;
 
-public class test {
+public class Main {
 	public static void main(String[] args) {	
 		new login();
 	}
