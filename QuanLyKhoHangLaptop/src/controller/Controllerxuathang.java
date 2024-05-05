@@ -1,32 +1,40 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import view.Phieunhap;
 import view.XuatHang;
+import view.XuatHangtmp;
+import view.NhapHang;
 
-public class Controllerxuathang {
+public class Controllernxuathang {
 	private static XuatHang nh;
-	public Controllerxuathang(XuatHang nhh) {
-		this.nh=nhh;
+
+	public Controllernxuathang(XuatHang nhh) {
+		this.nh = nhh;
 	}
-	
-	public static void addMouseListener(JLabel label,XuatHang nh) {
+
+	public static void addMouseListener(JLabel label, XuatHang nh) {
 		label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel check = (JLabel) e.getSource();
-		        
+				
 			}
 		});
 	}
+
 	public static void addMouseListener(JTable label, XuatHang nh) {
 		label.addMouseListener(new MouseAdapter() {
 			@Override
@@ -40,19 +48,30 @@ public class Controllerxuathang {
 			}
 		});
 	}
-	public static void addKeyListener(JTextField jt,XuatHang nh) {
-		jt.addKeyListener(new KeyAdapter() {
-		@Override
-		public void keyReleased(KeyEvent e) {
-			JTextField check=(JTextField)e.getSource();
-			if(check==nh.jt_soluong) {
-				nh.hiengiakhithem();
-			}else if (check==nh.jt_otimkiem){
-				nh.thanhtimkiem();
-			}
-		}	
-	});
+	
+	public static void addActionListener(JComboBox label, XuatHang nh) {
+		label.addActionListener(new ActionListener() {
+         	public void actionPerformed(ActionEvent e) {
+				JComboBox check = (JComboBox) e.getSource();
+         		
+         		}
+         });
 	}
+	
+	public static void addKeyListener(JTextField jt, XuatHang nh) {
+		jt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				JTextField check=(JTextField)e.getSource();
+				if(check==nh.jt_soluong) {
+					nh.hiengiakhithem();
+				}else if (check==nh.jt_otimkiem){
+					nh.thanhtimkiem();
+				}
+			}
+		});
+	}
+
 	
 	
 	public static void ActionListener(JButton jt, XuatHang nh) {
@@ -68,12 +87,12 @@ public class Controllerxuathang {
 					nh.nutquaylai();
 				}else if(check==nh.btn_timkiem) {
 					nh.lammoithanh();
-				}
-				else if(check==nh.btn_xoasp) {
+				}else if(check==nh.btn_xoasp) {
 					nh.xoasanphamthem();
 				}else if(check==nh.btn_suasp) {
 					nh.suasanphamthem();
 				}
+//			}
 			}
 		});
 	}
