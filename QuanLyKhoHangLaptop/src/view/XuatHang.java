@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controllernhaphang;
-import controller.Controllernxuathang;
+import controller.Controllerxuathang;
 import dao.CuaHangDAO;
 import dao.LaptopDAO;
 import dao.PhieuNhapDao;
@@ -462,16 +462,16 @@ public class XuatHang extends JFrame {
 			table1.getTableHeader().setResizingAllowed(false);
 			table1.getTableHeader().setReorderingAllowed(false);
 			
-			Controllernxuathang.ActionListener(btn_themsp, this);
-			Controllernxuathang.addKeyListener(jt_otimkiem, this);
-			Controllernxuathang.addKeyListener(jt_soluong, this);
-			Controllernxuathang.addMouseListener(table, this);
-			Controllernxuathang.addMouseListener(table1, this);
-			Controllernxuathang.ActionListener(btn_nhaphang, this);
-			Controllernxuathang.ActionListener(btn_quaylai, this);
-			Controllernxuathang.ActionListener(btn_timkiem, this);
-			Controllernxuathang.ActionListener(btn_xoasp, this);
-			Controllernxuathang.ActionListener(btn_suasp, this);
+			Controllerxuathang.ActionListener(btn_themsp, this);
+			Controllerxuathang.addKeyListener(jt_otimkiem, this);
+			Controllerxuathang.addKeyListener(jt_soluong, this);
+			Controllerxuathang.addMouseListener(table, this);
+			Controllerxuathang.addMouseListener(table1, this);
+			Controllerxuathang.ActionListener(btn_nhaphang, this);
+			Controllerxuathang.ActionListener(btn_quaylai, this);
+			Controllerxuathang.ActionListener(btn_timkiem, this);
+			Controllerxuathang.ActionListener(btn_xoasp, this);
+			Controllerxuathang.ActionListener(btn_suasp, this);
 
 
 	}
