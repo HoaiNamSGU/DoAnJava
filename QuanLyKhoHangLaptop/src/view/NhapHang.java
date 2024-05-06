@@ -75,7 +75,7 @@ public class NhapHang extends JFrame {
 	private Laptop lt;
 	private JLabel tongsoluog;
 	private JLabel kqtongsoluong;
-	private JComboBox comboBox_ncc;
+	public JComboBox comboBox_ncc;
 	private JLabel Label_nv;
 	
 
@@ -421,6 +421,7 @@ public class NhapHang extends JFrame {
 		Controllernhaphang.ActionListener(btn_timkiem, this);
 		Controllernhaphang.ActionListener(btn_xoasp, this);
 		Controllernhaphang.ActionListener(btn_suasp, this);
+		Controllernhaphang.addActionListener(comboBox_ncc, this);
 
 	}
 
@@ -638,5 +639,16 @@ public class NhapHang extends JFrame {
 		}
 		kqtongtiennn.setText(String.valueOf(tongtien));
 		kqtongsoluong.setText(String.valueOf(tongsoluongphieu));
+	}
+	
+	public void thaydoicomboboxnhac() {
+		String str = (String) comboBox_ncc.getSelectedItem();
+		if (!str.isEmpty()) {
+			ArrayList<Laptop> newSp = LaptopDAO.getintance().Select_search("MaNhaCungCap", str);
+			//table.removeAll();
+			for (Laptop sp : newSp)
+				if (sp.getMaNhaCungCap().equals(str))
+					model.addRow(new Object[] { sp.getMaLaptop(), sp.getTenLaptop(), sp.getSoLuong() });
+		}
 	}
 }

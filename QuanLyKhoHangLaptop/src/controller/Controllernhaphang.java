@@ -51,7 +51,9 @@ public class Controllernhaphang {
 		label.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
 				JComboBox check = (JComboBox) e.getSource();
-         		
+         			if(check==nh.comboBox_ncc) {
+         				nh.thaydoicomboboxnhac();
+         			}
          		}
          });
 	}
