@@ -176,6 +176,8 @@ public String laymanhanvien(String manhanv) {
 			pst.setDate(3, t.getNgaySinh());
 			pst.setInt(4,t.getGioiTinh());
 			pst.setString(5, t.getSDT());
+			pst.setString(6, t.getMaNguoiDung());
+			pst.setInt(7, t.getIsDelete());
 			pst.setString(8,t.getMaNhanVien());
 			ketqua = pst.executeUpdate();
 			JDBCUtil.closeConnection(con);
