@@ -175,7 +175,7 @@ public class CuaHangMouseListener implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 
 				// lấy dữ liệu từ giao diện sửa
-				String maCH = CRUDCH.textField_MaCH.getText();
+				String maCH = CRUDCH.textField_MaCH.getText().toUpperCase();
 				String tenCH = CRUDCH.textField_TenCH.getText();
 				String sdt = CRUDCH.textField_SDT.getText();
 				String diaChi = CRUDCH.textField_DiaChi.getText() + ", " + CRUDCH.comboBox_XaPhuong.getSelectedItem()

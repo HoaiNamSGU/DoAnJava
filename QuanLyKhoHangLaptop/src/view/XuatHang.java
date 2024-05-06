@@ -493,7 +493,7 @@ public class XuatHang extends JFrame {
 //		DecimalFormat df2 = new DecimalFormat("#");
 //		String formattedNumber2 = df2.format(Double.parseDouble(tongtienn));
 //	 	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int isDelete) {
-		PhieuXuat pn1 = new PhieuXuat(maphieun, manhacc, manhanvi, date, Double.parseDouble(kqtongtiennn.getText()),
+		PhieuXuat pn1 = new PhieuXuat(maphieun.toUpperCase(), manhacc, manhanvi, date, Double.parseDouble(kqtongtiennn.getText()),
 				Integer.parseInt(kqtongsoluong.getText()), 0);
 		PhieuXuatDao.getInstance().insert(pn1);
 		for (int i = 0; i < table1.getRowCount(); i++) {
@@ -502,7 +502,7 @@ public class XuatHang extends JFrame {
 
 			String thanhtienm = model1.getValueAt(i, 11) + "";
 //				public ChiTietPhieuXuat(String maPhieuXuat, String maLaptop, int soLuong, Double thanhTien, int isDelete) {
-			ChiTietPhieuXuat ctpn = new ChiTietPhieuXuat(maphieun, masanpham, soluongm, Double.parseDouble(thanhtienm),
+			ChiTietPhieuXuat ctpn = new ChiTietPhieuXuat(maphieun.toUpperCase(), masanpham, soluongm, Double.parseDouble(thanhtienm),
 					0);
 			PhieuXuatDao.getInstance().inchitietphieu(ctpn);
 			LaptopDAO.getintance().update1dulieu(masanpham, 0 - soluongm);
@@ -517,7 +517,7 @@ public class XuatHang extends JFrame {
 			model.addRow(new Object[] { sp.getMaLaptop(), sp.getTenLaptop(), sp.getSoLuong() });
 		}
 		update();
-		JOptionPane.showConfirmDialog(null, "Nhập hàng thành công", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
+		JOptionPane.showConfirmDialog(null, "Xuất hàng thành công", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
 	}
 
 	public void clickvaotable1() {

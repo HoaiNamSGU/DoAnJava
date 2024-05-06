@@ -28,11 +28,14 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 			String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieuxuat WHERE " + type + " LIKE ?";
 			PreparedStatement pst = con.prepareStatement(sql);
 
-			// Chuyển đổi ngày xuất thành ngày SQL
-			String day;
+			
+			String day;// day chỉ là tên biến Nam dùng tạm, không có ý nghĩa bắt buộc là phải là "ngày"
+			// nếu type là selec theo ngày xuất
 			if (type.equals("NgayXuat"))
+				// Chuyển đổi ngày xuất thành ngày SQL
 				day = convertToDate(ngayXuat);
 			else
+				// type select theo các cột khác
 				day = ngayXuat;
 
 			pst.setString(1, "%" + day + "%");
@@ -55,11 +58,15 @@ public class PhieuXuatDao implements DAOInterface<PhieuXuat> {
 			PreparedStatement pst = con.prepareStatement(sql);
 
 			// Chuyển đổi ngày xuất thành ngày SQL
-			String day;
+			String day;// day chỉ là tên biến Nam dùng tạm, không có ý nghĩa bắt buộc là phải là "ngày"
+			// nếu type là selec theo ngày xuất
 			if (type.equals("NgayXuat"))
+				// Chuyển đổi ngày xuất thành ngày SQL
 				day = convertToDate(ngayXuat);
 			else
+				// type select theo các cột khác
 				day = ngayXuat;
+			
 			pst.setString(1, "%" + day + "%");
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {

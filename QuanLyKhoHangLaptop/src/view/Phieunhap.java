@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -35,14 +37,6 @@ import img.Source;
 import model.Laptop;
 import model.NhaCungCap;
 import model.PhieuNhap;
-import view.Xemchitietnhap;
-import dao.PhieuNhapDao;
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class Phieunhap extends JFrame {
 	private JTextField textField;
@@ -239,9 +233,9 @@ public class Phieunhap extends JFrame {
 				"T\u00ECm ki\u1EBFm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		jp_chucnang.add(jp_timkiem);
 		GridBagLayout gbl_jp_timkiem = new GridBagLayout();
-		gbl_jp_timkiem.columnWidths = new int[] { 195, 195, 195 };
+		gbl_jp_timkiem.columnWidths = new int[] {150, 150, 150};
 		gbl_jp_timkiem.rowHeights = new int[] { 32, 32 };
-		gbl_jp_timkiem.columnWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_jp_timkiem.columnWeights = new double[] { 0.0, 0.0, 0.0 };
 		gbl_jp_timkiem.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		jp_timkiem.setLayout(gbl_jp_timkiem);
 
@@ -279,6 +273,9 @@ public class Phieunhap extends JFrame {
 		btn_lammoi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				txtx_timkiem.setText("");
+				cbb_timkiem.setSelectedIndex(0);
+				thanhtimkiem();
 			}
 		});
 		btn_lammoi.setFont(new Font("Tahoma", Font.PLAIN, 15));

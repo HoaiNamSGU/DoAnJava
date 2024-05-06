@@ -134,14 +134,14 @@ public class AddNhaCungCap extends JFrame {
 		btn_them.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (tx1.getText().length() <= 0 || tx2.getText() == "" || tx3.getText() == "" || tx4.getText() == ""
-						|| tx5.getText() == "") {
+				if (tx1.getText().trim().isEmpty() || tx2.getText().trim().isEmpty() || tx3.getText().trim().isEmpty() || tx4.getText().trim().isEmpty()
+						|| tx5.getText().trim().isEmpty()) {
 					JOptionPane.showConfirmDialog(null, " Dữ liệu bạn nhập vào đang bị thiếu. Mời bạn nhập lại", "hi",
 							JOptionPane.CLOSED_OPTION);
 					return;
 				} 
 				if (nhacungcapDao.getInstance().isMaNCCExit(tx1.getText())) {
-					NhaCungCap CH = nhacungcapDao.getInstance().selectById(tx1.getText());
+					NhaCungCap CH = nhacungcapDao.getInstance().selectById(tx1.getText().toUpperCase());
 					if (CH.getIsDelete() == 0) {
 						JOptionPane.showMessageDialog(null, "Mã nhà cung cấp đã tồn tại", "Lỗi",
 								JOptionPane.ERROR_MESSAGE);
@@ -153,7 +153,7 @@ public class AddNhaCungCap extends JFrame {
 								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 						if (choice == JOptionPane.YES_OPTION) {
-							nhacungcapDao.getInstance().restoreNCC(tx1.getText());
+							nhacungcapDao.getInstance().restoreNCC(tx1.getText().toUpperCase());
 							dispose();
 							ncc.nutlammoi();
 							return;
@@ -176,7 +176,7 @@ public class AddNhaCungCap extends JFrame {
 					String email = tx3.getText();
 					String dc = tx4.getText();
 					String sdt = tx5.getText();
-					NhaCungCap sp = new NhaCungCap(mnc, tnc, dc, sdt, email,0);
+					NhaCungCap sp = new NhaCungCap(mnc.toUpperCase(), tnc, dc, sdt, email,0);
 					nhacungcapDao.getInstance().insert(sp);
 					JOptionPane.showMessageDialog(null, "Thêm Nhà cung cấp thành công");
 //							setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

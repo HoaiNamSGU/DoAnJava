@@ -31,7 +31,6 @@ import dao.NhanVienDAO;
 import img.Source;
 import model.NguoiDung;
 import model.NhanVien;
-import javax.swing.SwingConstants;
 
 public class TaiKhoanView extends JPanel {
 

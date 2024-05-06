@@ -20,15 +20,14 @@ public class CuaHangActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 		Object src = e.getSource();
 		if (src == CuaHangView.comboBox_search_QuanHuyen) {
-
+			CuaHangView.textField_Search.setText(null);
 			CuaHangView.updateComBoBox_XaPhuong();
-
 			ArrayList<CuaHang> newData = advancedSearch();
 			CuaHangView.updateData(newData);
 
 		}
 		if (src == CuaHangView.comboBox_search_XaPhuong) {
-
+			CuaHangView.textField_Search.setText(null);
 			ArrayList<CuaHang> newData = advancedSearch();
 			CuaHangView.updateData(newData);
 		}

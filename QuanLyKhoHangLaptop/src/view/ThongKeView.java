@@ -179,13 +179,12 @@ public class ThongKeView extends JPanel {
 	public void updateDateFormats() {
 		String selectedFormat = dateFormat[comboBox_ThoiGian.getSelectedIndex()];
 
-		// xóa dữ liệu comboBox hiện tại
 		comboBox_NgayBD.removeAllItems();
 		comboBox_NgayKT.removeAllItems();
 
 		ArrayList<String> startDayString = new ArrayList<String>();
 
-		// lấy dữ liệu ngày/tháng/năm mới
+		// lấy dữ liệu ngày/tháng/năm mới dựa trên công việc đã chọn
 		if (comboBox_CongViec.getSelectedItem().toString() == "Nhập Hàng")
 			startDayString = PhieuNhapDao.getInstance().selectDay();
 		else
@@ -228,55 +227,61 @@ public class ThongKeView extends JPanel {
 		return formattedDates;
 	}
 
-	public void updateData(String loai) {
+	public void updateData(String loaiThongKe) {
 		panel_Center.removeAll();
 		String congViec = comboBox_CongViec.getSelectedItem().toString();
 		int StartDay = comboBox_NgayBD.getSelectedIndex();
 		int EndDay = comboBox_NgayKT.getSelectedIndex();
 
-		ArrayList<String> day = new ArrayList<String>();
+		ArrayList<String> Result = new ArrayList<String>();
 		ArrayList<PhieuXuat> CH = PhieuXuatDao.getInstance().selectAll();
 		ArrayList<PhieuNhap> NCC = PhieuNhapDao.getInstance().selectAll();
 
 		String DateFomart = dateFormat[comboBox_ThoiGian.getSelectedIndex()];
-		switch (loai) {
-		case "Sản Phẩm":
-			for (int i = StartDay; i <= EndDay; i++)
-				if (comboBox_NgayBD.getItemAt(i) != null)
-					day.add(comboBox_NgayBD.getItemAt(i).toString());
-			bdsp.Update(congViec, loai, day, DateFomart);
-			panel_Center.add(bdsp);
-			break;
-		case "Cửa Hàng":
-			Set<String> uniqueMaCH = new HashSet<>();
-
-			// Lặp qua danh sách CH để lấy các mã CH duy nhất
-			for (PhieuXuat px : CH) {
-				uniqueMaCH.add(px.getMaCuaHang());
-			}
-
-			day.addAll(uniqueMaCH);
-			bdch.Update("Xuất Hàng", loai, day, DateFomart);
-			panel_Center.add(bdch);
-			break;
-		case "Nhà Cung Cấp":
-			Set<String> uniqueMaNCC = new HashSet<>();
-
-			// Lặp qua danh sách CH để lấy các mã CH duy nhất
-			for (PhieuNhap px : NCC) {
-				uniqueMaNCC.add(px.getMaNhaCungCap());
-			}
-
-			day.addAll(uniqueMaNCC);
-			bdch.Update("Nhập Hàng", loai, day, DateFomart);
-			panel_Center.add(bdch);
-			break;
-		default:
-			break;
+		switch (loaiThongKe) {
+		
+			case "Sản Phẩm":
+				for (int i = StartDay; i <= EndDay; i++)
+					if (comboBox_NgayBD.getItemAt(i) != null)
+						Result.add(comboBox_NgayBD.getItemAt(i).toString());
+				
+				bdsp.Update(congViec, loaiThongKe, Result, DateFomart);
+				panel_Center.add(bdsp);
+				break;
+				
+			case "Cửa Hàng":
+				//lấy danh sách không bị trùng
+				Set<String> uniqueMaCH = new HashSet<>();
+				for (PhieuXuat px : CH) 
+					uniqueMaCH.add(px.getMaCuaHang());
+				
+				Result.addAll(uniqueMaCH);
+				bdch.Update("Xuất Hàng", loaiThongKe, Result, DateFomart);
+				panel_Center.add(bdch);
+				break;
+				
+			case "Nhà Cung Cấp":
+				Set<String> uniqueMaNCC = new HashSet<>();
+				for (PhieuNhap pn : NCC) 
+					uniqueMaNCC.add(pn.getMaNhaCungCap());
+	
+				Result.addAll(uniqueMaNCC);
+				bdch.Update("Nhập Hàng", loaiThongKe, Result, DateFomart);
+				panel_Center.add(bdch);
+				break;
+			default:
+				break;
 			
 		}
-		revalidate(); // Revalidate panel để cập nhật layout
+		
+		revalidate(); // cập nhật layout
 	    repaint();
+	}
+	public void setEnableComboBox(Boolean type) {
+		comboBox_NgayBD.setEnabled(type);
+		comboBox_NgayKT.setEnabled(type);
+		comboBox_CongViec.setEnabled(type);
+		comboBox_ThoiGian.setEnabled(type);
 	}
 
 }

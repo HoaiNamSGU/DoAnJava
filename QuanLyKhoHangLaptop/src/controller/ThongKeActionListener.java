@@ -31,8 +31,7 @@ public class ThongKeActionListener implements ActionListener {
 
 		if (e.getSource().equals(ThongKeView.comboBox_NgayBD) || e.getSource().equals(ThongKeView.comboBox_NgayKT)) {
 			ThongKeView.updateComboBox();
-			//ThongKeView.updateData(ThongKeView.loai);
-			
+			return;
 		}
 
 	}

@@ -19,56 +19,59 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		return new PhieuNhapDao();
 	}
 
-	public int getTotalSoLuong(String type,String ngayNhap) {
-	    int total = 0;
-	    try {
-	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieunhap WHERE "+type+" LIKE ?";
-	        PreparedStatement pst = con.prepareStatement(sql);
-	        
-	        // Chuyển đổi ngày nhập thành ngày SQL
-	        String day;
-	        if(type.equals("NgayNhap"))
-	        	day = convertToDate(ngayNhap);
-	        else 
-				day=ngayNhap;
-			
-	        pst.setString(1,"%"+day+"%");
-	        ResultSet rs = pst.executeQuery();
-	        if (rs.next()) {
-	            total = rs.getInt("Total");
-	        }
-	        con.close();
-	    } catch (Exception e) {
-	        System.out.println(e);
-	    }
-	    return total;
+	public int getTotalSoLuong(String type, String ngayNhap) {
+		int total = 0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "SELECT SUM(TongSoLuong) AS Total FROM phieunhap WHERE " + type + " LIKE ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+
+			String day;// day chỉ là tên biến Nam dùng tạm, không có ý nghĩa bắt buộc là phải là "ngày"
+			// nếu type là selec theo ngày nhập
+			if (type.equals("NgayNhap"))
+				// Chuyển đổi ngày nhập thành ngày SQL
+				day = convertToDate(ngayNhap);
+			// type select theo các cột khác
+			else
+				day = ngayNhap;
+
+			pst.setString(1, "%" + day + "%");
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				total = rs.getInt("Total");
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return total;
 	}
 
-	public Double getTotalTongTien(String type,String ngayNhap) {
+	public Double getTotalTongTien(String type, String ngayNhap) {
 		Double total = 0.0;
-	    try {
-	        Connection con = JDBCUtil.getConnection();
-	        String sql = "SELECT SUM(TongTien) AS Total FROM phieunhap WHERE "+type+" LIKE ?";
-	        PreparedStatement pst = con.prepareStatement(sql);
-	        
-	        // Chuyển đổi ngày nhập thành ngày SQL
-	        String day;
-	        if(type.equals("NgayNhap"))
-	        	day = convertToDate(ngayNhap);
-	        else 
-				day=ngayNhap;
-	        
-	        pst.setString(1,"%"+day+"%");
-	        ResultSet rs = pst.executeQuery();
-	        if (rs.next()) {
-	            total = rs.getDouble("Total")/1000000.0;
-	        }
-	        con.close();
-	    } catch (Exception e) {
-	        System.out.println(e);
-	    }
-	    return total;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			String sql = "SELECT SUM(TongTien) AS Total FROM phieunhap WHERE " + type + " LIKE ?";
+			PreparedStatement pst = con.prepareStatement(sql);
+
+			String day;// day chỉ là tên biến Nam dùng tạm, không có ý nghĩa bắt buộc là phải chỉ ngày
+			if (type.equals("NgayNhap"))
+				// Chuyển đổi ngày nhập thành ngày SQL
+				day = convertToDate(ngayNhap);
+			else
+				// type select theo các cột khác
+				day = ngayNhap;
+
+			pst.setString(1, "%" + day + "%");
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				total = rs.getDouble("Total") / 1000000.0;
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return total;
 	}
 
 	// Phương thức chuyển đổi chuỗi ngày thành java.sql.Date
@@ -83,8 +86,6 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 		}
 		return newDay.toString();
 	}
-
-
 
 //	public int insert(PhieuNhap t) {
 //		int ketqua = 0;
@@ -117,7 +118,7 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 //	}
 
 	public void inchitietphieu(ChiTietPhieuNhap t) {
-		int kq=0;
+		int kq = 0;
 		try {
 			Connection con = JDBCUtil.getConnection();
 			String sql = "INSERT INTO chitietphieunhap(MaPhieuNhap,MaLapTop,SoLuong,ThanhTien,isDelete)\r\n"
@@ -131,8 +132,10 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 			kq = pst.executeUpdate();
 //			kq=pst.executeUpdate();
 			JDBCUtil.closeConnection(con);
-			if (kq > 0) System.out.println("Thêm dữ liệu thành công");
-			else System.out.println("Thêm dữ liệu thất bại");
+			if (kq > 0)
+				System.out.println("Thêm dữ liệu thành công");
+			else
+				System.out.println("Thêm dữ liệu thất bại");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -204,7 +207,7 @@ public class PhieuNhapDao implements DAOInterface<PhieuNhap> {
 				String xoa = rs.getString("isDelete");
 				DecimalFormat df2 = new DecimalFormat("#");
 				String formattedNumber2 = df2.format(Double.parseDouble(tt));
-				PhieuNhap sp = new PhieuNhap(mpn, mncc, mnv, Double.parseDouble(formattedNumber2),tongsl, nn,
+				PhieuNhap sp = new PhieuNhap(mpn, mncc, mnv, Double.parseDouble(formattedNumber2), tongsl, nn,
 						Integer.parseInt(xoa));
 				ketqua.add(sp);
 			}
