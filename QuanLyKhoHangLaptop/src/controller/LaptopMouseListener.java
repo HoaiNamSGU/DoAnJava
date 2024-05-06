@@ -491,19 +491,36 @@ public class LaptopMouseListener implements MouseListener{
         else if(labelText.equals("Nhập Excel"))
         {
         	ArrayList<Laptop> lt = LaptopDAO.getintance().ReadExcel();
+        	ArrayList<Laptop> arr = LaptopDAO.getintance().selectAll();
+        	for (Laptop laptop :lt) {
+        		boolean check = true;
+				for (Laptop laptop2 : arr) {
+					if(laptop2.getMaLaptop().equals(laptop.getMaLaptop()))
+					{
+						check = false;
+					}
+				}
+				if(check==true)
+				{
+					arr.add(laptop);
+					LaptopDAO.getintance().insert(laptop);
+				}
+			}
+        	
         	if(lt.isEmpty()==false)
         	{
-        		laptopview.updateTableData(lt);
+        		laptopview.updateTableData(arr);
         		JOptionPane.showMessageDialog(laptopview,"Nhập file Excel thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         		clickedLabel.setForeground(Color.BLACK);
-       	     	clickedLabel.setBackground(null);
+       	     		clickedLabel.setBackground(null);
         	}
         	else
         	{
         		JOptionPane.showMessageDialog(laptopview,"Nhập file Excel thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
         		clickedLabel.setForeground(Color.BLACK);
-       	     	clickedLabel.setBackground(null);
+       	     		clickedLabel.setBackground(null);
         	}
+        	
         	
         }
 		
