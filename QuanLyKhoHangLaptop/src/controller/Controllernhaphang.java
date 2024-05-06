@@ -47,10 +47,10 @@ public class Controllernhaphang {
 		});
 	}
 	
-	public static void addActionListener(JComboBox label, NhapHang nh) {
+	public static void addActionListener(JComboBox<?> label, NhapHang nh) {
 		label.addActionListener(new ActionListener() {
          	public void actionPerformed(ActionEvent e) {
-				JComboBox check = (JComboBox) e.getSource();
+				JComboBox<?> check = (JComboBox<?>) e.getSource();
          			if(check==nh.comboBox_ncc) {
          				nh.thaydoicomboboxnhac();
          			}

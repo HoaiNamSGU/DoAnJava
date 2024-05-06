@@ -1,8 +1,3 @@
-/controller/
-/dao/
-/database/
-/img/
-/main/
-/model/
-/module-info.class
 /view/
+/dao/
+/controller/

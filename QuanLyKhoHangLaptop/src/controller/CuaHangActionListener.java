@@ -34,6 +34,7 @@ public class CuaHangActionListener implements ActionListener {
 		}
 		if (src == CuaHangView.jbutton_Sreach) {
 			String text = CuaHangView.textField_Search.getText();
+			CuaHangView.comboBox_search_QuanHuyen.setSelectedIndex(0);
 			ArrayList<CuaHang> newData = CuaHangDAO.getintance().Select_search("Tất cả", text);
 			CuaHangView.updateData(newData);
 		}

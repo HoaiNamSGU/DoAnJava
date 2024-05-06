@@ -52,37 +52,6 @@ public class CuaHangDAO implements DAOInterface<CuaHang> {
 		return 0;
 	}
 
-public CuaHang chon1nhacc(String macuahang) {
-		CuaHang ketqua=null;
-		try {
-//		BƯỚC 1: TẠO KẾT NỐI ĐẾN CSDL
-			Connection con=JDBCUtil.getConnection();
-//		BƯỚC 2: TẠO RA ĐỐI TƯỢNG STATEMENT
-			String sql="SELECT * FROM cuahang WHERE MaCuaHang='"+macuahang+"'";
-			PreparedStatement pst=con.prepareStatement(sql);
-//		BƯỚC 3: THỰC THI CÂU LỆNH SQL
-//		System.out.println(sql);
-		ResultSet rs=pst.executeQuery(sql);
-		// BƯỚC 4 XỬ LÝ KẾT QUẢ
-//		String manhacungcap, String tennhacungcap, String diachi, String sdt, String email
-		while(rs.next()) {
-			String mncc=rs.getString("MaCuaHang");
-			String tm=rs.getString("TenCH");
-			String dc=rs.getString("DiaChi");
-			String sdt=rs.getString("SDT");
-			int em=rs.getInt("isDelete");
-//			public CuaHang(String MaCH, String TenCH, String DiaChi, String SDT, int isDelete) {
-			ketqua=new CuaHang(mncc,tm,dc,sdt,em);
-		}
-//		BƯỚC 5: NGẮT KẾT NỐI
-		JDBCUtil.closeConnection(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ketqua;
-	}
-	
 	@Override
 	public ArrayList<CuaHang> selectAll() {
 		ArrayList<CuaHang> CH = new ArrayList<CuaHang>();
@@ -126,7 +95,7 @@ public CuaHang chon1nhacc(String macuahang) {
 
 		return selectById(MaCH) != null;
 	}
-	
+
 	// thêm 1 cửa hàng
 	public Boolean insertCuaHang(CuaHang CH) {
 		try {
@@ -187,6 +156,12 @@ public CuaHang chon1nhacc(String macuahang) {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, MaCH);
 			pst.executeUpdate();
+
+//			này chạy chậm hơn :)))
+//			CuaHang CH=selectById(MaCH);
+//			CH.setIsDelete(1);
+//			updateCuaHang(MaCH, CH);
+
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -197,7 +172,6 @@ public CuaHang chon1nhacc(String macuahang) {
 	// khôi phục cửa hàng đã xóa
 	public Boolean restoreCuaHang(String MaCH) {
 		try {
-
 			String sql = "UPDATE cuahang SET isDelete = 0 WHERE MaCuaHang = ?";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, MaCH);
@@ -209,7 +183,7 @@ public CuaHang chon1nhacc(String macuahang) {
 		}
 	}
 
-	// tìm kiếm đựa trên điều kiện cột và điều kiện chuỗi cần tìm
+	// tìm kiếm dựa trên điều kiện cột và điều kiện chuỗi cần tìm
 	public ArrayList<CuaHang> Select_search(String NameColumn, String condition) {
 		ArrayList<CuaHang> kq = new ArrayList<CuaHang>();
 		try {
@@ -218,14 +192,15 @@ public CuaHang chon1nhacc(String macuahang) {
 			if (NameColumn.equals("Tất cả")) {
 				sql = "SELECT * FROM cuahang WHERE MaCuaHang LIKE ? OR TenCH LIKE ? OR DiaChi LIKE ? OR SDT LIKE ?";
 				pst = con.prepareStatement(sql);
-				for (int i = 1; i <= 4; i++) {
+				for (int i = 1; i <= 4; i++)
 					pst.setString(i, "%" + condition + "%");
-				}
-			} else {
+			} 
+			else {
 				sql = "SELECT * FROM cuahang WHERE " + NameColumn + " LIKE ?";
 				pst = con.prepareStatement(sql);
 				pst.setString(1, "%" + condition + "%");
 			}
+			
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				String MaCH = rs.getString("MaCuaHang");

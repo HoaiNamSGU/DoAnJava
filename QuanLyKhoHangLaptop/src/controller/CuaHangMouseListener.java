@@ -112,47 +112,54 @@ public class CuaHangMouseListener implements MouseListener {
 		if (type.equals("Sửa")) {
 			MaCH = getSelectedMaCH();
 			if (MaCH != null) {
-				CuaHang CH;
 				if (CuaHangDAO.getintance().isMaCHExists(MaCH)) {
 					// lưu mã cửa hàng trước khi sửa để đối chiếu sau ki sửa
 					old_MaCH = MaCH;
 
-					CH = CuaHangDAO.getintance().selectById(MaCH);
+					CuaHang CH = CuaHangDAO.getintance().selectById(MaCH);
 
 					// đưa các dữ liệu của cửa hàng cần sửa lên giao diện sửa
 					CRUDCH.textField_MaCH.setText(CH.getMaCH());
 					CRUDCH.textField_TenCH.setText(CH.getTenCH());
 					CRUDCH.textField_SDT.setText(CH.getSDT());
 					CRUDCH.textField_DiaChi.setText(CH.getDiaChi());
-					String[] diachi = CH.getDiaChi().split(", ");
-					String ThanhPho = view.CuaHangView.chuyenThanhTenBien(diachi[diachi.length - 1]);
-					String Quan_Huyen = view.CuaHangView.chuyenThanhTenBien(diachi[diachi.length - 2]);
-					String Xa_Phuong = view.CuaHangView.chuyenThanhTenBien(diachi[diachi.length - 3]);
-					String Duong = diachi[diachi.length - 4];
 
-					for (String item : CRUDCH.ThanhPho) {
-						if (ThanhPho.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
-							CRUDCH.comboBox_TPHO.setSelectedItem(item);
-							break;
+					// tác dữ liệu địa chỉ để đảy lên gia0o diện sửa, có thể thiếu dữ liệu
+					try {
+
+						String[] diachi = CH.getDiaChi().split(", ");
+						String ThanhPho = view.CuaHangView.chuyenThanhTenBien(diachi[diachi.length - 1]);
+						String Quan_Huyen = view.CuaHangView.chuyenThanhTenBien(diachi[diachi.length - 2]);
+						String Xa_Phuong = view.CuaHangView.chuyenThanhTenBien(diachi[diachi.length - 3]);
+						String Duong = diachi[diachi.length - 4];
+
+						for (String item : CRUDCH.ThanhPho) {
+							if (ThanhPho.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
+								CRUDCH.comboBox_TPHO.setSelectedItem(item);
+								break;
+							}
 						}
-					}
 
-					for (String item : CRUDCH.Quan_Huyen) {
-						if (Quan_Huyen.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
-							CRUDCH.comboBox_QuanHuyen.setSelectedItem(item);
-							CRUDCH.updateComBoBox_XaPhuong();
-							break;
+						for (String item : CRUDCH.Quan_Huyen) {
+							if (Quan_Huyen.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
+								CRUDCH.comboBox_QuanHuyen.setSelectedItem(item);
+								CRUDCH.updateComBoBox_XaPhuong();
+								break;
+							}
 						}
-					}
 
-					for (String item : CRUDCH.Xa_Phuong) {
-						if (Xa_Phuong.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
-							CRUDCH.comboBox_XaPhuong.setSelectedItem(item);
-							break;
+						for (String item : CRUDCH.Xa_Phuong) {
+							if (Xa_Phuong.equals(view.CuaHangView.chuyenThanhTenBien(item))) {
+								CRUDCH.comboBox_XaPhuong.setSelectedItem(item);
+								break;
+							}
 						}
-					}
 
-					CRUDCH.textField_DiaChi.setText(Duong);
+						CRUDCH.textField_DiaChi.setText(Duong);
+
+					} catch (Exception e) {
+						System.out.println(e);
+					}
 				}
 			}
 
@@ -176,7 +183,8 @@ public class CuaHangMouseListener implements MouseListener {
 						+ CRUDCH.comboBox_TPHO.getSelectedItem();
 
 				// Kiểm tra xem các trường có được nhập đầy đủ không
-				if (maCH.isEmpty() || maCH.trim().isEmpty() || tenCH.isEmpty() || tenCH.trim().isEmpty() || sdt.isEmpty() || diaChi.isEmpty()) {
+				if (maCH.trim().isEmpty() || tenCH.trim().isEmpty() || sdt.trim().isEmpty()
+						|| CRUDCH.textField_DiaChi.getText().trim().isEmpty()) {
 					JOptionPane.showMessageDialog(CRUDCH, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
 							JOptionPane.ERROR_MESSAGE);
 					return;
@@ -201,6 +209,7 @@ public class CuaHangMouseListener implements MouseListener {
 								CuaHangDAO.getintance().restoreCuaHang(maCH);
 								CuaHangView.loadCuaHang();
 								CRUDCH.dispose();
+								return;
 
 							} else {
 								JOptionPane.showMessageDialog(CRUDCH, "Mã cửa hàng đã tồn tại", "Lỗi",
@@ -241,12 +250,13 @@ public class CuaHangMouseListener implements MouseListener {
 				}
 			}
 		});
+		
 		CRUDCH.Button_HuyBo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!CRUDCH.textField_MaCH.getText().isEmpty() || !CRUDCH.textField_TenCH.getText().isEmpty()
-						|| !CRUDCH.textField_SDT.getText().isEmpty() || !CRUDCH.textField_DiaChi.getText().isEmpty()) {
+				if (!CRUDCH.textField_MaCH.getText().trim().isEmpty() || !CRUDCH.textField_TenCH.getText().trim().isEmpty()
+						|| !CRUDCH.textField_SDT.getText().trim().isEmpty() || !CRUDCH.textField_DiaChi.getText().trim().isEmpty()) {
 					int choice = JOptionPane.showConfirmDialog(CRUDCH, "Xác nhận hủy bỏ?", "Xác nhận",
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 

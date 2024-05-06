@@ -28,6 +28,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+
 import controller.Controllernhaphang;
 import dao.LaptopDAO;
 import dao.NhanVienDAO;
@@ -287,8 +289,7 @@ public class NhapHang extends JFrame {
 		panelg_trai_tren.setLayout(new BoxLayout(panelg_trai_tren, BoxLayout.X_AXIS));
 		jt_otimkiem = new JTextField();
 		panelg_trai_tren.add(jt_otimkiem);
-		ImageIcon icon_lammoi = new ImageIcon(
-				"D:\\LUYENTAPJAVA\\DoAnJava-main\\QuanLyKhoHangLaptop\\src\\img\\loadicon.png");
+		
 		btn_timkiem = new JButton("Làm mới", new ImageIcon(NhapHang.class.getResource("/img/arrow.png")));
 		btn_timkiem.setBackground(new Color(255, 255, 255));
 		btn_timkiem.setFont(new Font("Arial", Font.BOLD, 20));
@@ -516,7 +517,7 @@ public class NhapHang extends JFrame {
 		model1.setRowCount(0);
 		jl_mapn.setText("");
 		comboBox_ncc.setSelectedIndex(0);
-		update();
+		comboBox_ncc.setEnabled(true);
 		sanpham = LaptopDAO.getintance().selectAll();
 		for (Laptop sp : sanpham) {
 			stt = 0;
@@ -524,6 +525,7 @@ public class NhapHang extends JFrame {
 		}
 
 		JOptionPane.showConfirmDialog(null, "Nhập hàng thành công", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
+		update();
 	}
 
 	public void clickvaotable1() {
@@ -541,6 +543,7 @@ public class NhapHang extends JFrame {
 //		        table1.changeSelection(lastRow, 0, true, true);
 //		    }
 		jt_thanhtien.setText("");
+		update();
 	}
 
 	public void themsanpham() {
@@ -551,8 +554,14 @@ public class NhapHang extends JFrame {
 		jt_tensanpham.setText(model.getValueAt(i, 1) + "");
 		update();
 	}
-
+	
 	public void themvaobang() {
+//		if(table.getSelectedRow()!=-1) {
+//			String tmpma = model.getValueAt(table.getSelectedRow(), 0).toString();
+//			Laptop lap = LaptopDAO.getintance().lay1sp(tmpma);
+//			String currentNCC=lap.getMaNhaCungCap();
+//			comboBox_ncc.setSelectedItem(currentNCC);
+//		}
 		if (jt_soluong.getText().length() > 0) {
 			int j = table1.getRowCount();
 			if (j >= 1) {
@@ -585,7 +594,10 @@ public class NhapHang extends JFrame {
 			} else {
 
 				lt = LaptopDAO.getintance().lay1sp(jt_masanpham.getText());
-
+				// nếu là sản phẩm đầu tiên thì tự động chọn ncc dựa trên sp đó
+				String currentNCC=lt.getMaNhaCungCap();
+				comboBox_ncc.setSelectedItem(currentNCC);
+				
 				model1.addRow(new Object[] { lt.getMaLaptop(), lt.getTenLaptop(), lt.getCPU(), lt.getGPU(), lt.getRam(),
 						lt.getRom(), lt.getHeDieuHanh(), lt.getManHinh(), lt.getHang(), jt_thanhtien.getText(),
 						jt_soluong.getText()
@@ -605,13 +617,13 @@ public class NhapHang extends JFrame {
 //		    btn_suasp.setBackground(new Color(255, 128, 64));
 //	        btn_xoasp.setBackground(new Color(255, 128, 128));
 			}
-			update();
 			jt_masanpham.setText("");
 			jt_tensanpham.setText("");
 			jt_soluong.setText("");
 			jt_thanhtien.setText("");
 		} else
 			JOptionPane.showConfirmDialog(null, "Bạn chưa nhập số lượng", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
+		update();
 	}
 
 	public void hiengiakhithem() {
@@ -630,6 +642,7 @@ public class NhapHang extends JFrame {
 
 	}
 
+	// cập nhật tổng tiền và tổng số lượng
 	public void update() {
 		tongsoluongphieu = 0;
 		tongtien = 0.0;
@@ -639,16 +652,32 @@ public class NhapHang extends JFrame {
 		}
 		kqtongtiennn.setText(String.valueOf(tongtien));
 		kqtongsoluong.setText(String.valueOf(tongsoluongphieu));
+		setEnableComboBoxNcc();
 	}
 	
+	//cập nhật dữ liệu bả nhỏ comboBox dựa trên combobox ncc 
 	public void thaydoicomboboxnhac() {
 		String str = (String) comboBox_ncc.getSelectedItem();
 		if (!str.isEmpty()) {
+			model.setRowCount(0);
 			ArrayList<Laptop> newSp = LaptopDAO.getintance().Select_search("MaNhaCungCap", str);
-			//table.removeAll();
 			for (Laptop sp : newSp)
 				if (sp.getMaNhaCungCap().equals(str))
 					model.addRow(new Object[] { sp.getMaLaptop(), sp.getTenLaptop(), sp.getSoLuong() });
+			sanpham=newSp;
+			return;
 		}
+		// nếu combobox trống thì trả về toàn bộ sp s
+		sanpham = LaptopDAO.getintance().selectAll();
+		lammoithanh();
+	}
+	
+	
+	public void setEnableComboBoxNcc() {
+		if(table1.getRowCount()!=0) {
+			comboBox_ncc.setEnabled(false);
+			return;
+		}
+		comboBox_ncc.setEnabled(true);
 	}
 }

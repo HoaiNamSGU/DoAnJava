@@ -215,7 +215,6 @@ public class CuaHangView extends JPanel {
 	}
 
 	public JTable loadCuaHang() {
-		// Xóa bảng cũ nếu tồn tại
 		ArrayList<CuaHang> ListCuaHang = loadDataFromSql();
 		updateData(ListCuaHang);
 		return table;
@@ -254,8 +253,7 @@ public class CuaHangView extends JPanel {
 		ArrayList<CuaHang> ListCuaHang = CuaHang;
 		data = new Object[ListCuaHang.size()][5];
 		int j = 0;
-		for (int i = 0; i < ListCuaHang.size(); i++) {
-			CuaHang CH = ListCuaHang.get(i);
+		for (CuaHang CH: ListCuaHang) {
 			if (CH.getIsDelete() == 0) {
 				data[j][0] = CH.getMaCH();
 				data[j][1] = CH.getTenCH();
