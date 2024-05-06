@@ -172,8 +172,20 @@ public class TaiKhoanMouseListener implements MouseListener{
 			            } 
 						nv.setTenNhanVien(tk.textField_HoTen.getText());
 			        	nv.setSDT(tk.textField_SDT.getText());
-			        	nv.setNgaySinh(day, month, year);
-
+			        	nv.setNgaySinh(day, month-1, year);
+					while(!nv.getSDT().matches("[0-9]+"))
+    			        	{
+    			        		if(tk.textField_SDT.getText().matches("[0-9]+"))
+    			        		{
+    			        			nv.setSDT(tk.textField_SDT.getText());
+    			        		}
+    			        		else
+    			        		{
+    			        			JOptionPane.showMessageDialog(tk,"Số điện thoại không hợp lệ !\n Vui lòng nhập lại !","Lỗi",JOptionPane.ERROR_MESSAGE);
+    			        			String input = JOptionPane.showInputDialog(tk, "Nhập lại mã nhân viên:");
+    			        			nv.setSDT(input);
+    			        		}
+    			        	}
 			        	ArrayList<String> arrMaNhanVien = new ArrayList<String>();
 			        	while(true)
 			        	{
@@ -418,7 +430,7 @@ public class TaiKhoanMouseListener implements MouseListener{
     							nv.setGioiTinh(0);
     						}
     						int year = (int) tk.yearModel.getValue();
-    			            int month = (int) tk.monthModel.getValue();
+    			            int month = (int) tk.monthModel.getValue()-1;
     			            int day = (int) tk.dayModel.getValue();
     			            if (isValidDate(year, month, day)==false) {
     			            	 JOptionPane.showMessageDialog(tk, "Ngày không hợp lệ!");
@@ -430,7 +442,19 @@ public class TaiKhoanMouseListener implements MouseListener{
     						nv.setTenNhanVien(tk.textField_HoTen.getText());
     			        	nv.setSDT(tk.textField_SDT.getText());
     			        	nv.setNgaySinh(day, month, year);
-
+					while(!nv.getSDT().matches("[0-9]+"))
+    			        	{
+    			        		if(tk.textField_SDT.getText().matches("[0-9]+"))
+    			        		{
+    			        			nv.setSDT(tk.textField_SDT.getText());
+    			        		}
+    			        		else
+    			        		{
+    			        			JOptionPane.showMessageDialog(tk,"Số điện thoại không hợp lệ !\n Vui lòng nhập lại !","Lỗi",JOptionPane.ERROR_MESSAGE);
+    			        			String input = JOptionPane.showInputDialog(tk, "Nhập lại mã nhân viên:");
+    			        			nv.setSDT(input);
+    			        		}
+    			        	}
     			        	if(tk.textField_TaiKhoan.getText().equals("")||tk.textField_MatKhau.getText().equals("")||tk.textField_TaiKhoan.getText().equals("")&&tk.textField_MatKhau.getText().equals(""))
     			        	{
     			        		nd.setTaiKhoan(nv.getMaNguoiDung());
