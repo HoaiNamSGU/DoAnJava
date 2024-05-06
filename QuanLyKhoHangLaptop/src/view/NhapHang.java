@@ -28,8 +28,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-
 import controller.Controllernhaphang;
 import dao.LaptopDAO;
 import dao.NhanVienDAO;
@@ -513,18 +511,13 @@ public class NhapHang extends JFrame {
 			PhieuNhapDao.getInstance().inchitietphieu(chitietphieunhap);
 			LaptopDAO.getintance().update1dulieu(masanpham, Integer.parseInt(soluongm));
 		}
-		model.setRowCount(0);
-		model1.setRowCount(0);
-		jl_mapn.setText("");
 		comboBox_ncc.setSelectedIndex(0);
-		comboBox_ncc.setEnabled(true);
-		sanpham = LaptopDAO.getintance().selectAll();
-		for (Laptop sp : sanpham) {
-			stt = 0;
-			model.addRow(new Object[] { sp.getMaLaptop(), sp.getTenLaptop(), sp.getSoLuong() });
-		}
-
+		thaydoicomboboxnhac();
+		model1.setRowCount(0);
+		jl_mapn.setText(null);
 		JOptionPane.showConfirmDialog(null, "Nhập hàng thành công", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
+		//IMEIDAO.getintance().InsertALL(pn1.getMaPhieuNhap(), pn1.getTongSoLuong());
+		
 		update();
 	}
 
