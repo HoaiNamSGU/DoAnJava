@@ -289,6 +289,7 @@ public class CuaHangMouseListener implements MouseListener {
 		} else
 			JOptionPane.showMessageDialog(CuaHangView, "Cửa hàng không tồn lại", "Thông báo",
 					JOptionPane.ERROR_MESSAGE);
+		CuaHangView.loadCuaHang();
 	}
 
 	public void ViewDetails(String MaCH) {
@@ -320,7 +321,7 @@ public class CuaHangMouseListener implements MouseListener {
 		} else
 			JOptionPane.showMessageDialog(CuaHangView, "Không thể " + type + " dữ liệu Excel", "Lỗi",
 					JOptionPane.ERROR_MESSAGE);
-
+		CuaHangView.loadCuaHang();
 	}
 
 	public String getSelectedMaCH() {

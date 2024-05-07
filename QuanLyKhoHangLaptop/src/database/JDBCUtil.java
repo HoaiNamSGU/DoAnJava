@@ -35,23 +35,5 @@ public class JDBCUtil {
 			e.printStackTrace();
 		}
 	}
-
-	public static void printInfo(Connection c) {
-		try {
-			if (c != null) {
-				java.sql.DatabaseMetaData mtdt = c.getMetaData();
-				System.out.println(mtdt.getDatabaseProductName());
-				System.out.println(mtdt.getDatabaseProductVersion());
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) {
-		Connection c = JDBCUtil.getConnection();
-
-		JDBCUtil.printInfo(c);
-		JDBCUtil.closeConnection(c);
-	}
+	
 }

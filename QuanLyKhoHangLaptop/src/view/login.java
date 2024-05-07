@@ -78,11 +78,6 @@ public class login extends JFrame {
 		jpanel_login.add(textField_username);
 		textField_username.setColumns(10);
 
-		JLabel jLabel = new JLabel("Quên mật khẩu ?");
-		jLabel.setForeground(new Color(0, 0, 0));
-		jLabel.setFont(new Font("Arial", Font.BOLD, 16));
-		jLabel.setBounds(86, 352, 134, 24);
-		jpanel_login.add(jLabel);
 
 		JButton btnLogin = new JButton("Đăng nhập");
 		btnLogin.addActionListener(ac);

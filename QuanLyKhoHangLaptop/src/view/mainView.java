@@ -107,6 +107,12 @@ public class mainView extends JFrame {
 		jlabel_sanpham.setIcon(source.icon_sanpham);
 		panel_menu.add(jlabel_sanpham);
 
+		jlabel_cuahang = new JLabel("Cửa hàng");
+		jlabel_cuahang.setForeground(new Color(0, 0, 0));
+		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
+		jlabel_cuahang.setIcon(source.icon_cuahang);
+		panel_menu.add(jlabel_cuahang);
+		
 		jlabel_nhacungcap = new JLabel("Nhà cung cấp");
 		jlabel_nhacungcap.setForeground(new Color(0, 0, 0));
 		jlabel_nhacungcap.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -129,11 +135,6 @@ public class mainView extends JFrame {
 		jlabel_xuathang.setIcon(source.icon_xuathang);
 		panel_menu.add(jlabel_xuathang);
 
-		jlabel_cuahang = new JLabel("Cửa hàng");
-		jlabel_cuahang.setForeground(new Color(0, 0, 0));
-		jlabel_cuahang.setFont(new Font("Arial", Font.PLAIN, 20));
-		jlabel_cuahang.setIcon(source.icon_cuahang);
-		panel_menu.add(jlabel_cuahang);
 
 		jlabel_taikhoan = new JLabel("Tài khoản");
 		jlabel_taikhoan.setForeground(new Color(0, 0, 0));

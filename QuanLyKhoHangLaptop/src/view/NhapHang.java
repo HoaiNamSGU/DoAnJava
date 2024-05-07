@@ -684,6 +684,7 @@ public class NhapHang extends JFrame {
 	}
 
 	public void setEnableComboBoxNcc() {
+		System.out.println("Dassa");
 		if (table1.getRowCount() != 0) {
 			comboBox_ncc.setEnabled(false);
 			return;

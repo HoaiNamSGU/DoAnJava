@@ -99,8 +99,8 @@ public Laptop lay1sp(String mltp) {
 	}
 	
 	// tìm kiếm nâng cao - Nam fixed
-	public ArrayList<Laptop> advancedSearch(String condition1, String condition2, String condition3, String condition4,
-			String condition5, int giaMin, int giaMax) {
+	public ArrayList<Laptop> advancedSearch(String condition1, String condition2, String condition3, String condition4,String condition5, int giaMin, int giaMax) 
+	{
 		ArrayList<Laptop> Result = new ArrayList<Laptop>();
 		if (condition1.equals("Tất cả"))
 			condition1 = "";
