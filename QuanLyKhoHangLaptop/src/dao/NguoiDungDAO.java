@@ -156,12 +156,17 @@ public class NguoiDungDAO implements DAOInterface<NguoiDung>{
 	                     count++;
 	                     continue;
 	                 }
-	                 String ma = row.getCell(5).getStringCellValue();
+	                String ma = row.getCell(5).getStringCellValue();
 	                 String tk = row.getCell(6).getStringCellValue();
-
+	                 String mk = row.getCell(7).getStringCellValue();
+	                 int pv = (int) row.getCell(8).getNumericCellValue();
+	                 int dl = (int) row.getCell(9).getNumericCellValue();
 	                 NguoiDung nd = new NguoiDung();
 	                 nd.setMaNguoiDung(ma);
 	                 nd.setTaiKhoan(tk);
+	                 nd.setMatKhau(mk);
+	                 nd.setPhamViTruyCap(pv);
+	                 nd.setIsDelete(dl);
 	                 arr.add(nd);
 	             }
 	             workbook.close();
