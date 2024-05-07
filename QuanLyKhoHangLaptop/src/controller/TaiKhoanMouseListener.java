@@ -516,20 +516,36 @@ public class TaiKhoanMouseListener implements MouseListener{
 
         else if(labelText.equals("Nhập Excel"))
         {
-
-
-        	JFileChooser fileChooser = new JFileChooser();
-    		fileChooser.setDialogTitle("Chọn vị trí lưu tệp Excel");
-    		fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xlsx"));
-
-    		int userSelection = fileChooser.showSaveDialog(null);
-    		if (userSelection == JFileChooser.APPROVE_OPTION) {
-    			String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-    			ArrayList<NhanVien> nhanvien = NhanVienDAO.getintance().ReadExcelKetHop(filePath);
+		String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+    		ArrayList<NhanVien> nhanvien = NhanVienDAO.getintance().ReadExcelKetHop(filePath);
             	ArrayList<NguoiDung> nguoidung = NguoiDungDAO.getintance().ReadExcelKetHop(filePath);
+            	ArrayList<NhanVien> arrnv = NhanVienDAO.getintance().selectAll();
+            	ArrayList<NguoiDung> arrnd = NguoiDungDAO.getintance().select_search("");
+            	
+            	
+            	for(int i=0;i<nguoidung.size();i++)
+            	{
+            		boolean check = true;
+            		for(int j=0;j<arrnd.size();j++)
+            		{
+            			if(nguoidung.get(i).getMaNguoiDung().equals(arrnd.get(j).getMaNguoiDung()) && nhanvien.get(i).getMaNhanVien().equals(arrnv.get(j).getMaNhanVien()))
+            			{
+            				check = false;
+            			}
+            		}
+            		if(check == true)
+            		{
+            			arrnd.add(nguoidung.get(i));
+            			arrnv.add(nhanvien.get(i));
+            			NguoiDungDAO.getintance().insert(nguoidung.get(i));
+            			NhanVienDAO.getintance().insert(nhanvien.get(i));
+            		}
+            	}
+            	
+            	
             	if(nhanvien.isEmpty()==false && nguoidung.isEmpty()==false)
             	{
-            		taikhoanview.updateTableData(nguoidung);
+            		taikhoanview.updateTableData(arrnd);
             		JOptionPane.showMessageDialog(taikhoanview,"Nhập file Excel thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             		clickedLabel.setForeground(Color.BLACK);
            	     	clickedLabel.setBackground(null);
@@ -540,8 +556,6 @@ public class TaiKhoanMouseListener implements MouseListener{
             		clickedLabel.setForeground(Color.BLACK);
            	     	clickedLabel.setBackground(null);
             	}
-    		}
-
         }
 
 	}
