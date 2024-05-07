@@ -103,7 +103,7 @@ public String laymanhanvien(String manhanv) {
 	                 String gioitinh = row.getCell(3).getStringCellValue();
 	                 String SDT = row.getCell(4).getStringCellValue();
 	                 String mand = row.getCell(5).getStringCellValue();
-	                 int isDelete = 0;
+	                 int isDelete = (int) row.getCell(6).getStringCellValue();
 	                 NhanVien nv = new NhanVien();
 	                 nv.setMaNhanVien(ma);
 	                 nv.setTenNhanVien(ten);
