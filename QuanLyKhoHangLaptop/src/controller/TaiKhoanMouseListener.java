@@ -516,8 +516,16 @@ public class TaiKhoanMouseListener implements MouseListener{
 
         else if(labelText.equals("Nhập Excel"))
         {
-		String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-    		ArrayList<NhanVien> nhanvien = NhanVienDAO.getintance().ReadExcelKetHop(filePath);
+
+
+        	JFileChooser fileChooser = new JFileChooser();
+    		fileChooser.setDialogTitle("Chọn vị trí lưu tệp Excel");
+    		fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xlsx"));
+
+    		int userSelection = fileChooser.showSaveDialog(null);
+    		if (userSelection == JFileChooser.APPROVE_OPTION) {
+    			String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+    			ArrayList<NhanVien> nhanvien = NhanVienDAO.getintance().ReadExcelKetHop(filePath);
             	ArrayList<NguoiDung> nguoidung = NguoiDungDAO.getintance().ReadExcelKetHop(filePath);
             	ArrayList<NhanVien> arrnv = NhanVienDAO.getintance().selectAll();
             	ArrayList<NguoiDung> arrnd = NguoiDungDAO.getintance().select_search("");
@@ -556,6 +564,8 @@ public class TaiKhoanMouseListener implements MouseListener{
             		clickedLabel.setForeground(Color.BLACK);
            	     	clickedLabel.setBackground(null);
             	}
+    		}
+
         }
 
 	}

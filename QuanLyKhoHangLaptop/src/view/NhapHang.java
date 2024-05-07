@@ -29,6 +29,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controllernhaphang;
+import dao.IMEIDAO;
 import dao.LaptopDAO;
 import dao.NhanVienDAO;
 import dao.PhieuNhapDao;
@@ -77,7 +78,6 @@ public class NhapHang extends JFrame {
 	private JLabel kqtongsoluong;
 	public JComboBox comboBox_ncc;
 	private JLabel Label_nv;
-	
 
 	/**
 	 * Launch the application.
@@ -99,7 +99,7 @@ public class NhapHang extends JFrame {
 	 * Create the frame.
 	 */
 	public NhapHang() {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1400, 800);
 		contentPane = new JPanel();
@@ -202,7 +202,7 @@ public class NhapHang extends JFrame {
 		gbc_manhanvien.gridx = 0;
 		gbc_manhanvien.gridy = 3;
 		panel_bentren.add(manhanvien, gbc_manhanvien);
-		
+
 		Label_nv = new JLabel(view.mainView.nhanvien.getMaNhanVien());
 		Label_nv.setEnabled(false);
 		GridBagConstraints gbc_label_nv = new GridBagConstraints();
@@ -287,7 +287,7 @@ public class NhapHang extends JFrame {
 		panelg_trai_tren.setLayout(new BoxLayout(panelg_trai_tren, BoxLayout.X_AXIS));
 		jt_otimkiem = new JTextField();
 		panelg_trai_tren.add(jt_otimkiem);
-		
+
 		btn_timkiem = new JButton("Làm mới", new ImageIcon(NhapHang.class.getResource("/img/arrow.png")));
 		btn_timkiem.setBackground(new Color(255, 255, 255));
 		btn_timkiem.setFont(new Font("Arial", Font.BOLD, 20));
@@ -429,6 +429,18 @@ public class NhapHang extends JFrame {
 		if (i < 0)
 			JOptionPane.showConfirmDialog(null, "Bạn chưa chọn dòng sửa", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
 		else {
+			if (sua != 0) {
+				model1.setValueAt(jt_soluong.getText(), i, 10);
+				model1.setValueAt(jt_thanhtien.getText(), i, 9);
+				
+
+			} else {
+				jt_masanpham.setText(model1.getValueAt(i, 0) + "");
+				jt_tensanpham.setText(model1.getValueAt(i, 1) + "");
+				jt_soluong.setText(model1.getValueAt(i, 10) + "");
+				jt_thanhtien.setText(model1.getValueAt(i, 9) + "");
+				sua++;
+			}
 			update();
 		}
 	}
@@ -515,9 +527,13 @@ public class NhapHang extends JFrame {
 		thaydoicomboboxnhac();
 		model1.setRowCount(0);
 		jl_mapn.setText(null);
+		jt_masanpham.setText("");
+		jt_tensanpham.setText("");
+		jt_soluong.setText("");
+		jt_thanhtien.setText("");
 		JOptionPane.showConfirmDialog(null, "Nhập hàng thành công", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
-		//IMEIDAO.getintance().InsertALL(pn1.getMaPhieuNhap(), pn1.getTongSoLuong());
-		
+		IMEIDAO.getintance().InsertALL(pn1.getMaPhieuNhap(), pn1.getTongSoLuong());
+
 		update();
 	}
 
@@ -547,7 +563,7 @@ public class NhapHang extends JFrame {
 		jt_tensanpham.setText(model.getValueAt(i, 1) + "");
 		update();
 	}
-	
+
 	public void themvaobang() {
 //		if(table.getSelectedRow()!=-1) {
 //			String tmpma = model.getValueAt(table.getSelectedRow(), 0).toString();
@@ -588,9 +604,9 @@ public class NhapHang extends JFrame {
 
 				lt = LaptopDAO.getintance().lay1sp(jt_masanpham.getText());
 				// nếu là sản phẩm đầu tiên thì tự động chọn ncc dựa trên sp đó
-				String currentNCC=lt.getMaNhaCungCap();
+				String currentNCC = lt.getMaNhaCungCap();
 				comboBox_ncc.setSelectedItem(currentNCC);
-				
+
 				model1.addRow(new Object[] { lt.getMaLaptop(), lt.getTenLaptop(), lt.getCPU(), lt.getGPU(), lt.getRam(),
 						lt.getRom(), lt.getHeDieuHanh(), lt.getManHinh(), lt.getHang(), jt_thanhtien.getText(),
 						jt_soluong.getText()
@@ -643,12 +659,14 @@ public class NhapHang extends JFrame {
 			tongsoluongphieu += Integer.parseInt(model1.getValueAt(i, 10).toString());
 			tongtien += Double.parseDouble(model1.getValueAt(i, 9).toString());
 		}
-		kqtongtiennn.setText(String.valueOf(tongtien));
+		DecimalFormat df = new DecimalFormat("#");
+		String formattedNumber = df.format(tongtien);
+		kqtongtiennn.setText(formattedNumber);
 		kqtongsoluong.setText(String.valueOf(tongsoluongphieu));
 		setEnableComboBoxNcc();
 	}
-	
-	//cập nhật dữ liệu bả nhỏ comboBox dựa trên combobox ncc 
+
+	// cập nhật dữ liệu bả nhỏ comboBox dựa trên combobox ncc
 	public void thaydoicomboboxnhac() {
 		String str = (String) comboBox_ncc.getSelectedItem();
 		if (!str.isEmpty()) {
@@ -657,17 +675,16 @@ public class NhapHang extends JFrame {
 			for (Laptop sp : newSp)
 				if (sp.getMaNhaCungCap().equals(str))
 					model.addRow(new Object[] { sp.getMaLaptop(), sp.getTenLaptop(), sp.getSoLuong() });
-			sanpham=newSp;
+			sanpham = newSp;
 			return;
 		}
 		// nếu combobox trống thì trả về toàn bộ sp s
 		sanpham = LaptopDAO.getintance().selectAll();
 		lammoithanh();
 	}
-	
-	
+
 	public void setEnableComboBoxNcc() {
-		if(table1.getRowCount()!=0) {
+		if (table1.getRowCount() != 0) {
 			comboBox_ncc.setEnabled(false);
 			return;
 		}

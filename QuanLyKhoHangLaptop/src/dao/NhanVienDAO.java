@@ -103,7 +103,7 @@ public String laymanhanvien(String manhanv) {
 	                 String gioitinh = row.getCell(3).getStringCellValue();
 	                 String SDT = row.getCell(4).getStringCellValue();
 	                 String mand = row.getCell(5).getStringCellValue();
-	                 int isDelete = (int) row.getCell(6).getStringCellValue();
+	                 //int isDelete = (int) row.getCell(9).getNumericCellValue();
 	                 NhanVien nv = new NhanVien();
 	                 nv.setMaNhanVien(ma);
 	                 nv.setTenNhanVien(ten);
@@ -118,7 +118,7 @@ public String laymanhanvien(String manhanv) {
 	                 }
 	                 nv.setSDT(SDT);
 	                 nv.setMaNguoiDung(mand);
-	                 nv.setIsDelete(isDelete);
+	                 nv.setIsDelete(0);
 	                 arr.add(nv);
 
 	             }
@@ -512,7 +512,7 @@ public String laymanhanvien(String manhanv) {
 	
 	
 	public static void main(String[] args) {
-		ArrayList<NhanVien> nv = NhanVienDAO.getintance().select_nhanvienThuong();
+		ArrayList<NhanVien> nv = NhanVienDAO.getintance().ReadExcelKetHop("C:\\Users\\ADMIN\\Downloads\\DSUser.xlsx");
 		for (NhanVien nhanVien : nv) {
 			System.out.println(nhanVien.toString());
 		}

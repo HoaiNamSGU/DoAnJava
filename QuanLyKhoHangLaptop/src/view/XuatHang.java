@@ -79,6 +79,7 @@ public class XuatHang extends JFrame {
 	private int tongsoluongphieu = 0, sua = 0;
 	private JComboBox comboBox_ch;
 	private JLabel Label_nv;
+
 	/**
 	 * Launch the application.
 	 */
@@ -190,7 +191,7 @@ public class XuatHang extends JFrame {
 		gbc_manhanvien.gridx = 0;
 		gbc_manhanvien.gridy = 3;
 		panel_bentren.add(manhanvien, gbc_manhanvien);
-		
+
 		Label_nv = new JLabel(view.mainView.nhanvien.getMaNhanVien());
 		Label_nv.setEnabled(false);
 		GridBagConstraints gbc_label_nv = new GridBagConstraints();
@@ -412,12 +413,22 @@ public class XuatHang extends JFrame {
 
 	public void suasanphamthem() {
 		int i = table1.getSelectedRow();
-		System.out.println(i);
-		jt_masanpham.setText(model1.getValueAt(i, 2) + "");
-		jt_tensanpham.setText(model1.getValueAt(i, 3) + "");
-		jt_soluong.setText(model1.getValueAt(i, 12) + "");
-		jt_thanhtien.setText(model1.getValueAt(i, 11) + "");
-		update();
+		if (i < 0)
+			JOptionPane.showConfirmDialog(null, "Bạn chưa chọn dòng sửa", "THÔNG BÁO", JOptionPane.CLOSED_OPTION);
+		else {
+			if (sua != 0) {
+				model1.setValueAt(jt_soluong.getText(), i, 12);
+				model1.setValueAt(jt_thanhtien.getText(), i, 11);
+
+			} else {
+				jt_masanpham.setText(model1.getValueAt(i, 0) + "");
+				jt_tensanpham.setText(model1.getValueAt(i, 1) + "");
+				jt_soluong.setText(model1.getValueAt(i, 12) + "");
+				jt_thanhtien.setText(model1.getValueAt(i, 11) + "");
+				sua++;
+			}
+			update();
+		}
 	}
 
 	public void xoasanphamthem() {
@@ -493,8 +504,8 @@ public class XuatHang extends JFrame {
 //		DecimalFormat df2 = new DecimalFormat("#");
 //		String formattedNumber2 = df2.format(Double.parseDouble(tongtienn));
 //	 	public PhieuXuat(String maPhieuXuat, String maCuaHang, String maNhanVien, Date ngayXuat, double tongTien, int isDelete) {
-		PhieuXuat pn1 = new PhieuXuat(maphieun.toUpperCase(), manhacc, manhanvi, date, Double.parseDouble(kqtongtiennn.getText()),
-				Integer.parseInt(kqtongsoluong.getText()), 0);
+		PhieuXuat pn1 = new PhieuXuat(maphieun.toUpperCase(), manhacc, manhanvi, date,
+				Double.parseDouble(kqtongtiennn.getText()), Integer.parseInt(kqtongsoluong.getText()), 0);
 		PhieuXuatDao.getInstance().insert(pn1);
 		for (int i = 0; i < table1.getRowCount(); i++) {
 			String masanpham = model1.getValueAt(i, 2) + "";
@@ -502,14 +513,18 @@ public class XuatHang extends JFrame {
 
 			String thanhtienm = model1.getValueAt(i, 11) + "";
 //				public ChiTietPhieuXuat(String maPhieuXuat, String maLaptop, int soLuong, Double thanhTien, int isDelete) {
-			ChiTietPhieuXuat ctpn = new ChiTietPhieuXuat(maphieun.toUpperCase(), masanpham, soluongm, Double.parseDouble(thanhtienm),
-					0);
+			ChiTietPhieuXuat ctpn = new ChiTietPhieuXuat(maphieun.toUpperCase(), masanpham, soluongm,
+					Double.parseDouble(thanhtienm), 0);
 			PhieuXuatDao.getInstance().inchitietphieu(ctpn);
 			LaptopDAO.getintance().update1dulieu(masanpham, 0 - soluongm);
 		}
 		model.setRowCount(0);
 		model1.setRowCount(0);
 		jl_mapn.setText("");
+		jt_masanpham.setText("");
+		jt_tensanpham.setText("");
+		jt_soluong.setText("");
+		jt_thanhtien.setText("");
 		comboBox_ch.setSelectedIndex(0);
 		sanpham = LaptopDAO.getintance().selectAll();
 		for (Laptop sp : sanpham) {
@@ -607,7 +622,9 @@ public class XuatHang extends JFrame {
 			tongsoluongphieu += Integer.parseInt(model1.getValueAt(i, 12).toString());
 			tongtien += Double.parseDouble(model1.getValueAt(i, 11).toString());
 		}
-		kqtongtiennn.setText(String.valueOf(tongtien));
+		DecimalFormat df = new DecimalFormat("#");
+		String formattedNumber = df.format(tongtien);
+		kqtongtiennn.setText(formattedNumber);
 		kqtongsoluong.setText(String.valueOf(tongsoluongphieu));
 	}
 }
